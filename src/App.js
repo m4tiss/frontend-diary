@@ -14,6 +14,7 @@ import RunNavbar from './components/run/RunNavbar';
 import Login from './components/auth/Login'
 import UserProfile from './components/shared/UserProfile';
 import RunNewTraining from './components/run/RunNewTraining';
+import RunHistory from './components/run/RunHistory';
 
 
 function App() {
@@ -69,6 +70,7 @@ function RunLayout() {
         <Route path="dashboard" element={<RunDashboard />} />
         <Route path="profile" element={<UserProfile type="run"/>} />
         <Route path="newTraining" element={<RunNewTraining/>} />
+        <Route path="history" element={<RunHistory/>} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>
       
