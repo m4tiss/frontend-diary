@@ -32,7 +32,9 @@ const GymNavbar = ({ setNavBarType }) => {
         }}
       >
         <div className="flex items-center justify-start gap-5">
-          <button className="text-2xl text-white mx-5 ">
+          <button
+          onClick={() => navigate("/gym/dashboard")}
+          className="text-2xl text-white mx-5 ">
             <CgGym size={50} />
           </button>
           <h2 className="text-2xl text-white mx-5">YourWebsite</h2>
