@@ -1,15 +1,19 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate, Navigate } from 'react-router-dom';
-import GymDashboard from './components/gym/GymDashboard';
-import RunDashboard from './components/run/RunDashboard';
-import GymNavbar from './components/gym/GymNavbar'
-import RunNavbar from './components/run/RunNavbar';
-import Login from './components/auth/Login'
-import UserProfile from './components/shared/UserProfile';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './config/firebase';
+
+import GymDashboard from './components/gym/GymDashboard';
+import GymStats from './components/gym/GymStats';
+import GymNavbar from './components/gym/GymNavbar'
 import GymHistory from './components/gym/GymHistory';
 import GymNewTraining from './components/gym/GymNewTraining';
+
+import RunDashboard from './components/run/RunDashboard';
+import RunNavbar from './components/run/RunNavbar';
+
+import Login from './components/auth/Login'
+import UserProfile from './components/shared/UserProfile';
+
 
 function App() {
   return (
@@ -42,6 +46,7 @@ function GymLayout() {
         <Route path="profile" element={<UserProfile type="gym"/>} />
         <Route path="history" element={<GymHistory/>} />
         <Route path="newTraining" element={<GymNewTraining/>} />
+        <Route path="stats" element={<GymStats/>} />
         <Route path="*" element={<Navigate to="/gym/dashboard" />} />
       </Routes>
     </div>
