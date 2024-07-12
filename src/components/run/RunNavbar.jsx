@@ -25,7 +25,7 @@ const RunNavbar = ({ setNavBarType }) => {
   return (
     <div className="w-full h-fit md:h-20 flex md:flex-row flex-col shadow-2xl items-center">
       <div
-        className={`w-full md:w-24 bg-[#E73725] md:py-0 py-2  h-full flex items-center justify-center`}
+        className={`w-full md:w-24 md:py-0 py-2  h-full flex items-center justify-center`}
         style={{
           "background-image":
             "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
@@ -39,7 +39,7 @@ const RunNavbar = ({ setNavBarType }) => {
         </button>
       </div>
       <div
-        className="flex-grow h-full w-full bg-[#1DA1F2] md:py-0 py-2 flex md:flex-row flex-col items-center justify-between gap-5"
+        className="flex-grow h-full w-full md:py-0 py-2 flex md:flex-row flex-col items-center justify-between gap-5"
         style={{
           "background-image":
             "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",

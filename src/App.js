@@ -5,6 +5,7 @@ import RunDashboard from './components/run/RunDashboard';
 import GymNavbar from './components/gym/GymNavbar'
 import RunNavbar from './components/run/RunNavbar';
 import Login from './components/auth/Login'
+import UserProfile from './components/shared/UserProfile';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './config/firebase';
 
@@ -36,6 +37,7 @@ function GymLayout() {
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<GymDashboard />} />
+        <Route path="profile" element={<UserProfile type="gym"/>} />
         <Route path="*" element={<Navigate to="/gym/dashboard" />} />
       </Routes>
     </div>
@@ -55,6 +57,7 @@ function RunLayout() {
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<RunDashboard />} />
+        <Route path="profile" element={<UserProfile type="run"/>} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>
       

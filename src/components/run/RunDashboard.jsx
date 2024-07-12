@@ -4,10 +4,9 @@ import history from "../../icons/history.svg";
 import stats from "../../icons/stats.svg";
 import friends from "../../icons/friends2.svg";
 import { useNavigate } from "react-router-dom";
+
 const RunDashbnoard = () => {
-
   const textColor = "#010000";
-
   const navigate = useNavigate();
 
   return (
@@ -27,8 +26,6 @@ const RunDashbnoard = () => {
             repellendus sit qui recusandae porro. Architecto.Y
           </h2>
         </div>
-
-        {/* <img className='w-90' src={test} alt="Training illustration" style={{ background: 'transparent' }} /> */}
       </div>
       <div className=" flex-grow flex-wrap flex gap-10 md:mb-0 mb-10 justify-center items-center">
         <DashboardPanel

@@ -1,11 +1,9 @@
-// Login.js
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { auth } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,8 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const respone = await signInWithEmailAndPassword(auth, email, password);
-      console.log(respone.user.accessToken)
-      localStorage.setItem('token',respone.user.accessToken)
+      localStorage.setItem("token", respone.user.accessToken);
       navigate("/gym/dashboard");
     } catch (error) {
       toast.error("Invalid email or password!");

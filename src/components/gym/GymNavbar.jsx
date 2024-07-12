@@ -4,10 +4,13 @@ import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 import NavbarButton from "../../components/shared/NavbarButton";
 import profilePhoto from "../../images/profile_photo.jpg";
+import { useNavigate } from "react-router-dom";
 
 const GymNavbar = ({ setNavBarType }) => {
+
   const GYM_COLOR = "#E73725";
-  const RUN_COLOR = "#1DA1F2";
+
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     signOut(auth)
@@ -22,11 +25,10 @@ const GymNavbar = ({ setNavBarType }) => {
   return (
     <div className="w-full md:h-20 h-fit flex flex-col md:flex-row shadow-xl">
       <div
-        className={`flex-grow h-full md:py-0 py-2 bg-[${GYM_COLOR}] flex flex-col md:flex-row items-center justify-between gap-5`}
+        className={`flex-grow h-full md:py-0 py-2 flex flex-col md:flex-row items-center justify-between gap-5`}
         style={{
           "background-image":
             "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
-            
         }}
       >
         <div className="flex items-center justify-start gap-5">
@@ -38,7 +40,8 @@ const GymNavbar = ({ setNavBarType }) => {
         <div className="flex md:flex-row flex-col items-center justify-start mx-5 gap-5">
           <h2 className="text-white text-2xl">m4tiss</h2>
           <img
-            className="rounded-full object-cover"
+            onClick={() => navigate("/gym/profile")}
+            className="cursor-pointer rounded-full object-cover"
             width={50}
             height={50}
             src={profilePhoto}
@@ -52,7 +55,7 @@ const GymNavbar = ({ setNavBarType }) => {
         </div>
       </div>
       <div
-        className={`md:w-24 h-full bg-[${RUN_COLOR}] md:py-0 py-2 flex items-center justify-center`}
+        className={`md:w-24 h-full md:py-0 py-2 flex items-center justify-center`}
         style={{
           "background-image":
             "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
