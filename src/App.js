@@ -15,6 +15,7 @@ import Login from './components/auth/Login'
 import UserProfile from './components/shared/UserProfile';
 import RunNewTraining from './components/run/RunNewTraining';
 import RunHistory from './components/run/RunHistory';
+import RunStats from './components/run/RunStats';
 
 
 function App() {
@@ -71,6 +72,7 @@ function RunLayout() {
         <Route path="profile" element={<UserProfile type="run"/>} />
         <Route path="newTraining" element={<RunNewTraining/>} />
         <Route path="history" element={<RunHistory/>} />
+        <Route path="stats" element={<RunStats/>} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>
       
