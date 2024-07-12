@@ -8,6 +8,7 @@ import Login from './components/auth/Login'
 import UserProfile from './components/shared/UserProfile';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './config/firebase';
+import GymHistory from './components/gym/GymHistory';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function GymLayout() {
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<GymDashboard />} />
         <Route path="profile" element={<UserProfile type="gym"/>} />
+        <Route path="history" element={<GymHistory/>} />
         <Route path="*" element={<Navigate to="/gym/dashboard" />} />
       </Routes>
     </div>

@@ -2,12 +2,13 @@ import pic from "../../images/profile_photo.jpg";
 import { BarChart } from "@mui/x-charts";
 import { MdModeEdit } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
-import FriendDivProfile from "../shared/FriendDivProfile"
+import FriendDivProfile from "../shared/FriendDivProfile";
 import lebronImage from "../../images/lebron.png";
 import muskImage from "../../images/musk.jpg";
 import crisImage from "../../images/cris.jpg";
 import { IoMdAdd } from "react-icons/io";
 import { Autoplay } from "swiper/modules";
+import ProfileStatsSlide from "./ProfileStatsSlide";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -19,13 +20,14 @@ import SwiperCore from "swiper";
 
 SwiperCore.use([Autoplay]);
 
-
-const UserProfile = ({type}) => {
-
-    let linearColor = ""
-    if( type === "gym") linearColor = "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
-    else linearColor = "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)"
-
+const UserProfile = ({ type }) => {
+  let linearColor = "";
+  if (type === "gym")
+    linearColor =
+      "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)";
+  else
+    linearColor =
+      "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
 
   const data = {
     xAxis: [
@@ -60,11 +62,13 @@ const UserProfile = ({type}) => {
       </div>
       <div className="2xl:w-1/3 flex flex-col ">
         <div>
-          <h2 className="text-4xl 2xl:text-left text-center font-semibold my-5">Friends</h2>
+          <h2 className="text-4xl 2xl:text-left text-center font-semibold my-5">
+            Friends
+          </h2>
           <div className="2xl:w-full  h-44 bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
-            <FriendDivProfile nickname="Lebron" profileImage={lebronImage}/>
-            <FriendDivProfile nickname="Musk" profileImage={muskImage}/>
-            <FriendDivProfile nickname="Cris" profileImage={crisImage}/>
+            <FriendDivProfile nickname="Lebron" profileImage={lebronImage} />
+            <FriendDivProfile nickname="Musk" profileImage={muskImage} />
+            <FriendDivProfile nickname="Cris" profileImage={crisImage} />
             <div className="flex flex-col justify-center items-center gap-2">
               <IoMdAdd className="rounded-full" size={100} />
               <label className="text-xl">Add Friends</label>
@@ -86,60 +90,51 @@ const UserProfile = ({type}) => {
             loop={true}
           >
             <SwiperSlide>
-              <div className="w-full h-32 flex flex-col justify-center items-center">
-                <h2 className="text-6xl text-white">572</h2>
-                <h2 className="text-xl text-white">Friends</h2>
-              </div>
+              <ProfileStatsSlide number={572} description="Friends" />
             </SwiperSlide>
             <SwiperSlide>
-              <div className="w-full h-32 flex flex-col justify-center items-center">
-                <h2 className="text-6xl text-white">432</h2>
-                <h2 className="text-xl text-white">All trainings</h2>
-              </div>
+              <ProfileStatsSlide number={432} description="All trainings" />
             </SwiperSlide>
             <SwiperSlide>
-              <div className="w-full h-32 flex flex-col justify-center items-center">
-                <h2 className="text-6xl text-white">264</h2>
-                <h2 className="text-xl text-white">Days with us</h2>
-              </div>
+              <ProfileStatsSlide number={264} description="Days with us" />
             </SwiperSlide>
             <SwiperSlide>
-              <div className="w-full h-32 flex flex-col justify-center items-center">
-                <h2 className="text-6xl text-white">300</h2>
-                <h2 className="text-xl text-white">Comments on platform</h2>
-              </div>
+              <ProfileStatsSlide
+                number={300}
+                description="Comments on platform"
+              />
             </SwiperSlide>
           </Swiper>
         </div>
       </div>
       <div className="w-full 2xl:w-1/3 flex flex-col gap-5 2xl:gap-0 justify-evenly items-center">
-          <div className="flex flex-col gap-2">
-            <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center p-2 shadow-xl">
-              <div>
-                <label>Email</label>
-                <h2>mateusz039@op.pl</h2>
-              </div>
-
-              <MdModeEdit size={30} />
+        <div className="flex flex-col gap-2">
+          <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center p-2 shadow-xl">
+            <div>
+              <label>Email</label>
+              <h2>mateusz039@op.pl</h2>
             </div>
-            <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center p-2 shadow-xl">
-              <div>
-                <label>Date of birth</label>
-                <h2>08.05.2002</h2>
-              </div>
 
-              <MdModeEdit size={30} />
-            </div>
+            <MdModeEdit size={30} />
           </div>
+          <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center p-2 shadow-xl">
+            <div>
+              <label>Date of birth</label>
+              <h2>08.05.2002</h2>
+            </div>
 
-          <div className="bg-white shadow-xl rounded-xl">
-            <BarChart
-              xAxis={data.xAxis}
-              yAxis={data.yAxis}
-              series={data.series}
-              width={window.innerWidth > 768 ? 500 : 300}
-              height={300}
-            />
+            <MdModeEdit size={30} />
+          </div>
+        </div>
+
+        <div className="bg-white shadow-xl rounded-xl">
+          <BarChart
+            xAxis={data.xAxis}
+            yAxis={data.yAxis}
+            series={data.series}
+            width={window.innerWidth > 768 ? 500 : 300}
+            height={300}
+          />
         </div>
       </div>
     </div>
