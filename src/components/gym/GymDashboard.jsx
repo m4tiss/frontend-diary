@@ -4,6 +4,8 @@ import history from "../../icons/history.svg";
 import stats from "../../icons/stats.svg";
 import friends from "../../icons/friends2.svg";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
 
 const GymDashboard = () => {
   const textColor = "#010000";
@@ -27,7 +29,17 @@ const GymDashboard = () => {
           </h2>
         </div>
       </div>
-      <div className=" flex-grow flex flex-wrap gap-10 my-10 md:my-0  justify-center items-center">
+      <motion.div
+             initial="hidden"
+             animate="visible"
+             variants={{
+               visible: {
+                 transition: {
+                   staggerChildren: 0.2,
+                 },
+               },
+             }}
+      className=" flex-grow flex flex-wrap gap-10 my-10 md:my-0  justify-center items-center">
         <DashboardPanel
           title="New training"
           icon={doTraining}
@@ -55,7 +67,7 @@ const GymDashboard = () => {
           type="gym"
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
         />
-      </div>
+      </motion.div>
     </div>
   );
 };

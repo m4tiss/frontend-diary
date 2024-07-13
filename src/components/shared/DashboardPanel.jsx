@@ -1,9 +1,16 @@
 import React from "react";
+import { motion } from "framer-motion";
 const DashboardPanel = ({ title, icon, onclick, background }) => {
   return (
-    <div
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      whileHover={{ y: -60 }}
+      transition={{ duration: 0.2 }}
       onClick={onclick}
-      className={`w-60 h-60 border-2 rounded-xl shadow-xl flex flex-col cursor-pointer duration-300 transform translate-y-0 transition-transform hover:-translate-y-20`}
+      className={`w-60 h-60 border-2 rounded-xl shadow-xl flex flex-col cursor-pointer`}
       style={{ backgroundImage: `${background}` }}
     >
       <div className="h-1/2 flex justify-center items-end">
@@ -14,7 +21,7 @@ const DashboardPanel = ({ title, icon, onclick, background }) => {
           {title}
         </h2>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
