@@ -8,37 +8,27 @@ import "swiper/css/scrollbar";
 import RunTrainingSlide from "./RunTrainingSlide";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
-import { format } from "date-fns";
 
-const formattedData = (distance) => {
-  return distance.toFixed(1);
-};
-
-const formattedDate = (dateString) => {
-  const date = new Date(dateString);
-  console.log(dateString);
-  return format(date, "dd-MM-yyyy");
-};
-
-const formattedDuration = (duration) => {
-  const [hours, minutes, seconds] = duration.split(':').map(Number);
-  let formatted = '';
-
-  if (hours > 0) {
-    formatted += `${hours}h `;
-  }
-  if (minutes > 0) {
-    formatted += `${minutes}min `;
-  }
-  if (seconds > 0) {
-    formatted += `${seconds}sec`;
-  }
-
-  return formatted.trim();
-};
 
 const RunTrainingSlider = () => {
   const [trainings, setTrainings] = useState([]);
+
+  const handleDelete = (id) => {
+    const token = getAuthToken();
+    axios
+      .delete(`/run/workout/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(() => {
+        setTrainings((prevTrainings) => prevTrainings.filter((training) => training.run_workout_id !== id));
+        console.log("Przeładowałem")
+      })
+      .catch((error) => {
+        console.error("Error deleting training:", error);
+      });
+  };
 
   useEffect(() => {
     const token = getAuthToken();
@@ -51,6 +41,7 @@ const RunTrainingSlider = () => {
       .then((res) => {
         let response = res.data.workouts;
         response = response.sort((a, b) => new Date(b.date) - new Date(a.date));
+        console.log(response);
         setTrainings(response);
       });
   }, []);
@@ -60,42 +51,11 @@ const RunTrainingSlider = () => {
       {trainings.map((item, index) => (
         <SwiperSlide key={index}>
           <RunTrainingSlide
-            title={item.category_name || "UNKNOWN TITLE"}
-            duration={formattedDuration(item.duration || "00:00:00")}
-            date={formattedDate(item.date)}
-            distance={formattedData(item.distance || 0)}
-            rating={formattedData(item.rating || 0)}
+            training={item}
+            onDelete={() => handleDelete(item.run_workout_id)}
           />
         </SwiperSlide>
       ))}
-
-      <SwiperSlide>
-        <RunTrainingSlide
-          title="LONG RUN"
-          duration="2h 15 min"
-          distance={4.3}
-          rating={3.5}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <RunTrainingSlide
-          title="EASY RUN"
-          duration="1h 10 min"
-          distance={33.3}
-          rating={2.1}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <RunTrainingSlide
-          title="LONG RUN"
-          duration="30 min"
-          distance={14.3}
-          rating={4.9}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <RunTrainingSlide title="5" />
-      </SwiperSlide>
     </Swiper>
   );
 };
