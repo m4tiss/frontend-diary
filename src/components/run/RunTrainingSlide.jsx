@@ -1,6 +1,6 @@
 import ReactStars from "react-stars";
 import pic from "../../icons/runIcon.png"
-const RunTrainingSlide = ({ title, distance, duration, rating }) => {
+const RunTrainingSlide = ({ title, distance, date, duration, rating }) => {
   return (
     <div
       className="w-96 h-96 flex flex-col items-center justify-evenly rounded-2xl
@@ -34,7 +34,7 @@ const RunTrainingSlide = ({ title, distance, duration, rating }) => {
       </div>
       <div className=" w-full flex justify-evenly items-center">
       <img width={60} src={pic}/>
-      <h2 className=" text-xl">20.05.2024</h2>
+      <h2 className=" text-xl">{date}</h2>
       </div>
       
     </div>
