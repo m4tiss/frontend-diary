@@ -9,8 +9,12 @@ const formattedData = (distance) => {
 
 const formattedDate = (dateString) => {
   const date = new Date(dateString);
-  console.log(dateString);
   return format(date, "dd-MM-yyyy");
+};
+
+const formattedTime = (dateString) => {
+  const date = new Date(dateString);
+  return format(date, "HH:mm");
 };
 
 const formattedDuration = (duration) => {
@@ -31,11 +35,10 @@ const formattedDuration = (duration) => {
 };
 
 const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
-
-    const handleEdit = () => {
-        onDelete()
-        toggleDialog()
-    }
+  const handleEdit = () => {
+    onDelete();
+    toggleDialog();
+  };
   return createPortal(
     <div
       className="fixed inset-0 flex items-center justify-center z-50"
@@ -61,11 +64,12 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
         </div>
         <div className="flex  w-full flex-grow">
           <div className="flex flex-col items-center justify-center w-1/4">
-            <h2 className="text-8xl text-center">{formattedDuration(training.duration)}</h2>
+            <h2 className="text-8xl text-center">
+              {formattedDuration(training.duration)}
+            </h2>
             <label className="text-3xl">Duration</label>
           </div>
           <div className="flex flex-col items-center justify-center w-1/4">
-            
             <h2 className="text-7xl">{formattedData(training.rating || 0)}</h2>
             <ReactStars
               count={5}
@@ -77,33 +81,38 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
             />
           </div>
           <div className="flex flex-col items-center justify-center w-1/4">
-        
-            <h2 className="text-8xl text-center">{formattedData(training.distance || 0)} km</h2>
-            <h2 className="text-3xl">
-              Distance
+            <h2 className="text-8xl text-center">
+              {formattedData(training.distance || 0)} km
             </h2>
+            <h2 className="text-3xl">Distance</h2>
           </div>
           <div className="w-1/4 flex flex-col justify-center items-center">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 500 }}
-            onClick={toggleDialog}
-            className="mt-4 px-4 py-2 h-fit shadow-xl min-w-40 bg-lime-500 text-white rounded"
-          >
-            Edit training
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 500 }}
-            onClick={handleEdit}
-            className="mt-4 px-4 py-2 h-fit min-w-40 shadow-xl bg-red-500 text-white rounded"
-          >
-            Delete training
-          </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 500 }}
+              onClick={toggleDialog}
+              className="mt-4 px-4 py-2 h-fit shadow-xl min-w-40 bg-lime-500 text-white rounded"
+            >
+              Edit training
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 500 }}
+              onClick={handleEdit}
+              className="mt-4 px-4 py-2 h-fit min-w-40 shadow-xl bg-red-500 text-white rounded"
+            >
+              Delete training
+            </motion.button>
           </div>
         </div>
-        <div className="w-full my-20 text-4xl text-center">{training.note}</div>
-        <div className="w-full text-4xl text-center">{formattedDate(training.date)}</div>
+        <div className="w-full flex my-20 text-4xl text-center">
+          <div className="w-1/2">{training.note}</div>
+          <div className="w-1/2">Average pulse: {training.average_pulse}</div>
+        </div>
+        <div className="w-full justify-center items-center flex gap-5 text-4xl">
+          <h2 className=" text-4xl">{formattedTime(training.date)}</h2>
+          <h2 className=" text-4xl">{formattedDate(training.date)}</h2>
+        </div>
       </motion.div>
     </div>,
     document.body

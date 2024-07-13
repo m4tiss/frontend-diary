@@ -1,5 +1,5 @@
 import ReactStars from "react-stars";
-import pic from "../../icons/runIcon.png"
+import pic from "../../icons/runIcon.png";
 import RunTrainingDetails from "./RunTrainingDetails";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -11,13 +11,17 @@ const formattedData = (distance) => {
 
 const formattedDate = (dateString) => {
   const date = new Date(dateString);
-  console.log(dateString);
   return format(date, "dd-MM-yyyy");
 };
 
+const formattedTime = (dateString) => {
+  const date = new Date(dateString);
+  return format(date, "HH:mm");
+};
+
 const formattedDuration = (duration) => {
-  const [hours, minutes, seconds] = duration.split(':').map(Number);
-  let formatted = '';
+  const [hours, minutes, seconds] = duration.split(":").map(Number);
+  let formatted = "";
 
   if (hours > 0) {
     formatted += `${hours}h `;
@@ -32,9 +36,7 @@ const formattedDuration = (duration) => {
   return formatted.trim();
 };
 
-
 const RunTrainingSlide = ({ training, onDelete }) => {
-
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDialog = () => {
@@ -45,17 +47,23 @@ const RunTrainingSlide = ({ training, onDelete }) => {
     <div
       className="w-96 h-96 flex flex-col items-center justify-evenly rounded-2xl
            bg-white border-black m-5 cursor-pointer shadow-xl"
-           onClick={toggleDialog}
+      onClick={toggleDialog}
     >
       <div>
-        <h2 className="text-2xl">{training.category_name || "UNKNOWN TITLE"}</h2>
+        <h2 className="text-2xl">
+          {training.category_name || "UNKNOWN TITLE"}
+        </h2>
       </div>
       <div className="flex justify-start w-full px-5  text-xl">
-         <span className="text-5xl text-center  w-full">{formattedData(training.distance || 0)} km</span>
+        <span className="text-5xl text-center  w-full">
+          {formattedData(training.distance || 0)} km
+        </span>
       </div>
       <div className="flex justify-evenly w-full px-5  text-xl">
         <span className=" text-center">
-        <span className="">{formattedDuration(training.duration || "00:00:00")}</span>
+          <span className="">
+            {formattedDuration(training.duration || "00:00:00")}
+          </span>
         </span>
         <span className="">
           <span className="">2:30/km</span>
@@ -74,13 +82,21 @@ const RunTrainingSlide = ({ training, onDelete }) => {
         />
       </div>
       <div className=" w-full flex justify-evenly items-center">
-      <img width={60} src={pic}/>
-      <h2 className=" text-xl">{formattedDate(training.date)}</h2>
+        <img width={60} src={pic} />
+        <div className="flex gap-5">
+          <h2 className=" text-xl">{formattedTime(training.date)}</h2>
+          <h2 className=" text-xl">{formattedDate(training.date)}</h2>
+        </div>
       </div>
       <AnimatePresence>
-      {isOpen && <RunTrainingDetails toggleDialog={toggleDialog} training={training} onDelete={onDelete} />}
+        {isOpen && (
+          <RunTrainingDetails
+            toggleDialog={toggleDialog}
+            training={training}
+            onDelete={onDelete}
+          />
+        )}
       </AnimatePresence>
-  
     </div>
   );
 };
