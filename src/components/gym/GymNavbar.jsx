@@ -5,9 +5,9 @@ import { signOut } from "firebase/auth";
 import NavbarButton from "../../components/shared/NavbarButton";
 import profilePhoto from "../../images/profile_photo.jpg";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const GymNavbar = ({ setNavBarType }) => {
-
   const GYM_COLOR = "#E73725";
 
   const navigate = useNavigate();
@@ -33,15 +33,18 @@ const GymNavbar = ({ setNavBarType }) => {
       >
         <div className="flex items-center justify-start gap-5">
           <button
-          onClick={() => navigate("/gym/dashboard")}
-          className="text-2xl text-white mx-5 ">
+            onClick={() => navigate("/gym/dashboard")}
+            className="text-2xl text-white mx-5 "
+          >
             <CgGym size={50} />
           </button>
           <h2 className="text-2xl text-white mx-5">YourWebsite</h2>
         </div>
         <div className="flex md:flex-row flex-col items-center justify-start mx-5 gap-5">
           <h2 className="text-white text-2xl">m4tiss</h2>
-          <img
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 500 }}
             onClick={() => navigate("/gym/profile")}
             className="cursor-pointer rounded-full object-cover"
             width={50}

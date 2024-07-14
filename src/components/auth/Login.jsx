@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { auth } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, Math.round);
+
+  useEffect(() => {
+     animate(count, 423, {
+      duration: 2,
+    });
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -50,7 +60,11 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <div className="w-1/2 flex justify-center items-center ">info</div>
+      <div className="w-1/2 flex flex-col justify-center items-center ">
+        
+        <motion.h1 className="text-8xl">{rounded}</motion.h1>
+        <h2 className="text-4xl">Users on our platform</h2>
+      </div>
 
       <ToastContainer />
     </div>

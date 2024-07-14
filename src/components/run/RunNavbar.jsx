@@ -5,9 +5,9 @@ import { signOut } from "firebase/auth";
 import NavbarButton from "../shared/NavbarButton";
 import profilePhoto from "../../images/profile_photo.jpg";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion"
 
 const RunNavbar = ({ setNavBarType }) => {
-  const GYM_COLOR = "#E73725";
   const RUN_COLOR = "#1DA1F2";
 
   const navigate = useNavigate();
@@ -52,7 +52,9 @@ const RunNavbar = ({ setNavBarType }) => {
             text="Logout"
             onClick={() => handleLogout()}
           />
-          <img
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 500 }}
             onClick={() => navigate("/run/profile")}
             className="rounded-full object-cover cursor-pointer"
             width={50}

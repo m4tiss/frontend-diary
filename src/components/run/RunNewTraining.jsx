@@ -5,6 +5,8 @@ import ReactStars from "react-stars";
 import axios from "../../config/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ChartAveragePulse from "./charts/ChartAveragePulse";
+import ChartDistance from "./charts/ChartDistance";
 
 const validateDuration = (duration) => {
   const regex = /^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
@@ -12,20 +14,6 @@ const validateDuration = (duration) => {
 };
 
 const RunNewTraining = () => {
-  const GYM_COLOR = "#FF0000";
-  const RUN_COLOR = "#1DA1F2";
-
-  const uData = [9, 12, 12, 13, 14, 13, 12];
-  const pData = [1300, 1350, 1420, 1370, 1300, 1400, 1500];
-  const xLabels = [
-    "15.05.2024",
-    "16.05.2024",
-    "17.05.2024",
-    "18.05.2024",
-    "19.05.2024",
-    "20.05.2024",
-    "21.05.2024",
-  ];
   const [categories, setCategories] = useState([]);
   const [chosenPlan, setChosenPlan] = useState(null);
   const [data, setData] = useState({
@@ -54,7 +42,7 @@ const RunNewTraining = () => {
 
   const handleDivClick = (plan) => {
     setChosenPlan(plan);
-    setData({ ...data, run_category_id: plan })
+    setData({ ...data, run_category_id: plan });
   };
 
   const handleSubmit = async () => {
@@ -100,6 +88,7 @@ const RunNewTraining = () => {
         average_pulse: 0,
         distance: 0.0,
       });
+      setChosenPlan(null);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -175,29 +164,28 @@ const RunNewTraining = () => {
             ></textarea>
           </div>
 
-          <h2 className="text-5xl my-10 font-semibold">
-            Letss do new training!!!
-          </h2>
           <div className="max-h-96">
-          {categories.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => handleDivClick(item.run_category_id)}
-              className={`${
-                chosenPlan === item.run_category_id ? "bg-blue-400" : "bg-white"
-              }
+            {categories.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => handleDivClick(item.run_category_id)}
+                className={`${
+                  chosenPlan === item.run_category_id
+                    ? "bg-blue-400"
+                    : "bg-white"
+                }
                 ${
                   chosenPlan === item.run_category_id
                     ? "text-white"
                     : "text-black"
                 }
                 text-2xl shadow-2xl rounded-xl w-64 p-2 my-3 cursor-pointer`}
-            >
-              {item.category_name}
-            </div>
-          ))}
+              >
+                {item.category_name}
+              </div>
+            ))}
           </div>
-          
+
           <button
             onClick={() => handleSubmit()}
             style={{
@@ -211,24 +199,8 @@ const RunNewTraining = () => {
         </div>
       </div>
       <div className="w-1/3 flex flex-col justify-evenly">
-        <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-          <h2 className="text-2xl p-2">Last training volume</h2>
-          <LineChart
-            width={500}
-            height={300}
-            series={[{ data: pData, label: "Volume", color: RUN_COLOR }]}
-            xAxis={[{ scaleType: "point", data: xLabels }]}
-          />
-        </div>
-        <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-          <h2 className="text-2xl p-2">Last training sets</h2>
-          <LineChart
-            width={500}
-            height={300}
-            series={[{ data: uData, label: "Sets", color: GYM_COLOR }]}
-            xAxis={[{ scaleType: "point", data: xLabels }]}
-          />
-        </div>
+        <ChartAveragePulse />
+        <ChartDistance />
       </div>
       <ToastContainer />
     </div>
