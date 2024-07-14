@@ -1,38 +1,7 @@
 import { motion } from "framer-motion";
 import ReactStars from "react-stars";
 import { createPortal } from "react-dom";
-import { format } from "date-fns";
-
-const formattedData = (distance) => {
-  return distance.toFixed(1);
-};
-
-const formattedDate = (dateString) => {
-  const date = new Date(dateString);
-  return format(date, "dd-MM-yyyy");
-};
-
-const formattedTime = (dateString) => {
-  const date = new Date(dateString);
-  return format(date, "HH:mm");
-};
-
-const formattedDuration = (duration) => {
-  const [hours, minutes, seconds] = duration.split(":").map(Number);
-  let formatted = "";
-
-  if (hours > 0) {
-    formatted += `${hours}h `;
-  }
-  if (minutes > 0) {
-    formatted += `${minutes}min `;
-  }
-  if (seconds > 0) {
-    formatted += `${seconds}sec`;
-  }
-
-  return formatted.trim();
-};
+import { formattedData, formattedDate, formattedTime, formattedDuration} from '../../functions/formatData'
 
 const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
   const handleEdit = () => {

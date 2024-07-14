@@ -3,38 +3,8 @@ import pic from "../../icons/runIcon.png";
 import RunTrainingDetails from "./RunTrainingDetails";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { format } from "date-fns";
+import { formattedData, formattedDate, formattedTime, formattedDuration} from '../../functions/formatData'
 
-const formattedData = (distance) => {
-  return distance.toFixed(1);
-};
-
-const formattedDate = (dateString) => {
-  const date = new Date(dateString);
-  return format(date, "dd-MM-yyyy");
-};
-
-const formattedTime = (dateString) => {
-  const date = new Date(dateString);
-  return format(date, "HH:mm");
-};
-
-const formattedDuration = (duration) => {
-  const [hours, minutes, seconds] = duration.split(":").map(Number);
-  let formatted = "";
-
-  if (hours > 0) {
-    formatted += `${hours}h `;
-  }
-  if (minutes > 0) {
-    formatted += `${minutes}min `;
-  }
-  if (seconds > 0) {
-    formatted += `${seconds}sec`;
-  }
-
-  return formatted.trim();
-};
 
 const RunTrainingSlide = ({ training, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
