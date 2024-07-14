@@ -3,22 +3,37 @@ import { ToastContainer, toast } from "react-toastify";
 import { auth } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import axios from "../../config/axios";
 import "react-toastify/dist/ReactToastify.css";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [numberOfUsers, setNumberOfUsers] = useState(0);
   const navigate = useNavigate();
 
   const count = useMotionValue(0);
   const rounded = useTransform(count, Math.round);
 
   useEffect(() => {
-     animate(count, 423, {
+    axios
+      .get("/public/numberOfUsers")
+      .then((res) => {
+        let response = res.data;
+        setNumberOfUsers(response + 200);
+      })
+      .catch((error) => {
+        console.error("Error fetching numberOfUsers data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    animate(count, numberOfUsers, {
       duration: 2,
     });
-  }, []);
+  }, [numberOfUsers]);
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -61,7 +76,6 @@ const Login = () => {
         </form>
       </div>
       <div className="w-1/2 flex flex-col justify-center items-center ">
-        
         <motion.h1 className="text-8xl">{rounded}</motion.h1>
         <h2 className="text-4xl">Users on our platform</h2>
       </div>
