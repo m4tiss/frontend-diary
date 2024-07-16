@@ -79,7 +79,7 @@ const UserProfile = ({ type }) => {
           </div>
         </div>
 
-        <div className="flex-grow flex-wrap flex flex-col bg-white p-5 gap-5 my-10 rounded-xl shadow-xl">
+        <div className=" h-fit flex-wrap flex flex-col bg-white p-5 gap-5 my-10 rounded-xl shadow-xl">
         <PagePanel title="Show your records" icon={<GiTrophyCup size={50} color="white" />}/>
         <PagePanel title="Add category" icon={<TbCategoryPlus size={50} color="white" />}/>
         <PagePanel title="Show achievements" icon={<GiAchievement size={50} color="white" />}/>
@@ -88,7 +88,7 @@ const UserProfile = ({ type }) => {
           style={{
             "background-image": linearColor,
           }}
-          className="h-32 my-10 rounded-xl shadow-xl"
+          className="h-32 mb-10 rounded-xl shadow-xl"
         >
           <Swiper
             autoplay={{ delay: 3000 }}

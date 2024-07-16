@@ -1,6 +1,5 @@
 import RunAchievementSlider from "./RunAchievementSlider";
 import RunTrainingSlider from "./RunTrainingSlider";
-import { motion } from "framer-motion";
 const RunHistory = () => {
   return (
     <div className="w-full flex flex-grow items-stretch bg-[#e9ecef]">

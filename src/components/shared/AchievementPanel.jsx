@@ -1,12 +1,13 @@
 import { Line } from "rc-progress";
 
-const AcheviementPanel = ({ title, percent, description }) => {
+const AcheviementPanel = ({ title, percent, description, toggleDialog }) => {
   let lineColor = "#e63946";
   if (percent > 30 && percent < 80) lineColor = "#ffd60a";
   if (percent >= 80) lineColor = "#70e000";
 
   return (
     <div
+    onClick={toggleDialog}
       className="w-96 h-32 flex flex-col items-center justify-evenly rounded-2xl
            bg-white border-black m-5 cursor-pointer shadow-xl"
     >
