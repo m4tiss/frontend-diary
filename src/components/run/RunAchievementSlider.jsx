@@ -13,61 +13,71 @@ import { useState } from "react";
 const RunAcheviementSlider = ({ slidesPerView }) => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedAchievement, setSelectedAchievement] = useState();
 
-  const toggleDialog = () => {
+  const closeDialog = () => {
     setIsOpen(!isOpen);
+    setSelectedAchievement(null);
   };
 
+  const setAchievement = (achievement) => {
+    setSelectedAchievement(achievement);
+    setIsOpen(true);
+  };
 
+  const achievements = [
+    {
+      title: "Marathon",
+      percent: 100,
+      description: "Run 42 km",
+    },
+    {
+      title: "Under 3 minutes",
+      percent: 76,
+      description: "Run 1 km under 3 minute",
+    },
+    {
+      title: "RUN RUN",
+      percent: 0,
+      description: "Do 2 runs in one day",
+    },
+    {
+      title: "Runner",
+      percent: 20,
+      description: "Do 100 trainings",
+    },
+    {
+      title: "5",
+      percent: 100,
+      description: "Try to bench press 100kg",
+    },
+  ];
 
   return (
     <>
-      <Swiper slidesPerView={slidesPerView} grabCursor={true} loop={true}>
-        <SwiperSlide>
+    <Swiper slidesPerView={slidesPerView} grabCursor={true} loop={true}>
+      {achievements.map((achievement, index) => (
+        <SwiperSlide key={index}>
           <AchievementPanel
-            toggleDialog={toggleDialog}
-            title="Marathon"
-            percent={100}
-            description="Run 42 km"
+            setAchievement={() => setAchievement(achievement)}
+            title={achievement.title}
+            percent={achievement.percent}
+            description={achievement.description}
           />
         </SwiperSlide>
-        <SwiperSlide>
-          <AchievementPanel
-            toggleDialog={toggleDialog}
-            title="Under 3 minutes"
-            percent={76}
-            description="Run 1 km under 3 minute"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <AchievementPanel
-            toggleDialog={toggleDialog}
-            title="RUN RUN"
-            percent={0}
-            description="Do 2 runs in one day"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <AchievementPanel
-            toggleDialog={toggleDialog}
-            title="Runner"
-            percent={20}
-            description="Do 100 trainings"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <AchievementPanel
-            toggleDialog={toggleDialog}
-            title="5"
-            percent={100}
-            description="Try to bench press 100kg"
-          />
-        </SwiperSlide>
-      </Swiper>
-      <AnimatePresence>
-        {isOpen && <AchievementDetails percent={94} toggleDialog={toggleDialog} />}
-      </AnimatePresence>
-    </>
+      ))}
+    </Swiper>
+    <AnimatePresence>
+      {isOpen && (
+        <AchievementDetails
+          percent={selectedAchievement.percent}
+          closeDialog={closeDialog}
+          title={selectedAchievement.title}
+          description={selectedAchievement.description}
+        />
+      )}
+    </AnimatePresence>
+  </>
   );
 };
 
