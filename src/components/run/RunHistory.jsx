@@ -1,4 +1,4 @@
-import RunAcheviementSlider from "./RunAcheviementSlider";
+import RunAchievementSlider from "./RunAchievementSlider";
 import RunTrainingSlider from "./RunTrainingSlider";
 import { motion } from "framer-motion";
 const RunHistory = () => {
@@ -23,7 +23,7 @@ const RunHistory = () => {
           </div>
         </div>
         <div className="text-4xl m-5">Achievements</div>
-        <RunAcheviementSlider slidesPerView={4} />
+        <RunAchievementSlider slidesPerView={4} />
       </div>
     </div>
   );

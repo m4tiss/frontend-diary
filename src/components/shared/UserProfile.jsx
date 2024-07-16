@@ -9,7 +9,10 @@ import crisImage from "../../images/cris.jpg";
 import { IoMdAdd } from "react-icons/io";
 import { Autoplay } from "swiper/modules";
 import ProfileStatsSlide from "./ProfileStatsSlide";
-
+import { GiTrophyCup } from "react-icons/gi";
+import { TbCategoryPlus } from "react-icons/tb";
+import { GiAchievement } from "react-icons/gi";
+import PagePanel from "./PagePanel"
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -76,7 +79,11 @@ const UserProfile = ({ type }) => {
           </div>
         </div>
 
-        <div className="flex-grow bg-white my-10 rounded-xl shadow-xl"></div>
+        <div className="flex-grow flex-wrap flex flex-col bg-white p-5 gap-5 my-10 rounded-xl shadow-xl">
+        <PagePanel title="Show your records" icon={<GiTrophyCup size={50} color="white" />}/>
+        <PagePanel title="Add category" icon={<TbCategoryPlus size={50} color="white" />}/>
+        <PagePanel title="Show achievements" icon={<GiAchievement size={50} color="white" />}/>
+        </div>
         <div
           style={{
             "background-image": linearColor,
@@ -109,21 +116,21 @@ const UserProfile = ({ type }) => {
       </div>
       <div className="w-full 2xl:w-1/3 flex flex-col gap-5 2xl:gap-0 justify-evenly items-center">
         <div className="flex flex-col gap-2">
-          <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center p-2 shadow-xl">
-            <div>
+          <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center px-10 shadow-xl">
+            <div className="flex-grow">
               <label>Email</label>
               <h2>mateusz039@op.pl</h2>
             </div>
 
-            <MdModeEdit size={30} />
+            <MdModeEdit className="w-fit" size={30} />
           </div>
-          <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center p-2 shadow-xl">
-            <div>
+          <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
+            <div className="flex-grow">
               <label>Date of birth</label>
               <h2>08.05.2002</h2>
             </div>
 
-            <MdModeEdit size={30} />
+            <MdModeEdit className="w-fit" size={30} />
           </div>
         </div>
 

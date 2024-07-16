@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/effect-coverflow';
-import AcheviementPanel from '../shared/AcheviementPanel';
+import AchievementPanel from '../shared/AchievementPanel';
 
 const GymAcheviementSlider = () => {
     return (
@@ -15,19 +15,19 @@ const GymAcheviementSlider = () => {
         loop={true}
       >
         <SwiperSlide>
-          <AcheviementPanel title="Bench press 100kg" percent={100} description="Try to bench press 100kg" />
+          <AchievementPanel title="Bench press 100kg" percent={100} description="Try to bench press 100kg" />
         </SwiperSlide>
         <SwiperSlide>
-          <AcheviementPanel title="10 pull ups" percent={76} description="Do 10 pull ups in 1 set"/>
+          <AchievementPanel title="10 pull ups" percent={76} description="Do 10 pull ups in 1 set"/>
         </SwiperSlide>
         <SwiperSlide>
-          <AcheviementPanel title="Big boy" percent={0} description="Reach 80 kilos" />
+          <AchievementPanel title="Big boy" percent={0} description="Reach 80 kilos" />
         </SwiperSlide>
         <SwiperSlide>
-          <AcheviementPanel title="Dropset now" percent={20} description="Do 5 sets in one exercise" />
+          <AchievementPanel title="Dropset now" percent={20} description="Do 5 sets in one exercise" />
         </SwiperSlide>
         <SwiperSlide>
-          <AcheviementPanel title="5" percent={100} description="Try to bench press 100kg"/>
+          <AchievementPanel title="5" percent={100} description="Try to bench press 100kg"/>
         </SwiperSlide>
       </Swiper>
     );

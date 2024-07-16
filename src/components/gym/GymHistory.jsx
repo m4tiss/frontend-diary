@@ -1,4 +1,4 @@
-import GymAcheviementSlider from "./GymAcheviementSlider";
+import GymAchievementSlider from "./GymAchievementSlider";
 import GymTrainingSlider from "./GymTrainingSlider";
 
 const GymHistory = () => {
@@ -21,7 +21,7 @@ const GymHistory = () => {
           </div>
         </div>
         <div className="text-4xl m-5">Achievements</div>
-        <GymAcheviementSlider />
+        <GymAchievementSlider />
       </div>
     </div>
   );

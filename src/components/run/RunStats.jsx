@@ -99,18 +99,7 @@ const RunStats = () => {
             <ChartCategories/>
         </div>
         <div className="flex justify-between bg-white rounded-xl w-full shadow-xl">
-          <BarChart
-            xAxis={[
-              { scaleType: "band", data: ["group A", "group B", "group C"] },
-            ]}
-            series={[
-              { data: [4, 3, 5] },
-              { data: [1, 6, 3] },
-              { data: [2, 5, 6] },
-            ]}
-            width={1000}
-            height={300}
-          />
+         
         </div>
       </div>
 
@@ -124,7 +113,6 @@ const RunStats = () => {
             >
               <span>Friends</span> <span>243</span>
             </div>
-            <FriendStatsPanel />
             <FriendStatsPanel />
             <FriendStatsPanel />
             <FriendStatsPanel />

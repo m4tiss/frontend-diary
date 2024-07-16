@@ -10,10 +10,12 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
   };
   return createPortal(
     <div
+    
       className="fixed inset-0 flex items-center justify-center z-50"
       onClick={toggleDialog}
     >
       <motion.div
+      
         initial={{ scale: 0.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.2, opacity: 0 }}

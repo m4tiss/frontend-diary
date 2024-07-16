@@ -50,7 +50,8 @@ const RunNewTraining = () => {
       !data.duration ||
       !data.rating ||
       !data.average_pulse ||
-      !data.distance
+      !data.distance ||
+      chosenPlan == null
     ) {
       toast.error("All fields must be filled");
       return;
