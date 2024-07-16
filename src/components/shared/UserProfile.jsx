@@ -12,12 +12,13 @@ import ProfileStatsSlide from "./ProfileStatsSlide";
 import { GiTrophyCup } from "react-icons/gi";
 import { TbCategoryPlus } from "react-icons/tb";
 import { GiAchievement } from "react-icons/gi";
-import PagePanel from "./PagePanel"
+import PagePanel from "./PagePanel";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
+import ChartTrainings from "../shared/charts/ChartTrainings";
 
 import SwiperCore from "swiper";
 
@@ -32,20 +33,6 @@ const UserProfile = ({ type }) => {
     linearColor =
       "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
 
-  const data = {
-    xAxis: [
-      {
-        scaleType: "band",
-        data: ["May", "June", "July", "August", "September"],
-        label: "Months",
-      },
-    ],
-    yAxis: [{ label: "Trainings" }],
-    series: [
-      { name: "Run", data: [2, 7, 3, 13, 2], color: "#1DA1F2", label: "Run" },
-      { name: "Gym", data: [3, 4, 1, 15, 5], color: "#FF0000", label: "Gym" },
-    ],
-  };
 
   return (
     <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef]">
@@ -80,9 +67,18 @@ const UserProfile = ({ type }) => {
         </div>
 
         <div className=" h-fit flex-wrap flex flex-col bg-white p-5 gap-5 my-10 rounded-xl shadow-xl">
-        <PagePanel title="Show your records" icon={<GiTrophyCup size={50} color="white" />}/>
-        <PagePanel title="Add category" icon={<TbCategoryPlus size={50} color="white" />}/>
-        <PagePanel title="Show achievements" icon={<GiAchievement size={50} color="white" />}/>
+          <PagePanel
+            title="Show your records"
+            icon={<GiTrophyCup size={50} color="white" />}
+          />
+          <PagePanel
+            title="Add category"
+            icon={<TbCategoryPlus size={50} color="white" />}
+          />
+          <PagePanel
+            title="Show achievements"
+            icon={<GiAchievement size={50} color="white" />}
+          />
         </div>
         <div
           style={{
@@ -133,16 +129,7 @@ const UserProfile = ({ type }) => {
             <MdModeEdit className="w-fit" size={30} />
           </div>
         </div>
-
-        <div className="bg-white shadow-xl rounded-xl">
-          <BarChart
-            xAxis={data.xAxis}
-            yAxis={data.yAxis}
-            series={data.series}
-            width={window.innerWidth > 768 ? 500 : 300}
-            height={300}
-          />
-        </div>
+        <ChartTrainings />
       </div>
     </div>
   );
