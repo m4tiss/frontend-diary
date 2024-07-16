@@ -12,7 +12,7 @@ const PagePanel = ({ title, icon }) => {
       className="w-full flex h-20 rounded-xl justify-center items-center space-x-4"
     >
       {icon}
-      <h2 className="text-3xl text-white">{title}</h2>
+      <h2 className="2xl:text-3xl text-xl text-white">{title}</h2>
     </motion.button>
   );
 };

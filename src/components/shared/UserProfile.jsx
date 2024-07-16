@@ -1,5 +1,4 @@
 import pic from "../../images/profile_photo.jpg";
-import { BarChart } from "@mui/x-charts";
 import { MdModeEdit } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import FriendDivProfile from "../shared/FriendDivProfile";
@@ -21,6 +20,7 @@ import "swiper/css/autoplay";
 import ChartTrainings from "../shared/charts/ChartTrainings";
 
 import SwiperCore from "swiper";
+import { useState } from "react";
 
 SwiperCore.use([Autoplay]);
 
@@ -33,16 +33,22 @@ const UserProfile = ({ type }) => {
     linearColor =
       "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
 
+  const [editEmail, setEditEmail] = useState(false);
+  const [email, setEmail] = useState("mateusz039@op.pl");
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
   return (
     <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef]">
-      <div className="2xl:w-1/3 flex flex-col justify-center items-center">
+      <div className="2xl:w-1/3 px-5 2xl:px-0 flex flex-col justify-center items-center">
         <img
           className="border-2 border-black my-5 rounded-full shadow-xl"
           width={250}
           src={pic}
         />
-        <div className="bg-white text-center mx-20 p-2 rounded-xl shadow-xl">
+        <div className="bg-white 2xl:w-96 w-full text-center mx-20 p-2 rounded-xl shadow-xl">
           <h2 className="text-3xl font-semibold">m4tiss</h2>
           <p className="text-lg  text-center">
             Lorem ipsum dolor sit amet consectetur, adipisicing eunt numquam
@@ -50,19 +56,17 @@ const UserProfile = ({ type }) => {
           </p>
         </div>
       </div>
-      <div className="2xl:w-1/3 flex flex-col ">
-        <div>
-          <h2 className="text-4xl 2xl:text-left text-center font-semibold my-5">
-            Friends
-          </h2>
-          <div className="2xl:w-full  h-44 bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
-            <FriendDivProfile nickname="Lebron" profileImage={lebronImage} />
-            <FriendDivProfile nickname="Musk" profileImage={muskImage} />
-            <FriendDivProfile nickname="Cris" profileImage={crisImage} />
-            <div className="flex flex-col justify-center items-center gap-2">
-              <IoMdAdd className="rounded-full" size={100} />
-              <label className="text-xl">Add Friends</label>
-            </div>
+      <div className="2xl:w-1/3 flex px-5 2xl:px-0 flex-col ">
+        <h2 className="text-4xl 2xl:text-left  text-center font-semibold my-5">
+          Friends
+        </h2>
+        <div className="w-full  h-44 bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
+          <FriendDivProfile nickname="Lebron" profileImage={lebronImage} />
+          <FriendDivProfile nickname="Musk" profileImage={muskImage} />
+          <FriendDivProfile nickname="Cris" profileImage={crisImage} />
+          <div className="flex flex-col justify-center items-center gap-2">
+            <IoMdAdd className="rounded-full" size={100} />
+            <label className="text-xl">Add Friends</label>
           </div>
         </div>
 
@@ -110,23 +114,41 @@ const UserProfile = ({ type }) => {
           </Swiper>
         </div>
       </div>
-      <div className="w-full 2xl:w-1/3 flex flex-col gap-5 2xl:gap-0 justify-evenly items-center">
-        <div className="flex flex-col gap-2">
-          <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center px-10 shadow-xl">
-            <div className="flex-grow">
-              <label>Email</label>
-              <h2>mateusz039@op.pl</h2>
+      <div className="w-full 2xl:w-1/3 mb-10 2xl:mb-0 flex flex-col gap-5 2xl:gap-0 justify-evenly items-center">
+        <div className="flex flex-col 2xl:w-96 gap-2 px-5 2xl:px-0 w-full">
+          <div className="w-full h-24  bg-white rounded-xl  flex justify-evenly items-center px-10 shadow-xl">
+            <div className="flex-grow flex flex-col">
+              <label className="px-2">Email</label>
+              {!editEmail ? (
+                <h2 className="text-xl px-2 max-w-60 font-semibold">{email}</h2>
+              ) : (
+              <input
+                className="text-xl px-2 bg-gray-300 font-semibold rounded-xl outline-none w-fit"
+                placeholder="Email"
+                value={email}
+                onChange={handleEmailChange}
+                maxLength={25}
+              />
+              )}
             </div>
-
-            <MdModeEdit className="w-fit" size={30} />
+            {!editEmail ? (<MdModeEdit
+              onClick={()=> setEditEmail((prev)=>(!prev))}
+              className="w-fit cursor-pointer hover:scale-125 duration-200"
+              size={30}
+            />): (<button
+            onClick={()=> setEditEmail((prev)=>(!prev))}  
+            className="text-4xl text-lime-400 cursor-pointer hover:scale-125 duration-200">✓</button>)}
+            
           </div>
-          <div className="w-full 2xl:w-96 h-24 bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
+          <div className="w-full h-24 bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
             <div className="flex-grow">
               <label>Date of birth</label>
-              <h2>08.05.2002</h2>
+              <h2 className="text-xl font-semibold">08.05.2002</h2>
             </div>
-
-            <MdModeEdit className="w-fit" size={30} />
+            <MdModeEdit
+              className="cursor-pointer hover:scale-125 duration-200 w-fit"
+              size={30}
+            />
           </div>
         </div>
         <ChartTrainings />
