@@ -16,6 +16,7 @@ import UserProfile from './components/shared/UserProfile';
 import RunNewTraining from './components/run/RunNewTraining';
 import RunHistory from './components/run/RunHistory';
 import RunStats from './components/run/RunStats';
+import Register from './components/auth/Register';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <div className='w-full h-screen'>
         <Routes>
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+          <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
           <Route path="/gym/*" element={<PrivateRoute><GymLayout /></PrivateRoute>} />
           <Route path="/run/*" element={<PrivateRoute><RunLayout /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/login" />} />

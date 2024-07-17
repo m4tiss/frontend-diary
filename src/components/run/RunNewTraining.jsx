@@ -35,7 +35,6 @@ const RunNewTraining = () => {
       })
       .then((res) => {
         let response = res.data.categories;
-        console.log(response);
         setCategories(response);
       });
   }, []);

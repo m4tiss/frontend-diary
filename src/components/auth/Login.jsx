@@ -76,22 +76,25 @@ const Login = () => {
               opacity: opacityText,
               color: colorText,
             }}
+            initial={{ y: -50 }}
+            animate={{ y: 0 }}
             className="text-9xl font-bold"
           >
             TRAINING AND RUN
           </motion.h1>
         </div>
-        <div className="2xl:w-1/2 w-full my-10 2xl:my-0 flex justify-center items-center">
+        <div className="2xl:w-1/2 w-full my-10 2xl:my-0 flex justify-center items-center z-50">
           <motion.form
             initial={{ y: 50 }}
             animate={{ y: 0 }}
             className="flex flex-col w-80 h-fit p-10 bg-white rounded-2xl shadow-xl"
             onSubmit={handleLogin}
           >
+            <h2 className="w-full text-4xl text-center font font-semibold">Login</h2>
             <div className="flex flex-col">
               <label className="p-2">Email</label>
               <input
-                className="p-2 text-2xl  text-black border-2 border-black outline-none rounded-3xl"
+                className="p-2 text-2xl  text-black border-2 border-gray-200 outline-none"
                 type="email"
                 placeholder="Email"
                 value={email}
@@ -102,7 +105,7 @@ const Login = () => {
             <div className="flex flex-col ">
               <label className="p-2">Password</label>
               <input
-                className="p-2 text-2xl text-black border-2 border-black outline-none rounded-3xl"
+                className="p-2 text-2xl text-black border-2 border-gray-200 outline-none"
                 type="password"
                 placeholder="Password"
                 value={password}
@@ -116,9 +119,15 @@ const Login = () => {
             >
               Login
             </button>
+            <label
+              onClick={() => navigate("/register")}
+              className="w-full text-center cursor-pointer"
+            >
+              I have no account
+            </label>
           </motion.form>
         </div>
-        <div className="2xl:w-1/2 w-full flex flex-col justify-center items-center">
+        <div className="2xl:w-1/2 w-full flex flex-col justify-center items-center z-50">
           <motion.div
             initial={{ y: 50 }}
             animate={{ y: 0 }}
