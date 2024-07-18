@@ -4,10 +4,23 @@ export const formattedData = (distance) => {
   return distance.toFixed(1);
 };
 
-export const formattedDate = (dateString) => {
+export function formattedDate(dateString) {
+  if (!dateString) {
+      return 'Invalid date';
+  }
+
   const date = new Date(dateString);
-  return format(date, "dd-MM-yyyy");
-};
+
+  if (isNaN(date.getTime())) {
+      return 'Invalid date';
+  }
+
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
+}
 
 export const formattedTime = (dateString) => {
   const date = new Date(dateString);

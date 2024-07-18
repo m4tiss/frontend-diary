@@ -1,28 +1,29 @@
+import { useEffect } from "react";
 import pic from "../../images/profile_photo.jpg";
 import { MdModeEdit } from "react-icons/md";
-import { Swiper, SwiperSlide } from "swiper/react";
+
 import FriendDivProfile from "../shared/FriendDivProfile";
+import StatsUserProfileSlider from './StatsUserProfileSlider'
 import lebronImage from "../../images/lebron.png";
 import muskImage from "../../images/musk.jpg";
 import crisImage from "../../images/cris.jpg";
 import { IoMdAdd } from "react-icons/io";
-import { Autoplay } from "swiper/modules";
-import ProfileStatsSlide from "./ProfileStatsSlide";
+import { getAuthToken } from "../../config/auth";
+import axios from '../../config/axios'
+
+
 import { GiTrophyCup } from "react-icons/gi";
 import { TbCategoryPlus } from "react-icons/tb";
 import { GiAchievement } from "react-icons/gi";
 import PagePanel from "./PagePanel";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/autoplay";
-import ChartTrainings from "../shared/charts/ChartTrainings";
 
-import SwiperCore from "swiper";
+import ChartTrainings from "../shared/charts/ChartTrainings";
+import {formattedDate} from "../../functions/formatData"
+
+
 import { useState } from "react";
 
-SwiperCore.use([Autoplay]);
+
 
 const UserProfile = ({ type }) => {
   let linearColor = "";
@@ -35,10 +36,27 @@ const UserProfile = ({ type }) => {
 
   const [editEmail, setEditEmail] = useState(false);
   const [email, setEmail] = useState("mateusz039@op.pl");
+  const [userInfo, setUserInfo] = useState({})
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
+
+
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get("/shared/userInfo", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        let response = res.data.data;
+        setUserInfo(response)
+        setEmail(response.email)
+      });
+  }, []);
 
   return (
     <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef]">
@@ -49,10 +67,9 @@ const UserProfile = ({ type }) => {
           src={pic}
         />
         <div className="bg-white 2xl:w-96 w-full text-center mx-20 p-2 rounded-xl shadow-xl">
-          <h2 className="text-3xl font-semibold">m4tiss</h2>
+          <h2 className="text-3xl font-semibold">{userInfo.nickname}</h2>
           <p className="text-lg  text-center">
-            Lorem ipsum dolor sit amet consectetur, adipisicing eunt numquam
-            amet similique. Aliquid.
+           {userInfo.description}
           </p>
         </div>
       </div>
@@ -90,28 +107,7 @@ const UserProfile = ({ type }) => {
           }}
           className="h-32 mb-10 rounded-xl shadow-xl"
         >
-          <Swiper
-            autoplay={{ delay: 3000 }}
-            slidesPerView={1}
-            grabCursor={true}
-            loop={true}
-          >
-            <SwiperSlide>
-              <ProfileStatsSlide number={572} description="Friends" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProfileStatsSlide number={432} description="All trainings" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProfileStatsSlide number={264} description="Days with us" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProfileStatsSlide
-                number={300}
-                description="Comments on platform"
-              />
-            </SwiperSlide>
-          </Swiper>
+          <StatsUserProfileSlider created_at={userInfo.created_at}/>
         </div>
       </div>
       <div className="w-full 2xl:w-1/3 mb-10 2xl:mb-0 flex flex-col gap-5 2xl:gap-0 justify-evenly items-center">
@@ -143,7 +139,7 @@ const UserProfile = ({ type }) => {
           <div className="w-full h-24 bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
             <div className="flex-grow">
               <label>Date of birth</label>
-              <h2 className="text-xl font-semibold">08.05.2002</h2>
+              <h2 className="text-xl font-semibold">{formattedDate(userInfo.date_of_birth || "0000-00-00")}</h2>
             </div>
             <MdModeEdit
               className="cursor-pointer hover:scale-125 duration-200 w-fit"

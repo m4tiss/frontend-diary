@@ -65,6 +65,10 @@ const Register = () => {
         },
       });
       console.log(resposne);
+      if(resposne.status === 204){
+        toast.error("Email already exists");
+        return
+      }
       toast.success("Registration succesfully");
       setTimeout(()=>navigate("/login"), 2000);
     } catch (error) {
