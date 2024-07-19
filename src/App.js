@@ -1,7 +1,4 @@
 import { BrowserRouter as Router, Route, Routes, useNavigate, Navigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './config/firebase';
-
 import GymDashboard from './components/gym/GymDashboard';
 import GymStats from './components/gym/GymStats';
 import GymNavbar from './components/gym/GymNavbar'
@@ -17,6 +14,8 @@ import RunNewTraining from './components/run/RunNewTraining';
 import RunHistory from './components/run/RunHistory';
 import RunStats from './components/run/RunStats';
 import Register from './components/auth/Register';
+
+import { useUser } from './providers/UserProvider'
 
 
 function App() {
@@ -83,7 +82,7 @@ function RunLayout() {
 }
 
 const PrivateRoute = ({ children }) => {
-  const [user, loading, error] = useAuthState(auth);
+  const { user,loading,error} = useUser()
 
   if (loading) {
     return <div>Loading...</div>;
@@ -98,7 +97,7 @@ const PrivateRoute = ({ children }) => {
 
 
 const PublicRoute = ({ children }) => {
-  const [user, loading, error] = useAuthState(auth);
+  const { user,loading,error} = useUser()
 
   if (loading) {
     return <div>Loading...</div>;

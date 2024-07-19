@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import pic from "../../images/profile_photo.jpg";
-import { MdModeEdit } from "react-icons/md";
 
 import FriendDivProfile from "../shared/FriendDivProfile";
 import StatsUserProfileSlider from './StatsUserProfileSlider'
@@ -21,10 +20,12 @@ import ChartTrainings from "../shared/charts/ChartTrainings";
 import {formattedDate} from "../../functions/formatData"
 
 
-import { useState } from "react";
-
+import { useUser } from '../../providers/UserProvider'
 
 const UserProfile = ({ type }) => {
+
+  const { userInfo } = useUser();
+
   let linearColor = "";
   if (type === "gym")
     linearColor =
@@ -32,22 +33,6 @@ const UserProfile = ({ type }) => {
   else
     linearColor =
       "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
-
-  const [userInfo, setUserInfo] = useState({})
-
-  useEffect(() => {
-    const token = getAuthToken();
-    axios
-      .get("/shared/userInfo", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {
-        let response = res.data.data;
-        setUserInfo(response)
-      });
-  }, []);
 
   return (
     <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef]">

@@ -6,11 +6,13 @@ import NavbarButton from "../../components/shared/NavbarButton";
 import profilePhoto from "../../images/profile_photo.jpg";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useUser } from '../../providers/UserProvider'
 
 const GymNavbar = ({ setNavBarType }) => {
   const GYM_COLOR = "#E73725";
 
   const navigate = useNavigate();
+  const { userInfo } = useUser();
 
   const handleLogout = () => {
     signOut(auth)
@@ -41,7 +43,7 @@ const GymNavbar = ({ setNavBarType }) => {
           <h2 className="text-2xl text-white mx-5">YourWebsite</h2>
         </div>
         <div className="flex md:flex-row flex-col items-center justify-start mx-5 gap-5">
-          <h2 className="text-white text-2xl">m4tiss</h2>
+          <h2 className="text-white text-2xl">{userInfo.nickname}</h2>
           <motion.img
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}

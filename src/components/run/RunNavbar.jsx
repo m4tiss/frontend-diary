@@ -6,11 +6,13 @@ import NavbarButton from "../shared/NavbarButton";
 import profilePhoto from "../../images/profile_photo.jpg";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion"
+import { useUser } from '../../providers/UserProvider'
 
 const RunNavbar = ({ setNavBarType }) => {
   const RUN_COLOR = "#1DA1F2";
 
   const navigate = useNavigate();
+  const { userInfo } = useUser();
 
   const handleLogout = () => {
     signOut(auth)
@@ -61,7 +63,7 @@ const RunNavbar = ({ setNavBarType }) => {
             height={50}
             src={profilePhoto}
           />
-          <h2 className="text-white text-2xl">m4tiss</h2>
+          <h2 className="text-white text-2xl">{userInfo.nickname}</h2>
         </div>
         <div className="flex items-center justify-between gap-5">
           <h2 className="text-2xl text-white mx-5 flex">YourWebsite</h2>
