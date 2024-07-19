@@ -87,10 +87,12 @@ const Login = () => {
           <motion.form
             initial={{ y: 50 }}
             animate={{ y: 0 }}
-            className="flex flex-col w-80 h-fit p-10 bg-white rounded-2xl shadow-xl"
+            className="flex flex-col w-1/2 h-fit p-10 bg-white rounded-2xl shadow-xl"
             onSubmit={handleLogin}
           >
-            <h2 className="w-full text-4xl text-center font font-semibold">Login</h2>
+            <h2 className="w-full text-4xl text-center font font-semibold">
+              Login
+            </h2>
             <div className="flex flex-col">
               <label className="p-2">Email</label>
               <input
@@ -131,10 +133,14 @@ const Login = () => {
           <motion.div
             initial={{ y: 50 }}
             animate={{ y: 0 }}
-            className="bg-white flex flex-col 2xl:w-fit w-80 justify-center items-center text-center p-20 shadow-xl rounded-xl"
+            className="flex h-fit 2xl:w-fit w-80 text-white text-center"
           >
-            <motion.h1 className="text-8xl">{rounded}</motion.h1>
-            <h2 className="text-4xl">Users on our platform</h2>
+            <div className="flex-grow flex flex-col justify-center items-center">
+              <motion.h1 className="text-9xl font-semibold">
+                {rounded}
+              </motion.h1>
+              <h2 className="text-4xl">Users on our platform</h2>
+            </div>
           </motion.div>
         </div>
       </div>
