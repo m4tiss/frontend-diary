@@ -24,7 +24,6 @@ import {formattedDate} from "../../functions/formatData"
 import { useState } from "react";
 
 
-
 const UserProfile = ({ type }) => {
   let linearColor = "";
   if (type === "gym")
@@ -34,14 +33,7 @@ const UserProfile = ({ type }) => {
     linearColor =
       "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
 
-  const [editEmail, setEditEmail] = useState(false);
-  const [email, setEmail] = useState("mateusz039@op.pl");
   const [userInfo, setUserInfo] = useState({})
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
 
   useEffect(() => {
     const token = getAuthToken();
@@ -54,7 +46,6 @@ const UserProfile = ({ type }) => {
       .then((res) => {
         let response = res.data.data;
         setUserInfo(response)
-        setEmail(response.email)
       });
   }, []);
 
@@ -114,37 +105,15 @@ const UserProfile = ({ type }) => {
         <div className="flex flex-col 2xl:w-96 gap-2 px-5 2xl:px-0 w-full">
           <div className="w-full h-24  bg-white rounded-xl  flex justify-evenly items-center px-10 shadow-xl">
             <div className="flex-grow flex flex-col">
-              <label className="px-2">Email</label>
-              {!editEmail ? (
-                <h2 className="text-xl px-2 max-w-60 font-semibold">{email}</h2>
-              ) : (
-              <input
-                className="text-xl px-2 bg-gray-300 font-semibold rounded-xl outline-none w-fit"
-                placeholder="Email"
-                value={email}
-                onChange={handleEmailChange}
-                maxLength={25}
-              />
-              )}
+              <label>Email</label>
+                <h2 className="text-xl border-white max-w-60 font-semibold">{userInfo.email}</h2>
             </div>
-            {!editEmail ? (<MdModeEdit
-              onClick={()=> setEditEmail((prev)=>(!prev))}
-              className="w-fit cursor-pointer hover:scale-125 duration-200"
-              size={30}
-            />): (<button
-            onClick={()=> setEditEmail((prev)=>(!prev))}  
-            className="text-4xl text-lime-400 cursor-pointer hover:scale-125 duration-200">✓</button>)}
-            
           </div>
           <div className="w-full h-24 bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
             <div className="flex-grow">
               <label>Date of birth</label>
               <h2 className="text-xl font-semibold">{formattedDate(userInfo.date_of_birth || "0000-00-00")}</h2>
             </div>
-            <MdModeEdit
-              className="cursor-pointer hover:scale-125 duration-200 w-fit"
-              size={30}
-            />
           </div>
         </div>
         <ChartTrainings />
