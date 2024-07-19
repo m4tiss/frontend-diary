@@ -6,6 +6,7 @@ import FriendStatsPanel from "../shared/FriendStatsPanel";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import ChartCategories from './charts/ChartCategories'
+import { useUser } from "../../providers/UserProvider";
 import {
   formattedData,
   formattedDate,
@@ -15,6 +16,8 @@ import {
 
 const RunStats = () => {
   const GYM_COLOR = "#FF0000";
+
+  const { userInfo } = useUser();
 
   const [stats, setStats] = useState({
     distance: 0.0,

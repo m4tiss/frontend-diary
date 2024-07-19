@@ -1,5 +1,9 @@
 import profilePhoto from "../../images/lebron.png";
+import { useUser } from "../../providers/UserProvider";
+import { formattedDate } from '../../functions/formatData'
+
 const RunStatsProfile = () => {
+  const { userInfo } = useUser();
   return (
     <div
       className="rounded-3xl bg-[#E73725] flex flex-col p-10 shadow-xl"
@@ -11,14 +15,14 @@ const RunStatsProfile = () => {
           className="rounded-full object-cover"
           width={50}
           height={50}
-          src={profilePhoto}
+          src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}
         />
         <div className="flex items-center mx-5">
-          <span className="text-white text-2xl">m4tiss</span>
+          <span className="text-white text-2xl">{userInfo.nickname}</span>
         </div>
       </div>
       <div className="flex justify-between text-white my-3">
-        <span>Joined platform</span> <span>6 Dec 2020</span>
+        <span>Joined platform</span> <span>{formattedDate(userInfo.created_at)}</span>
       </div>
       <div className="flex justify-between text-white my-3">
         <span>Friends</span> <span>243</span>

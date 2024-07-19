@@ -61,7 +61,7 @@ const RunNavbar = ({ setNavBarType }) => {
             className="rounded-full object-cover cursor-pointer"
             width={50}
             height={50}
-            src={profilePhoto}
+            src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}
           />
           <h2 className="text-white text-2xl">{userInfo.nickname}</h2>
         </div>

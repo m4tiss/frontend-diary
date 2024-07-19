@@ -26,6 +26,9 @@ const UserProfile = ({ type }) => {
 
   const { userInfo } = useUser();
 
+
+  console.log(`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`)
+  
   let linearColor = "";
   if (type === "gym")
     linearColor =
@@ -40,7 +43,7 @@ const UserProfile = ({ type }) => {
         <img
           className="border-2 border-black my-5 rounded-full shadow-xl"
           width={250}
-          src={pic}
+          src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}
         />
         <div className="bg-white 2xl:w-96 w-full text-center mx-20 p-2 rounded-xl shadow-xl">
           <h2 className="text-3xl font-semibold">{userInfo.nickname}</h2>

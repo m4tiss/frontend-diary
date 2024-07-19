@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { getAuthToken } from "../../config/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "../../config/axios";
 import dayjs from "dayjs";
@@ -12,6 +11,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { motion } from "framer-motion";
 
 const Register = () => {
+
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -20,11 +20,15 @@ const Register = () => {
     description: "",
     profile_photo: "",
   });
-  const [selectedFileName, setSelectedFileName] = useState(`No file`);
 
+  const navigate = useNavigate();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFileName, setSelectedFileName] = useState(`No file`);
+  
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setSelectedFile(file);
       setSelectedFileName(`${file.name}`);
       setData({ ...data, profile_photo: file.name });
     } else {
@@ -32,10 +36,35 @@ const Register = () => {
     }
   };
 
-  const navigate = useNavigate();
+
+  const handleSendPhoto = async (timestamp) => {
+    if (!selectedFile) return null;
+  
+    const fileExtension = selectedFile.name;
+    const newFileName = `${timestamp}-${fileExtension}`;
+    const newFile = new File([selectedFile], newFileName, { type: selectedFile.type });
+    try {
+      const formData = new FormData();
+      formData.append('profilePhoto', newFile);
+      const response = await axios.post('/public/profilePhoto', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      return response.data;
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+      toast.error('Failed to upload photo');
+      return null;
+    }
+  };
+  
+
 
   const handleRegister = async (e) => {
-    e.preventDefault();
+
+     e.preventDefault();    
     if (
       !data.email ||
       !data.password ||
@@ -47,24 +76,25 @@ const Register = () => {
       toast.error("All fields must be filled");
       return;
     }
+
+    const timestamp = Date.now();
+    
     try {
       const registerData = {
         nickname: data.nickname,
         email: data.email,
         password: data.password,
         description: data.description,
-        profile_photo: data.profile_photo,
+        profile_photo: timestamp + "-" + data.profile_photo,
         date_of_birth: data.date_of_birth,
       };
 
-      const token = getAuthToken();
       const resposne = await axios.post("/public/register", registerData, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
         },
       });
-      console.log(resposne);
+
       if(resposne.status === 204){
         toast.error("Email already exists");
         return
@@ -74,6 +104,14 @@ const Register = () => {
     } catch (error) {
       console.error("Error:", error);
     }
+  
+    const photoUploadResponse = await handleSendPhoto(timestamp);
+
+    if (!photoUploadResponse) {
+      toast.error("Failed to upload photo");
+      return;
+    }
+
   };
 
   const today = dayjs();
