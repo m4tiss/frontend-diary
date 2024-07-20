@@ -11,7 +11,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { motion } from "framer-motion";
 
 const Register = () => {
-
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -24,7 +23,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState(`No file`);
-  
+
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -36,35 +35,33 @@ const Register = () => {
     }
   };
 
-
   const handleSendPhoto = async (timestamp) => {
     if (!selectedFile) return null;
-  
+
     const fileExtension = selectedFile.name;
     const newFileName = `${timestamp}-${fileExtension}`;
-    const newFile = new File([selectedFile], newFileName, { type: selectedFile.type });
+    const newFile = new File([selectedFile], newFileName, {
+      type: selectedFile.type,
+    });
     try {
       const formData = new FormData();
-      formData.append('profilePhoto', newFile);
-      const response = await axios.post('/public/profilePhoto', formData, {
+      formData.append("profilePhoto", newFile);
+      const response = await axios.post("/public/profilePhoto", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
-  
+
       return response.data;
     } catch (error) {
-      console.error('Error uploading photo:', error);
-      toast.error('Failed to upload photo');
+      console.error("Error uploading photo:", error);
+      toast.error("Failed to upload photo");
       return null;
     }
   };
-  
-
 
   const handleRegister = async (e) => {
-
-     e.preventDefault();    
+    e.preventDefault();
     if (
       !data.email ||
       !data.password ||
@@ -78,7 +75,7 @@ const Register = () => {
     }
 
     const timestamp = Date.now();
-    
+
     try {
       const registerData = {
         nickname: data.nickname,
@@ -95,23 +92,22 @@ const Register = () => {
         },
       });
 
-      if(resposne.status === 204){
+      if (resposne.status === 204) {
         toast.error("Email already exists");
-        return
+        return;
       }
       toast.success("Registration succesfully");
-      setTimeout(()=>navigate("/login"), 2000);
+      setTimeout(() => navigate("/login"), 2000);
     } catch (error) {
       console.error("Error:", error);
     }
-  
+
     const photoUploadResponse = await handleSendPhoto(timestamp);
 
     if (!photoUploadResponse) {
       toast.error("Failed to upload photo");
       return;
     }
-
   };
 
   const today = dayjs();
@@ -129,10 +125,10 @@ const Register = () => {
           <motion.form
             initial={{ y: 50 }}
             animate={{ y: 0 }}
-            className="flex h-fit p-10 gap-10 bg-white rounded-2xl shadow-xl"
+            className="flex h-fit w-1/2 p-10 gap-10 bg-white rounded-2xl shadow-xl"
             onSubmit={handleRegister}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col w-1/2">
               <h2 className="w-full text-4xl text-center font font-semibold">
                 Register
               </h2>
@@ -147,7 +143,7 @@ const Register = () => {
                 />
               </div>
 
-              <div className="flex flex-col ">
+              <div className="flex flex-col">
                 <label className="p-2">Password</label>
                 <input
                   minLength={6}
@@ -174,22 +170,27 @@ const Register = () => {
                 I have an account
               </label>
             </div>
-            <div>
-              <div className="flex flex-col">
-                <label className="p-2">Birth Date</label>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={["DatePicker"]}>
-                    <DatePicker
-                      maxDate={today}
-                      onChange={(date) =>
-                        setData({
-                          ...data,
-                          date_of_birth: date ? date.format("YYYY-MM-DD") : "",
-                        })
-                      }
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
+            <div className="w-1/2">
+              <div className="flex flex-col ">
+                <div className="flex justify-start gap-20 items-center">
+                  <label className="p-2">Birth Date</label>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["DatePicker"]}>
+                      <DatePicker
+                        maxDate={today}
+                        onChange={(date) =>
+                          setData({
+                            ...data,
+                            date_of_birth: date
+                              ? date.format("YYYY-MM-DD")
+                              : "",
+                          })
+                        }
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
+                </div>
+
                 <label className="p-2">Profile photo</label>
                 <label
                   htmlFor="fileInput"

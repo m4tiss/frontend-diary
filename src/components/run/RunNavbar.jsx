@@ -58,7 +58,12 @@ const RunNavbar = ({ setNavBarType }) => {
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}
             onClick={() => navigate("/run/profile")}
-            className="rounded-full object-cover cursor-pointer"
+            style={{
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+            }}
+            className="cursor-pointer object-cover"
             width={50}
             height={50}
             src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}

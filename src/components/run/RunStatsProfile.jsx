@@ -1,20 +1,25 @@
 import profilePhoto from "../../images/lebron.png";
 import { useUser } from "../../providers/UserProvider";
-import { formattedDate } from '../../functions/formatData'
+import { formattedDate } from "../../functions/formatData";
 
 const RunStatsProfile = () => {
   const { userInfo } = useUser();
   return (
     <div
       className="rounded-3xl bg-[#E73725] flex flex-col p-10 shadow-xl"
-      style={{'background-image': 'linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)'}}
-
+      style={{
+        "background-image":
+          "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
+      }}
     >
       <div className="flex">
         <img
-          className="rounded-full object-cover"
-          width={50}
-          height={50}
+          style={{
+            borderRadius: "50%",
+            width: "50px",
+            height: "50px",
+          }}
+          className="cursor-pointer object-cover"
           src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}
         />
         <div className="flex items-center mx-5">
@@ -22,7 +27,8 @@ const RunStatsProfile = () => {
         </div>
       </div>
       <div className="flex justify-between text-white my-3">
-        <span>Joined platform</span> <span>{formattedDate(userInfo.created_at)}</span>
+        <span>Joined platform</span>{" "}
+        <span>{formattedDate(userInfo.created_at)}</span>
       </div>
       <div className="flex justify-between text-white my-3">
         <span>Friends</span> <span>243</span>

@@ -9,13 +9,14 @@ import RunDashboard from './components/run/RunDashboard';
 import RunNavbar from './components/run/RunNavbar';
 
 import Login from './components/auth/Login'
-import UserProfile from './components/shared/UserProfile';
 import RunNewTraining from './components/run/RunNewTraining';
 import RunHistory from './components/run/RunHistory';
 import RunStats from './components/run/RunStats';
 import Register from './components/auth/Register';
 
 import { useUser } from './providers/UserProvider'
+import GymUserProfile from './components/gym/GymUserProfile';
+import RunUserProfile from './components/run/RunUserProfile';
 
 
 function App() {
@@ -47,7 +48,7 @@ function GymLayout() {
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<GymDashboard />} />
-        <Route path="profile" element={<UserProfile type="gym"/>} />
+        <Route path="profile" element={<GymUserProfile/>} />
         <Route path="history" element={<GymHistory/>} />
         <Route path="newTraining" element={<GymNewTraining/>} />
         <Route path="stats" element={<GymStats/>} />
@@ -70,7 +71,7 @@ function RunLayout() {
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<RunDashboard />} />
-        <Route path="profile" element={<UserProfile type="run"/>} />
+        <Route path="profile" element={<RunUserProfile/>} />
         <Route path="newTraining" element={<RunNewTraining/>} />
         <Route path="history" element={<RunHistory/>} />
         <Route path="stats" element={<RunStats/>} />

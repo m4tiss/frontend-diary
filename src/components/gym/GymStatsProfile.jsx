@@ -12,9 +12,12 @@ const GymStatsProfile = () => {
     >
       <div className="flex">
         <img
-          className="rounded-full object-cover"
-          width={50}
-          height={50}
+          style={{
+            borderRadius: "50%",
+            width: "50px",
+            height: "50px",
+          }}
+          className="cursor-pointer object-cover"
           src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}
         />
         <div className="flex items-center mx-5">

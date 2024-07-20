@@ -9,7 +9,6 @@ import RunTrainingSlide from "./RunTrainingSlide";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 
-
 const RunTrainingSlider = () => {
   const [trainings, setTrainings] = useState([]);
 
@@ -22,8 +21,10 @@ const RunTrainingSlider = () => {
         },
       })
       .then(() => {
-        setTrainings((prevTrainings) => prevTrainings.filter((training) => training.run_workout_id !== id));
-        console.log("Przeładowałem")
+        setTrainings((prevTrainings) =>
+          prevTrainings.filter((training) => training.run_workout_id !== id)
+        );
+        console.log("Przeładowałem");
       })
       .catch((error) => {
         console.error("Error deleting training:", error);
@@ -48,14 +49,18 @@ const RunTrainingSlider = () => {
 
   return (
     <Swiper slidesPerView={3} grabCursor={true}>
-      {trainings.map((item, index) => (
-        <SwiperSlide key={index}>
-          <RunTrainingSlide
-            training={item}
-            onDelete={() => handleDelete(item.run_workout_id)}
-          />
-        </SwiperSlide>
-      ))}
+      {trainings.length === 0 ? (
+        <div className="w-full justify-center text-center items-center text-3xl">No trainings available</div>
+      ) : (
+        trainings.map((item, index) => (
+          <SwiperSlide key={index}>
+            <RunTrainingSlide
+              training={item}
+              onDelete={() => handleDelete(item.run_workout_id)}
+            />
+          </SwiperSlide>
+        ))
+      )}
     </Swiper>
   );
 };
