@@ -10,23 +10,35 @@ import { IoMdAdd } from "react-icons/io";
 import { GoGoal } from "react-icons/go";
 import { getAuthToken } from "../../config/auth";
 import axios from "../../config/axios";
-
+import {AnimatePresence} from 'framer-motion'
+import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
 import { TbCategoryPlus } from "react-icons/tb";
 import { GiAchievement } from "react-icons/gi";
 import PagePanel from "../shared/PagePanel";
-
+import { useNavigate } from "react-router-dom";
 import ChartTrainings from "../shared/charts/ChartTrainings";
 import { formattedDate } from "../../functions/formatData";
 
 import { useUser } from "../../providers/UserProvider";
+import RunAddGoal from "./RunAddGoal";
+import {ToastContainer, toast } from "react-toastify";
 
 const RunUserProfile = () => {
   const { userInfo } = useUser();
   const [isOpen, setIsOpen] = useState(false);
-  console.log(
-    `${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`
-  );
+
+  const toggleDialog = () => {
+    setIsOpen((prev)=>(!prev));
+  };
+
+  const successDialog = () => {
+    setIsOpen((prev)=>(!prev));
+    toast.success("Goal added!");
+  };
+
+  const navigate = useNavigate();
+
 
   let linearColor =
     "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
@@ -65,7 +77,7 @@ const RunUserProfile = () => {
         <div className=" h-fit flex-wrap flex bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
           <PagePanel
             type={"run"}
-            title="Show your records"
+            title="Show records"
             icon={<GiTrophyCup size={50} color="white" />}
           />
           <PagePanel
@@ -79,30 +91,27 @@ const RunUserProfile = () => {
             icon={<GiAchievement size={50} color="white" />}
           />
           <PagePanel
+            onClick={toggleDialog}
             type={"run"}
             title="Add new goal"
             icon={<GoGoal size={50} color="white" />}
           />
           <PagePanel
+            onClick={() => navigate("/run/goals")}
             type={"run"}
-            title="..."
-            icon={<GoGoal size={50} color="white" />}
+            title="Show goals"
+            icon={<LuGoal size={50} color="white" />}
           />
           <PagePanel
             type={"run"}
             title="..."
             icon={<GoGoal size={50} color="white" />}
           />
-          {/* <AnimatePresence>
+          <AnimatePresence>
             {isOpen && (
-              <AchievementDetails
-                percent={selectedAchievement.percent}
-                closeDialog={closeDialog}
-                title={selectedAchievement.title}
-                description={selectedAchievement.description}
-              />
+              <RunAddGoal  toggleDialog={toggleDialog} successDialog={successDialog} />
       )}
-    </AnimatePresence> */}
+    </AnimatePresence>
         </div>
         <div
           style={{
@@ -133,6 +142,7 @@ const RunUserProfile = () => {
           </div>
         </div>
         <ChartTrainings />
+        <ToastContainer/>
       </div>
     </div>
   );

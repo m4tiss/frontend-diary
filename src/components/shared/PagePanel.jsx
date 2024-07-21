@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const PagePanel = ({ title, icon, type }) => {
+const PagePanel = ({ title, icon, type,...props }) => {
   let linearColor = "";
   if (type === "gym")
     linearColor =
@@ -11,6 +11,7 @@ const PagePanel = ({ title, icon, type }) => {
 
   return (
     <motion.button
+      {...props}
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 200 }}
       style={{

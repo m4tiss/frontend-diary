@@ -140,6 +140,7 @@ const Login = () => {
                 {rounded}
               </motion.h1>
               <h2 className="text-4xl">Users on our platform</h2>
+              {/* <h2 className="text-9xl">Better everyday</h2> */}
             </div>
           </motion.div>
         </div>

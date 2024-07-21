@@ -17,6 +17,7 @@ import Register from './components/auth/Register';
 import { useUser } from './providers/UserProvider'
 import GymUserProfile from './components/gym/GymUserProfile';
 import RunUserProfile from './components/run/RunUserProfile';
+import RunGoals from './components/run/RunGoals';
 
 
 function App() {
@@ -43,7 +44,7 @@ function GymLayout() {
   };
 
   return (
-    <div className='min-h-screen flex flex-col '>
+    <div className='min-h-screen flex flex-col'>
       <GymNavbar setNavBarType={setNavBarType} />
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
@@ -74,6 +75,7 @@ function RunLayout() {
         <Route path="profile" element={<RunUserProfile/>} />
         <Route path="newTraining" element={<RunNewTraining/>} />
         <Route path="history" element={<RunHistory/>} />
+        <Route path="goals" element={<RunGoals/>} />
         <Route path="stats" element={<RunStats/>} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>
