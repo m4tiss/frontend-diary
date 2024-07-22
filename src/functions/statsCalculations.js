@@ -33,7 +33,10 @@ export const calculateDaysDiff = (created_date, finish_date) => {
       return 'Invalid date';
     }
   
-    const diffTime = Math.abs(finishDate - createdDate);
+    const diffTime = finishDate - createdDate;
+  
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
+  
+    return Math.max(diffDays, 0);
   };
+  
