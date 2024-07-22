@@ -66,6 +66,7 @@ const GymDashboard = () => {
           icon={friends}
           type="gym"
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
+          onclick={() => navigate("/gym/friends")}
         />
       </motion.div>
     </div>

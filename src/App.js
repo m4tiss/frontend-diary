@@ -18,6 +18,7 @@ import { useUser } from './providers/UserProvider'
 import GymUserProfile from './components/gym/GymUserProfile';
 import RunUserProfile from './components/run/RunUserProfile';
 import RunGoals from './components/run/RunGoals';
+import FriendsPage from './components/shared/FriendsPage';
 
 
 function App() {
@@ -53,6 +54,7 @@ function GymLayout() {
         <Route path="history" element={<GymHistory/>} />
         <Route path="newTraining" element={<GymNewTraining/>} />
         <Route path="stats" element={<GymStats/>} />
+        <Route path="friends" element={<FriendsPage/>} />
         <Route path="*" element={<Navigate to="/gym/dashboard" />} />
       </Routes>
     </div>
@@ -76,6 +78,7 @@ function RunLayout() {
         <Route path="newTraining" element={<RunNewTraining/>} />
         <Route path="history" element={<RunHistory/>} />
         <Route path="goals" element={<RunGoals/>} />
+        <Route path="friends" element={<FriendsPage/>} />
         <Route path="stats" element={<RunStats/>} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>
