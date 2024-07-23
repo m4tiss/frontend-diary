@@ -16,7 +16,7 @@ const FriendsPage = () => {
 
   return (
     <div className="w-full flex justify-center items-start flex-grow bg-[#e9ecef]">
-      <div className="w-3/4 h-full p-32 flex flex-col">
+      <div className="w-3/4 h-full p-32 flex flex-col gap-20">
         <ToggleButtonGroup
           color="primary"
           value={choosenPanel}
@@ -26,13 +26,15 @@ const FriendsPage = () => {
         >
           <ToggleButton value="Friends">Friends</ToggleButton>
           <ToggleButton value="Users To Invite">Users To Invite</ToggleButton>
+          <ToggleButton value="Pending Users">Pending Users</ToggleButton>
         </ToggleButtonGroup>
         
-        {choosenPanel === "Friends" ? <FriendsList /> : <UsersToInvite />}
+        {choosenPanel === "Friends" && <FriendsList />}
+        {choosenPanel === "Users To Invite" && <UsersToInvite />}
+        {choosenPanel === "Pending Users" && <FriendsPending />}
       </div>
       <div className="w-1/4 flex flex-col">
-      <FriendsUserProfile/>
-      <FriendsPending/>
+        <FriendsUserProfile/>
       </div>
     </div>
   );

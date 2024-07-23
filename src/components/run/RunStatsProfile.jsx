@@ -1,4 +1,3 @@
-import profilePhoto from "../../images/lebron.png";
 import { useUser } from "../../providers/UserProvider";
 import { formattedDate } from "../../functions/formatData";
 
