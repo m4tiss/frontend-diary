@@ -16,7 +16,7 @@ const FriendsPage = () => {
 
   return (
     <div className="w-full flex justify-center items-start flex-grow bg-[#e9ecef]">
-      <div className="w-3/4 h-full p-32 flex flex-col gap-20">
+      <div className="w-3/4 p-20 flex flex-col gap-20">
         <ToggleButtonGroup
           color="primary"
           value={choosenPanel}

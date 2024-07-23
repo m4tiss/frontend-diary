@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
+import { motion } from "framer-motion";
 
-
-
-
-const UserToInvitePanel = ({ user }) => {
+const UserToInvitePanel = ({ user, onDelete }) => {
   const sendInvitation = async (friend_id) => {
     const token = getAuthToken();
     const resposne = await axios.post(
@@ -21,29 +19,42 @@ const UserToInvitePanel = ({ user }) => {
     console.log(resposne);
   };
 
+  const handleSending = () => {
+    sendInvitation(user.user_id);
+    onDelete();
+  };
+
   return (
-    <div className="w-64 h-96 rounded-xl p-3 flex flex-col items-center justify-evenly shadow-xl bg-white">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      whileHover={{ scale: 1.1 }}
+      className="flex flex-col justify-evenly items-center shadow-xl p-10 min-w-96 h-96 bg-white"
+    >
       <img
         style={{
-          borderRadius: "1%",
-          width: "250px",
-          height: "250px",
+          borderRadius: "50%",
+          width: "200px",
+          height: "200px",
         }}
-        className="cursor-pointer object-cover"
+        className="object-cover"
         src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${user.profile_photo}`}
       />
-      <label className="text-xl">{user.nickname} </label>
-      <button
+      <label className="text-2xl">{user.nickname}</label>
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 500 }}
         style={{
           "background-image":
             "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
         }}
-        onClick={() => sendInvitation(user.user_id)}
+        onClick={handleSending}
         className="text-white p-2 rounded-xl text-xl"
       >
         Send Invitation
-      </button>
-    </div>
+      </motion.button>
+    </motion.div>
   );
 };
 
