@@ -30,7 +30,7 @@ const RunStatsProfile = () => {
         <span>{formattedDate(userInfo.created_at)}</span>
       </div>
       <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
+        <span>Friends</span> <span>{userInfo.friends_count}</span>
       </div>
       <div className="flex justify-between text-white my-3">
         <span>Week kilometers</span>{" "}

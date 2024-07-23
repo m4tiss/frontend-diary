@@ -1,4 +1,7 @@
 import { calculateDaysWithUs } from "../../functions/statsCalculations";
+import { useEffect, useState } from "react";
+import axios from "../../config/axios";
+import { getAuthToken } from "../../config/auth";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -9,7 +12,27 @@ import ProfileStatsSlide from "./ProfileStatsSlide";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 SwiperCore.use([Autoplay]);
-const StatsUserProfileSlider = ({ created_at }) => {
+
+const StatsUserProfileSlider = ({ friends, created_at }) => {
+  const [numberOfAllWorkouts, setNumberOfAllWorkouts] = useState(0);
+
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get("/shared/numberOfAllWorkouts", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        const respone = res.data.data
+        setNumberOfAllWorkouts(respone);
+      })
+      .catch((error) => {
+        console.error("Error fetching friends data:", error);
+      });
+  }, []);
+
   return (
     <Swiper
       autoplay={{ delay: 3000 }}
@@ -18,10 +41,10 @@ const StatsUserProfileSlider = ({ created_at }) => {
       loop={true}
     >
       <SwiperSlide>
-        <ProfileStatsSlide number={572} description="Friends" />
+        <ProfileStatsSlide number={friends} description="Friends" />
       </SwiperSlide>
       <SwiperSlide>
-        <ProfileStatsSlide number={432} description="All trainings" />
+        <ProfileStatsSlide number={numberOfAllWorkouts} description="All trainings" />
       </SwiperSlide>
       <SwiperSlide>
         <ProfileStatsSlide

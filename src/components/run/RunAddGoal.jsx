@@ -102,7 +102,7 @@ const RunAddGoal = ({ toggleDialog, successDialog }) => {
           }
         />
         <div className="flex w-full justify-start gap-20 items-center">
-          <label className="w-fit p-2">Birth Date</label>
+          <label className="w-fit p-2">Finish Date</label>
           <div className="flex flex-grow justify-center items-center">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker"]}>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import pic from "../../images/profile_photo.jpg";
 
 import FriendDivProfile from "../shared/FriendDivProfile";
 import StatsUserProfileSlider from "../shared/StatsUserProfileSlider";
@@ -119,7 +118,7 @@ const RunUserProfile = () => {
           }}
           className="h-32 mb-10 rounded-xl shadow-xl"
         >
-          <StatsUserProfileSlider created_at={userInfo.created_at} />
+          <StatsUserProfileSlider friends={userInfo.friends_count} created_at={userInfo.created_at} />
         </div>
       </div>
       <div className="w-full 2xl:w-1/3 mb-10 2xl:mb-0 flex flex-col gap-5 2xl:gap-0 justify-evenly items-center">

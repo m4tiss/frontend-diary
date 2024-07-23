@@ -114,7 +114,7 @@ const RunStats = () => {
               className="flex flex-grow justify-evenly text-2xl font-semibold my-10 
            w-full text-black"
             >
-              <span>Friends</span> <span>243</span>
+              <span>Friends</span> <span>{userInfo.friends_count}</span>
             </div>
             <FriendStatsPanel />
             <FriendStatsPanel />

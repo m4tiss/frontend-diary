@@ -29,7 +29,7 @@ const FriendsList = () => {
 
 
     return (
-      <div className="w-full flex flex-col gap-5">
+      <div className="w-full flex gap-5">
       {friends.map((user, index) => (
           <FriendPanel key={index} user={user} />
       ))}
