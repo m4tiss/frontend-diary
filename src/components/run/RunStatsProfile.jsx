@@ -32,13 +32,6 @@ const RunStatsProfile = () => {
       <div className="flex justify-between text-white my-3">
         <span>Friends</span> <span>{userInfo.friends_count}</span>
       </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Week kilometers</span>{" "}
-        <div className="bg-lime-500 flex justify-center  w-16 rounded-full">
-          110% ➚{" "}
-        </div>{" "}
-        <span>432</span>
-      </div>
     </div>
   );
 };

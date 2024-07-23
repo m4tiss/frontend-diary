@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import UserToInvitePanel from "./UserToInvitePanel";
+import { IoIosRefresh } from "react-icons/io";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -39,17 +40,34 @@ const UsersToInvite = () => {
   };
 
   return (
-    <div className="flex flex-grow gap-5 flex-wrap">
-      <AnimatePresence>
-        {usersToInvite.map((user) => (
-          <UserToInvitePanel
-            onDelete={() => onDeleteFromList(user.user_id)}
-            key={user.user_id}
-            user={user}
-          />
-        ))}
-      </AnimatePresence>
-    </div>
+    <>
+      <div className="flex justify-evenly">
+        <div className="flex justify-center items-center rounded-xl shadow-xl text-5xl bg-white p-2 "> <IoIosRefresh /><button
+        //onClick={fetchUsers}
+        >
+          Refresh
+        </button></div>
+        
+        <input
+          className="bg-white p-2 border"
+          type="text"
+          //value={inputValue}
+          //onChange={handleInputChange}
+          placeholder="Input"
+        />
+      </div>
+      <div className="flex flex-grow gap-5 flex-wrap">
+        <AnimatePresence>
+          {usersToInvite.slice(0, 3).map((user) => (
+            <UserToInvitePanel
+              onDelete={() => onDeleteFromList(user.user_id)}
+              key={user.user_id}
+              user={user}
+            />
+          ))}
+        </AnimatePresence>
+      </div>
+    </>
   );
 };
 

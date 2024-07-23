@@ -32,14 +32,19 @@ const FriendsPending = () => {
 
   return (
     <div className="w-full flex flex-col gap-5">
-      <AnimatePresence>
-      {pendingUsers.map((user) => (
-          <FriendPendingPanel
-          onDelete={() => onDeleteFromList(user.user_id)}
-           key={user.user_id}
-           user={user} />
-      ))}
-      </AnimatePresence>
+      {pendingUsers.length === 0 ? (
+        <div className="w-full flex justify-center items-center text-4xl">No pending users</div>
+      ) : (
+        <AnimatePresence>
+          {pendingUsers.map((user) => (
+            <FriendPendingPanel
+              onDelete={() => onDeleteFromList(user.user_id)}
+              key={user.user_id}
+              user={user}
+            />
+          ))}
+        </AnimatePresence>
+      )}
     </div>
   );
 };
