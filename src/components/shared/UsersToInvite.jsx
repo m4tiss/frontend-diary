@@ -13,6 +13,32 @@ import { AnimatePresence } from "framer-motion";
 
 const UsersToInvite = () => {
   const [usersToInvite, setUsersToInvite] = useState([]);
+  const [searchPattern, setSearchPattern] = useState("");
+
+  const inputUsers = (pattern) => {
+    if(!pattern){
+      refreshUsers()
+      return;
+    }
+    setUsersToInvite([]);
+    const token = getAuthToken();
+    axios
+      .get("/shared/getUsersToInvite", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        params: {
+          pattern: pattern,
+        },
+      })
+      .then((res) => {
+        const response = res.data.users;
+        setUsersToInvite(response);
+      })
+      .catch((error) => {
+        console.error("Error fetching users to invite data:", error);
+      });
+  };
 
   const refreshUsers = () => {
     setUsersToInvite([]);
@@ -36,6 +62,12 @@ const UsersToInvite = () => {
     refreshUsers();
   }, []);
 
+  const handleSearchChange = (event) => {
+    const pattern = event.target.value;
+    setSearchPattern(pattern);
+    inputUsers(pattern);
+  };
+
   const onDeleteFromList = (userId) => {
     setUsersToInvite((prevUsers) =>
       prevUsers.filter((user) => user.user_id !== userId)
@@ -55,6 +87,8 @@ const UsersToInvite = () => {
           className="bg-white p-2 text-3xl rounded-xl shadow-xl outline-none"
           type="text"
           placeholder="Search new friend"
+          value={searchPattern}
+          onChange={handleSearchChange}
         />
       </div>
       <div className="flex justify-center flex-grow gap-5 flex-wrap">
