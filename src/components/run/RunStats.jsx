@@ -25,6 +25,7 @@ const RunStats = () => {
     avgRating: 0.0,
     avgPulse: 0,
   });
+  const [friends, setFriends] = useState([]);
 
   useEffect(() => {
     const token = getAuthToken();
@@ -45,6 +46,26 @@ const RunStats = () => {
       })
       .catch((error) => {
         console.error("Error fetching pulse data:", error);
+      });
+  }, []);
+
+
+
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get("/shared/getFriends", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        const respone = res.data.friends;
+        console.log(respone);
+        setFriends(respone);
+      })
+      .catch((error) => {
+        console.error("Error fetching friends data:", error);
       });
   }, []);
 
@@ -109,17 +130,16 @@ const RunStats = () => {
       <div className="w-1/4 flex flex-col  ">
         <div className="flex-grow m-10 ">
           <RunStatsProfile />
-          <div className="bg-white flex flex-col rounded-2xl shadow-xl my-10 gap-1">
+          <div className="bg-white flex flex-col rounded-2xl shadow-xl my-10 py-10 gap-2">
             <div
-              className="flex flex-grow justify-evenly text-2xl font-semibold my-10 
+              className="flex flex-grow justify-evenly text-2xl font-semibold 
            w-full text-black"
             >
               <span>Friends</span> <span>{userInfo.friends_count}</span>
             </div>
-            <FriendStatsPanel />
-            <FriendStatsPanel />
-            <FriendStatsPanel />
-            <FriendStatsPanel />
+            {friends.slice(0, 5).map((user, index) => (
+            <FriendStatsPanel  key={index} user={user} />
+          ))}
           </div>
         </div>
       </div>

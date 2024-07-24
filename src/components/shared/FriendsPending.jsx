@@ -12,9 +12,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-flip';
 
+import { useUser } from "../../providers/UserProvider";
+
 
 const FriendsPending = () => {
+
   const [pendingUsers, setPendingUsers] = useState([]);
+  const { fetchUserInfo } = useUser();
 
   useEffect(() => {
     const token = getAuthToken();
@@ -37,6 +41,8 @@ const FriendsPending = () => {
     setPendingUsers((prevUsers) =>
       prevUsers.filter((user) => user.user_id !== userId)
     );
+    console.log("usuwanie z listy w freinds pending")
+    fetchUserInfo();
   };
 
   return (

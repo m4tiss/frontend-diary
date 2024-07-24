@@ -19,9 +19,13 @@ const FriendPendingPanel = ({ user, onDelete }) => {
     console.log(resposne);
   };
 
-  const handleAccept = () => {
-    acceptInvitation(user.user_id);
-    onDelete();
+  const handleAccept = async () => {
+    try {
+      await acceptInvitation(user.user_id);
+      onDelete();
+    } catch (error) {
+      console.error("Error accepting invitation:", error);
+    }
   };
 
   return (

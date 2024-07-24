@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../config/firebase';
@@ -13,28 +12,35 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-        const token = getAuthToken();
-        axios
-          .get("/shared/userInfo", {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          })
-          .then((res) => {
-            let response = res.data.data;
-            console.log(response);
-            setUserInfo(response);
-          });
-      } else {
+      fetchUserInfo();
+    } else {
       setUserInfo({});
     }
   }, [user]);
+
+  const fetchUserInfo = () => {
+    if (user) {
+      const token = getAuthToken();
+      axios
+        .get("/shared/userInfo", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          let response = res.data.data;
+          console.log(response);
+          setUserInfo(response);
+        });
+    }
+  };
 
   const contextValue = {
     user,
     userInfo,
     loading,
     error,
+    fetchUserInfo,
   };
 
   return (
@@ -43,7 +49,6 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
 
 export const useUser = () => {
   const context = useContext(UserContext);

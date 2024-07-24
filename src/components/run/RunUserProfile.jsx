@@ -9,7 +9,7 @@ import { IoMdAdd } from "react-icons/io";
 import { GoGoal } from "react-icons/go";
 import { getAuthToken } from "../../config/auth";
 import axios from "../../config/axios";
-import {AnimatePresence} from 'framer-motion'
+import { AnimatePresence } from "framer-motion";
 import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
 import { TbCategoryPlus } from "react-icons/tb";
@@ -21,23 +21,42 @@ import { formattedDate } from "../../functions/formatData";
 
 import { useUser } from "../../providers/UserProvider";
 import RunAddGoal from "./RunAddGoal";
-import {ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const RunUserProfile = () => {
   const { userInfo } = useUser();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDialog = () => {
-    setIsOpen((prev)=>(!prev));
+    setIsOpen((prev) => !prev);
   };
 
   const successDialog = () => {
-    setIsOpen((prev)=>(!prev));
+    setIsOpen((prev) => !prev);
     toast.success("Goal added!");
   };
 
   const navigate = useNavigate();
 
+  const [friends, setFriends] = useState([]);
+
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get("/shared/getFriends", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        const respone = res.data.friends;
+        console.log(respone);
+        setFriends(respone);
+      })
+      .catch((error) => {
+        console.error("Error fetching friends data:", error);
+      });
+  }, []);
 
   let linearColor =
     "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
@@ -64,11 +83,13 @@ const RunUserProfile = () => {
           Friends
         </h2>
         <div className="w-full  h-44 bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
-          <FriendDivProfile nickname="Lebron" profileImage={lebronImage} />
-          <FriendDivProfile nickname="Musk" profileImage={muskImage} />
-          <FriendDivProfile nickname="Cris" profileImage={crisImage} />
+          {friends.slice(0, 3).map((user, index) => (
+            <FriendDivProfile key={index} user={user} />
+          ))}
           <div className="flex flex-col justify-center items-center gap-2">
-            <IoMdAdd className="rounded-full" size={100} />
+            <IoMdAdd
+            onClick={() => navigate("/run/friends")}
+            className="rounded-full cursor-pointer hover:scale-110 duration-200 hover:rotate-90" size={100} />
             <label className="text-xl">Add Friends</label>
           </div>
         </div>
@@ -108,9 +129,12 @@ const RunUserProfile = () => {
           />
           <AnimatePresence>
             {isOpen && (
-              <RunAddGoal  toggleDialog={toggleDialog} successDialog={successDialog} />
-      )}
-    </AnimatePresence>
+              <RunAddGoal
+                toggleDialog={toggleDialog}
+                successDialog={successDialog}
+              />
+            )}
+          </AnimatePresence>
         </div>
         <div
           style={{
@@ -118,7 +142,10 @@ const RunUserProfile = () => {
           }}
           className="h-32 mb-10 rounded-xl shadow-xl"
         >
-          <StatsUserProfileSlider friends={userInfo.friends_count} created_at={userInfo.created_at} />
+          <StatsUserProfileSlider
+            friends={userInfo.friends_count}
+            created_at={userInfo.created_at}
+          />
         </div>
       </div>
       <div className="w-full 2xl:w-1/3 mb-10 2xl:mb-0 flex flex-col gap-5 2xl:gap-0 justify-evenly items-center">
@@ -141,7 +168,7 @@ const RunUserProfile = () => {
           </div>
         </div>
         <ChartTrainings />
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     </div>
   );
