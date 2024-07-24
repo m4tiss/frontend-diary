@@ -42,12 +42,8 @@ const UserToInvitePanel = ({ user, onDelete }) => {
       <motion.button
         whileHover={{ scale: 1.1 }}
         transition={{ type: "spring", stiffness: 500 }}
-        style={{
-          "background-image":
-            "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
-        }}
         onClick={handleSending}
-        className="text-white p-2 rounded-xl text-xl"
+        className="text-white bg-gray-400 p-2 rounded-xl text-xl "
       >
         Send Invitation
       </motion.button>

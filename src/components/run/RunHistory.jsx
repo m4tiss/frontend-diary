@@ -14,9 +14,7 @@ const RunHistory = () => {
               regular exercise can enhance cognitive function and help with
               better sleep, leading to overall improved well-being.
             </label>
-          </div>
-
-         
+          </div> 
         </div>
         <div
           style={{

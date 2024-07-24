@@ -1,16 +1,16 @@
 import { useUser } from "../../providers/UserProvider";
 import { formattedDate } from "../../functions/formatData";
-const FriendsUserProfile = () => {
+const FriendsUserProfile = ({color}) => {
 
   const { userInfo } = useUser();
 
+  let background = ""
+  if(color === "blue") background = "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)"
+  else background = "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
   return (
     <div
       className="rounded-3xl flex flex-col h-full p-10 m-10 shadow-xl"
-      style={{
-        "background-image":
-          "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
-      }}
+      style={{ backgroundImage: `${background}` }}
     >
       <div className="flex">
         <img

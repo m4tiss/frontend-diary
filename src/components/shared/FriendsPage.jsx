@@ -5,8 +5,10 @@ import UsersToInvite from "./UsersToInvite";
 import FriendsUserProfile from "./FriendsUserProfile";
 import FriendsPending from "./FriendsPending";
 
-const FriendsPage = () => {
+const FriendsPage = ({ color }) => {
+
   const [choosenPanel, setChoosenPanel] = useState('Friends');
+
 
   const handlePanelChange = (newPanel) => {
     setChoosenPanel(newPanel);
@@ -20,8 +22,8 @@ const FriendsPage = () => {
             onClick={() => handlePanelChange('Friends')}
             className={`cursor-pointer w-1/3 p-2 rounded-tl-2xl rounded-bl-2xl ${
               choosenPanel === 'Friends'
-                ? 'bg-blue-400 text-white'
-                : 'bg-white text-blue-400'
+                ? `bg-${color}-400 text-white`
+                : `bg-white text-${color}-400`
             }`}
           >
             Friends
@@ -30,8 +32,8 @@ const FriendsPage = () => {
             onClick={() => handlePanelChange('Users To Invite')}
             className={`cursor-pointer w-1/3 p-2 ${
               choosenPanel === 'Users To Invite'
-                ? 'bg-blue-400 text-white'
-                : 'bg-white text-blue-400'
+                ? `bg-${color}-400 text-white`
+                : `bg-white text-${color}-400`
             }`}
           >
             Users To Invite
@@ -40,8 +42,8 @@ const FriendsPage = () => {
             onClick={() => handlePanelChange('Pending Users')}
             className={`cursor-pointer w-1/3 p-2 rounded-tr-2xl rounded-br-2xl ${
               choosenPanel === 'Pending Users'
-                ? 'bg-blue-400 text-white'
-                : 'bg-white text-blue-400'
+                ? `bg-${color}-400 text-white`
+                : `bg-white text-${color}-400`
             }`}
           >
             Pending Users
@@ -53,7 +55,7 @@ const FriendsPage = () => {
         {choosenPanel === "Pending Users" && <FriendsPending />}
       </div>
       <div className="w-1/4 flex flex-col flex-grow">
-        <FriendsUserProfile/>
+        <FriendsUserProfile color={color}/>
       </div>
     </div>
   );
