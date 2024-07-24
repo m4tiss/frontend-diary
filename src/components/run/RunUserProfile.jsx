@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 
 import FriendDivProfile from "../shared/FriendDivProfile";
 import StatsUserProfileSlider from "../shared/StatsUserProfileSlider";
-import lebronImage from "../../images/lebron.png";
-import muskImage from "../../images/musk.jpg";
-import crisImage from "../../images/cris.jpg";
 import { IoMdAdd } from "react-icons/io";
 import { GoGoal } from "react-icons/go";
 import { getAuthToken } from "../../config/auth";

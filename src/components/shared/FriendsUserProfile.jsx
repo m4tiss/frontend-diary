@@ -1,11 +1,12 @@
 import { useUser } from "../../providers/UserProvider";
+import { formattedDate } from "../../functions/formatData";
 const FriendsUserProfile = () => {
 
   const { userInfo } = useUser();
 
   return (
     <div
-      className="rounded-3xl  flex flex-col p-10 m-10 shadow-xl"
+      className="rounded-3xl flex flex-col p-10 m-10 shadow-xl"
       style={{
         "background-image":
           "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
@@ -27,47 +28,10 @@ const FriendsUserProfile = () => {
       </div>
       <div className="flex justify-between text-white my-3">
         <span>Joined platform</span>{" "}
-        <span>hgf</span>
+        <span>{formattedDate(userInfo.created_at)}</span>
       </div>
       <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>243</span>
-      </div>
-      <div className="flex justify-between text-white my-3">
-        <span>Week kilometers</span>{" "}
-        <div className="bg-lime-500 flex justify-center  w-16 rounded-full">
-          110% ➚{" "}
-        </div>{" "}
-        <span>432</span>
+        <span>Friends</span> <span>{userInfo.friends_count}</span>
       </div>
     </div>
   );

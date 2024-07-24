@@ -52,7 +52,7 @@ const FriendsPage = () => {
         {choosenPanel === "Users To Invite" && <UsersToInvite />}
         {choosenPanel === "Pending Users" && <FriendsPending />}
       </div>
-      <div className="w-1/4 flex flex-col">
+      <div className="w-1/4 flex flex-col ">
         <FriendsUserProfile/>
       </div>
     </div>

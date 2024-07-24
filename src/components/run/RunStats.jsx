@@ -100,7 +100,7 @@ const RunStats = () => {
             description={formattedData(stats.distance)}
             km
           />
-          <SmallStatsPanel title="Time" description={stats.duration} />
+          <SmallStatsPanel title="Time" description={formattedDuration(stats.duration)} />
           <SmallStatsPanel
             title="Average rating"
             description={formattedData(stats.avgRating)}
@@ -122,8 +122,17 @@ const RunStats = () => {
           </div>
             <ChartCategories/>
         </div>
-        <div className="flex justify-between bg-white rounded-xl w-full shadow-xl">
-         
+        <div className="flex justify-between w-full gap-5">
+          <SmallStatsPanel
+            title="Active Goals"
+            description="2"
+          />
+          <SmallStatsPanel title="Last training" description="20:00 23-12-2024" />
+          <SmallStatsPanel
+            title="Average Training Duration"
+            description="02h 15min 23sec"
+          />
+          <SmallStatsPanel title="Completed Achievements" description="4" />
         </div>
       </div>
 
