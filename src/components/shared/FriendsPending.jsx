@@ -3,6 +3,15 @@ import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import FriendPendingPanel from "./FriendPendingPanel";
 import { AnimatePresence } from "framer-motion";
+import { EffectFlip } from 'swiper/modules';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-flip';
+
 
 const FriendsPending = () => {
   const [pendingUsers, setPendingUsers] = useState([]);
@@ -16,8 +25,8 @@ const FriendsPending = () => {
         },
       })
       .then((res) => {
-        const respone = res.data.pendingUsers;
-        setPendingUsers(respone);
+        const response = res.data.pendingUsers;
+        setPendingUsers(response);
       })
       .catch((error) => {
         console.error("Error fetching friends pending data:", error);
@@ -31,19 +40,29 @@ const FriendsPending = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-5">
+    <div className="w-full flex gap-5">
       {pendingUsers.length === 0 ? (
-        <div className="w-full flex justify-center items-center text-4xl">No pending users</div>
+        <div className="w-full flex justify-center items-center text-4xl">
+          No pending users
+        </div>
       ) : (
-        <AnimatePresence>
-          {pendingUsers.map((user) => (
-            <FriendPendingPanel
-              onDelete={() => onDeleteFromList(user.user_id)}
-              key={user.user_id}
-              user={user}
-            />
-          ))}
-        </AnimatePresence>
+        <Swiper
+          effect="flip"
+          className="w-full h-full"
+          navigation={true}
+          modules={[Navigation,EffectFlip]}
+        >
+          <AnimatePresence>
+            {pendingUsers.map((user) => (
+              <SwiperSlide key={user.user_id}>
+                <FriendPendingPanel
+                  onDelete={() => onDeleteFromList(user.user_id)}
+                  user={user}
+                />
+              </SwiperSlide>
+            ))}
+          </AnimatePresence>
+        </Swiper>
       )}
     </div>
   );

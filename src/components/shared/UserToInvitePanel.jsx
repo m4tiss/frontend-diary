@@ -26,9 +26,6 @@ const UserToInvitePanel = ({ user, onDelete }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
       whileHover={{ scale: 1.1 }}
       className="flex flex-col justify-evenly items-center shadow-xl p-10 min-w-96 h-96 bg-white"
     >

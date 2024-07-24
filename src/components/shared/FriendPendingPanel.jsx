@@ -26,12 +26,9 @@ const FriendPendingPanel = ({ user, onDelete }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      whileHover={{ scale: 1.1 }}
-      className="flex flex-col justify-evenly items-center shadow-xl p-10 w-96 h-96 bg-white"
+      className="flex justify-evenly items-center shadow-xl p-10 w-full h-96 bg-white"
     >
+      <div className="flex flex-col items-center gap-5">
       <img
         style={{
           borderRadius: "50%",
@@ -42,11 +39,14 @@ const FriendPendingPanel = ({ user, onDelete }) => {
         src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${user.profile_photo}`}
       />
       <label className="text-2xl">{user.nickname}</label>
+      </div>
+      <div className="flex flex-col items-center gap-10">
+        <h2 className="text-4xl">{user.nickname} want to be your friend. Do you accept?</h2>
       <div className="flex gap-10">
         <motion.button
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 500 }}
-          className=" bg-lime-400 text-white text-xl p-2 rounded-xl"
+          className=" bg-lime-400 text-white text-4xl p-3 rounded-xl"
           onClick={handleAccept}
         >
           Accept
@@ -54,11 +54,13 @@ const FriendPendingPanel = ({ user, onDelete }) => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 500 }}
-          className=" bg-red-400 text-white text-xl p-2 rounded-xl"
+          className=" bg-red-400 text-white text-4xl p-3 rounded-xl"
         >
           Reject
         </motion.button>
       </div>
+      </div>
+      
     </motion.div>
   );
 };

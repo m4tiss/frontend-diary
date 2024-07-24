@@ -3,7 +3,6 @@ import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import UserToInvitePanel from "./UserToInvitePanel";
 import { IoIosRefresh } from "react-icons/io";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -15,22 +14,26 @@ import { AnimatePresence } from "framer-motion";
 const UsersToInvite = () => {
   const [usersToInvite, setUsersToInvite] = useState([]);
 
-  useEffect(() => {
+  const refreshUsers = () => {
+    setUsersToInvite([]);
     const token = getAuthToken();
     axios
-      .get("/shared/getUsersToInvite", {
+      .get("/shared/getThreeRandomUsersToInvite", {
         headers: {
           Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
-        const respone = res.data.users;
-        console.log(respone);
-        setUsersToInvite(respone);
+        const response = res.data.users;
+        setUsersToInvite(response);
       })
       .catch((error) => {
         console.error("Error fetching users to invite data:", error);
       });
+  };
+
+  useEffect(() => {
+    refreshUsers();
   }, []);
 
   const onDeleteFromList = (userId) => {
@@ -41,31 +44,27 @@ const UsersToInvite = () => {
 
   return (
     <>
-      <div className="flex justify-evenly">
-        <div className="flex justify-center items-center rounded-xl shadow-xl text-5xl bg-white p-2 "> <IoIosRefresh /><button
-        //onClick={fetchUsers}
-        >
-          Refresh
-        </button></div>
+      <div className="flex justify-center gap-2">
+        <div 
+          onClick={refreshUsers}
+          className="flex justify-center items-center rounded-xl shadow-xl text-5xl bg-white p-2 cursor-pointer">
+          <IoIosRefresh />
+        </div>
         
         <input
-          className="bg-white p-2 border"
+          className="bg-white p-2 text-3xl rounded-xl shadow-xl outline-none"
           type="text"
-          //value={inputValue}
-          //onChange={handleInputChange}
-          placeholder="Input"
+          placeholder="Search new friend"
         />
       </div>
-      <div className="flex flex-grow gap-5 flex-wrap">
-        <AnimatePresence>
-          {usersToInvite.slice(0, 3).map((user) => (
+      <div className="flex justify-center flex-grow gap-5 flex-wrap">
+          {usersToInvite.map((user) => (
             <UserToInvitePanel
               onDelete={() => onDeleteFromList(user.user_id)}
               key={user.user_id}
               user={user}
             />
           ))}
-        </AnimatePresence>
       </div>
     </>
   );
