@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import FriendPendingPanel from "./FriendPendingPanel";
-import { AnimatePresence } from "framer-motion";
+import { motion,AnimatePresence } from "framer-motion";
 import { EffectFlip } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -48,9 +48,12 @@ const FriendsPending = () => {
   return (
     <div className="w-full flex gap-5">
       {pendingUsers.length === 0 ? (
-        <div className="w-full flex justify-center items-center text-4xl">
-          No pending users
-        </div>
+        <motion.div 
+        initial={{ y: 50 }}
+        animate={{ y: 0 }}
+        className="w-full flex justify-center items-center text-4xl">
+           No pending users available to display
+        </motion.div>
       ) : (
         <Swiper
           effect="flip"

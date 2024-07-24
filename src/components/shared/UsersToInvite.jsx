@@ -9,15 +9,15 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const UsersToInvite = () => {
   const [usersToInvite, setUsersToInvite] = useState([]);
   const [searchPattern, setSearchPattern] = useState("");
 
   const inputUsers = (pattern) => {
-    if(!pattern){
-      refreshUsers()
+    if (!pattern) {
+      refreshUsers();
       return;
     }
     setUsersToInvite([]);
@@ -76,13 +76,18 @@ const UsersToInvite = () => {
 
   return (
     <>
-      <div className="flex justify-center gap-2">
-        <div 
+      <motion.div
+        initial={{ y: 50 }}
+        animate={{ y: 0 }}
+        className="flex justify-center gap-2"
+      >
+        <div
           onClick={refreshUsers}
-          className="flex justify-center items-center rounded-xl shadow-xl text-5xl bg-white p-2 cursor-pointer">
+          className="flex justify-center items-center rounded-xl shadow-xl text-5xl bg-white p-2 cursor-pointer"
+        >
           <IoIosRefresh />
         </div>
-        
+
         <input
           className="bg-white p-2 text-3xl rounded-xl shadow-xl outline-none"
           type="text"
@@ -90,16 +95,20 @@ const UsersToInvite = () => {
           value={searchPattern}
           onChange={handleSearchChange}
         />
-      </div>
-      <div className="flex justify-center flex-grow gap-5 flex-wrap">
-          {usersToInvite.map((user) => (
-            <UserToInvitePanel
-              onDelete={() => onDeleteFromList(user.user_id)}
-              key={user.user_id}
-              user={user}
-            />
-          ))}
-      </div>
+      </motion.div>
+      <motion.div
+        initial={{ y: 50 }}
+        animate={{ y: 0 }}
+        className="flex justify-center flex-grow gap-5 flex-wrap"
+      >
+        {usersToInvite.map((user) => (
+          <UserToInvitePanel
+            onDelete={() => onDeleteFromList(user.user_id)}
+            key={user.user_id}
+            user={user}
+          />
+        ))}
+      </motion.div>
     </>
   );
 };

@@ -9,7 +9,7 @@ const FriendPanel = ({ user }) => {
       initial={{ y: 50 }}
       animate={{ y: 0 }}
       whileHover={{ scale: 1.1 }}
-      className="flex flex-col justify-evenly cursor-pointer items-center shadow-xl w-40 h-40 bg-white"
+      className="flex flex-col justify-evenly cursor-pointer items-center shadow-xl min-w-40 h-40 bg-white"
     >
       <img
         style={{
