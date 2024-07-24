@@ -13,8 +13,8 @@ const FriendsPage = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-start flex-grow bg-[#e9ecef]">
-      <div className="w-3/4 p-20 flex flex-col gap-20">
+    <div className="w-full flex justify-center items-stretch flex-grow bg-[#e9ecef]">
+      <div className="w-3/4 p-20 flex flex-col gap-20 flex-grow">
       <div className="w-full text-center justify-center items-center text-2xl flex">
           <div
             onClick={() => handlePanelChange('Friends')}
@@ -52,7 +52,7 @@ const FriendsPage = () => {
         {choosenPanel === "Users To Invite" && <UsersToInvite />}
         {choosenPanel === "Pending Users" && <FriendsPending />}
       </div>
-      <div className="w-1/4 flex flex-col ">
+      <div className="w-1/4 flex flex-col flex-grow">
         <FriendsUserProfile/>
       </div>
     </div>

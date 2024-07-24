@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ChartAveragePulse from "./charts/ChartAveragePulse";
 import ChartDistance from "./charts/ChartDistance";
+import { useUser } from "../../providers/UserProvider";
 
 const validateDuration = (duration) => {
   const regex = /^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
@@ -14,6 +15,7 @@ const validateDuration = (duration) => {
 };
 
 const RunNewTraining = () => {
+  const { fetchUserInfo } = useUser();
   const [categories, setCategories] = useState([]);
   const [chosenPlan, setChosenPlan] = useState(null);
   const [data, setData] = useState({
@@ -89,6 +91,7 @@ const RunNewTraining = () => {
         distance: 0.0,
       });
       setChosenPlan(null);
+      fetchUserInfo();
     } catch (error) {
       console.error("Error:", error);
     }

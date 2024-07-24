@@ -6,7 +6,7 @@ const FriendsUserProfile = () => {
 
   return (
     <div
-      className="rounded-3xl flex flex-col p-10 m-10 shadow-xl"
+      className="rounded-3xl flex flex-col h-full p-10 m-10 shadow-xl"
       style={{
         "background-image":
           "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",

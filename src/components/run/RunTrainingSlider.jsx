@@ -48,7 +48,9 @@ const RunTrainingSlider = () => {
   }, []);
 
   return (
-    <Swiper slidesPerView={3} grabCursor={true}>
+    <Swiper
+    className="w-full"
+    slidesPerView={3} grabCursor={true}>
       {trainings.length === 0 ? (
         <div className="w-full justify-center text-center items-center text-3xl">No trainings available</div>
       ) : (
