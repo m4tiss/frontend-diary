@@ -50,7 +50,7 @@ const ChartCategories = () => {
             data: transformDataForPieChart(),
           },
         ]}
-        width={500}
+        width={window.innerWidth > 768 ? 500 : 300}
         height={200}
       />
     </div>

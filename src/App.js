@@ -24,7 +24,7 @@ import FriendsPage from './components/shared/FriendsPage';
 function App() {
   return (
     <Router>
-      <div className='w-full h-screen'>
+      <div className='w-full min-h-screen'>
         <Routes>
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />

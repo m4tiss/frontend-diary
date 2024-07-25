@@ -98,9 +98,9 @@ const RunNewTraining = () => {
   };
 
   return (
-    <div className="w-full flex flex-grow bg-[#e9ecef]">
-      <div className="w-2/3 flex justify-center">
-        <div className="w-1/2 flex flex-col items-center justify-evenly my-10">
+    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef]">
+      <div className="w-full 2xl:w-2/3 flex flex-col 2xl:flex-row justify-center">
+        <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly mt-10 2xl:my-10">
           <div className="text-left flex flex-col">
             <label className="px-2 text-xl">Duration</label>
             <input
@@ -155,13 +155,13 @@ const RunNewTraining = () => {
             />
           </div>
         </div>
-        <div className="w-1/2 flex flex-col items-center justify-evenly my-10">
+        <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly my-10">
           <div className="text-left flex flex-col ">
             <label className="px-2 text-xl">Note</label>
             <textarea
               value={data.note}
               onChange={(e) => setData({ ...data, note: e.target.value })}
-              className="resize-none text-2xl p-2 w-96 min-h-40 shadow-xl rounded-2xl outline-none"
+              className="resize-none text-2xl p-2 w-80 2xl:w-96 min-h-40 shadow-xl rounded-2xl outline-none"
               type="text"
               placeholder="Best run every..."
             ></textarea>
@@ -195,13 +195,13 @@ const RunNewTraining = () => {
               "background-image":
                 "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
             }}
-            className="text-2xl shadow-2xl text-white hover:scale-110 rounded-xl w-96 p-2 my-3 duration-200"
+            className="text-2xl shadow-2xl text-white hover:scale-110 rounded-xl w-80 2xl:w-96 p-2 my-3 duration-200"
           >
             Do training
           </button>
         </div>
       </div>
-      <div className="w-1/3 flex flex-col justify-evenly">
+      <div className="w-full 2xl:w-1/3 flex flex-col items-center gap-5 mb-10 2xl:mb-0 2xl:justify-evenly">
         <ChartAveragePulse />
         <ChartDistance />
       </div>
