@@ -119,7 +119,7 @@ const Register = () => {
           "background-image":
             "linear-gradient(to top, #ffffff, #f1d3f5, #fc9fcd, #ff6685, #e73725)",
         }}
-        className="min-h-screen flex"
+        className="min-h-screen flex "
       >
         <div className="w-full my-10 2xl:my-0 flex justify-center items-center z-50">
           <motion.form

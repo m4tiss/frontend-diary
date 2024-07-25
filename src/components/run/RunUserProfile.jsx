@@ -91,7 +91,7 @@ const RunUserProfile = () => {
           </div>
         </div>
 
-        <div className=" h-fit flex-wrap flex bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
+        <div className="h-fit flex-wrap flex bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
           <PagePanel
             type={"run"}
             title="Show records"
@@ -103,6 +103,7 @@ const RunUserProfile = () => {
             icon={<TbCategoryPlus size={50} color="white" />}
           />
           <PagePanel
+            onClick={() => navigate("/run/achievements")}
             type={"run"}
             title="Show achievements"
             icon={<GiAchievement size={50} color="white" />}

@@ -19,6 +19,7 @@ import GymUserProfile from './components/gym/GymUserProfile';
 import RunUserProfile from './components/run/RunUserProfile';
 import RunGoals from './components/run/RunGoals';
 import FriendsPage from './components/shared/FriendsPage';
+import RunAchievementPage from './components/run/RunAchievementPage';
 
 
 function App() {
@@ -80,6 +81,7 @@ function RunLayout() {
         <Route path="goals" element={<RunGoals/>} />
         <Route path="friends" element={<FriendsPage color="blue"/>} />
         <Route path="stats" element={<RunStats/>} />
+        <Route path="achievements" element={<RunAchievementPage/>} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>
       

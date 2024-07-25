@@ -39,19 +39,19 @@ const ChartCategories = () => {
   };
 
   return (
-    <div className="flex flex-col items-center border-2 bg-white rounded-xl w-full shadow-xl">
+    <div className="flex flex-col items-center border-2 py-10 2xl:py-0 bg-white rounded-xl w-full shadow-xl">
       <div className="text-2xl p-2">Categories</div>
       <PieChart
         colors={transformDataForPieChart().map((data) => data.color)}
         series={[
           {
-            paddingAngle: 2,
+            paddingAngle: 1,
             cornerRadius: 5,
             data: transformDataForPieChart(),
           },
         ]}
         width={window.innerWidth > 768 ? 500 : 300}
-        height={200}
+        height={window.innerWidth > 768 ? 200 : 100}
       />
     </div>
   );

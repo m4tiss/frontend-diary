@@ -87,7 +87,7 @@ const Login = () => {
           <motion.form
             initial={{ y: 50 }}
             animate={{ y: 0 }}
-            className="flex flex-col w-1/2 h-fit p-10 bg-white rounded-2xl shadow-xl"
+            className="w-full 2xl:w-1/2 h-fit flex flex-col mx-10 2xl:mx-0 p-10 bg-white rounded-2xl shadow-xl"
             onSubmit={handleLogin}
           >
             <h2 className="w-full text-4xl text-center font font-semibold">

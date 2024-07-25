@@ -5,7 +5,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "swiper/css/effect-coverflow";
 import AchievementPanel from "../shared/AchievementPanel";
 import AchievementDetails from "../shared/AchievementDetails";
 import { useState } from "react";
@@ -55,7 +54,12 @@ const RunAcheviementSlider = ({ slidesPerView }) => {
 
   return (
     <>
-    <Swiper slidesPerView={slidesPerView} grabCursor={true} loop={true}>
+    <Swiper 
+    slidesPerView={slidesPerView} 
+    grabCursor={true} 
+    loop={true}
+
+    >
       {achievements.map((achievement, index) => (
         <SwiperSlide key={index}>
           <AchievementPanel

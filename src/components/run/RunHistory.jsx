@@ -26,9 +26,6 @@ const RunHistory = () => {
           <h2 className="text-2xl text-white text-center my-5">Filtration</h2>
         </div>
       </div>
-      {/* <div className="text-4xl m-5">Achievements</div>
-        <RunAchievementSlider slidesPerView={4} /> */}
-      {/* </div> */}
     </div>
   );
 };
