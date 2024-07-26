@@ -2,7 +2,7 @@ import { formattedDate, formattedData } from "../../functions/formatData";
 import { calculateDaysDiff } from "../../functions/statsCalculations";
 
 const RunGoalPanel = ({ goal }) => {
-  const daysLeft = calculateDaysDiff(goal.create_date, goal.finish_date);
+  const daysLeft = calculateDaysDiff(goal.finish_date);
   const daysLeftMessage = daysLeft === 1 ? "DAY LEFT" : "DAYS LEFT";
 
   const percentageCompleted = (goal.current_goal / goal.goal) * 100;

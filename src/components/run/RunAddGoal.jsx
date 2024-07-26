@@ -11,7 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-const RunAddGoal = ({ toggleDialog, successDialog }) => {
+const RunAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
 
   const [data, setData] = useState({
     title: "",
@@ -50,7 +50,7 @@ const RunAddGoal = ({ toggleDialog, successDialog }) => {
         },
       });
       console.log(resposne)
-      successDialog()
+      successGoalDialog()
     } catch (error) {
       console.error("Error:", error);
     }
@@ -59,7 +59,7 @@ const RunAddGoal = ({ toggleDialog, successDialog }) => {
   return createPortal(
     <div
       className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
-      onClick={toggleDialog}
+      onClick={toggleGoalDialog}
     >
       <motion.div
         initial={{ scale: 0.2, opacity: 0 }}
@@ -129,7 +129,7 @@ const RunAddGoal = ({ toggleDialog, successDialog }) => {
         </button>
         <button
           className="bg-red-500 mt-5 text-white w-full p-2 rounded-xl shadow-xl"
-          onClick={toggleDialog}
+          onClick={toggleGoalDialog}
         >
           Close
         </button>

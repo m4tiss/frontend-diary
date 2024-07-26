@@ -21,19 +21,19 @@ export const calculateDaysWithUs = (created_at) => {
     return diffDays;
 };
 
-export const calculateDaysDiff = (created_date, finish_date) => {
-    if (!created_date || !finish_date) {
+export const calculateDaysDiff = (finish_date) => {
+    if (!finish_date) {
       return 'Invalid date';
     }
   
-    const createdDate = new Date(created_date);
+    const todayDate = new Date();
     const finishDate = new Date(finish_date);
   
-    if (isNaN(createdDate.getTime()) || isNaN(finishDate.getTime())) {
+    if (isNaN(todayDate.getTime()) || isNaN(finishDate.getTime())) {
       return 'Invalid date';
     }
   
-    const diffTime = finishDate - createdDate;
+    const diffTime = finishDate - todayDate;
   
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   
