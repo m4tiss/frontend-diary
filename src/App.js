@@ -20,17 +20,40 @@ import RunUserProfile from './components/run/RunUserProfile';
 import RunGoals from './components/run/RunGoals';
 import FriendsPage from './components/shared/FriendsPage';
 import RunAchievementPage from './components/run/RunAchievementPage';
+import { useEffect, useState } from 'react';
 
 
 function App() {
+
+  const [darkMode,setDarkMode] = useState(false)
+
+  useEffect(() => {
+    let savedMode = localStorage.getItem('displayMode');
+    if (!savedMode) {
+      savedMode = 'light';
+      setDarkMode(false);
+      localStorage.setItem('displayMode', savedMode);
+    } else {
+      setDarkMode(savedMode === 'dark');
+    }
+  }, []);
+
+  const toggleDisplayMode = () => {
+    setDarkMode((prev) => {
+      const newMode = !prev;
+      localStorage.setItem('displayMode', newMode ? 'dark' : 'light');
+      return newMode;
+    });
+  };
+
   return (
     <Router>
-      <div className='w-full min-h-screen'>
+      <div className = {`w-full min-h-screen ${darkMode ? "dark" : ""}`}>
         <Routes>
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-          <Route path="/gym/*" element={<PrivateRoute><GymLayout /></PrivateRoute>} />
-          <Route path="/run/*" element={<PrivateRoute><RunLayout /></PrivateRoute>} />
+          <Route path="/gym/*" element={<PrivateRoute><GymLayout toggleDisplayMode={toggleDisplayMode} /></PrivateRoute>} />
+          <Route path="/run/*" element={<PrivateRoute><RunLayout toggleDisplayMode={toggleDisplayMode} /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </div>
@@ -38,7 +61,7 @@ function App() {
   );
 }
 
-function GymLayout() {
+function GymLayout({toggleDisplayMode}) {
   const navigate = useNavigate();
 
   const setNavBarType = () => {
@@ -47,7 +70,7 @@ function GymLayout() {
 
   return (
     <div className='min-h-screen flex flex-col'>
-      <GymNavbar setNavBarType={setNavBarType} />
+      <GymNavbar  toggleDisplayMode = {toggleDisplayMode} setNavBarType={setNavBarType} />
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<GymDashboard />} />
@@ -62,7 +85,7 @@ function GymLayout() {
   );
 }
 
-function RunLayout() {
+function RunLayout({toggleDisplayMode}) {
   const navigate = useNavigate();
 
   const setNavBarType = () => {
@@ -71,7 +94,7 @@ function RunLayout() {
 
   return (
     <div className='min-h-screen flex flex-col'>
-      <RunNavbar setNavBarType={setNavBarType} />
+      <RunNavbar toggleDisplayMode = {toggleDisplayMode} setNavBarType={setNavBarType} />
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<RunDashboard />} />

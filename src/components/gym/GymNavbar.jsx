@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useUser } from '../../providers/UserProvider'
 
-const GymNavbar = ({ setNavBarType }) => {
+const GymNavbar = ({ toggleDisplayMode,setNavBarType }) => {
   const GYM_COLOR = "#E73725";
 
   const navigate = useNavigate();

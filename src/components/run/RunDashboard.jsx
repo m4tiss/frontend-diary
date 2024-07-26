@@ -11,12 +11,12 @@ const RunDashbnoard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full flex flex-col flex-grow ">
+    <div className="w-full flex flex-col flex-grow dark:bg-black ">
       <div className="flex-grow flex justify-center items-center">
         <div className="w-3/4 flex flex-col justify-center items-center">
           <h2
             style={{ color: textColor }}
-            className="text-[80px] text-center font-bold tracking-tighter"
+            className=" text-[80px] text-center font-bold tracking-tighter"
           >
             Run EVERYDAY
           </h2>
