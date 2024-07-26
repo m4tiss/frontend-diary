@@ -20,31 +20,34 @@ import RunUserProfile from './components/run/RunUserProfile';
 import RunGoals from './components/run/RunGoals';
 import FriendsPage from './components/shared/FriendsPage';
 import RunAchievementPage from './components/run/RunAchievementPage';
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useContext } from 'react';
+import DarkModeContext from './providers/DarkModeProvider';
 
 
 function App() {
 
-  const [darkMode,setDarkMode] = useState(false)
+  // const [darkMode,setDarkMode] = useState(false)
 
-  useEffect(() => {
-    let savedMode = localStorage.getItem('displayMode');
-    if (!savedMode) {
-      savedMode = 'light';
-      setDarkMode(false);
-      localStorage.setItem('displayMode', savedMode);
-    } else {
-      setDarkMode(savedMode === 'dark');
-    }
-  }, []);
+  // useEffect(() => {
+  //   let savedMode = localStorage.getItem('displayMode');
+  //   if (!savedMode) {
+  //     savedMode = 'light';
+  //     setDarkMode(false);
+  //     localStorage.setItem('displayMode', savedMode);
+  //   } else {
+  //     setDarkMode(savedMode === 'dark');
+  //   }
+  // }, []);
 
-  const toggleDisplayMode = () => {
-    setDarkMode((prev) => {
-      const newMode = !prev;
-      localStorage.setItem('displayMode', newMode ? 'dark' : 'light');
-      return newMode;
-    });
-  };
+  // const toggleDisplayMode = () => {
+  //   setDarkMode((prev) => {
+  //     const newMode = !prev;
+  //     localStorage.setItem('displayMode', newMode ? 'dark' : 'light');
+  //     return newMode;
+  //   });
+  // };
+
+  const { darkMode } = useContext(DarkModeContext);
 
   return (
     <Router>
@@ -52,8 +55,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-          <Route path="/gym/*" element={<PrivateRoute><GymLayout toggleDisplayMode={toggleDisplayMode} /></PrivateRoute>} />
-          <Route path="/run/*" element={<PrivateRoute><RunLayout toggleDisplayMode={toggleDisplayMode} /></PrivateRoute>} />
+          <Route path="/gym/*" element={<PrivateRoute><GymLayout /></PrivateRoute>} />
+          <Route path="/run/*" element={<PrivateRoute><RunLayout /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </div>
@@ -61,7 +64,7 @@ function App() {
   );
 }
 
-function GymLayout({toggleDisplayMode}) {
+function GymLayout() {
   const navigate = useNavigate();
 
   const setNavBarType = () => {
@@ -70,7 +73,7 @@ function GymLayout({toggleDisplayMode}) {
 
   return (
     <div className='min-h-screen flex flex-col'>
-      <GymNavbar  toggleDisplayMode = {toggleDisplayMode} setNavBarType={setNavBarType} />
+      <GymNavbar setNavBarType={setNavBarType} />
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<GymDashboard />} />
@@ -85,7 +88,7 @@ function GymLayout({toggleDisplayMode}) {
   );
 }
 
-function RunLayout({toggleDisplayMode}) {
+function RunLayout() {
   const navigate = useNavigate();
 
   const setNavBarType = () => {
@@ -94,7 +97,7 @@ function RunLayout({toggleDisplayMode}) {
 
   return (
     <div className='min-h-screen flex flex-col'>
-      <RunNavbar toggleDisplayMode = {toggleDisplayMode} setNavBarType={setNavBarType} />
+      <RunNavbar setNavBarType={setNavBarType} />
       <Routes>
         <Route path="/" element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<RunDashboard />} />

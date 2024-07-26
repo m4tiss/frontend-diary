@@ -5,14 +5,17 @@ import { signOut } from "firebase/auth";
 import NavbarButton from "../shared/NavbarButton";
 import profilePhoto from "../../images/profile_photo.jpg";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"
-import { useUser } from '../../providers/UserProvider'
+import { motion } from "framer-motion";
+import { useUser } from "../../providers/UserProvider";
+import DarkModeContext from "../../providers/DarkModeProvider";
+import { useContext } from "react";
 
-const RunNavbar = ({ toggleDisplayMode,setNavBarType }) => {
+const RunNavbar = ({setNavBarType}) => {
   const RUN_COLOR = "#1DA1F2";
 
   const navigate = useNavigate();
   const { userInfo } = useUser();
+  const { darkMode, toggleDisplayMode } = useContext(DarkModeContext);
 
   const handleLogout = () => {
     signOut(auth)
@@ -59,9 +62,9 @@ const RunNavbar = ({ toggleDisplayMode,setNavBarType }) => {
             transition={{ type: "spring", stiffness: 500 }}
             onClick={() => navigate("/run/profile")}
             style={{
-              borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
             }}
             className="cursor-pointer object-cover"
             width={50}
@@ -72,11 +75,12 @@ const RunNavbar = ({ toggleDisplayMode,setNavBarType }) => {
         </div>
         <div className="flex items-center justify-between gap-5">
           <motion.button
-                onClick={toggleDisplayMode} 
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 500 }}
-                className={`dark:bg-white dark:text-black bg-black text-white text-xl font-bold w-32 h-10 px-4 rounded-full`}>
-            Dark mode
+            onClick={toggleDisplayMode}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 500 }}
+            className={`dark:bg-white dark:text-black bg-black text-white text-xl font-bold w-32 h-10 px-4 rounded-full`}
+          >
+           {darkMode ? "Light" : "Dark"} Mode
           </motion.button>
           <h2 className="text-2xl text-white mx-5 flex">YourWebsite</h2>
           <button
