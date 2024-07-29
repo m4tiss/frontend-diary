@@ -1,11 +1,11 @@
 import RunTrainingSlider from "./RunTrainingSlider";
 const RunHistory = () => {
   return (
-    <div className="w-full flex flex-grow items-stretch bg-[#e9ecef]">
+    <div className="w-full flex flex-grow items-stretch bg-[#e9ecef] dark:bg-run-night-background">
       <div className="flex w-full">
         <div className="w-3/4 flex flex-col items-center justify-evenly flex-grow">
         <RunTrainingSlider />
-          <div className="w-1/2 text-center gap-5 p-3 rounded-xl shadow-xl bg-white flex flex-col">
+          <div className="w-1/2 text-center gap-5 p-3 rounded-xl shadow-xl bg-white flex flex-col dark:bg-run-night-element dark:text-white">
             <h2 className="text-5xl">Last Trainings</h2>
             <label className="text-xl">
               Regular exercise can improve mental health by reducing symptoms of

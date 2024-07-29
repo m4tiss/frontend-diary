@@ -1,6 +1,6 @@
 const SmallStatsPanel = ({ title, description }) => {
   return (
-    <div className="min-w-72 flex flex-col bg-[white] rounded-2xl justify-center shadow-xl p-5">
+    <div className="min-w-72 flex flex-col bg-[white] dark:bg-run-night-element dark:text-white rounded-2xl justify-center shadow-xl p-5">
       <div className="flex justify-start text-xl font-semibold">{title}</div>
       <div className="flex justify-start text-3xl font-semibold">
         {description}
@@ -11,5 +11,7 @@ const SmallStatsPanel = ({ title, description }) => {
     </div>
   );
 };
+
+//#565656
 
 export default SmallStatsPanel;

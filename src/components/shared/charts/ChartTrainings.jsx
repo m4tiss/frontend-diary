@@ -56,7 +56,7 @@ const ChartTrainings = () => {
   }, []);
 
   return (
-    <div className="bg-white shadow-xl rounded-xl">
+    <div className=" dark:bg-run-night-element dark:text-white bg-white shadow-xl rounded-xl">
       <BarChart
         xAxis={chartData.xAxis}
         yAxis={chartData.yAxis}

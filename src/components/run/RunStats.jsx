@@ -81,10 +81,10 @@ const RunStats = () => {
     "Page G",
   ];
   return (
-    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef]">
+    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full 2xl:w-3/4  flex flex-col p-5  items-center">
         <div className="w-full m-5 flex justify-center items-center">
-          <span className="text-2xl font-semibold">Personal stats</span>
+          <span className="text-2xl dark:text-white font-semibold">Personal stats</span>
           {/* <div>
             <button className="border-2 p-2 rounded-2xl border-[#E73725] bg-[#E73725] mx-2 text-white shadow-xl">
               Week stats
@@ -108,7 +108,7 @@ const RunStats = () => {
           <SmallStatsPanel title="Average pulse" description={stats.avgPulse} />
         </div>
         <div className="w-full flex flex-col 2xl:flex-row justify-between m-5 gap-5">
-          <div className="items-center border-2  bg-white flex flex-col rounded-xl w-full shadow-xl">
+          <div className="items-center dark:bg-run-night-contrast bg-white flex flex-col rounded-xl w-full shadow-xl">
             <div className="text-2xl p-2">Weekly volume</div>
             <LineChart
               width={window.innerWidth > 768 ? 500 : 300}
@@ -139,10 +139,9 @@ const RunStats = () => {
       <div className="w-full 2xl:w-1/4 flex flex-col">
         <div className="flex-grow m-10 ">
           <RunStatsProfile />
-          <div className="bg-white flex flex-col rounded-2xl shadow-xl my-10 py-10 gap-2">
+          <div className="bg-white dark:bg-run-night-element text-black dark:text-white flex flex-col rounded-2xl shadow-xl my-10 py-10 gap-2">
             <div
-              className="flex flex-grow justify-evenly text-2xl font-semibold 
-           w-full text-black"
+              className="flex flex-grow justify-evenly text-2xl font-semibold w-full"
             >
               <span>Friends</span> <span>{userInfo.friends_count}</span>
             </div>

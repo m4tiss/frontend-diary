@@ -23,7 +23,7 @@ const FriendsPage = ({ color }) => {
             className={`cursor-pointer w-1/3 p-2 rounded-tl-2xl rounded-bl-2xl ${
               choosenPanel === 'Friends'
                 ? `bg-${color}-400 text-white`
-                : `bg-white text-${color}-400`
+                : `bg-white`
             }`}
           >
             Friends
@@ -33,7 +33,7 @@ const FriendsPage = ({ color }) => {
             className={`cursor-pointer w-1/3 p-2 ${
               choosenPanel === 'Users To Invite'
                 ? `bg-${color}-400 text-white`
-                : `bg-white text-${color}-400`
+                : `bg-white`
             }`}
           >
             Users To Invite
@@ -43,7 +43,7 @@ const FriendsPage = ({ color }) => {
             className={`cursor-pointer w-1/3 p-2 rounded-tr-2xl rounded-br-2xl ${
               choosenPanel === 'Pending Users'
                 ? `bg-${color}-400 text-white`
-                : `bg-white text-${color}-400`
+                : `bg-white`
             }`}
           >
             Pending Users

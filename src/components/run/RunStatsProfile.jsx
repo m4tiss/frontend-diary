@@ -1,15 +1,23 @@
 import { useUser } from "../../providers/UserProvider";
+import DarkModeContext from "../../providers/DarkModeProvider";
+import { useContext } from "react";
 import { formattedDate } from "../../functions/formatData";
 
 const RunStatsProfile = () => {
   const { userInfo } = useUser();
+  const { darkMode} = useContext(DarkModeContext);
   return (
     <div
-      className="rounded-3xl bg-[#E73725] flex flex-col p-10 shadow-xl"
-      style={{
-        "background-image":
-          "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
-      }}
+      className="rounded-3xl flex flex-col p-10 shadow-xl"
+
+      style={
+        darkMode
+          ? { backgroundColor: "#0a84ff" }
+          : {
+              backgroundImage:
+               "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
+            }
+      }  
     >
       <div className="flex">
         <img

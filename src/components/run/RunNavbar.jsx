@@ -3,14 +3,13 @@ import { CgGym } from "react-icons/cg";
 import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 import NavbarButton from "../shared/NavbarButton";
-import profilePhoto from "../../images/profile_photo.jpg";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useUser } from "../../providers/UserProvider";
 import DarkModeContext from "../../providers/DarkModeProvider";
 import { useContext } from "react";
 
-const RunNavbar = ({setNavBarType}) => {
+const RunNavbar = ({ setNavBarType }) => {
   const RUN_COLOR = "#1DA1F2";
 
   const navigate = useNavigate();
@@ -31,10 +30,14 @@ const RunNavbar = ({setNavBarType}) => {
     <div className="w-full h-fit md:h-20 flex md:flex-row flex-col shadow-2xl items-center">
       <div
         className={`w-full md:w-24 md:py-0 py-2  h-full flex items-center justify-center`}
-        style={{
-          "background-image":
-            "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
-        }}
+        style={
+          darkMode
+            ? { backgroundColor: "#1b1b1b" }
+            : {
+                backgroundImage:
+                  "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
+              }
+        }
       >
         <button
           className="text-2xl text-white"
@@ -45,10 +48,14 @@ const RunNavbar = ({setNavBarType}) => {
       </div>
       <div
         className="flex-grow h-full w-full md:py-0 py-2 flex md:flex-row flex-col items-center justify-between gap-5"
-        style={{
-          "background-image":
-            "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
-        }}
+        style={
+          darkMode
+            ? { backgroundColor: "#2a2a42" }
+            : {
+                backgroundImage:
+                 "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
+              }
+        }
       >
         <div className="flex flex-col md:flex-row  items-center justify-between mx-5 gap-5">
           <NavbarButton
@@ -73,14 +80,14 @@ const RunNavbar = ({setNavBarType}) => {
           />
           <h2 className="text-white text-2xl">{userInfo.nickname}</h2>
         </div>
-        <div className="flex items-center justify-between gap-5">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5">
           <motion.button
             onClick={toggleDisplayMode}
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}
-            className={`dark:bg-white dark:text-black bg-black text-white text-xl font-bold w-32 h-10 px-4 rounded-full`}
+            className={`dark:bg-white dark:text-run-night-element bg-run-night-element text-white text-xl font-bold w-32 h-10 px-4 rounded-full`}
           >
-           {darkMode ? "Light" : "Dark"} Mode
+            {darkMode ? "Light" : "Dark"} Mode
           </motion.button>
           <h2 className="text-2xl text-white mx-5 flex">YourWebsite</h2>
           <button

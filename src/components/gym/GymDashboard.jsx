@@ -6,19 +6,14 @@ import friends from "../../icons/friends2.svg";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-
 const GymDashboard = () => {
-  const textColor = "#010000";
   const navigate = useNavigate();
 
   return (
-    <div className="w-full flex flex-col flex-grow ">
+    <div className="w-full flex flex-col flex-grow dark:bg-gym-night-background">
       <div className="flex-grow flex justify-center items-center">
-        <div className="w-3/4 flex flex-col justify-center items-center">
-          <h2
-            style={{ color: textColor }}
-            className="text-[80px] text-center  font-bold tracking-tighter"
-          >
+        <div className="w-3/4 flex flex-col justify-center items-center dark:text-white">
+          <h2 className="text-[80px] text-center  font-bold tracking-tighter">
             TRAINING EVERYDAY
           </h2>
           <h2 className="text-[30px] tracking-tighter md:px-40 text-center">
@@ -30,16 +25,17 @@ const GymDashboard = () => {
         </div>
       </div>
       <motion.div
-             initial="hidden"
-             animate="visible"
-             variants={{
-               visible: {
-                 transition: {
-                   staggerChildren: 0.2,
-                 },
-               },
-             }}
-      className=" flex-grow flex flex-wrap gap-10 my-10 md:my-0  justify-center items-center">
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.2,
+            },
+          },
+        }}
+        className=" flex-grow flex flex-wrap gap-10 my-10 md:my-0  justify-center items-center"
+      >
         <DashboardPanel
           title="New training"
           icon={doTraining}

@@ -70,7 +70,7 @@ const RunUserProfile = () => {
     "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
 
   return (
-    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef]">
+    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-run-night-background">
       <div className="2xl:w-1/3 px-5 2xl:px-0 flex flex-col justify-center items-center">
         <img
           style={{
@@ -78,19 +78,19 @@ const RunUserProfile = () => {
             width: "250px",
             height: "250px",
           }}
-          className="cursor-pointer object-cover shadow-xl border-2 border-black my-5"
+          className="cursor-pointer object-cover shadow-xl border-2 border-black dark:border-white my-5"
           src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}
         />
-        <div className="bg-white 2xl:w-96 w-full text-center mx-20 p-2 rounded-xl shadow-xl">
+        <div className="bg-white dark:bg-run-night-element dark:text-white 2xl:w-96 w-full text-center mx-20 p-2 rounded-xl shadow-xl">
           <h2 className="text-3xl font-semibold">{userInfo.nickname}</h2>
           <p className="text-lg  text-center">{userInfo.description}</p>
         </div>
       </div>
       <div className="2xl:w-1/3 flex px-5 2xl:px-0 flex-col ">
-        <h2 className="text-4xl 2xl:text-left  text-center font-semibold my-5">
+        <h2 className="text-4xl 2xl:text-left dark:text-white  text-center font-semibold my-5">
           Friends
         </h2>
-        <div className="w-full  h-44 bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
+        <div className="w-full  h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
           {friends.slice(0, 3).map((user, index) => (
             <FriendDivProfile key={index} user={user} />
           ))}
@@ -102,7 +102,7 @@ const RunUserProfile = () => {
           </div>
         </div>
 
-        <div className="h-fit flex-wrap flex bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
+        <div className="h-fit flex-wrap flex dark:bg-run-night-element dark:text-white bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
           <PagePanel
             type={"run"}
             title="Show records"
@@ -169,7 +169,7 @@ const RunUserProfile = () => {
       </div>
       <div className="w-full 2xl:w-1/3 mb-10 2xl:mb-0 flex flex-col gap-5 2xl:gap-0 justify-evenly items-center">
         <div className="flex flex-col 2xl:w-96 gap-2 px-5 2xl:px-0 w-full">
-          <div className="w-full h-24  bg-white rounded-xl  flex justify-evenly items-center px-10 shadow-xl">
+          <div className="w-full h-24 dark:bg-run-night-element dark:text-white bg-white rounded-xl  flex justify-evenly items-center px-10 shadow-xl">
             <div className="flex-grow flex flex-col">
               <label>Email</label>
               <h2 className="text-xl border-white max-w-60 font-semibold">
@@ -177,7 +177,7 @@ const RunUserProfile = () => {
               </h2>
             </div>
           </div>
-          <div className="w-full h-24 bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
+          <div className="w-full h-24 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
             <div className="flex-grow">
               <label>Date of birth</label>
               <h2 className="text-xl font-semibold">

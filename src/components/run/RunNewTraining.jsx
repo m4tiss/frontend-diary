@@ -98,41 +98,41 @@ const RunNewTraining = () => {
   };
 
   return (
-    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef]">
+    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full 2xl:w-2/3 flex flex-col 2xl:flex-row justify-center">
         <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly mt-10 2xl:my-10">
-          <div className="text-left flex flex-col">
+          <div className="text-left flex flex-col dark:text-white">
             <label className="px-2 text-xl">Duration</label>
             <input
               value={data.duration}
               onChange={(e) => setData({ ...data, duration: e.target.value })}
-              className="text-2xl p-2 rounded-2xl outline-none shadow-xl"
+              className="text-2xl p-2 rounded-2xl outline-none shadow-xl dark:bg-run-night-element "
               placeholder="1h 30min"
             ></input>
           </div>
 
-          <div className="text-left flex flex-col ">
+          <div className="text-left flex flex-col dark:text-white">
             <label className="px-2 text-xl">Average pulse</label>
             <input
               value={data.average_pulse}
               onChange={(e) =>
                 setData({ ...data, average_pulse: e.target.value })
               }
-              className="text-2xl p-2 rounded-2xl outline-none shadow-xl"
+              className="text-2xl p-2 rounded-2xl outline-none shadow-xl dark:bg-run-night-element"
               placeholder="150"
             ></input>
           </div>
-          <div className="text-left flex flex-col ">
+          <div className="text-left flex flex-col dark:text-white">
             <label className="px-2 text-xl">Distance</label>
             <input
               value={data.distance}
               onChange={(e) => setData({ ...data, distance: e.target.value })}
-              className="text-2xl p-2 rounded-2xl outline-none shadow-xl"
+              className="text-2xl p-2 rounded-2xl outline-none shadow-xl dark:bg-run-night-element "
               type="number"
               placeholder="20.3"
             ></input>
           </div>
-          <div className="text-left flex flex-col  rounded-xl p-2">
+          <div className="text-left flex flex-col  rounded-xl p-2 dark:text-white">
             <label className="px-2 text-xl">Rating</label>
 
             <input
@@ -141,7 +141,7 @@ const RunNewTraining = () => {
               min={0}
               max={5}
               onChange={(e) => setData({ ...data, rating: e.target.value })}
-              className="text-2xl p-2 rounded-2xl outline-none shadow-xl"
+              className="text-2xl p-2 rounded-2xl outline-none shadow-xl dark:bg-run-night-element "
               type="number"
               placeholder="20.3"
             ></input>
@@ -155,13 +155,13 @@ const RunNewTraining = () => {
             />
           </div>
         </div>
-        <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly my-10">
-          <div className="text-left flex flex-col ">
+        <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly my-10 ">
+          <div className="text-left flex flex-col dark:text-white">
             <label className="px-2 text-xl">Note</label>
             <textarea
               value={data.note}
               onChange={(e) => setData({ ...data, note: e.target.value })}
-              className="resize-none text-2xl p-2 w-80 2xl:w-96 min-h-40 shadow-xl rounded-2xl outline-none"
+              className="resize-none text-2xl p-2 w-80 2xl:w-96 min-h-40 shadow-xl rounded-2xl outline-none dark:bg-run-night-element "
               type="text"
               placeholder="Best run every..."
             ></textarea>

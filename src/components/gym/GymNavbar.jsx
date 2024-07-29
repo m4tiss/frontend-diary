@@ -7,12 +7,15 @@ import profilePhoto from "../../images/profile_photo.jpg";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useUser } from '../../providers/UserProvider'
+import DarkModeContext from "../../providers/DarkModeProvider";
+import { useContext } from "react";
 
-const GymNavbar = ({ toggleDisplayMode,setNavBarType }) => {
+const GymNavbar = ({ setNavBarType }) => {
   const GYM_COLOR = "#E73725";
 
   const navigate = useNavigate();
   const { userInfo } = useUser();
+  const { darkMode, toggleDisplayMode } = useContext(DarkModeContext);
 
   const handleLogout = () => {
     signOut(auth)
@@ -27,7 +30,7 @@ const GymNavbar = ({ toggleDisplayMode,setNavBarType }) => {
   return (
     <div className="w-full md:h-20 h-fit flex flex-col md:flex-row shadow-xl">
       <div
-        className={`flex-grow h-full md:py-0 py-2 flex flex-col md:flex-row items-center justify-between gap-5`}
+        className={` flex-grow h-full md:py-0 py-2 flex flex-col md:flex-row items-center justify-between gap-5`}
         style={{
           "background-image":
             "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
@@ -41,6 +44,14 @@ const GymNavbar = ({ toggleDisplayMode,setNavBarType }) => {
             <CgGym size={50} />
           </button>
           <h2 className="text-2xl text-white mx-5">YourWebsite</h2>
+          <motion.button
+            onClick={toggleDisplayMode}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 500 }}
+            className={`dark:bg-white dark:text-black bg-black text-white text-xl font-bold w-32 h-10 px-4 rounded-full`}
+          >
+           {darkMode ? "Light" : "Dark"} Mode
+          </motion.button>
         </div>
         <div className="flex md:flex-row flex-col items-center justify-start mx-5 gap-5">
           <h2 className="text-white text-2xl">{userInfo.nickname || ""}</h2>
