@@ -141,7 +141,7 @@ const RunNewTraining = () => {
               min={0}
               max={5}
               onChange={(e) => setData({ ...data, rating: e.target.value })}
-              className="text-2xl p-2 rounded-2xl outline-none shadow-xl dark:bg-run-night-element "
+              className="text-2xl p-2 rounded-2xl outline-none shadow-xl dark:bg-run-night-element"
               type="number"
               placeholder="20.3"
             ></input>
@@ -175,14 +175,14 @@ const RunNewTraining = () => {
                 className={`${
                   chosenPlan === item.run_category_id
                     ? "bg-blue-400"
-                    : "bg-white"
+                    : "bg-white dark:bg-run-night-element"
                 }
                 ${
                   chosenPlan === item.run_category_id
                     ? "text-white"
                     : "text-black"
                 }
-                text-2xl shadow-2xl rounded-xl w-64 p-2 my-3 cursor-pointer`}
+                text-2xl shadow-2xl rounded-xl w-64 p-2 my-3 cursor-pointer  text-white`}
               >
                 {item.category_name}
               </div>

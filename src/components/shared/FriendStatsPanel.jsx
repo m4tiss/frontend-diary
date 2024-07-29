@@ -1,3 +1,4 @@
+import { FaRegShareSquare } from "react-icons/fa";
 const FriendStatsPanel = ({user}) => {
   return (
     <div className="flex flex-col rounded-2xl mx-5 my-1">
@@ -16,7 +17,7 @@ const FriendStatsPanel = ({user}) => {
           <h2 className=" mx-2 text-2xl">{user.nickname}</h2>
         </div>
         <div>
-          <button className="p-2 bg-red-600 rounded-3xl text-white">Visit me</button>
+          <FaRegShareSquare className="cursor-pointer" size={40}/>
         </div>
       </div>
     </div>

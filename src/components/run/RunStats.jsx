@@ -24,6 +24,7 @@ const RunStats = () => {
     duration: "00:00:00",
     avgRating: 0.0,
     avgPulse: 0,
+    activeGoals: 0
   });
   const [friends, setFriends] = useState([]);
 
@@ -37,11 +38,13 @@ const RunStats = () => {
       })
       .then((res) => {
         let stats = res.data.stats;
+        console.log(stats)
         setStats({
           distance: stats.sumDistance,
           duration: stats.sumDuration,
           avgRating: stats.avgRating,
           avgPulse: stats.avgPulse,
+          activeGoals: stats.activeGoals
         });
       })
       .catch((error) => {
@@ -125,7 +128,7 @@ const RunStats = () => {
         <div className="flex flex-col 2xl:flex-row justify-between w-full gap-5">
           <SmallStatsPanel
             title="Active Goals"
-            description="2"
+            description={stats.activeGoals}
           />
           <SmallStatsPanel title="Last training" description="20:00 23-12-2024" />
           <SmallStatsPanel

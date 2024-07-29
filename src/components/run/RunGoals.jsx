@@ -35,10 +35,10 @@ const RunGoals = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-grow bg-[#e9ecef]">
-      <div className="w-1/2 flex flex-col text-center items-center justify-center gap-5">
-        <h2 className="text-black text-7xl">Achieve Your Running Goals</h2>
-        <label className="text-black text-2xl px-10">
+    <div className="w-full flex flex-grow bg-[#e9ecef] dark:bg-run-night-background">
+      <div className="w-1/2 flex flex-col text-center items-center text-black dark:text-white justify-center gap-5">
+        <h2 className="text-7xl">Achieve Your Running Goals</h2>
+        <label className="text-2xl px-10">
           Unlock your full potential as a runner with our ultimate guide to
           achieving your running goals. Whether you're aiming to complete your
           first 5K, conquer a marathon, or improve your personal best, this

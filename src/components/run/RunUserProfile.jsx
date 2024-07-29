@@ -25,6 +25,7 @@ const RunUserProfile = () => {
   const { userInfo } = useUser();
   const [isGoalOpen, setIsGoalOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [visibleFriendsCount, setVisibleFriendsCount] = useState(getVisibleFriendsCount());
 
   const toggleGoalDialog = () => {
     setIsGoalOpen((prev) => !prev);
@@ -43,6 +44,30 @@ const RunUserProfile = () => {
     setIsGoalOpen((prev) => !prev);
     toast.success("Goal added!");
   };
+
+
+  function getVisibleFriendsCount() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+      return 1;
+    } else if (screenWidth < 1024) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleFriendsCount(getVisibleFriendsCount());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   const navigate = useNavigate();
 
@@ -90,8 +115,8 @@ const RunUserProfile = () => {
         <h2 className="text-4xl 2xl:text-left dark:text-white  text-center font-semibold my-5">
           Friends
         </h2>
-        <div className="w-full  h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
-          {friends.slice(0, 3).map((user, index) => (
+        <div className="w-full overflow-hidden h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
+          {friends.slice(0, visibleFriendsCount).map((user, index) => (
             <FriendDivProfile key={index} user={user} />
           ))}
           <div className="flex flex-col justify-center items-center gap-2">

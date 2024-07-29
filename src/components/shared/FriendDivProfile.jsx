@@ -17,7 +17,7 @@ const FriendDivProfile = ({user}) => {
           <p className="flex justify-center flex-wrap items-center 
           p-5 h-full text-white opacity-0 group-hover:opacity-100 
           duration-700 ease-in-out text-center transform translate-y-20 
-          group-hover:translate-y-0">
+          group-hover:translate-y-0 cursor-pointer">
             {user.nickname}
           </p>
         </div>
