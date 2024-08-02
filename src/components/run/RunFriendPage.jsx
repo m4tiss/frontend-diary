@@ -4,9 +4,20 @@ import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import { formattedDate } from "../../functions/formatData";
 import { calculateDaysWithUs } from "../../functions/statsCalculations";
+import ChartAveragePulse from "./charts/ChartAveragePulse";
+import { TbRun } from "react-icons/tb";
+import FriendChartPanel from "../shared/FriendChartPanel";
+import { CiDumbbell } from "react-icons/ci";
+import { BsHeartPulse } from "react-icons/bs";
+import { FaUserFriends } from "react-icons/fa";
+import { useContext } from "react";
+import DarkModeContext from "../../providers/DarkModeProvider";
+import { TbCategory } from "react-icons/tb";
+import { MdOutlineAccessTime } from "react-icons/md";
 const RunFriendPage = () => {
   const { id } = useParams();
   const [friendInfo, setFriendInfo] = useState({});
+  const { darkMode } = useContext(DarkModeContext);
 
   useEffect(() => {
     const token = getAuthToken();
@@ -45,7 +56,8 @@ const RunFriendPage = () => {
         </div>
       </div>
       <div className="w-full flex justify-center flex-grow">
-        <div className="w-1/3 flex flex-col justify-center items-center bg-white dark:bg-run-night-element rounded-xl m-10 px-10 shadow-xl gap-5">
+        <div className="w-1/3 flex flex-col justify-start items-center bg-white dark:bg-run-night-element rounded-xl m-10 px-10 shadow-xl gap-5">
+          <h2 className="text-3xl my-5 dark:text-white">Informations</h2>
           <div className="w-96 rounded-xl text-white text-3xl p-2 flex justify-evenly bg-run-night-contrast text">
             <h2 className="font-semibold">Friends</h2>
             <label>{friendInfo?.friends_count}</label>
@@ -54,7 +66,16 @@ const RunFriendPage = () => {
             <h2 className="font-semibold">Birth Date</h2>
             <label>{formattedDate(friendInfo?.date_of_birth)}</label>
           </div>
-          <div className="w-96 rounded-xl text-white text-3xl p-2 flex justify-evenly bg-run-night-contrast text">
+          <div 
+          style={
+            darkMode
+              ? { backgroundColor: "#2a2a42" }
+              : {
+                  backgroundImage:
+                   "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
+                }
+          }
+          className="w-96 rounded-xl text-white text-3xl p-2 flex justify-evenly bg-run-night-contrast text">
             <h2 className="font-semibold">Days on platform</h2>
             <label>{calculateDaysWithUs(friendInfo?.created_at)}</label>
           </div>
@@ -62,11 +83,43 @@ const RunFriendPage = () => {
             <h2 className="font-semibold">Remove friend</h2>
           </div>
         </div>
-        <div className="w-1/3 flex justify-center items-center bg-white dark:bg-run-night-element rounded-xl m-10 shadow-xl">
-          2
+        <div className="w-1/3 flex flex-col justify-start items-center bg-white dark:bg-run-night-element rounded-xl m-10 shadow-xl">
+          <h2 className="text-3xl my-5 dark:text-white">Charts</h2>
+          <div className="flex flex-wrap gap-5 justify-center">
+            <FriendChartPanel
+              type={"run"}
+              title="Average pulse"
+              icon={<BsHeartPulse size={50} color="white" />}
+            />
+            <FriendChartPanel
+              type={"run"}
+              title="Trainings"
+              icon={<CiDumbbell size={50} color="white" />}
+            />
+            <FriendChartPanel
+              type={"run"}
+              title="Distance"
+              icon={<TbRun size={50} color="white" />}
+            />
+            <FriendChartPanel
+              type={"run"}
+              title="Friends"
+              icon={<FaUserFriends size={50} color="white" />}
+            />
+            <FriendChartPanel
+              type={"run"}
+              title="Categories"
+              icon={<TbCategory size={50} color="white" />}
+            />
+            <FriendChartPanel
+              type={"run"}
+              title="Time"
+              icon={<MdOutlineAccessTime size={50} color="white" />}
+            />
+          </div>
         </div>
         <div className="w-1/3 flex justify-center items-center bg-white dark:bg-run-night-element rounded-xl m-10 shadow-xl">
-          3
+          <h2 className="text-3xl">Actions</h2>
         </div>
       </div>
     </div>

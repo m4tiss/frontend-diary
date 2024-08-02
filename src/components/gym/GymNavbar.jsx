@@ -31,10 +31,15 @@ const GymNavbar = ({ setNavBarType }) => {
     <div className="w-full md:h-20 h-fit flex flex-col md:flex-row shadow-xl">
       <div
         className={` flex-grow h-full md:py-0 py-2 flex flex-col md:flex-row items-center justify-between gap-5`}
-        style={{
-          "background-image":
-            "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
-        }}
+
+        style={
+          darkMode
+            ? { backgroundColor: "#1b1b1b" }
+            : {
+                backgroundImage:
+                 "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
+              }
+        }
       >
         <div className="flex items-center justify-start gap-5">
           <button
@@ -77,10 +82,14 @@ const GymNavbar = ({ setNavBarType }) => {
       </div>
       <div
         className={`md:w-24 h-full md:py-0 py-2 flex items-center justify-center`}
-        style={{
-          "background-image":
-            "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
-        }}
+      style={
+        darkMode
+          ? { backgroundColor: "#2a2a42" }
+          : {
+              backgroundImage:
+                "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
+            }
+      }
       >
         <button
           className="text-white"
