@@ -182,7 +182,7 @@ const RunNewTraining = () => {
                     ? "text-white"
                     : "text-black"
                 }
-                text-2xl shadow-2xl rounded-xl w-64 p-2 my-3 cursor-pointer  text-white`}
+                text-2xl shadow-2xl rounded-xl w-64 p-2 my-3 cursor-pointer dark:text-white`}
               >
                 {item.category_name}
               </div>

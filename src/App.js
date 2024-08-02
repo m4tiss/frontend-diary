@@ -22,6 +22,7 @@ import FriendsPage from './components/shared/FriendsPage';
 import RunAchievementPage from './components/run/RunAchievementPage';
 import { useEffect, useState , useContext } from 'react';
 import DarkModeContext from './providers/DarkModeProvider';
+import RunFriendPage from './components/run/RunFriendPage';
 
 
 function App() {
@@ -107,6 +108,7 @@ function RunLayout() {
         <Route path="goals" element={<RunGoals/>} />
         <Route path="friends" element={<FriendsPage color="blue"/>} />
         <Route path="stats" element={<RunStats/>} />
+        <Route path="friend/:id" element={<RunFriendPage/>} />
         <Route path="achievements" element={<RunAchievementPage/>} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>

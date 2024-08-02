@@ -17,6 +17,7 @@ const FriendsList = () => {
       })
       .then((res) => {
         const respone = res.data.friends;
+        console.log(respone)
         setFriends(respone);
       })
       .catch((error) => {

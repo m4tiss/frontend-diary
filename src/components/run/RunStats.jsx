@@ -149,7 +149,7 @@ const RunStats = () => {
               <span>Friends</span> <span>{userInfo.friends_count}</span>
             </div>
             {friends.slice(0, 5).map((user, index) => (
-            <FriendStatsPanel  key={index} user={user} />
+            <FriendStatsPanel  key={user.user_id} user={user} />
           ))}
           </div>
         </div>

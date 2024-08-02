@@ -1,4 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const FriendDivProfile = ({user}) => {
+
+  const navigate = useNavigate();
+
+
     return (
       <div className="relative flex flex-col justify-center items-center gap-2">
       <div className="relative group">
@@ -12,7 +18,9 @@ const FriendDivProfile = ({user}) => {
           src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${user.profile_photo}`}
           alt="Profile"
         />
-        <div className="absolute inset-0 flex justify-center items-center bg-black opacity-0 
+        <div
+         onClick={() => navigate(`/run/friend/${user.user_id}`)}
+        className="absolute inset-0 flex justify-center items-center bg-black opacity-0 
         group-hover:opacity-80 transition-opacity duration-300 rounded-full">
           <p className="flex justify-center flex-wrap items-center 
           p-5 h-full text-white opacity-0 group-hover:opacity-100 

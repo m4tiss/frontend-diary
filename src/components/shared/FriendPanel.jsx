@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const FriendPanel = ({ user }) => {
+  const navigate = useNavigate();
+
   return (
     <motion.div
+      onClick={() => navigate(`/run/friend/${user.user_id}`)}
       initial={{ y: 50 }}
       animate={{ y: 0 }}
       whileHover={{ scale: 1.1 }}
