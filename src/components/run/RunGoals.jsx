@@ -35,8 +35,8 @@ const RunGoals = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-grow bg-[#e9ecef] dark:bg-run-night-background">
-      <div className="w-1/2 flex flex-col text-center items-center text-black dark:text-white justify-center gap-5">
+    <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background">
+      <div className="w-full 2xl:w-1/2 flex flex-col text-center items-center text-black dark:text-white justify-center gap-5">
         <h2 className="text-7xl">Achieve Your Running Goals</h2>
         <label className="text-2xl px-10">
           Unlock your full potential as a runner with our ultimate guide to
@@ -51,9 +51,9 @@ const RunGoals = () => {
         </label>
       </div>
 
-      <div className="w-1/2 flex px-40 py-20 justify-center items-center">
+      <div className="w-full 2xl:w-1/2 flex px-40 py-20 justify-center items-center">
         <Swiper
-          className="w-full h-full shadow-xl"
+          className="w-full flex min-w-72 h-full shadow-xl bg-white dark:bg-run-night-element rounded-xl"
           slidesPerView={1}
           grabCursor={true}
           spaceBetween={30}
@@ -81,7 +81,8 @@ const RunGoals = () => {
           ) : (
             <>
               {goals.map((goal, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide
+                 className="flex-grow" key={index}>
                   <RunGoalPanel goal={goal} />
                 </SwiperSlide>
               ))}

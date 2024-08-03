@@ -11,6 +11,7 @@ import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
 import { TbCategoryPlus } from "react-icons/tb";
 import { GiAchievement } from "react-icons/gi";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import PagePanel from "../shared/PagePanel";
 import { useNavigate } from "react-router-dom";
 import ChartTrainings from "../shared/charts/ChartTrainings";
@@ -159,8 +160,8 @@ const RunUserProfile = () => {
           />
           <PagePanel
             type={"run"}
-            title="..."
-            icon={<GoGoal size={50} color="white" />}
+            title="Chats"
+            icon={<IoChatboxEllipsesOutline size={50} color="white" />}
           />
           <AnimatePresence>
             {isGoalOpen && (

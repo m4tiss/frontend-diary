@@ -26,10 +26,10 @@ const RunGoalPanel = ({ goal }) => {
   console.log(`text-[${statusColor}]`);
 
   return (
-    <div className="w-full h-full flex py-20 flex-col items-center dark:text-white dark:bg-run-night-element justify-between bg-white shadow-xl rounded-xl">
+    <div className="w-full h-full flex py-20 flex-col items-center dark:text-white dark:bg-run-night-element justify-between bg-white rounded-xl">
       <h2 className="text-6xl text-center">{goal.title}</h2>
       <label className="text-2xl text-center">{goal.description}</label>
-      <div className="w-full flex justify-evenly text-2xl">
+      <div className="w-full flex flex-col justify-center items-center 2xl:flex-row 2xl:justify-evenly text-2xl">
         <label>Created Date: {formattedDate(goal.create_date)}</label>
         <label>Finish Date: {formattedDate(goal.finish_date)}</label>
       </div>

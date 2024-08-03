@@ -17,10 +17,10 @@ const FriendChartPanel = ({ title, icon, type,...props }) => {
       style={{
         backgroundImage: linearColor,
       }}
-      className="w-32 flex h-32 rounded-xl text-white flex-col justify-center items-center"
+      className="w-32 flex h-32 rounded-xl text-white flex-col cursor-pointer justify-center items-center"
     >
       {icon}
-      <label>{title}</label>
+      <label className="cursor-pointer">{title}</label>
       
     </motion.button>
   );
