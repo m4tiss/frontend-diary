@@ -3,6 +3,9 @@ import { createPortal } from "react-dom";
 import { useUser } from "../../../providers/UserProvider";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
 import { useState } from "react";
+import ChartAveragePulse from "../charts/ChartAveragePulse";
+import ChartDistance from "../charts/ChartDistance";
+import ChartCategories from "../charts/ChartCategories";
 
 const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
   const { userInfo } = useUser();
@@ -12,7 +15,7 @@ const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
       case "Pulse":
         return (
           <>
-            <h2 className="text-2xl font-semibold">Pulse</h2>
+             {friendId === -1 ? <ChartAveragePulse/> : <ChartAveragePulse friendId={friendId} />}
           </>
         );
       case "Trainings":
@@ -21,19 +24,18 @@ const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
            {friendId === -1 ? <ChartTrainings/> : <ChartTrainings friendId={friendId} />}
           </>
         );
-      case "Achievement":
+      case "Distance":
         return (
           <>
-            <h2 className="text-2xl font-semibold">View Achievements</h2>
-            <label className="text-center px-10">
-              Check out your accomplishments and see what goals you've achieved
-              so far!
-            </label>
-            <button className="bg-green-600 p-2 text-white text-2xl rounded">
-              View Achievements
-            </button>
+             {friendId === -1 ? <ChartDistance/> : <ChartDistance friendId={friendId} />}
           </>
         );
+        case "Categories":
+          return (
+            <>
+               {friendId === -1 ? <ChartCategories/> : <ChartCategories friendId={friendId} />}
+            </>
+          );
       default:
         return null;
     }

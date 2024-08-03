@@ -3,7 +3,7 @@ import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import { PieChart } from "@mui/x-charts";
 
-const ChartCategories = () => {
+const ChartCategories = ({ friendId }) => {
   const [categoriesData, setCategoriesData] = useState([]);
 
   useEffect(() => {
@@ -13,6 +13,7 @@ const ChartCategories = () => {
         headers: {
           Authorization: "Bearer " + token,
         },
+        params: friendId ? { friend_id: friendId } : {},
       })
       .then((res) => {
         const categories = res.data.categories;
@@ -39,7 +40,7 @@ const ChartCategories = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-10 2xl:py-0  bg-white rounded-xl w-full shadow-xl">
+    <div className="flex flex-col items-center py-10 2xl:py-0 bg-white rounded-xl w-full shadow-xl">
       <div className="text-2xl p-2">Categories</div>
       <PieChart
         colors={transformDataForPieChart().map((data) => data.color)}

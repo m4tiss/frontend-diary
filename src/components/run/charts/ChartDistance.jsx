@@ -5,7 +5,7 @@ import axios from "../../../config/axios";
 import { format } from "date-fns";
 import "react-toastify/dist/ReactToastify.css";
 
-const ChartDistance = () => {
+const ChartDistance = ({ friendId }) => {
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
 
@@ -16,6 +16,7 @@ const ChartDistance = () => {
         headers: {
           Authorization: "Bearer " + token,
         },
+        params: friendId ? { friend_id: friendId } : {},
       })
       .then((res) => {
         let response = res.data.data;
