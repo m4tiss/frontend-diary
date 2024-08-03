@@ -9,17 +9,19 @@ const RunGoalPanel = ({ goal }) => {
 
   let statusColor = "";
   let statusText = "";
-  if(daysLeft === 0 ) {
+
+  if (percentageCompleted >= 100) {
+    statusColor = "#70e000";
+    statusText = "Completed"
+  }
+  else if (daysLeft === 0 ) {
     statusColor = "#e63946"
     statusText = "Not completed"
 }
   else if (percentageCompleted >= 0 && percentageCompleted < 100 ) {
     statusColor = "#ffd60a";
     statusText = "In progress"
-  } else if (percentageCompleted >= 100) {
-    statusColor = "#70e000";
-    statusText = "Completed"
-  }
+  } 
 
   console.log(`text-[${statusColor}]`);
 
