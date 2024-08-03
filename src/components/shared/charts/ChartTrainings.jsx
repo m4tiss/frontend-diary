@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "../../../config/axios";
 import "react-toastify/dist/ReactToastify.css";
 
-const ChartTrainings = () => {
+const ChartTrainings = ({ friendId }) => {
   const [chartData, setChartData] = useState({
     xAxis: [
       {
@@ -27,13 +27,16 @@ const ChartTrainings = () => {
         headers: {
           Authorization: "Bearer " + token,
         },
+        params: friendId ? { friend_id: friendId } : {},
       })
       .then((res) => {
         const response = res.data.data;
 
-        const runData = response.run.map(item => item.count);
-        const gymData = response.gym.map(item => item.count);
-        const labels = response.run.map(item => new Date(item.month).toLocaleString('en-US', { month: 'long' }));
+        const runData = response.run.map((item) => item.count);
+        const gymData = response.gym.map((item) => item.count);
+        const labels = response.run.map((item) =>
+          new Date(item.month).toLocaleString("en-US", { month: "long" })
+        );
 
         setChartData({
           xAxis: [
@@ -56,7 +59,7 @@ const ChartTrainings = () => {
   }, []);
 
   return (
-    <div className=" dark:bg-run-night-element dark:text-white bg-white shadow-xl rounded-xl">
+    <div className="w-fit dark:bg-run-night-element dark:text-white bg-white shadow-xl rounded-xl">
       <BarChart
         xAxis={chartData.xAxis}
         yAxis={chartData.yAxis}

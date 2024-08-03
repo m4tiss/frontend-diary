@@ -8,7 +8,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { TbCategory } from "react-icons/tb";
 import { MdOutlineAccessTime } from "react-icons/md";
 import RunFriendChartModal from "./RunFriendChartModal";
-const RunFriendCharts = () => {
+const RunFriendCharts = ({ friendInfo, friendId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState(null);
 
@@ -76,7 +76,12 @@ const RunFriendCharts = () => {
       </div>
       <AnimatePresence>
         {isOpen && (
-          <RunFriendChartModal toggleDialog={toggleDialog} type={type} />
+          <RunFriendChartModal
+            friendInfo={friendInfo}
+            friendId={friendId}
+            toggleDialog={toggleDialog}
+            type={type}
+          />
         )}
       </AnimatePresence>
     </div>

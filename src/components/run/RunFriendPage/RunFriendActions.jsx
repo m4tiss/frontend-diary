@@ -74,7 +74,7 @@ const RunFriendActions = () => {
         <motion.div
         initial={{ y: 50 }}
         animate={{ y: 0 }}
-        className="w-5/6 flex flex-col justify-start items-center gap-5">
+        className="w-5/6 flex flex-col justify-start text-black dark:text-white items-center gap-5">
           {renderActionContent()}
         </motion.div>
       </div>

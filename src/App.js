@@ -119,7 +119,7 @@ function RunLayout() {
         <Route path="goals" element={<RunGoals />} />
         <Route path="friends" element={<FriendsPage color="blue" />} />
         <Route path="stats" element={<RunStats />} />
-        <Route path="friend/:id" element={<RunFriendPage />} />
+        <Route path="friend/:friendId" element={<RunFriendPage />} />
         <Route path="achievements" element={<RunAchievementPage />} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>
