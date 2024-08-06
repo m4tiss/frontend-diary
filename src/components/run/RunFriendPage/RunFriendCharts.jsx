@@ -67,10 +67,10 @@ const RunFriendCharts = ({ friendInfo, friendId }) => {
         <FriendChartPanel
           onClick={() => {
             toggleDialog();
-            setType("Time");
+            setType("Duration");
           }}
           type={"run"}
-          title="Time"
+          title="Duration"
           icon={<MdOutlineAccessTime size={50} color="white" />}
         />
       </div>

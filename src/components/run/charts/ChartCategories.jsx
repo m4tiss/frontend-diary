@@ -40,7 +40,7 @@ const ChartCategories = ({ friendId }) => {
   };
 
   return (
-    <div className="flex flex-col items-center py-10 2xl:py-0 bg-white rounded-xl w-full shadow-xl">
+    <div className="flex flex-col items-center py-10 bg-white rounded-xl w-full shadow-xl">
       <div className="text-2xl p-2">Categories</div>
       <PieChart
         colors={transformDataForPieChart().map((data) => data.color)}
