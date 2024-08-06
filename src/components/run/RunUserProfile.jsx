@@ -159,6 +159,7 @@ const RunUserProfile = () => {
             icon={<LuGoal size={50} color="white" />}
           />
           <PagePanel
+          onClick={() => navigate("/run/chats")}
             type={"run"}
             title="Chats"
             icon={<IoChatboxEllipsesOutline size={50} color="white" />}
