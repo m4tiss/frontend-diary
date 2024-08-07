@@ -101,7 +101,7 @@ const UsersToInvite = () => {
         animate={{ y: 0 }}
         className="flex justify-center flex-grow gap-5 flex-wrap"
       >
-        {usersToInvite.map((user) => (
+        {usersToInvite.slice(0,3).map((user) => (
           <UserToInvitePanel
             onDelete={() => onDeleteFromList(user.user_id)}
             key={user.user_id}
