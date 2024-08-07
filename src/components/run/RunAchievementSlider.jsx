@@ -7,12 +7,33 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import AchievementPanel from "../shared/AchievementPanel";
 import AchievementDetails from "../shared/AchievementDetails";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from '../../config/axios'
+import { getAuthToken } from "../../config/auth";
 
 const RunAcheviementSlider = ({ slidesPerView }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedAchievement, setSelectedAchievement] = useState();
+  const [achievements, setAchievements] = useState([]);
+
+
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get("/shared/getUserAchievements", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        const respone = res.data.achievements;
+        setAchievements(respone);
+      })
+      .catch((error) => {
+        console.error("Error fetching achievements data:", error);
+      });
+  }, []);
 
   const closeDialog = () => {
     setIsOpen(!isOpen);
@@ -23,34 +44,6 @@ const RunAcheviementSlider = ({ slidesPerView }) => {
     setSelectedAchievement(achievement);
     setIsOpen(true);
   };
-
-  const achievements = [
-    {
-      title: "Marathon",
-      percent: 100,
-      description: "Run 42 km",
-    },
-    {
-      title: "Under 3 minutes",
-      percent: 76,
-      description: "Run 1 km under 3 minute",
-    },
-    {
-      title: "RUN RUN",
-      percent: 0,
-      description: "Do 2 runs in one day",
-    },
-    {
-      title: "Runner",
-      percent: 20,
-      description: "Do 100 trainings",
-    },
-    {
-      title: "5",
-      percent: 100,
-      description: "Try to bench press 100kg",
-    },
-  ];
 
   return (
     <>
@@ -65,7 +58,7 @@ const RunAcheviementSlider = ({ slidesPerView }) => {
           <AchievementPanel
             setAchievement={() => setAchievement(achievement)}
             title={achievement.title}
-            percent={achievement.percent}
+            percent={Math.floor((achievement.value / achievement.goal) * 100)}
             description={achievement.description}
           />
         </SwiperSlide>
@@ -74,7 +67,7 @@ const RunAcheviementSlider = ({ slidesPerView }) => {
     <AnimatePresence>
       {isOpen && (
         <AchievementDetails
-          percent={selectedAchievement.percent}
+          percent={Math.floor((selectedAchievement.value / selectedAchievement.goal) * 100)}
           closeDialog={closeDialog}
           title={selectedAchievement.title}
           description={selectedAchievement.description}

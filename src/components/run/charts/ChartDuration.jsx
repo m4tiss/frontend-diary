@@ -60,7 +60,7 @@ const ChartDuration = ({ friendId }) => {
   }, [friendId]);
 
   return (
-    <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
+    <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-full">
       <h2 className="text-2xl p-2">Last training duration</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}

@@ -15,12 +15,12 @@ const AcheviementPanel = ({ title, percent, description, setAchievement }) => {
         {percent}%
         <Line percent={percent} trailColor="#FFFFFF" strokeColor={lineColor} />
       </div>
-      <div className="flex justify-evenly items-center w-full">
-        <div className="w- flex flex-col">
+      
+        <div className="w-full flex items-center justify-center px-5 text-center flex-col">
           <h2 className="text-2xl font-semibold">{title}</h2>
           <span className="text-xl text-wrap">{description}</span>
         </div>
-      </div>
+      
     </div>
   );
 };
