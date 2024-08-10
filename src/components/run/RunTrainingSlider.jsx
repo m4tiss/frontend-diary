@@ -27,6 +27,7 @@ const RunTrainingSlider = ({ categoryName }) => {
         setTrainings((prevTrainings) =>
           prevTrainings.filter((training) => training.run_workout_id !== id)
         );
+        
         console.log("Przeładowałem");
       })
       .catch((error) => {

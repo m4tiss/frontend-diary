@@ -1,10 +1,7 @@
-import RunGoalPanel from "./RunGoalPanel";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { formattedDuration } from "../../functions/formatData";
 import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,53 +10,71 @@ import "swiper/css/scrollbar";
 import "swiper/css/effect-coverflow";
 
 const RunRecords = () => {
-  const [goals, setGoals] = useState([]);
-  const navigate = useNavigate();
+  const [records, setRecords] = useState([]);
 
   useEffect(() => {
     const token = getAuthToken();
     axios
-      .get("/run/goal/all", {
+      .get("/run/records/getRecords", {
         headers: {
           Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
-        const respone = res.data.goals;
-        console.log(res.data.goals);
-        setGoals(respone);
+        const respone = res.data.records;
+        setRecords(respone);
       })
       .catch((error) => {
-        console.error("Error fetching pulse data:", error);
+        console.error("Error fetching records data:", error);
       });
   }, []);
 
   return (
     <div className="w-full flex flex-grow flex-col justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full flex flex-col 2xl:flex-row justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background">
-        <div className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center">
-          <label className="text-7xl">62.2 km</label>
+        <motion.div
+          initial={{ y: -50 }}
+          animate={{ y: 0 }}
+          className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center"
+        >
+          <label className="text-7xl">{records.longest_distance} km</label>
           <h2 className="text-2xl">Longest Distance</h2>
-        </div>
-        <div className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center">
-          <label className="text-7xl">189</label>
-          <h2 className="text-2xl">Highest pulse</h2>
-        </div>
-        <div className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center">
-          <label className="text-5xl">3h 20min 13sec</label>
+        </motion.div>
+        <motion.div
+          initial={{ y: -50 }}
+          animate={{ y: 0 }}
+          className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center"
+        >
+          <label className="text-7xl">{records.highest_average_pulse}</label>
+          <h2 className="text-2xl">Highest average pulse</h2>
+        </motion.div>
+        <motion.div
+          initial={{ y: -50 }}
+          animate={{ y: 0 }}
+          className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center"
+        >
+          <label className="text-5xl">
+            {formattedDuration(records.longest_duration || "00:00:00")}
+          </label>
           <h2 className="text-2xl">Longest Training</h2>
-        </div>
-        <div className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center">
+        </motion.div>
+        <motion.div
+          initial={{ y: -50 }}
+          animate={{ y: 0 }}
+          className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center"
+        >
           <label className="text-6xl">1300</label>
           <h2 className="text-2xl">Most calories</h2>
-        </div>
+        </motion.div>
       </div>
 
-      <div>
+      <motion.div
+                initial={{ y: 50 }}
+                animate={{ y: 0 }}>
         <h1 className="text-9xl opacity-50 font-bold text-black dark:text-white">
           PERSONAL RECORDS
         </h1>
-      </div>
+      </motion.div>
     </div>
   );
 };
