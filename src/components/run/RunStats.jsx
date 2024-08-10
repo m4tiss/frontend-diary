@@ -21,6 +21,7 @@ const RunStats = () => {
     activeGoals: 0,
   });
   const [friends, setFriends] = useState([]);
+  const [completedRunAchievement,setCompletedRunAchievement] = useState(0);
 
   useEffect(() => {
     const token = getAuthToken();
@@ -61,6 +62,24 @@ const RunStats = () => {
       })
       .catch((error) => {
         console.error("Error fetching friends data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get("/shared/getCompletedUserAchievements", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        const respone = res.data.achievements;
+        console.log(respone);
+        setCompletedRunAchievement(respone.length)
+      })
+      .catch((error) => {
+        console.error("Error fetching achievements data:", error);
       });
   }, []);
 
@@ -105,7 +124,7 @@ const RunStats = () => {
             title="Average Training Duration"
             description="02h 15min 23sec"
           />
-          <SmallStatsPanel title="Completed Achievements" description="4" />
+          <SmallStatsPanel title="Finish Shared Achievements" description={completedRunAchievement} />
         </div>
       </div>
 
