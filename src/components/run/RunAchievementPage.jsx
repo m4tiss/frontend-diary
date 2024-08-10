@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
-import RunAchievementSlider from "./RunAchievementSlider";
+import AchievementSlider from "../shared/AchievementSlider";
 const RunAchievementPage = () => {
   return (
-    <div className="w-full flex flex-col items-stretch flex-grow bg-[#e9ecef]">
+    <div className="w-full flex flex-col items-stretch flex-grow 
+    bg-[#e9ecef] dark:bg-run-night-background dark:text-white">
         <div className="text-4xl m-5">Run Achievements</div>
 
       <div className="flex">
-        <RunAchievementSlider slidesPerView={4} />
+        <AchievementSlider type={"run"} slidesPerView={4} />
       </div>
 
       <div className="text-4xl m-5">Shared Achievements</div>
       <div className="flex">
-        <RunAchievementSlider slidesPerView={4} />
+        <AchievementSlider type={"shared"} slidesPerView={4} />
       </div>
     </div>
   );

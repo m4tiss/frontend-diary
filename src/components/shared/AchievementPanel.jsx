@@ -9,7 +9,7 @@ const AcheviementPanel = ({ title, percent, description, setAchievement }) => {
     <div
       onClick={setAchievement}
       className="w-96 h-64 flex flex-col items-center justify-evenly rounded-2xl
-           bg-white border-black m-5 cursor-pointer shadow-xl"
+           bg-white dark:bg-run-night-element dark:text-white border-black m-5 cursor-pointer shadow-xl"
     >
       <div className="w-full px-5 font-semibold text-right text-xl">
         {percent}%

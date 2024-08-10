@@ -109,7 +109,7 @@ const RunUserProfile = () => {
         />
         <div className="bg-white dark:bg-run-night-element dark:text-white 2xl:w-96 w-full text-center mx-20 p-2 rounded-xl shadow-xl">
           <h2 className="text-3xl font-semibold">{userInfo.nickname}</h2>
-          <p className="text-lg  text-center">{userInfo.description}</p>
+          <p className="text-lg text-center overflow-x-hidden">{userInfo.description}</p>
         </div>
       </div>
       <div className="2xl:w-1/3 flex px-5 2xl:px-0 flex-col ">
