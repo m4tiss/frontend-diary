@@ -7,8 +7,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import RunTrainingSlide from "./RunTrainingSlide";
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
 import { useNavigate } from "react-router-dom";
 
 const RunTrainingSlider = ({ categoryName }) => {

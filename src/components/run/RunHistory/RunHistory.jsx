@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import RunTrainingSlider from "./RunTrainingSlider";
-import axios from '../../config/axios';
-import { getAuthToken } from "../../config/auth";
+import axios from '../../../config/axios';
+import { getAuthToken } from "../../../config/auth";
 
 const RunHistory = () => {
   const [categories, setCategories] = useState([]);
