@@ -9,7 +9,6 @@ const GymPlannedWorkout = () => {
 
   return (
     <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background">
-      GymPlannedWorkout
       <div className="w-full flex flex-col items-center">
         <h2 className="text-5xl my-10 font-semibold">
           Letss do new training!!!

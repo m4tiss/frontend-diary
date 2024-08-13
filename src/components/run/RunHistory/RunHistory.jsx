@@ -47,7 +47,7 @@ const RunHistory = () => {
             "background-image":
               "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
           }}
-          className="max-w-96 rounded-2xl flex-grow shadow-xl p-10 m-10"
+          className="min-w-96 rounded-2xl flex-grow shadow-xl p-10 m-10"
         >
           <h2 className="text-2xl text-white text-center my-5">Filtration</h2>
           <div className="flex justify-between">
