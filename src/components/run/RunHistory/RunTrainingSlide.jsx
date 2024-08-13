@@ -3,8 +3,12 @@ import pic from "../../../icons/runIcon.png";
 import RunTrainingDetails from "../RunTrainingDetails";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { formattedData, formattedDate, formattedTime, formattedDuration} from '../../../functions/formatData'
-
+import {
+  formattedData,
+  formattedDate,
+  formattedTime,
+  formattedDuration,
+} from "../../../functions/formatData";
 
 const RunTrainingSlide = ({ training, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,4 +1,3 @@
-import { LineChart } from "@mui/x-charts";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../config/auth";
 import ReactStars from "react-stars";

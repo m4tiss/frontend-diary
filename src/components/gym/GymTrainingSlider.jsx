@@ -1,12 +1,31 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import GymTrainingSlide from "./GymTrainingSlide";
+import axios from '../../config/axios';
+import { getAuthToken } from "../../config/auth";
 
 const GymTrainingSlider = () => {
+
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get("/gym/workout/all", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        let response = res.data.workouts;
+        console.log(response)
+        response = response.sort((a, b) => new Date(b.date) - new Date(a.date));
+        //setTrainings(response);
+      });
+  }, []);
+
   return (
     <Swiper slidesPerView={3} grabCursor={true}>
       <SwiperSlide>
