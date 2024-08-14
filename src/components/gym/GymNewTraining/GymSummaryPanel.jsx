@@ -5,7 +5,7 @@ import { getAuthToken } from "../../../config/auth";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const GymSummaryPanel = ({ workoutData }) => {
+const GymSummaryPanel = ({ workoutData, planName }) => {
   const [data, setData] = useState({
     duration: "03:00:00",
     note: "",
@@ -20,6 +20,7 @@ const GymSummaryPanel = ({ workoutData }) => {
         duration: data.duration,
         note: data.note,
         rating: data.rating,
+        plan_name: planName,
         workout_details: workoutData,
       };
 

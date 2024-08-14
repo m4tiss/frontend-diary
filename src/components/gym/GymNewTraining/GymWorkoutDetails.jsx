@@ -4,9 +4,9 @@ import GymSummaryPanel from './GymSummaryPanel'
 
 const GymWorkoutDetails = () => {
   const location = useLocation();
-  const { selectedExercises = [] } = location.state || {};
+  const { selectedExercises, planName } = location.state || {};
   const [workoutData, setWorkoutData] = useState([]);
-
+  
   useEffect(() => {
     const initialData = selectedExercises.map((exercise) => ({
       gym_exercise_id: exercise.gym_exercise_id,
@@ -143,7 +143,7 @@ const GymWorkoutDetails = () => {
             </div>
           </>
         ) : (
-            <GymSummaryPanel workoutData={workoutData}/>
+            <GymSummaryPanel workoutData={workoutData} planName={planName}/>
         )}
       </div>
     </div>

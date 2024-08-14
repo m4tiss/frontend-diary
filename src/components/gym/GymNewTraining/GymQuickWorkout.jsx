@@ -200,7 +200,7 @@ const GymQuickWorkout = () => {
       </div>
 
       <button
-      onClick={()=>navigate("/gym/workoutDetails", { state: { selectedExercises } })}
+      onClick={()=>navigate("/gym/workoutDetails", { state: { selectedExercises, planName: "QUICK WORKOUT" }})}
         disabled={selectedExercises.length === 0}
         className={`px-16 py-3 rounded-2xl bg-lime-500 text-white ${selectedExercises.length === 0 ? `opacity-50`:`opacity-100`} ` }
       >
