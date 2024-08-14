@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import ReactStars from "react-stars";
 import pic from "../../images/trainig_panel.jpg";
+
 import {
   formattedDate,
   formattedData,
@@ -11,7 +12,6 @@ import GymTrainingDetails from "./GymTrainingDetails";
 
 const GymTrainingSlide = ({ workout }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleDialog = () => {
     setIsOpen(!isOpen);
   };
@@ -60,7 +60,7 @@ const GymTrainingSlide = ({ workout }) => {
         {isOpen && (
           <GymTrainingDetails
             toggleDialog={toggleDialog}
-            workout={workout}
+            workoutId={workout.workoutId}
             //onDelete={onDelete}
           />
         )}

@@ -1,6 +1,6 @@
 import ReactStars from "react-stars";
 import pic from "../../../icons/runIcon.png";
-import RunTrainingDetails from "../RunTrainingDetails";
+import RunTrainingDetails from "./RunTrainingDetails";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import {

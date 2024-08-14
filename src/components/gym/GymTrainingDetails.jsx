@@ -1,22 +1,41 @@
 import { motion } from "framer-motion";
-import ReactStars from "react-stars";
 import { createPortal } from "react-dom";
+import axios from "../../config/axios";
+import ReactStars from "react-stars";
+import { CiStar } from "react-icons/ci";
+import { getAuthToken } from "../../config/auth";
+import { MdOutlineNoteAlt } from "react-icons/md";
+import { MdOutlineTimer } from "react-icons/md";
+import { CiCalendarDate } from "react-icons/ci";
+import { useState, useEffect } from "react";
 import {
-  formattedData,
+  formattedDuration,
   formattedDate,
   formattedTime,
-  formattedDuration,
+  formattedData,
 } from "../../functions/formatData";
 
-const GymTrainingDetails = ({
-  toggleDialog,
-  workout,
-  // onDelete
-}) => {
-  const handleEdit = () => {
-    // onDelete();
-    toggleDialog();
-  };
+const GymTrainingDetails = ({ toggleDialog, workoutId }) => {
+  const [selectedExercise, setSelectedExercise] = useState(0);
+  const [workout, setWorkout] = useState();
+
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get(`/gym/workout/${workoutId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        let response = res.data.workout;
+        console.log(response);
+        setWorkout(response);
+      });
+  }, [workoutId]);
+
+  const currentExercise = workout?.workoutData?.[selectedExercise];
+
   return createPortal(
     <div
       className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
@@ -40,9 +59,120 @@ const GymTrainingDetails = ({
             Close
           </motion.button>
         </div>
-        <div className="flex flex-grow">
-          <div className="w-3/4">ds</div>
-          <div className="w-1/4">aa</div>
+        <div className="w-full flex flex-grow">
+          <div className="flex w-1/6 flex-col justify-center items-center">
+            {workout && workout.workoutData && (
+              <>
+                {workout.workoutData.map((exercise, index) => (
+                  <div
+                    key={exercise.workoutDetailId}
+                    className={`w-full cursor-pointer text-xl text-center py-2 ${
+                      selectedExercise === index
+                        ? "text-pink-500"
+                        : "text-black"
+                    }`}
+                    onClick={() => setSelectedExercise(index)}
+                  >
+                    {exercise.exerciseName}
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
+          <div className="w-4/6 flex flex-col justify-center items-center">
+            {selectedExercise === -1 ? (
+              <div className="text-2xl">Summary of the Workout</div>
+            ) : (
+              currentExercise && (
+                <>
+                  <table className="w-full bg-white text-2xl h-fit text-center rounded-lg outline-none border-none">
+                    <thead>
+                      <tr>
+                        <th>Reps</th>
+                        <th></th>
+                        <th>Weight</th>
+                        <th></th>
+                        <th>Volume</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {currentExercise.sets.map((set, setIndex) => (
+                        <tr key={setIndex}>
+                          <td>
+                            <input
+                              min={0}
+                              type="number"
+                              step="1"
+                              className="w outline-none w-40 p-2 rounded-2xl"
+                              value={set.reps}
+                              disabled={true}
+                            />
+                          </td>
+                          <td>x</td>
+                          <td>
+                            <input
+                              min={0}
+                              type="number"
+                              step="0.1"
+                              className="outline-none w-40 p-2 rounded-2xl"
+                              value={set.weight}
+                              disabled={true}
+                            />
+                          </td>
+                          <td>=</td>
+                          <td>{set.reps * set.weight}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              )
+            )}
+          </div>
+          <div className="w-1/6 flex flex-col gap-10 justify-center text-center items-center">
+            <div>
+              <div className="w-full flex justify-center items-end gap-3">
+                <MdOutlineTimer size={35} />
+                <h2 className="text-3xl font-semibold">Duration</h2>
+              </div>
+              <label className="text-xl">
+                {formattedDuration(workout?.duration || "00:00:00")}
+              </label>
+            </div>
+            <div>
+              <div className="flex justify-center items-end gap-3">
+                <CiCalendarDate size={35} />
+                <h2 className="text-3xl font-semibold">Date</h2>
+              </div>
+              <label className="text-xl">{formattedDate(workout?.date)}</label>
+            </div>
+            <div>
+              <div className="flex justify-center items-end gap-3">
+                <CiStar size={35} />
+                <h2 className="text-3xl font-semibold">Rating</h2>
+              </div>
+              <div className="flex justify-center items-center gap-3">
+                <h2 className="text-xl">
+                  {formattedData(workout?.rating || 0)}
+                </h2>
+                <ReactStars
+                  count={5}
+                  size={30}
+                  color1="gray"
+                  color2={"#ffd700"}
+                  value={workout?.rating}
+                  edit={false}
+                />
+              </div>
+            </div>
+            <div className="max-h-48">
+              <div className=" flex justify-center items-end gap-3">
+                <MdOutlineNoteAlt size={35} />
+                <h2 className="text-3xl font-semibold">Note</h2>
+              </div>
+              <label>{workout?.note}</label>
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>,

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import ReactStars from "react-stars";
 import { createPortal } from "react-dom";
-import { formattedData, formattedDate, formattedTime, formattedDuration} from '../../functions/formatData'
+import { formattedData, formattedDate, formattedTime, formattedDuration} from '../../../functions/formatData'
 
 const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
   const handleEdit = () => {
