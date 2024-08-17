@@ -23,6 +23,9 @@ export function formattedDate(dateString) {
 }
 
 export const formattedTime = (dateString) => {
+  if (!dateString) {
+    return 'Invalid time';
+}
   const date = new Date(dateString);
   return format(date, "HH:mm");
 };

@@ -15,9 +15,14 @@ import {
   formattedData,
 } from "../../functions/formatData";
 
-const GymTrainingDetails = ({ toggleDialog, workoutId }) => {
+const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
   const [selectedExercise, setSelectedExercise] = useState(0);
   const [workout, setWorkout] = useState();
+
+  const handleDelete = () => {
+    onDelete();
+    toggleDialog();
+  };
 
   useEffect(() => {
     const token = getAuthToken();
@@ -50,14 +55,33 @@ const GymTrainingDetails = ({ toggleDialog, workoutId }) => {
       >
         <div className="w-full flex items-center px-10 justify-between">
           <h2 className="text-4xl">QUICK WORKOUT</h2>
+          <div className="flex gap-5">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 500 }}
+            onClick={handleDelete}
+            className="mt-4 px-4 py-2 h-fit shadow-xl bg-red-500 text-white rounded"
+          >
+            Delete
+          </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}
             onClick={toggleDialog}
-            className="mt-4 px-4 py-2 h-fit shadow-xl bg-red-500 text-white rounded"
+            className="mt-4 px-4 py-2 h-fit shadow-xl bg-lime-500 text-white rounded"
+          >
+            Edit
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 500 }}
+            onClick={toggleDialog}
+            className="mt-4 px-4 py-2 h-fit shadow-xl bg-purple-500 text-white rounded"
           >
             Close
           </motion.button>
+          </div>
+
         </div>
         <div className="w-full flex flex-grow">
           <div className="flex w-1/6 flex-col justify-center items-center">
@@ -144,7 +168,7 @@ const GymTrainingDetails = ({ toggleDialog, workoutId }) => {
                 <CiCalendarDate size={35} />
                 <h2 className="text-3xl font-semibold">Date</h2>
               </div>
-              <label className="text-xl">{formattedDate(workout?.date)}</label>
+              <label className="text-xl">{formattedTime(workout?.date)|| "00:00:00"} {formattedDate(workout?.date) || "00:00:00"}</label>
             </div>
             <div>
               <div className="flex justify-center items-end gap-3">

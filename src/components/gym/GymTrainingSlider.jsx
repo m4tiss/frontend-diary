@@ -13,6 +13,28 @@ import { useNavigate } from "react-router-dom";
 const GymTrainingSlider = () => {
   const [workouts, setWorkouts] = useState([]);
 
+
+  const handleDelete = (id) => {
+    const token = getAuthToken();
+    axios
+      .delete(`/gym/workout/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(() => {
+        setWorkouts((prevWorkouts) =>
+          prevWorkouts.filter((workout) => workout.workoutId !== id)
+        );
+        
+        console.log("Przeładowałem");
+      })
+      .catch((error) => {
+        console.error("Error deleting gym workout:", error);
+      });
+  };
+
+
   const navigate = useNavigate();
   useEffect(() => {
     const token = getAuthToken();
@@ -24,7 +46,6 @@ const GymTrainingSlider = () => {
       })
       .then((res) => {
         let response = res.data.workouts;
-        console.log(response);
         response = response.sort((a, b) => new Date(b.date) - new Date(a.date));
         setWorkouts(response);
       });
@@ -59,7 +80,7 @@ const GymTrainingSlider = () => {
           <SwiperSlide  key={workout.workoutId}>
             <GymTrainingSlide
               workout={workout}
-              //onDelete={() => handleDelete(item.run_workout_id)}
+              onDelete={() => handleDelete(workout.workoutId)}
             />
           </SwiperSlide>
         ))

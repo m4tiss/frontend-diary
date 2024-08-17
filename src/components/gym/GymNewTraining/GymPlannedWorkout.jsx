@@ -22,7 +22,6 @@ const GymPlannedWorkout = () => {
       })
       .then((res) => {
         const response = res.data.routines;
-        //console.log(response);
         setRoutines(response);
       })
       .catch((error) => {
@@ -39,14 +38,19 @@ const GymPlannedWorkout = () => {
         },
         params: { gym_routine_id: chosenPlan.gym_routine_id },
       });
-  
+
       const response = res.data.exercises;
-      navigate("/gym/workoutDetails", { state: { selectedExercises: response, planName: chosenPlan.name_routine } });
+      navigate("/gym/workoutDetails", {
+        state: {
+          selectedExercises: response,
+          planName: chosenPlan.name_routine,
+        },
+      });
     } catch (error) {
       console.error("Error fetching exercises data:", error);
     }
   };
-  
+
   return (
     <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full flex flex-col items-center">
@@ -55,9 +59,7 @@ const GymPlannedWorkout = () => {
           <div
             key={routine.gym_routine_id}
             onClick={() => handleDivClick(routine)}
-            className={`${
-              chosenPlan === routine ? "bg-red-500" : "bg-white"
-            }
+            className={`${chosenPlan === routine ? "bg-red-500" : "bg-white"}
           ${chosenPlan === routine ? "text-white" : "text-black"}
            text-2xl shadow-2xl rounded-xl w-96 p-2 my-3 cursor-pointer`}
           >

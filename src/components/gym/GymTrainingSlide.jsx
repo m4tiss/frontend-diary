@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactStars from "react-stars";
 import pic from "../../images/trainig_panel.jpg";
 
@@ -6,11 +6,12 @@ import {
   formattedDate,
   formattedData,
   formattedDuration,
+  formattedTime,
 } from "../../functions/formatData";
 import { AnimatePresence } from "framer-motion";
 import GymTrainingDetails from "./GymTrainingDetails";
 
-const GymTrainingSlide = ({ workout }) => {
+const GymTrainingSlide = ({ workout, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDialog = () => {
     setIsOpen(!isOpen);
@@ -20,7 +21,7 @@ const GymTrainingSlide = ({ workout }) => {
     <div
       className="w-96 h-96 flex flex-col items-center justify-evenly rounded-2xl
            bg-white border-black m-5 cursor-pointer shadow-xl"
-           onClick={toggleDialog}
+      onClick={toggleDialog}
     >
       <div>
         <h2 className="text-2xl">{workout.planName}</h2>
@@ -50,9 +51,10 @@ const GymTrainingSlide = ({ workout }) => {
           edit={false}
         />
       </div>
-      <div className=" w-full flex justify-evenly items-center">
+      <div className="w-full flex justify-evenly items-center">
         <img width={80} src={pic} />
-        <h2 className=" text-xl">
+        <h2 className="text-xl">{formattedTime(workout.date)}</h2>
+        <h2 className="text-xl">
           {formattedDate(workout.date || "00:00:00")}
         </h2>
       </div>
@@ -61,7 +63,7 @@ const GymTrainingSlide = ({ workout }) => {
           <GymTrainingDetails
             toggleDialog={toggleDialog}
             workoutId={workout.workoutId}
-            //onDelete={onDelete}
+            onDelete={onDelete}
           />
         )}
       </AnimatePresence>

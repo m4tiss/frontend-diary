@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const GymSummaryPanel = ({ workoutData, planName }) => {
   const [data, setData] = useState({
-    duration: "03:00:00",
+    duration: "00:00:00",
     note: "",
     rating: 0.0,
   });
