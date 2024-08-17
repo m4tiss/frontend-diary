@@ -122,7 +122,7 @@ const RunUserProfile = () => {
           ))}
           <div className="flex flex-col justify-center items-center gap-2">
             <IoMdAdd
-              onClick={() => navigate("/run/friends")}
+              onClick={() => navigate("/gym/friends")}
               className="rounded-full cursor-pointer hover:scale-110 duration-200 hover:rotate-90"
               size={100}
             />
