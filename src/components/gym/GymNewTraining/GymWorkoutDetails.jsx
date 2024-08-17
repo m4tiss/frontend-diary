@@ -18,6 +18,7 @@ const GymWorkoutDetails = () => {
       ],
     }));
     setWorkoutData(initialData);
+    console.log(selectedExercises)
   }, [selectedExercises]);
 
   const [selectedExercise, setSelectedExercise] = useState(0);

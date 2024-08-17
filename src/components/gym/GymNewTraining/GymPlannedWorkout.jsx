@@ -1,51 +1,71 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
+import { useNavigate } from "react-router-dom";
 
 const GymPlannedWorkout = () => {
   const [chosenPlan, setChosenPlan] = useState(null);
+  const [routines, setRoutines] = useState([]);
+  const navigate = useNavigate();
 
   const handleDivClick = (plan) => {
     setChosenPlan(plan);
   };
 
+  useEffect(() => {
+    const token = getAuthToken();
+    axios
+      .get(`gym/routine/all`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        const response = res.data.routines;
+        //console.log(response);
+        setRoutines(response);
+      })
+      .catch((error) => {
+        console.error("Error fetching routine data:", error);
+      });
+  }, []);
+
+  const handleSubmit = async () => {
+    const token = getAuthToken();
+    try {
+      const res = await axios.get(`gym/routine/exercises`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        params: { gym_routine_id: chosenPlan.gym_routine_id },
+      });
+  
+      const response = res.data.exercises;
+      navigate("/gym/workoutDetails", { state: { selectedExercises: response, planName: chosenPlan.name_routine } });
+    } catch (error) {
+      console.error("Error fetching exercises data:", error);
+    }
+  };
+  
   return (
     <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full flex flex-col items-center">
-        <h2 className="text-5xl my-10 font-semibold">
-          Letss do new training!!!
-        </h2>
-        <div
-          onClick={() => handleDivClick("Upper A")}
-          className={`${chosenPlan === "Upper A" ? "bg-red-500" : "bg-white"}
-          ${chosenPlan === "Upper A" ? "text-white" : "text-black"}
+        <h2 className="text-5xl my-10 font-semibold">Planned Workout</h2>
+        {routines.map((routine) => (
+          <div
+            key={routine.gym_routine_id}
+            onClick={() => handleDivClick(routine)}
+            className={`${
+              chosenPlan === routine ? "bg-red-500" : "bg-white"
+            }
+          ${chosenPlan === routine ? "text-white" : "text-black"}
            text-2xl shadow-2xl rounded-xl w-96 p-2 my-3 cursor-pointer`}
-        >
-          Upper A
-        </div>
-        <div
-          onClick={() => handleDivClick("Upper B")}
-          className={`${chosenPlan === "Upper B" ? "bg-red-500" : "bg-white"} 
-          ${chosenPlan === "Upper B" ? "text-white" : "text-black"}
-          text-2xl shadow-2xl rounded-xl w-96 p-2 my-3 cursor-pointer`}
-        >
-          Upper B
-        </div>
-        <div
-          onClick={() => handleDivClick("Lower A")}
-          className={`${chosenPlan === "Lower A" ? "bg-red-500" : "bg-white"} 
-          ${chosenPlan === "Lower A" ? "text-white" : "text-black"}
-          text-2xl shadow-2xl rounded-xl w-96 p-2 my-3 cursor-pointer`}
-        >
-          Lower A
-        </div>
-        <div
-          onClick={() => handleDivClick("Lower B")}
-          className={`${chosenPlan === "Lower B" ? "bg-red-500" : "bg-white"} 
-          ${chosenPlan === "Lower B" ? "text-white" : "text-black"}
-          text-2xl shadow-2xl rounded-xl w-96 p-2 my-3 cursor-pointer`}
-        >
-          Lower B
-        </div>
+          >
+            {routine.name_routine}
+          </div>
+        ))}
         <button
+          onClick={handleSubmit}
           style={{
             backgroundImage:
               "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
