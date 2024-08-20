@@ -124,6 +124,7 @@ const GymQuickWorkout = () => {
       <div className="flex w-full justify-start gap-10">
         {currentExercises.map((exercise) => (
           <GymExercisePanel
+            height={24}
             key={exercise.gym_exercise_id}
             exercise={exercise}
             onClick={() => handleAddExercise(exercise)}
@@ -166,6 +167,7 @@ const GymQuickWorkout = () => {
           ) : (
             currentSelectedExercises.map((exercise) => (
               <GymExercisePanel
+              height={24}
                 key={exercise.gym_exercise_id}
                 exercise={exercise}
                 onClick={() => handleRemoveExercise(exercise)}

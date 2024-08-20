@@ -67,12 +67,15 @@ const GymPlannedWorkout = () => {
           </div>
         ))}
         <button
+          disabled={routines.length === 0}
           onClick={handleSubmit}
           style={{
             backgroundImage:
               "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
           }}
-          className="text-2xl shadow-2xl text-white hover:scale-110 rounded-xl w-96 p-2 my-3 duration-200"
+          className={`text-2xl shadow-2xl text-white hover:scale-110 rounded-xl w-96 p-2 my-3 duration-200
+        ${routines.length === 0 ? "opacity-50" : "opacity-100"}
+        `}
         >
           Do training
         </button>

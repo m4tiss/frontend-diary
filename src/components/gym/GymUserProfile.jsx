@@ -16,14 +16,16 @@ import PagePanel from "../shared/PagePanel";
 import { useNavigate } from "react-router-dom";
 import ChartTrainings from "../shared/charts/ChartTrainings";
 import { formattedDate } from "../../functions/formatData";
+import { TbNotes } from "react-icons/tb";
 
 import { useUser } from "../../providers/UserProvider";
 import { ToastContainer, toast } from "react-toastify";
+import GymAddRoutine from "./GymAddRoutine";
 
 const RunUserProfile = () => {
   const { userInfo } = useUser();
   const [isGoalOpen, setIsGoalOpen] = useState(false);
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [isRoutineOpen, setIsRoutineOpen] = useState(false);
   const [visibleFriendsCount, setVisibleFriendsCount] = useState(
     getVisibleFriendsCount()
   );
@@ -32,13 +34,13 @@ const RunUserProfile = () => {
     setIsGoalOpen((prev) => !prev);
   };
 
-  const toggleCategoryDialog = () => {
-    setIsCategoryOpen((prev) => !prev);
+  const toggleRoutineDialog = () => {
+    setIsRoutineOpen((prev) => !prev);
   };
 
-  const successCategoryDialog = () => {
-    setIsCategoryOpen((prev) => !prev);
-    toast.success("Category added!");
+  const successRoutineDialog = () => {
+    setIsRoutineOpen((prev) => !prev);
+    toast.success("Routine added!");
   };
 
   const successGoalDialog = () => {
@@ -138,10 +140,10 @@ const RunUserProfile = () => {
             icon={<GiTrophyCup size={50} color="white" />}
           />
           <PagePanel
-            //onClick={toggleCategoryDialog}
+            onClick={toggleRoutineDialog}
             type={"gym"}
-            title="Add category"
-            icon={<TbCategoryPlus size={50} color="white" />}
+            title="Add routine"
+            icon={<TbNotes size={50} color="white" />}
           />
           <PagePanel
             //onClick={() => navigate("/run/achievements")}
@@ -176,14 +178,14 @@ const RunUserProfile = () => {
             )}
           </AnimatePresence> */}
 
-          {/* <AnimatePresence>
-            {isCategoryOpen && (
-              <RunAddCategory
-                toggleCategoryDialog={toggleCategoryDialog}
-                successCategoryDialog={successCategoryDialog}
+          <AnimatePresence>
+            {isRoutineOpen && (
+              <GymAddRoutine
+                toggleRoutineDialog={toggleRoutineDialog}
+                successRoutineDialog={successRoutineDialog}
               />
             )}
-          </AnimatePresence> */}
+          </AnimatePresence>
         </div>
         <div
           style={{

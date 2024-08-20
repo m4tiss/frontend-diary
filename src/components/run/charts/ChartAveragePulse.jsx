@@ -3,24 +3,28 @@ import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import { format } from "date-fns";
+import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChartAveragePulse = ({ friendId }) => {
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = getAuthToken();
-    axios
-      .get("/run/chart/averagePulse", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-        params: friendId ? { friend_id: friendId } : {},
-      })
-      .then((res) => {
-        let response = res.data.data;
+    const fetchData = async () => {
+      try {
+        const token = getAuthToken();
+        const res = await axios.get("/run/chart/averagePulse", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          params: friendId ? { friend_id: friendId } : {},
+        });
+
+        const response = res.data.data;
         console.log(response);
+
         response.sort((a, b) => new Date(a.date) - new Date(b.date));
 
         const pulseData = response.map((item) => item.average_pulse);
@@ -33,21 +37,37 @@ const ChartAveragePulse = ({ friendId }) => {
 
         setData(pulseData);
         setXLabels(dateLabels);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching pulse data:", error);
-      });
-  }, []);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [friendId]);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-10 bg-white rounded-xl w-full shadow-xl">
+        <SyncLoader color="#36A2EB" size={20} aria-label="Loading Spinner" />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">Last training average pulse</h2>
-      <LineChart
-        width={window.innerWidth > 768 ? 500 : 300}
-        height={300}
-        series={[{ data: data, label: "Average Pulse", color: "#1DA1F2" }]}
-        xAxis={[{ scaleType: "point", data: xLabels }]}
-      />
+      <h2 className="text-2xl p-2">Last Training Average Pulse</h2>
+      {data.length > 0 ? (
+        <LineChart
+          width={window.innerWidth > 768 ? 500 : 300}
+          height={300}
+          series={[{ data: data, label: "Average Pulse", color: "#1DA1F2" }]}
+          xAxis={[{ scaleType: "point", data: xLabels }]}
+        />
+      ) : (
+        <div>No data available</div>
+      )}
     </div>
   );
 };
