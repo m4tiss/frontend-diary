@@ -15,11 +15,14 @@ import {
 import LoginPage1 from "../../images/loginPage1.png";
 import LoginPage2 from "../../images/loginPage2.png";
 import LoginPage3 from "../../images/loginPage3.png";
+import ContentContext from "../../providers/ContentProvider";
+import { useContext } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [numberOfUsers, setNumberOfUsers] = useState(0);
+  const { setGymContent } = useContext(ContentContext);
   const navigate = useNavigate();
 
   const count = useMotionValue(0);
@@ -53,6 +56,7 @@ const Login = () => {
     try {
       const respone = await signInWithEmailAndPassword(auth, email, password);
       localStorage.setItem("token", respone.user.accessToken);
+      setGymContent()
       navigate("/gym/dashboard");
     } catch (error) {
       toast.error("Invalid email or password!");

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useUser } from "../../providers/UserProvider";
 import DarkModeContext from "../../providers/DarkModeProvider";
+import ContentContext from "../../providers/ContentProvider";
 import { useContext } from "react";
 
 const RunNavbar = ({ setNavBarType }) => {
@@ -15,6 +16,7 @@ const RunNavbar = ({ setNavBarType }) => {
   const navigate = useNavigate();
   const { userInfo } = useUser();
   const { darkMode, toggleDisplayMode } = useContext(DarkModeContext);
+  const { setGymContent } = useContext(ContentContext);
 
   const handleLogout = () => {
     signOut(auth)
@@ -24,6 +26,12 @@ const RunNavbar = ({ setNavBarType }) => {
       .catch((error) => {
         console.error("Error logging out: ", error);
       });
+  };
+  
+  
+  const toggle = () => {
+    setNavBarType((prev) => !prev)
+    setGymContent()
   };
 
   return (
@@ -41,7 +49,7 @@ const RunNavbar = ({ setNavBarType }) => {
       >
         <button
           className="text-2xl text-white"
-          onClick={() => setNavBarType((prev) => !prev)}
+          onClick={toggle}
         >
           <CgGym size={50} />
         </button>
