@@ -93,19 +93,19 @@ const RunStats = () => {
         </div>
         <div className="flex flex-col 2xl:flex-row justify-between w-full gap-5">
           <SmallStatsPanel
-            title="Kilometers"
+            title="Total Kilometers"
             description={formattedData(stats.distance)}
             km
           />
           <SmallStatsPanel
-            title="Time"
+            title="Total Time"
             description={formattedDuration(stats.duration)}
           />
           <SmallStatsPanel
-            title="Average rating"
+            title="Avg. Rating"
             description={formattedData(stats.avgRating)}
           />
-          <SmallStatsPanel title="Average pulse" description={stats.avgPulse} />
+          <SmallStatsPanel title="Avg. Pulse" description={stats.avgPulse} />
         </div>
         <div className="w-full flex flex-col 2xl:flex-row justify-between m-5 gap-5">
           <ChartDuration />
@@ -121,7 +121,8 @@ const RunStats = () => {
             description="20:00 23-12-2024"
           />
           <SmallStatsPanel
-            title="Average Training Duration"
+          // run workouts
+            title="Avg. Session Duration"
             description="02h 15min 23sec"
           />
           <SmallStatsPanel title="Finish Shared Achievements" description={completedRunAchievement} />
@@ -135,7 +136,7 @@ const RunStats = () => {
             <div className="flex flex-grow justify-evenly text-2xl font-semibold w-full">
               <span>Friends</span> <span>{userInfo.friends_count}</span>
             </div>
-            {friends.slice(0, 5).map((user, index) => (
+            {friends.slice(0, 5).map((user) => (
               <FriendStatsPanel key={user.user_id} user={user} />
             ))}
           </div>

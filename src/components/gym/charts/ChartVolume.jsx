@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import { format } from "date-fns";
+import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
-const ChartVolume= ({ friendId }) => {
+const ChartVolume = ({ friendId }) => {
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = getAuthToken();
@@ -20,7 +22,7 @@ const ChartVolume= ({ friendId }) => {
       })
       .then((res) => {
         let response = res.data.volume;
-        console.log(response)
+        console.log(response);
         response.sort((a, b) => new Date(a.date) - new Date(b.date));
 
         const distanceData = response.map((item) => item.totalVolume);
@@ -36,12 +38,23 @@ const ChartVolume= ({ friendId }) => {
       })
       .catch((error) => {
         console.error("Error fetching volume data:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-  }, []);
+  }, [friendId]);
+
+  if (loading) {
+    return (
+      <div  className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
+        <SyncLoader color="#FF6384" size={20} aria-label="Loading Spinner" />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">Last training volume</h2>
+      <h2 className="text-2xl p-2">Last Training Volume</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
