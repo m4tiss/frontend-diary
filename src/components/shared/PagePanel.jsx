@@ -17,7 +17,7 @@ const PagePanel = ({ title, icon, type,...props }) => {
       style={{
         backgroundImage: linearColor,
       }}
-      className="w-72 flex h-20 rounded-xl justify-center items-center space-x-4"
+      className="w-64 flex h-20 rounded-xl justify-center items-center space-x-4"
     >
       {icon}
       <h2 className="2xl:text-2xl text-xl text-white">{title}</h2>

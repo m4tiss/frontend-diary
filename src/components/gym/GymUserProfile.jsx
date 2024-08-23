@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { TbNotesOff } from "react-icons/tb";
 import FriendDivProfile from "../shared/FriendDivProfile";
 import StatsUserProfileSlider from "../shared/StatsUserProfileSlider";
 import { IoMdAdd } from "react-icons/io";
@@ -169,6 +169,7 @@ const RunUserProfile = () => {
             title="Chats"
             icon={<IoChatboxEllipsesOutline size={50} color="white" />}
           />
+          
           {/* <AnimatePresence>
             {isGoalOpen && (
               <RunAddGoal
