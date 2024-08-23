@@ -4,6 +4,7 @@ import { IoBarbell } from "react-icons/io5";
 import { CgNotes } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import ChartSets from "../charts/ChartSets";
 
 const GymNewTraining = () => {
   const GYM_COLOR = "#FF0000";
@@ -67,15 +68,7 @@ const GymNewTraining = () => {
             xAxis={[{ scaleType: "point", data: xLabels }]}
           />
         </div>
-        <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-          <h2 className="text-2xl p-2">Last training sets</h2>
-          <LineChart
-            width={500}
-            height={300}
-            series={[{ data: uData, label: "Sets", color: RUN_COLOR }]}
-            xAxis={[{ scaleType: "point", data: xLabels }]}
-          />
-        </div>
+        <ChartSets/>
       </div>
     </div>
   );
