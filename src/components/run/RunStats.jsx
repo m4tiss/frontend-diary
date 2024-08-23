@@ -33,7 +33,6 @@ const RunStats = () => {
       })
       .then((res) => {
         let stats = res.data.stats;
-        console.log(stats);
         setStats({
           distance: stats.sumDistance,
           duration: stats.sumDuration,
@@ -57,7 +56,6 @@ const RunStats = () => {
       })
       .then((res) => {
         const respone = res.data.friends;
-        console.log(respone);
         setFriends(respone);
       })
       .catch((error) => {
@@ -75,7 +73,6 @@ const RunStats = () => {
       })
       .then((res) => {
         const respone = res.data.achievements;
-        console.log(respone);
         setCompletedRunAchievement(respone.length)
       })
       .catch((error) => {

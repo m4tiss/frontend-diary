@@ -7,20 +7,9 @@ import ChartMuscleUsed from "./charts/ChartMuscleUsed";
 import { useUser } from "../../providers/UserProvider";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
+import ChartDuration from "./charts/ChartDuration";
 
 const StatsGym = () => {
-  const GYM_COLOR = "#FF0000";
-  const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-  const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-  const xLabels = [
-    "Page A",
-    "Page B",
-    "Page C",
-    "Page D",
-    "Page E",
-    "Page F",
-    "Page G",
-  ];
   const { userInfo } = useUser();
   const [friends, setFriends] = useState([]);
 
@@ -55,18 +44,7 @@ const StatsGym = () => {
           <SmallStatsPanel title="Time" description="2h 30 min" />
         </div>
         <div className="w-full flex justify-between m-5 gap-5">
-          <div className="items-center border-2  bg-white flex flex-col rounded-xl w-full shadow-xl">
-            <div className="text-2xl p-2">Weekly volume</div>
-            <LineChart
-              width={500}
-              height={300}
-              series={[
-                { data: pData, label: "pv", color: GYM_COLOR },
-                { data: uData, label: "uv" },
-              ]}
-              xAxis={[{ scaleType: "point", data: xLabels }]}
-            />
-          </div>
+          <ChartDuration />
           <ChartMuscleUsed />
         </div>
         <div className="flex justify-between w-full gap-5">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import RunFriendBasicInfo from "./RunFriendBasicInfo";
+import FriendBasicInfo from "../../shared/FriendBasicInfo";
 import { useParams } from "react-router-dom";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
@@ -31,7 +31,7 @@ const RunFriendPage = () => {
 
   return (
     <div className="w-full flex flex-col flex-grow bg-[#e9ecef] dark:bg-run-night-background">
-      <RunFriendBasicInfo friendInfo={friendInfo} />
+      <FriendBasicInfo friendInfo={friendInfo} />
       <div className="w-full flex justify-center flex-grow">
         <RunFriendAdvancedInfo friendInfo={friendInfo} />
         <RunFriendCharts friendInfo={friendInfo} friendId={friendId}/>

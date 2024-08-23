@@ -1,5 +1,5 @@
 
-const RunFriendBasicInfo = ({ friendInfo }) => {
+const FriendBasicInfo = ({ friendInfo }) => {
   return (
     <div className="w-full flex items-center h-fit justify-evenly my-10">
     <img
@@ -19,4 +19,4 @@ const RunFriendBasicInfo = ({ friendInfo }) => {
   );
 };
 
-export default RunFriendBasicInfo;
+export default FriendBasicInfo;
