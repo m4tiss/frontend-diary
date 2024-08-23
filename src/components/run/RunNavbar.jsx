@@ -4,6 +4,8 @@ import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 import NavbarButton from "../shared/NavbarButton";
 import { useNavigate } from "react-router-dom";
+import { LuMoonStar } from "react-icons/lu";
+import { LuSun } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { useUser } from "../../providers/UserProvider";
 import DarkModeContext from "../../providers/DarkModeProvider";
@@ -93,9 +95,9 @@ const RunNavbar = ({ setNavBarType }) => {
             onClick={toggleDisplayMode}
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}
-            className={`dark:bg-white dark:text-run-night-element bg-run-night-element text-white text-xl font-bold w-32 h-10 px-4 rounded-full`}
+            className={`dark:bg-white dark:text-run-night-element bg-run-night-element text-white text-xl flex justify-center gap-2 items-center font-bold min-w-44 h-10 px-4 rounded-full`}
           >
-            {darkMode ? "Light" : "Dark"} Mode
+            {darkMode ? "Light" : "Dark"} Mode {darkMode ? <LuSun/> : <LuMoonStar/>}
           </motion.button>
           <h2 className="text-2xl text-white mx-5 flex">YourWebsite</h2>
           <button

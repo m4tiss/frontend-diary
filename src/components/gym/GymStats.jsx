@@ -38,10 +38,10 @@ const StatsGym = () => {
           <span className="text-2xl font-semibold">Personal stats</span>
         </div>
         <div className="flex justify-between w-full gap-5">
-          <SmallStatsPanel title="Volume" description="400kg" />
-          <SmallStatsPanel title="Trainings" description="12" />
-          <SmallStatsPanel title="Reps" description="432" />
-          <SmallStatsPanel title="Time" description="2h 30 min" />
+          <SmallStatsPanel title="Total Volume" description="400kg" />
+          <SmallStatsPanel title="Workout Sessions" description="12" />
+          <SmallStatsPanel title="Total Reps" description="432" />
+          <SmallStatsPanel title="Total Time" description="2h 30 min" />
         </div>
         <div className="w-full flex justify-between m-5 gap-5">
           <ChartDuration />

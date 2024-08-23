@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import chestIcon from '../../../icons/chestIcon.jpg';
 import backIcon from '../../../icons/backIcon.jpg';
 import bicepsIcon from '../../../icons/bicepsIcon.jpg';
+import tricepsIcon from '../../../icons/tricepsIcon.jpg';
 import shouldersIcon from '../../../icons/shouldersIcon.jpg';
 import absIcon from '../../../icons/absIcon.jpg';
 import legsIcon from '../../../icons/legsIcon.jpg';
@@ -11,6 +12,7 @@ const icons = {
   'chestIcon.jpg': chestIcon,
   'backIcon.jpg': backIcon,
   'bicepsIcon.jpg': bicepsIcon,
+  'tricepsIcon.jpg': tricepsIcon,
   'shouldersIcon.jpg': shouldersIcon,
   'absIcon.jpg': absIcon,
   'legsIcon.jpg': legsIcon,

@@ -4,6 +4,8 @@ import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 import NavbarButton from "../../components/shared/NavbarButton";
 import profilePhoto from "../../images/profile_photo.jpg";
+import { LuMoonStar } from "react-icons/lu";
+import { LuSun } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useUser } from '../../providers/UserProvider'
@@ -60,9 +62,9 @@ const GymNavbar = ({ setNavBarType }) => {
             onClick={toggleDisplayMode}
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}
-            className={`dark:bg-white dark:text-black bg-black text-white text-xl font-bold w-32 h-10 px-4 rounded-full`}
+            className={`dark:bg-white dark:text-black bg-black text-white flex justify-center items-center gap-2 text-xl font-bold min-w-44 h-10 px-4 rounded-full`}
           >
-           {darkMode ? "Light" : "Dark"} Mode
+           {darkMode ? "Light" : "Dark"} Mode {darkMode ? <LuSun/> : <LuMoonStar/>}
           </motion.button>
         </div>
         <div className="flex md:flex-row flex-col items-center justify-start mx-5 gap-5">
