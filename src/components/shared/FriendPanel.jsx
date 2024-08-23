@@ -1,15 +1,23 @@
-import { useEffect, useState } from "react";
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
+import { useContext } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import ContentContext from "../../providers/ContentProvider";
 
 const FriendPanel = ({ user }) => {
+  const { isGymContent } = useContext(ContentContext);
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (isGymContent) {
+      navigate(`/gym/friend/${user.user_id}`);
+    } else {
+      navigate(`/run/friend/${user.user_id}`);
+    }
+  };
 
   return (
     <motion.div
-      onClick={() => navigate(`/run/friend/${user.user_id}`)}
+      onClick={handleClick}
       initial={{ y: 50 }}
       animate={{ y: 0 }}
       whileHover={{ scale: 1.1 }}
@@ -21,8 +29,9 @@ const FriendPanel = ({ user }) => {
           width: "70px",
           height: "70px",
         }}
-        className="cursor-pointer object-cover"
+        className="object-cover"
         src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${user.profile_photo}`}
+        alt={`${user.nickname}'s profile`}
       />
       <label className="text-2xl">{user.nickname}</label>
     </motion.div>

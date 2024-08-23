@@ -1,9 +1,20 @@
 import { FaRegShareSquare } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useContext} from "react";
+import ContentContext from "../../providers/ContentProvider";
 
-const FriendStatsPanel = ({user}) => {
-
+const FriendStatsPanel = ({ user }) => {
+  const { isGymContent } = useContext(ContentContext);
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (isGymContent) {
+      navigate(`/gym/friend/${user.user_id}`);
+    } else {
+      navigate(`/run/friend/${user.user_id}`);
+    }
+  };
+
 
   return (
     <div className="flex flex-col rounded-2xl mx-5 my-1">
@@ -17,14 +28,16 @@ const FriendStatsPanel = ({user}) => {
               height: "50px",
             }}
             src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${user.profile_photo}`}
+            alt={`${user.nickname}'s profile`}
           />
-
-          <h2 className=" mx-2 text-2xl">{user.nickname}</h2>
+          <h2 className="mx-2 text-2xl">{user.nickname}</h2>
         </div>
         <div>
           <FaRegShareSquare
-           onClick={() => navigate(`/run/friend/${user.user_id}`)}
-          className="cursor-pointer" size={40}/>
+            onClick={handleClick}
+            className="cursor-pointer"
+            size={40}
+          />
         </div>
       </div>
     </div>

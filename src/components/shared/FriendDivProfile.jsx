@@ -1,9 +1,19 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import ContentContext from "../../providers/ContentProvider";
 
 const FriendDivProfile = ({user}) => {
 
   const navigate = useNavigate();
+  const { isGymContent } = useContext(ContentContext);
 
+  const handleClick = () => {
+    if (isGymContent) {
+      navigate(`/gym/friend/${user.user_id}`);
+    } else {
+      navigate(`/run/friend/${user.user_id}`);
+    }
+  };
 
     return (
       <div className="relative flex flex-col justify-center items-center gap-2">
@@ -19,7 +29,7 @@ const FriendDivProfile = ({user}) => {
           alt="Profile"
         />
         <div
-         onClick={() => navigate(`/run/friend/${user.user_id}`)}
+         onClick={handleClick}
         className="absolute inset-0 flex justify-center items-center bg-black opacity-0 
         group-hover:opacity-80 transition-opacity duration-300 rounded-full">
           <p className="flex justify-center flex-wrap items-center 

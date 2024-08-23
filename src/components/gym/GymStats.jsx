@@ -84,7 +84,7 @@ const StatsGym = () => {
             <div className="flex flex-grow justify-evenly text-2xl font-semibold w-full">
               <span>Friends</span> <span>{userInfo.friends_count}</span>
             </div>
-            {friends.slice(0, 5).map((user, index) => (
+            {friends.slice(0, 5).map((user) => (
               <FriendStatsPanel key={user.user_id} user={user} />
             ))}
           </div>
