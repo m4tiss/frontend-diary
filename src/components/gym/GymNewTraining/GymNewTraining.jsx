@@ -5,6 +5,7 @@ import { CgNotes } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ChartSets from "../charts/ChartSets";
+import ChartVolume from "../charts/ChartVolume";
 
 const GymNewTraining = () => {
   const GYM_COLOR = "#FF0000";
@@ -59,15 +60,7 @@ const GymNewTraining = () => {
         </motion.div>
       </div>
       <div className="w-full flex justify-evenly">
-        <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-          <h2 className="text-2xl p-2">Last training volume</h2>
-          <LineChart
-            width={500}
-            height={300}
-            series={[{ data: pData, label: "Volume", color: GYM_COLOR }]}
-            xAxis={[{ scaleType: "point", data: xLabels }]}
-          />
-        </div>
+        <ChartVolume/>
         <ChartSets/>
       </div>
     </div>
