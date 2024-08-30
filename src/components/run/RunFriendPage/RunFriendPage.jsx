@@ -33,7 +33,7 @@ const RunFriendPage = () => {
     <div className="w-full flex flex-col flex-grow bg-[#e9ecef] dark:bg-run-night-background">
       <FriendBasicInfo friendInfo={friendInfo} />
       <div className="w-full flex justify-center flex-grow">
-        <RunFriendAdvancedInfo friendInfo={friendInfo} />
+        <RunFriendAdvancedInfo friendInfo={friendInfo} friendId={friendId}/>
         <RunFriendCharts friendInfo={friendInfo} friendId={friendId}/>
         <RunFriendActions />
       </div>
