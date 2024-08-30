@@ -68,7 +68,7 @@ const GymNavbar = ({ setNavBarType }) => {
           </motion.button>
         </div>
         <div className="flex md:flex-row flex-col items-center justify-start mx-5 gap-5">
-          <h2 className="text-white text-2xl">{userInfo.nickname || ""}</h2>
+          <h2 className="text-white text-2xl">{userInfo?.nickname || ""}</h2>
           <motion.img
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}
@@ -79,7 +79,7 @@ const GymNavbar = ({ setNavBarType }) => {
               height: '50px',
             }}
             className="cursor-pointer object-cover"
-            src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}
+            src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo?.profile_photo}`}
           />
           <NavbarButton
             bgColor="white"

@@ -1,11 +1,13 @@
 import { useUser } from "../../../providers/UserProvider";
-import {formattedTime} from '../../../functions/formatData'
-const ChatFriendPanel = ({ user, lastMessage,onClick }) => {
+import { formattedTime } from '../../../functions/formatData';
+
+const ChatFriendPanel = ({ user, lastMessage, onClick }) => {
   const { userInfo } = useUser();
   return (
     <div 
-    onClick={onClick}
-    className="w-full flex justify-between  items-center h-24 bg-white dark:bg-run-night-background cursor-pointer">
+      onClick={onClick}
+      className="w-full flex justify-between items-center h-24 bg-white dark:bg-run-night-background cursor-pointer"
+    >
       <div className="flex gap-2">
         <div>
           <img
@@ -16,14 +18,22 @@ const ChatFriendPanel = ({ user, lastMessage,onClick }) => {
             }}
             className="cursor-pointer object-cover"
             src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${user.profile_photo}`}
+            alt="Friend Profile"
           />
         </div>
-        <div className="flex flex-col cursor-pointer ">
+        <div className="flex flex-col cursor-pointer">
           <h2>{user.nickname}</h2>
-          <label className="cursor-pointer">{lastMessage.content}</label>
+          <label 
+            className={`${lastMessage.is_read === 0 ? "font-bold" : ""} 
+            cursor-pointer`}
+          >
+            {lastMessage.content}
+          </label>
         </div>
       </div>
-      <div>  {lastMessage.timestamp && formattedTime(lastMessage.timestamp)}</div>
+      <div>
+        {lastMessage.timestamp && formattedTime(lastMessage.timestamp)}
+      </div>
     </div>
   );
 };

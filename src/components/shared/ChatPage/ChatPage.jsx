@@ -1,12 +1,15 @@
 import { useUser } from "../../../providers/UserProvider";
 import { IoSend } from "react-icons/io5";
-import { getAuthToken } from "../../../config/auth";
 import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
 import axios from "../../../config/axios";
 import { PiCursorClick } from "react-icons/pi";
 import ChatFriendPanel from "./ChatFriendPanel";
 import ChatUserMessagePanel from "./ChatUserMessagePanel";
 import ChatFriendMessagePanel from "./ChatFriendMessagePanel";
+import { getAuthToken } from "../../../config/auth";
+
+let socket;
 
 const ChatPage = () => {
   const { userInfo } = useUser();
@@ -17,81 +20,125 @@ const ChatPage = () => {
 
   useEffect(() => {
     const token = getAuthToken();
+
+    // Initialize socket connection
+    socket = io('http://localhost:3005', {
+      transports: ["websocket"],
+      auth: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log("Connecting to socket server...");
+
+    socket.on("connection", () => {
+      console.log("Connected to socket server");
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Disconnected from socket server");
+    });
+
+    return () => {
+      if (socket) {
+        socket.disconnect();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const token = getAuthToken();
     axios
       .get("/shared/chat/getPreviewMessages", {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: `Bearer ${token}`,
         },
-        params: { friend_id: 14 },
       })
       .then((res) => {
-        const response = res.data.data;
-        console.log(response);
-        setPreviewData(response);
+        setPreviewData(res.data.data);
       })
       .catch((error) => {
         console.error("Error fetching preview data:", error);
       });
-  }, []);
+  }, [selectedFriend]);
 
   useEffect(() => {
     if (selectedFriend !== null) {
-      console.log("ID" + selectedFriend.user_id);
+      console.log("Fetching conversation...");
       const token = getAuthToken();
       axios
         .get("/shared/chat/getConversation", {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: `Bearer ${token}`,
           },
           params: { friend_id: selectedFriend.user_id },
         })
         .then((res) => {
-          const response = res.data.data;
-          console.log(response);
-          setConversation(response);
+          setConversation(res.data.data);
         })
         .catch((error) => {
           console.error("Error fetching conversation data:", error);
         });
+
+      socket.emit("joinRoom", { friendId: selectedFriend.user_id });
+
+      socket.on("receiveMessage", (message) => {
+        console.log("Received message:", message);
+
+        // Update conversation
+        setConversation((prev) => [...prev, message]);
+
+        // Update preview data
+        setPreviewData((prev) => 
+          prev.map((item) =>
+            item.user.user_id === message.sender_id
+              ? { ...item, lastMessage: message.content }
+              : item
+          )
+        );
+      });
+
+      return () => {
+        if (selectedFriend) {
+          socket.emit("leaveRoom", { friendId: selectedFriend.user_id });
+        }
+        socket.off("receiveMessage");
+      };
     }
   }, [selectedFriend]);
 
   const handleFriendSelect = (friend) => {
     setSelectedFriend(friend);
     setNewMessage("");
-  };
+  
+    setPreviewData((prev) =>
+      prev.map((item) =>
+        item.user.user_id === friend.user_id
+          ? {
+              ...item,
+              lastMessage: { ...item.lastMessage, is_read: 1 },
+            }
+          : item
+      )
+    );
+    };
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
 
-    const token = getAuthToken();
-    axios
-      .post(
-        "/shared/chat/sendMessage",
-        {
-          friend_id: selectedFriend.user_id,
-          message: newMessage,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        const newMsg = {
-          content: newMessage,
-          sender_id: userInfo.user_id,
-          receiver_id: selectedFriend.user_id,
-          timestamp: new Date().toISOString(),
-          is_read: 0,
-        };
-        setConversation([...conversation, newMsg]);
-        setNewMessage("");
-      })
-      .catch((error) => {
-        console.error("Error sending message:", error);
-      });
+    socket.emit("sendMessage", {
+      friendId: selectedFriend.user_id,
+      message: newMessage,
+    });
+
+    setNewMessage("");
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); 
+      handleSendMessage();
+    }
   };
 
   return (
@@ -106,6 +153,7 @@ const ChatPage = () => {
             }}
             className="cursor-pointer object-cover"
             src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo?.profile_photo}`}
+            alt="Profile"
           />
           <h2 className="text-3xl">{userInfo?.nickname}</h2>
         </div>
@@ -114,7 +162,7 @@ const ChatPage = () => {
             className="bg-[#e9ecef] p-3 rounded-full outline-none"
             placeholder="Search"
           />
-          {previewData.slice(0, 6).map((object, index) => (
+          {previewData?.slice(0, 6).map((object, index) => (
             <ChatFriendPanel
               key={index}
               user={object.user}
@@ -141,11 +189,12 @@ const ChatPage = () => {
                 }}
                 className="cursor-pointer object-cover"
                 src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${selectedFriend.profile_photo}`}
+                alt="Selected Friend"
               />
               <h2 className="text-3xl">{selectedFriend.nickname}</h2>
             </div>
-            <div className="flex-grow overflow-y-auto">
-              {conversation.map((message, index) => (
+            <div className="flex-grow overflow-y-scroll">
+              {conversation.slice(conversation.length-10, conversation.length).map((message, index) => (
                 message.sender_id === selectedFriend.user_id ? (
                   <ChatFriendMessagePanel key={index} message={message.content} />
                 ) : (
@@ -158,6 +207,7 @@ const ChatPage = () => {
                 type="text"
                 placeholder="Type a message..."
                 value={newMessage}
+                onKeyDown={handleKeyDown}
                 onChange={(e) => setNewMessage(e.target.value)}
                 className="p-2 rounded-full w-full outline-none"
               />
