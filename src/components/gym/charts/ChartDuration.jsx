@@ -11,7 +11,7 @@ const convertDurationToSeconds = (duration) => {
 };
 
 const convertSecondsToDuration = (seconds) => {
-  console.log("Converting seconds:", seconds); // Debug
+  //console.log("Converting seconds:", seconds); // Debug
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = seconds % 60;
@@ -33,12 +33,12 @@ const ChartDuration = ({ friendId }) => {
       })
       .then((res) => {
         let response = res.data.data;
-        console.log("API Response:", response); // Debug
+        //console.log("API Response:", response); // Debug
         response.sort((a, b) => new Date(a.date) - new Date(b.date));
 
         const durationData = response.map((item) => {
           const seconds = convertDurationToSeconds(item.duration);
-          console.log("Converted to seconds:", seconds); // Debug
+          //console.log("Converted to seconds:", seconds); // Debug
           return seconds;
         });
 
@@ -51,8 +51,8 @@ const ChartDuration = ({ friendId }) => {
 
         setData(durationData);
         setXLabels(dateLabels);
-        console.log("Duration Data:", durationData);
-        console.log("Date Labels:", dateLabels);
+       // console.log("Duration Data:", durationData);
+        //console.log("Date Labels:", dateLabels);
       })
       .catch((error) => {
         console.error("Error fetching duration data:", error);

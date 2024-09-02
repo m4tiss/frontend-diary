@@ -104,6 +104,7 @@ function GymLayout() {
         <Route path="quickWorkout" element={<GymQuickWorkout />} />
         <Route path="plannedWorkout" element={<GymPlannedWorkout />} />
         <Route path="workoutDetails" element={<GymWorkoutDetails />} />
+        <Route path="chats" element={<ChatPage />} />
         <Route path="*" element={<Navigate to="/gym/dashboard" />} />
       </Routes>
     </div>
