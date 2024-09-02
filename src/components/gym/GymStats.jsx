@@ -25,8 +25,8 @@ const StatsGym = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
-      const token = getAuthToken();
       setLoadingStats(true);
+      const token = getAuthToken();
       try {
         const res = await axios.get("/gym/chart/stats", {
           headers: {
@@ -141,7 +141,7 @@ const StatsGym = () => {
         </div>
         <div className="w-full flex justify-between m-5 gap-5">
           <ChartDuration />
-          <ChartMuscleUsed />
+          <ChartMuscleUsed range={selectedRange}/>
         </div>
       </div>
 

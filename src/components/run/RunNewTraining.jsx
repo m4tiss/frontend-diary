@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ChartAveragePulse from "./charts/ChartAveragePulse";
 import ChartDistance from "./charts/ChartDistance";
 import { useUser } from "../../providers/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 const validateDuration = (duration) => {
   const regex = /^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
@@ -15,6 +16,7 @@ const validateDuration = (duration) => {
 
 const RunNewTraining = () => {
   const { fetchUserInfo } = useUser();
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [chosenPlan, setChosenPlan] = useState(null);
   const [data, setData] = useState({
@@ -91,6 +93,7 @@ const RunNewTraining = () => {
       });
       setChosenPlan(null);
       fetchUserInfo();
+      setTimeout(() => navigate("/run/history"), 2000);
     } catch (error) {
       console.error("Error:", error);
     }

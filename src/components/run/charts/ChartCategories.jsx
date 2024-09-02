@@ -4,7 +4,7 @@ import axios from "../../../config/axios";
 import { PieChart } from "@mui/x-charts";
 import SyncLoader from "react-spinners/SyncLoader";
 
-const ChartCategories = ({ friendId }) => {
+const ChartCategories = ({ friendId, range = "all" }) => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,10 @@ const ChartCategories = ({ friendId }) => {
           headers: {
             Authorization: "Bearer " + token,
           },
-          params: friendId ? { friend_id: friendId } : {},
+          params: {
+            friend_id: friendId || undefined, 
+            range: range,
+          },
         });
         const categories = res.data.categories;
         setCategoriesData(categories);
@@ -28,7 +31,7 @@ const ChartCategories = ({ friendId }) => {
     };
 
     fetchData();
-  }, [friendId]);
+  }, [friendId, range]);
 
   const transformDataForPieChart = () => {
     return categoriesData.map((category, index) => ({
