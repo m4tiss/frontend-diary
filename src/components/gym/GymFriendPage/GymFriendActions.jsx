@@ -5,7 +5,7 @@ import { PiSword } from "react-icons/pi";
 import { GiAchievement } from "react-icons/gi";
 import { motion } from "framer-motion";
 
-const RunFriendActions = () => {
+const GymFriendActions = () => {
   const [action, setAction] = useState("Chat");
 
   const renderActionContent = () => {
@@ -82,4 +82,4 @@ const RunFriendActions = () => {
   );
 };
 
-export default RunFriendActions;
+export default GymFriendActions;

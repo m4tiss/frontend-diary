@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
-import FriendBasicInfo from "../../shared/FriendBasicInfo"
-import GymFriendAdvancedInfo from "./GymFriendAdvancedInfo"
+import FriendBasicInfo from "../../shared/FriendBasicInfo";
+import GymFriendAdvancedInfo from "./GymFriendAdvancedInfo";
 import GymFriendCharts from "./GymFriendCharts";
+import GymFriendActions from './GymFriendActions';
 const GymFriendPage = () => {
    const { friendId } = useParams();
   const [friendInfo, setFriendInfo] = useState({});
@@ -34,7 +35,7 @@ const GymFriendPage = () => {
       <div className="w-full flex justify-center flex-grow">
         <GymFriendAdvancedInfo friendInfo={friendInfo} />
         <GymFriendCharts friendInfo={friendInfo} friendId={friendId}/>
-        {/* <RunFriendActions /> */}
+        <GymFriendActions />
       </div>
     </div>
   );
