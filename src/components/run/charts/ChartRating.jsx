@@ -1,40 +1,33 @@
-import { LineChart } from "@mui/x-charts";
+import { BarChart } from "@mui/x-charts";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
-import { format } from "date-fns";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
-const ChartSets = ({ friendId }) => {
+const ChartRating = ({ friendId }) => {
   const [data, setData] = useState([]);
-  const [xLabels, setXLabels] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = getAuthToken();
     axios
-      .get("/gym/chart/sets", {
+      .get("/run/chart/rating", {
         headers: {
           Authorization: "Bearer " + token,
         },
         params: friendId ? { friend_id: friendId } : {},
       })
       .then((res) => {
-        let response = res.data.sets;
-        console.log(response);
-        response.sort((a, b) => new Date(a.date) - new Date(b.date));
+        let response = res.data.data;
 
-        const setsData = response.map((item) => item.totalSets);
-        const dateLabels = response.map((item) => {
-          const date = new Date(item.date);
-          const formattedDate = format(date, "dd/MM/yyyy");
-          const formattedTime = format(date, "HH:mm");
-          return `${formattedDate}\n${formattedTime}`;
-        });
+        const formattedData = response.map((item) => ({
+          bin: item.bin,
+          count: item.count,
+        }));
 
-        setData(setsData);
-        setXLabels(dateLabels);
+        setData(formattedData);
+        console.log(formattedData);
       })
       .catch((error) => {
         console.error("Error fetching sets data:", error);
@@ -52,17 +45,23 @@ const ChartSets = ({ friendId }) => {
     );
   }
 
+  const xData = data.map((item) => item.bin);
+  const yData = data.map((item) => item.count);
+
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">Last Training Sets</h2>
-      <LineChart
-        width={window.innerWidth > 768 ? 500 : 300}
+      <h2 className="text-2xl p-2">Training Ratings Histogram</h2>
+      <BarChart
+        color={"#FBC814"}
+        xAxis={[{ scaleType: "band", data: xData }]}
+        series={[
+            { data: yData, color: "#FBC814" },
+          ]}
+        width={500}
         height={300}
-        series={[{ data: data, label: "Sets", color: "#1DA1F2" }]}
-        xAxis={[{ scaleType: "point", data: xLabels }]}
       />
     </div>
   );
 };
 
-export default ChartSets;
+export default ChartRating;

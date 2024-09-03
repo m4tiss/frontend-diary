@@ -46,8 +46,8 @@ const ChartVolume = ({ friendId }) => {
 
   if (loading) {
     return (
-      <div  className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-        <SyncLoader color="#FF6384" size={20} aria-label="Loading Spinner" />
+      <div  className="flex flex-col justify-center items-center p-3 w-fit">
+        <SyncLoader color="#000000" size={20} aria-label="Loading Spinner" />
       </div>
     );
   }

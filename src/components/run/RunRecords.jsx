@@ -1,7 +1,7 @@
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import { useState, useEffect } from "react";
-import { formattedDuration } from "../../functions/formatData";
+import { formattedDuration, formattedData } from "../../functions/formatData";
 import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -23,6 +23,7 @@ const RunRecords = () => {
       .then((res) => {
         const respone = res.data.records;
         setRecords(respone);
+        console.log(respone)
       })
       .catch((error) => {
         console.error("Error fetching records data:", error);
@@ -37,7 +38,7 @@ const RunRecords = () => {
           animate={{ y: 0 }}
           className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center"
         >
-          <label className="text-7xl">{records.longest_distance} km</label>
+          <label className="text-7xl">{formattedData(records.longest_distance||0.0)} km</label>
           <h2 className="text-2xl">Longest Distance</h2>
         </motion.div>
         <motion.div

@@ -7,6 +7,7 @@ import { BsHeartPulse } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { TbCategory } from "react-icons/tb";
 import { MdOutlineAccessTime } from "react-icons/md";
+import { CiStar } from "react-icons/ci";
 import RunFriendChartModal from "./RunFriendChartModal";
 const RunFriendCharts = ({ friendInfo, friendId }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,11 +50,11 @@ const RunFriendCharts = ({ friendInfo, friendId }) => {
         <FriendChartPanel
           onClick={() => {
             toggleDialog();
-            setType("Friends");
+            setType("Rating");
           }}
           type={"run"}
-          title="Friends"
-          icon={<FaUserFriends size={50} color="white" />}
+          title="Rating"
+          icon={<CiStar size={50} color="white" />}
         />
         <FriendChartPanel
           onClick={() => {

@@ -3,6 +3,7 @@ import { formattedDate } from "../../../functions/formatData";
 import { calculateDaysWithUs } from "../../../functions/statsCalculations";
 import { useContext } from "react";
 import DarkModeContext from "../../../providers/DarkModeProvider";
+import { RiDeleteBin6Line } from "react-icons/ri";
 const GymFriendAdvancedInfo = ({ friendInfo }) => {
 
     const { darkMode } = useContext(DarkModeContext);
@@ -55,8 +56,10 @@ const GymFriendAdvancedInfo = ({ friendInfo }) => {
               </label>
               <h2 className="text-xl">Days on platform</h2>
             </div>
-            <div className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col justify-center items-center cursor-pointer bg-[#d90429] text">
+            <div className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col
+            justify-center items-center cursor-pointer bg-[#d90429] text gap-2">
               <h2>Remove friend</h2>
+              <RiDeleteBin6Line/>
             </div>
           </div>
         </div>

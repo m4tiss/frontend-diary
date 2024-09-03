@@ -7,6 +7,7 @@ import ChartAveragePulse from "../charts/ChartAveragePulse";
 import ChartDistance from "../charts/ChartDistance";
 import ChartCategories from "../charts/ChartCategories";
 import ChartDuration from "../charts/ChartDuration";
+import ChartRating from "../charts/ChartRating";
 
 const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
   const { userInfo } = useUser();
@@ -43,6 +44,12 @@ const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
                  {friendId === -1 ? <ChartDuration/> : <ChartDuration friendId={friendId} />}
               </>
             );
+            case "Rating":
+              return (
+                <>
+                   {friendId === -1 ? <ChartRating/> : <ChartRating friendId={friendId} />}
+                </>
+              );
       default:
         return null;
     }

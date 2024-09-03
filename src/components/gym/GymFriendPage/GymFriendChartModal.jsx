@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useUser } from "../../../providers/UserProvider";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
- import { useState } from "react";
+import { useState } from "react";
 import ChartMuscleUsed from "../charts/ChartMuscleUsed";
 import ChartVolume from "../charts/ChartVolume";
 import ChartSets from "../charts/ChartSets";
 import ChartDuration from "../charts/ChartDuration";
-
+import ChartRating from "../charts/ChartRating";
 
 const GymFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
   const { userInfo } = useUser();
@@ -17,34 +17,64 @@ const GymFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
       case "Muscles":
         return (
           <>
-             {friendId === -1 ? <ChartMuscleUsed/> : <ChartMuscleUsed friendId={friendId} />}
+            {friendId === -1 ? (
+              <ChartMuscleUsed />
+            ) : (
+              <ChartMuscleUsed friendId={friendId} />
+            )}
           </>
         );
       case "Workouts":
         return (
           <>
-           {friendId === -1 ? <ChartTrainings/> : <ChartTrainings friendId={friendId} />}
+            {friendId === -1 ? (
+              <ChartTrainings />
+            ) : (
+              <ChartTrainings friendId={friendId} />
+            )}
           </>
         );
       case "Volume":
         return (
           <>
-             {friendId === -1 ? <ChartVolume/> : <ChartVolume friendId={friendId} />}
+            {friendId === -1 ? (
+              <ChartVolume />
+            ) : (
+              <ChartVolume friendId={friendId} />
+            )}
           </>
         );
-        case "Sets":
-          return (
-            <>
-               {friendId === -1 ? <ChartSets/> : <ChartSets friendId={friendId} />}
-            </>
-          );
+      case "Sets":
+        return (
+          <>
+            {friendId === -1 ? (
+              <ChartSets />
+            ) : (
+              <ChartSets friendId={friendId} />
+            )}
+          </>
+        );
 
-          case "Duration":
-            return (
-              <>
-                 {friendId === -1 ? <ChartDuration/> : <ChartDuration friendId={friendId} />}
-              </>
-            );
+      case "Duration":
+        return (
+          <>
+            {friendId === -1 ? (
+              <ChartDuration />
+            ) : (
+              <ChartDuration friendId={friendId} />
+            )}
+          </>
+        );
+      case "Rating":
+        return (
+          <>
+            {friendId === -1 ? (
+              <ChartRating />
+            ) : (
+              <ChartRating friendId={friendId} />
+            )}
+          </>
+        );
       default:
         return null;
     }

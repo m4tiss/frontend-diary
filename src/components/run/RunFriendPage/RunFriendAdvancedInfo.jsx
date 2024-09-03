@@ -5,6 +5,7 @@ import DarkModeContext from "../../../providers/DarkModeProvider";
 import { useNavigate } from "react-router-dom";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const RunFriendAdvancedInfo = ({ friendInfo, friendId }) => {
   const { darkMode } = useContext(DarkModeContext);
@@ -81,6 +82,7 @@ const RunFriendAdvancedInfo = ({ friendInfo, friendId }) => {
           className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col justify-center items-center cursor-pointer bg-[#d90429] text"
         >
           <h2>Remove friend</h2>
+          <RiDeleteBin6Line/>
         </div>
       </div>
     </div>

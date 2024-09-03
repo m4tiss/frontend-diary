@@ -6,6 +6,7 @@ import { CiDumbbell } from "react-icons/ci";
 import { BsHeartPulse } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { TbCategory } from "react-icons/tb";
+import { CiStar } from "react-icons/ci";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { GiMuscleUp } from "react-icons/gi";
 import { GiWeight } from "react-icons/gi";
@@ -53,11 +54,11 @@ const GymFriendCharts = ({ friendInfo, friendId }) => {
         <FriendChartPanel
           onClick={() => {
             toggleDialog();
-            setType("Friends");
+            setType("Rating");
           }}
           type={"gym"}
-          title="Friends"
-          icon={<FaUserFriends size={50} color="white" />}
+          title="Rating"
+          icon={<CiStar size={50} color="white" />}
         />
         <FriendChartPanel
           onClick={() => {
