@@ -36,6 +36,7 @@ import GymPlannedWorkout from "./components/gym/GymNewTraining/GymPlannedWorkout
 import GymWorkoutDetails from "./components/gym/GymNewTraining/GymWorkoutDetails";
 import GymFriendPage from "./components/gym/GymFriendPage/GymFriendPage";
 import GymRecords from "./components/gym/GymRecords";
+import Languages from "./components/shared/Langauges";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -78,6 +79,7 @@ function App() {
           />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
+        <Languages/>
       </div>
     </Router>
   );
