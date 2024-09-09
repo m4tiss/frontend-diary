@@ -2,7 +2,7 @@ import { LineChart } from "@mui/x-charts";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
-import { constructNow, format } from "date-fns";
+import { format } from "date-fns";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -37,9 +37,7 @@ const ChartMostReps = ({ name_exercise }) => {
 
         const dateLabels = response.map((item) => {
           const date = new Date(item.date);
-          const formattedDate = format(date, "dd/MM/yyyy");
-          const formattedTime = format(date, "HH:mm");
-          return `${formattedDate}\n${formattedTime}`;
+          return `${format(date, "dd/MM/yyyy")}\n${format(date, "HH:mm")}`;
         });
 
         setData(repsData);
@@ -76,11 +74,10 @@ const ChartMostReps = ({ name_exercise }) => {
     );
   }
 
-  const valueFormatter = (value) => {
-    const item = data[value];
-    console.log(item)
-    return item ? `${item.weight} kg x ${item.reps}` : `${value} reps`;
-  };
+  const handlePointClick = (event, point) => {
+    const selectedData = data[point.dataIndex];
+    setBestSet(selectedData);
+  }; 
 
   return (
     <div className="flex flex-col gap-10">
@@ -97,13 +94,14 @@ const ChartMostReps = ({ name_exercise }) => {
             },
           ]}
           xAxis={[{ scaleType: "point", data: xLabels }]}
-        />
+          onMarkClick={handlePointClick}
+          />
       </div>
       <div className="bg-white text-5xl shadow-2xl flex justify-center items-center p-3">
-      {bestSet ? (
+        {bestSet ? (
           <>
             <span>{bestSet.weight} kg x&nbsp;</span>
-            <h2 className="font-bold"> {bestSet.reps}</h2>
+            <h2 className="font-bold">{bestSet.reps}</h2>
           </>
         ) : (
           "No Data"

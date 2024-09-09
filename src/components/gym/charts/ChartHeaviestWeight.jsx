@@ -69,6 +69,11 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
     );
   }
 
+  const handlePointClick = (event, point) => {
+    const selectedData = data[point.dataIndex];
+    setBestSet(selectedData);
+  }; 
+
   return (
     <div className="flex flex-col gap-10">
       <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
@@ -81,20 +86,18 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
               data: data.map((item) => item.weight),
               label: "Weight",
               color: "#1DA1F2",
-              tooltip: ({ index }) => {
-                const { weight, reps } = data[index];
-                return `Weight: ${weight} kg\nReps: ${reps}`;
-              },
             },
           ]}
           xAxis={[{ scaleType: "point", data: xLabels }]}
+          onMarkClick={handlePointClick}
+
         />
       </div>
       <div className="bg-white text-5xl shadow-2xl flex justify-center items-center p-3">
       {bestSet ? (
           <>
-            <h2 className="font-bold">{bestSet.weight}&nbsp;</h2>
-            <span>kg x {bestSet.reps}</span>
+            <h2 className="font-bold">{bestSet.weight} kg&nbsp;</h2>
+            <span>x {bestSet.reps}</span>
           </>
         ) : (
           "No Data"
