@@ -134,7 +134,7 @@ const RunUserProfile = () => {
 
         <div className="h-fit flex-wrap flex dark:bg-run-night-element dark:text-white bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
           <PagePanel
-            //onClick={() => navigate("/run/records")}
+            onClick={() => navigate("/gym/records")}
             type={"gym"}
             title="Show records"
             icon={<GiTrophyCup size={50} color="white" />}

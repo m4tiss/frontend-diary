@@ -35,6 +35,7 @@ import GymQuickWorkout from "./components/gym/GymNewTraining/GymQuickWorkout";
 import GymPlannedWorkout from "./components/gym/GymNewTraining/GymPlannedWorkout";
 import GymWorkoutDetails from "./components/gym/GymNewTraining/GymWorkoutDetails";
 import GymFriendPage from "./components/gym/GymFriendPage/GymFriendPage";
+import GymRecords from "./components/gym/GymRecords";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -104,6 +105,7 @@ function GymLayout() {
         <Route path="quickWorkout" element={<GymQuickWorkout />} />
         <Route path="plannedWorkout" element={<GymPlannedWorkout />} />
         <Route path="workoutDetails" element={<GymWorkoutDetails />} />
+        <Route path="records" element={<GymRecords />} />
         <Route path="chats" element={<ChatPage />} />
         <Route path="*" element={<Navigate to="/gym/dashboard" />} />
       </Routes>
