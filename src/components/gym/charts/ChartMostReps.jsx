@@ -2,11 +2,11 @@ import { LineChart } from "@mui/x-charts";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
-import { format } from "date-fns";
+import { constructNow, format } from "date-fns";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
-const ChartHeaviestWeight = ({ name_exercise }) => {
+const ChartMostReps = ({ name_exercise }) => {
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
     const token = getAuthToken();
 
     axios
-      .get("/gym/chart/heaviestWeight", {
+      .get("/gym/chart/mostReps", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -30,7 +30,7 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
 
         response.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        const weightsData = response.map((item) => ({
+        const repsData = response.map((item) => ({
           weight: item.weight,
           reps: item.reps,
         }));
@@ -42,19 +42,26 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
           return `${formattedDate}\n${formattedTime}`;
         });
 
-        setData(weightsData);
+        setData(repsData);
         setXLabels(dateLabels);
-        const best = weightsData.reduce((prev, curr) => {
-          if (curr.weight > prev.weight || (curr.weight === prev.weight && curr.reps > prev.reps)) {
-            return curr;
-          }
-          return prev;
-        }, { weight: 0, reps: 0 });
+
+        const best = repsData.reduce(
+          (prev, curr) => {
+            if (
+              curr.reps > prev.reps ||
+              (curr.reps === prev.reps && curr.weight > prev.weight)
+            ) {
+              return curr;
+            }
+            return prev;
+          },
+          { weight: 0, reps: 0 }
+        );
 
         setBestSet(best);
       })
       .catch((error) => {
-        console.error("Error fetching heaviestWeight data:", error);
+        console.error("Error fetching mostReps data:", error);
       })
       .finally(() => {
         setLoading(false);
@@ -69,22 +76,24 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
     );
   }
 
+  const valueFormatter = (value) => {
+    const item = data[value];
+    console.log(item)
+    return item ? `${item.weight} kg x ${item.reps}` : `${value} reps`;
+  };
+
   return (
     <div className="flex flex-col gap-10">
       <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-        <h2 className="text-2xl">Heaviest weight in set</h2>
+        <h2 className="text-2xl">Most Reps in Set</h2>
         <LineChart
           width={window.innerWidth > 768 ? 500 : 300}
           height={300}
           series={[
             {
-              data: data.map((item) => item.weight),
-              label: "Weight",
+              data: data.map((item) => item.reps),
+              label: "Reps",
               color: "#1DA1F2",
-              tooltip: ({ index }) => {
-                const { weight, reps } = data[index];
-                return `Weight: ${weight} kg\nReps: ${reps}`;
-              },
             },
           ]}
           xAxis={[{ scaleType: "point", data: xLabels }]}
@@ -93,8 +102,8 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
       <div className="bg-white text-5xl shadow-2xl flex justify-center items-center p-3">
       {bestSet ? (
           <>
-            <h2 className="font-bold">{bestSet.weight}&nbsp;</h2>
-            <span>kg x {bestSet.reps}</span>
+            <span>{bestSet.weight} kg x&nbsp;</span>
+            <h2 className="font-bold"> {bestSet.reps}</h2>
           </>
         ) : (
           "No Data"
@@ -104,4 +113,4 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
   );
 };
 
-export default ChartHeaviestWeight;
+export default ChartMostReps;

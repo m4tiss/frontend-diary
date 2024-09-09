@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { LineChart } from "@mui/x-charts/LineChart";
 import ChartHeaviestWeight from "./charts/ChartHeaviestWeight";
+import ChartMostReps from "./charts/ChartMostReps";
 
 const GymRecords = () => {
   const [availableExercises, setAvailableExercises] = useState([]);
@@ -51,24 +52,7 @@ const GymRecords = () => {
       </div>
       <div className="flex justify-between gap-10">
           <ChartHeaviestWeight name_exercise={selectedExercise}/>
-        <div className="flex flex-col gap-10">
-          <div className="bg-white rounded-2xl shadow-2xl flex flex-col items-center p-2">
-            <h2 className="text-2xl">Most reps in set</h2>
-            <LineChart
-              xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-              series={[
-                {
-                  data: [2, 5.5, 2, 8.5, 1.5, 5],
-                },
-              ]}
-              width={500}
-              height={300}
-            />
-          </div>
-          <div className="bg-white text-5xl shadow-2xl flex flex-col items-center p-3">
-            70 kg x 12
-          </div>
-        </div>
+          <ChartMostReps name_exercise={selectedExercise}/>
       </div>
     </div>
   );
