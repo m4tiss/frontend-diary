@@ -6,6 +6,7 @@ import { UserProvider } from "./providers/UserProvider";
 import reportWebVitals from "./reportWebVitals";
 import { DarkModeProvider } from "./providers/DarkModeProvider";
 import { ContentProvider } from "./providers/ContentProvider";
+import './translation/i18n';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

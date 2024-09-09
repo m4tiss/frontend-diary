@@ -52,9 +52,6 @@ const StatsUserProfileSlider = ({ friends, created_at }) => {
           description="Days with us"
         />
       </SwiperSlide>
-      <SwiperSlide>
-        <ProfileStatsSlide number={300} description="Comments on platform" />
-      </SwiperSlide>
     </Swiper>
   );
 };
