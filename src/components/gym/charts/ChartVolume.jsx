@@ -56,11 +56,11 @@ const ChartVolume = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">{t('chart.volumeTitle')}</h2>
+      <h2 className="text-2xl p-2">{t('gym.chart.volumeTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: t('general.volume'), color: "#FF0000" }]}
+        series={[{ data: data, label: t('gym.general.volume'), color: "#FF0000" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
       />
     </div>

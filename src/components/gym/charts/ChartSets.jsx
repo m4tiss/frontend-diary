@@ -56,11 +56,11 @@ const ChartSets = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">{t('chart.setsTitle')}</h2>
+      <h2 className="text-2xl p-2">{t('gym.chart.setsTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: t('chart.sets'), color: "#1DA1F2" }]}
+        series={[{ data: data, label: t('gym.chart.sets'), color: "#1DA1F2" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
       />
     </div>

@@ -57,7 +57,7 @@ const GymPlannedWorkout = () => {
     <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full flex flex-col items-center">
         <h2 className="text-5xl my-10 font-semibold">
-          {t("newTraining.plannedWorkout")}
+          {t("gym.newTraining.plannedWorkout")}
         </h2>
         {routines.map((routine) => (
           <div
@@ -81,7 +81,7 @@ const GymPlannedWorkout = () => {
         ${routines.length === 0 ? "opacity-50" : "opacity-100"}
         `}
         >
-          {t("newTraining.doWorkout")}
+          {t("gym.newTraining.doWorkout")}
         </button>
       </div>
     </div>

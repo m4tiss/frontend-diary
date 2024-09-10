@@ -66,11 +66,11 @@ const GymNavbar = ({ setNavBarType }) => {
           >
             {darkMode ? (
               <>
-                {t("navbar.lightMode")} <LuSun />
+                {t("shared.navbar.lightMode")} <LuSun />
               </>
             ) : (
               <>
-                {t("navbar.nightMode")} <LuMoonStar />
+                {t("shared.navbar.nightMode")} <LuMoonStar />
               </>
             )}
           </motion.button>
@@ -92,7 +92,7 @@ const GymNavbar = ({ setNavBarType }) => {
           <NavbarButton
             bgColor="white"
             textColor={`${GYM_COLOR}`}
-            text={t("navbar.logout")}
+            text={t("shared.navbar.logout")}
             onClick={() => handleLogout()}
           />
         </div>

@@ -84,14 +84,14 @@ const ChartMostReps = ({ name_exercise }) => {
   return (
     <div className="flex flex-col gap-10">
       <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-        <h2 className="text-2xl">{t('chart.mostReps')}</h2>
+        <h2 className="text-2xl">{t('gym.chart.mostReps')}</h2>
         <LineChart
           width={window.innerWidth > 768 ? 500 : 300}
           height={300}
           series={[
             {
               data: data.map((item) => item.reps),
-              label: t('general.reps'),
+              label: t('gym.general.reps'),
               color: "#A020F0",
             },
           ]}

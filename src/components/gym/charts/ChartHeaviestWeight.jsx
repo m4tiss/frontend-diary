@@ -79,14 +79,14 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
   return (
     <div className="flex flex-col gap-10">
       <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-        <h2 className="text-2xl">{t('chart.heaviestWeight')}</h2>
+        <h2 className="text-2xl">{t('gym.chart.heaviestWeight')}</h2>
         <LineChart
           width={window.innerWidth > 768 ? 500 : 300}
           height={300}
           series={[
             {
               data: data.map((item) => item.weight),
-              label: t('general.weight'),
+              label: t('gym.general.weight'),
               color: "#ff4b00",
             },
           ]}

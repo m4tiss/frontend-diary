@@ -1,8 +1,10 @@
 import { useUser } from "../../providers/UserProvider";
 import DarkModeContext from "../../providers/DarkModeProvider";
+import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { formattedDate } from "../../functions/formatData";
 const GymStatsProfile = () => {
+  const { t } = useTranslation();
   const { userInfo } = useUser();
   const { darkMode} = useContext(DarkModeContext);
   return (
@@ -28,11 +30,11 @@ const GymStatsProfile = () => {
         </div>
       </div>
       <div className="flex justify-between text-white my-3">
-        <span>Joined platform</span>{" "}
+        <span>{t('shared.friends.joinedPlatform')}</span>{" "}
         <span>{formattedDate(userInfo.created_at)}</span>
       </div>
       <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>{userInfo.friends_count}</span>
+        <span>{t('shared.friends.friends')}</span> <span>{userInfo.friends_count}</span>
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ const GymNewTraining = () => {
           className="rounded-full flex flex-col justify-center items-center h-60 w-60 text-white cursor-pointer"
         >
           <CgNotes size={70} />
-          <h2>{t('newTraining.plannedWorkout')}</h2>
+          <h2>{t('gym.newTraining.plannedWorkout')}</h2>
         </motion.div>
 
         <motion.div
@@ -42,7 +42,7 @@ const GymNewTraining = () => {
           className="rounded-full flex flex-col justify-center items-center h-60 w-60 text-white cursor-pointer"
         >
           <IoBarbell size={70} />
-          <h2>{t('newTraining.quickWorkout')}</h2>
+          <h2>{t('gym.newTraining.quickWorkout')}</h2>
         </motion.div>
       </div>
       <div className="w-full flex justify-evenly">

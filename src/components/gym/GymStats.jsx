@@ -4,12 +4,14 @@ import GymStatsProfile from "./GymStatsProfile";
 import FriendStatsPanel from "../shared/FriendStatsPanel";
 import ChartMuscleUsed from "./charts/ChartMuscleUsed";
 import { useUser } from "../../providers/UserProvider";
+import { useTranslation } from "react-i18next";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import ChartDuration from "./charts/ChartDuration";
 import { formattedDuration } from "../../functions/formatData";
 
 const StatsGym = () => {
+  const { t } = useTranslation();
   const { userInfo } = useUser();
   const [friends, setFriends] = useState([]);
   const [selectedRange, setSelectedRange] = useState("week");
@@ -89,59 +91,62 @@ const StatsGym = () => {
     <div className="w-full flex flex-grow bg-[#e9ecef]">
       <div className="w-3/4 flex flex-col p-10 justify-center items-center flex-wrap h-fit">
         <div className="w-full m-5 flex justify-center items-center">
-          <span className="text-2xl font-semibold">Personal stats</span>
+          <span className="text-2xl font-semibold">
+            {" "}
+            {t("gym.stats.personalStats")}
+          </span>
         </div>
         <div className="flex justify-center w-full gap-5 mb-10">
           <button
             className={getButtonStyle("week")}
             onClick={() => handleRangeChange("week")}
           >
-            Week
+            {t("gym.stats.week")}
           </button>
           <button
             className={getButtonStyle("month")}
             onClick={() => handleRangeChange("month")}
           >
-            Month
+            {t("gym.stats.month")}
           </button>
           <button
             className={getButtonStyle("year")}
             onClick={() => handleRangeChange("year")}
           >
-            Year
+            {t("gym.stats.year")}
           </button>
           <button
             className={getButtonStyle("all")}
             onClick={() => handleRangeChange("all")}
           >
-            All
+            {t("gym.stats.all")}
           </button>
         </div>
         <div className="flex justify-between w-full gap-5">
           <SmallStatsPanel
-            title="Total Volume"
+            title={t("gym.stats.totalVolume")}
             description={stats.totalVolume + " kg"}
             loading={loadingStats}
           />
           <SmallStatsPanel
-            title="Workout Sessions"
+            title={t("gym.stats.workoutSessions")}
             description={stats.workoutSessions}
             loading={loadingStats}
           />
           <SmallStatsPanel
-            title="Total Sets"
+            title={t("gym.stats.totalSets")}
             description={stats.totalSets}
             loading={loadingStats}
           />
           <SmallStatsPanel
-            title="Total Time"
+            title={t("gym.stats.totalTime")}
             description={formattedDuration(stats.totalDuration)}
             loading={loadingStats}
           />
         </div>
         <div className="w-full flex justify-between m-5 gap-5">
           <ChartDuration />
-          <ChartMuscleUsed range={selectedRange}/>
+          <ChartMuscleUsed range={selectedRange} />
         </div>
       </div>
 
@@ -150,7 +155,7 @@ const StatsGym = () => {
           <GymStatsProfile />
           <div className="bg-white dark:bg-run-night-element text-black dark:text-white flex flex-col rounded-2xl shadow-xl my-10 py-10 gap-2">
             <div className="flex flex-grow justify-evenly text-2xl font-semibold w-full">
-              <span>Friends</span> <span>{userInfo.friends_count}</span>
+              <span>{t('shared.friends.friends')}</span> <span>{userInfo.friends_count}</span>
             </div>
             {friends.slice(0, 5).map((user) => (
               <FriendStatsPanel key={user.user_id} user={user} />

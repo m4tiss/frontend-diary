@@ -78,7 +78,7 @@ const GymWorkoutDetails = () => {
               }`}
               onClick={() => setSelectedExercise(-1)}
             >
-              {t("newTraining.summary")}
+              {t("gym.newTraining.summary")}
             </div>
           </>
         )}
@@ -89,11 +89,11 @@ const GymWorkoutDetails = () => {
             <table className="w-full bg-white text-2xl h-fit text-center rounded-lg outline-none border-none">
               <thead>
                 <tr>
-                  <th>{t("general.reps")}</th>
+                  <th>{t("gym.general.reps")}</th>
                   <th></th>
-                  <th>{t("general.weight")}</th>
+                  <th>{t("gym.general.weight")}</th>
                   <th></th>
-                  <th>{t("general.volume")}</th>
+                  <th>{t("gym.general.volume")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -135,13 +135,13 @@ const GymWorkoutDetails = () => {
                 className="bg-red-500 p-2 rounded-2xl"
                 onClick={handleRemoveSet}
               >
-                {t("newTraining.removeSet")}
+                {t("gym.newTraining.removeSet")}
               </button>
               <button
                 className="bg-pink-500 p-2 rounded-2xl"
                 onClick={handleAddSet}
               >
-                {t("newTraining.addSet")}
+                {t("gym.newTraining.addSet")}
               </button>
             </div>
           </>

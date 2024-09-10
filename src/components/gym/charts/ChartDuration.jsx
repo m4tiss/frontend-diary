@@ -62,11 +62,11 @@ const ChartDuration = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-full">
-      <h2 className="text-2xl p-2">{t('chart.durationTitle')}</h2>
+      <h2 className="text-2xl p-2">{t('gym.chart.durationTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: t('general.duration'), color: "#FF0000" }]}
+        series={[{ data: data, label: t('gym.general.duration'), color: "#FF0000" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
         yAxis={[{
           scaleType: "linear",

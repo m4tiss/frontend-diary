@@ -16,10 +16,10 @@ const GymDashboard = () => {
       <div className="flex-grow flex justify-center items-center">
         <div className="w-3/4 flex flex-col justify-center items-center dark:text-white">
           <h2 className="text-[80px] text-center  font-bold tracking-tighter">
-          {t('dashboard.title')}
+          {t('gym.dashboard.title')}
           </h2>
           <h2 className="text-[30px] tracking-tighter md:px-40 text-center">
-          {t('dashboard.description')}
+          {t('gym.dashboard.description')}
           </h2>
         </div>
       </div>
@@ -36,28 +36,28 @@ const GymDashboard = () => {
         className=" flex-grow flex flex-wrap gap-10 my-10 md:my-0  justify-center items-center"
       >
         <DashboardPanel
-          title= {t('dashboard.newTraining')}
+          title= {t('gym.dashboard.newTraining')}
           icon={doTraining}
           type="gym"
           onclick={() => navigate("/gym/newTraining")}
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
         />
         <DashboardPanel
-          title= {t('dashboard.historyTraining')}
+          title= {t('gym.dashboard.historyTraining')}
           icon={history}
           type="gym"
           onclick={() => navigate("/gym/history")}
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
         />
         <DashboardPanel
-          title= {t('dashboard.stats')}
+          title= {t('gym.dashboard.stats')}
           icon={stats}
           type="gym"
           onclick={() => navigate("/gym/stats")}
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
         />
         <DashboardPanel
-          title={t('dashboard.friends')}
+          title={t('gym.dashboard.friends')}
           icon={friends}
           type="gym"
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"

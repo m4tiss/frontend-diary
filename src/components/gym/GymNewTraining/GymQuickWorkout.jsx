@@ -113,14 +113,14 @@ const GymQuickWorkout = () => {
           <input
             className="bg-white p-4 w-96 text-xl rounded-full shadow-xl outline-none"
             type="text"
-            placeholder={t("newTraining.searchExercise")}
+            placeholder={t("gym.newTraining.searchExercise")}
             //value={searchPattern}
             //onChange={handleSearchChange}
           />
         </div>
       </div>
       <h2 className="text-black w-full text-xl justify-start py-5">
-        {t("newTraining.avaiableExercises")}
+        {t("gym.newTraining.avaiableExercises")}
       </h2>
 
       <div className="flex w-full justify-start gap-10">
@@ -143,7 +143,7 @@ const GymQuickWorkout = () => {
           {t("general.previous")}
         </button>
         <span className="text-black">{`${t(
-          "general.page"
+          "gym.general.page"
         )} ${currentPage} of ${Math.ceil(
           availableExercises.length / exercisesPerPage
         )}`}</span>
@@ -155,12 +155,12 @@ const GymQuickWorkout = () => {
           }
           className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
         >
-          {t("general.next")}
+          {t("gym.general.next")}
         </button>
       </div>
 
       <h2 className="text-black w-full text-xl justify-start py-10">
-        {t("newTraining.selectedExercises")}
+        {t("gym.newTraining.selectedExercises")}
       </h2>
       <div className="flex w-full justify-start gap-10">
         <div className="flex w-full justify-start gap-10">
@@ -190,7 +190,7 @@ const GymQuickWorkout = () => {
           {t("general.previous")}
         </button>
         <span className="text-black">{`${t(
-          "general.page"
+          "gym.general.page"
         )} ${selectedExercisesPage} of ${Math.ceil(
           selectedExercises.length / exercisesPerPage
         )}`}</span>
@@ -203,7 +203,7 @@ const GymQuickWorkout = () => {
           }
           className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
         >
-          {t("general.next")}
+          {t("gym.general.next")}
         </button>
       </div>
 
@@ -218,7 +218,7 @@ const GymQuickWorkout = () => {
           selectedExercises.length === 0 ? `opacity-50` : `opacity-100`
         } `}
       >
-        {t("newTraining.nextStep")}
+        {t("gym.newTraining.nextStep")}
       </button>
     </div>
   );
