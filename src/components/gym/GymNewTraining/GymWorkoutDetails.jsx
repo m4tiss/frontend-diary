@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import GymSummaryPanel from './GymSummaryPanel'
+import GymSummaryPanel from "./GymSummaryPanel";
+import { useTranslation } from "react-i18next";
 
 const GymWorkoutDetails = () => {
   const location = useLocation();
+  const { t } = useTranslation();
   const { selectedExercises, planName } = location.state || {};
   const [workoutData, setWorkoutData] = useState([]);
-  
+
   useEffect(() => {
     const initialData = selectedExercises.map((exercise) => ({
       gym_exercise_id: exercise.gym_exercise_id,
@@ -18,7 +20,7 @@ const GymWorkoutDetails = () => {
       ],
     }));
     setWorkoutData(initialData);
-    console.log(selectedExercises)
+    console.log(selectedExercises);
   }, [selectedExercises]);
 
   const [selectedExercise, setSelectedExercise] = useState(0);
@@ -76,7 +78,7 @@ const GymWorkoutDetails = () => {
               }`}
               onClick={() => setSelectedExercise(-1)}
             >
-              Summary
+              {t("newTraining.summary")}
             </div>
           </>
         )}
@@ -87,11 +89,11 @@ const GymWorkoutDetails = () => {
             <table className="w-full bg-white text-2xl h-fit text-center rounded-lg outline-none border-none">
               <thead>
                 <tr>
-                  <th>Reps</th>
+                  <th>{t("general.reps")}</th>
                   <th></th>
-                  <th>Weight</th>
+                  <th>{t("general.weight")}</th>
                   <th></th>
-                  <th>Volume</th>
+                  <th>{t("general.volume")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -133,18 +135,18 @@ const GymWorkoutDetails = () => {
                 className="bg-red-500 p-2 rounded-2xl"
                 onClick={handleRemoveSet}
               >
-                Remove set
+                {t("newTraining.removeSet")}
               </button>
               <button
                 className="bg-pink-500 p-2 rounded-2xl"
                 onClick={handleAddSet}
               >
-                Add set
+                {t("newTraining.addSet")}
               </button>
             </div>
           </>
         ) : (
-            <GymSummaryPanel workoutData={workoutData} planName={planName}/>
+          <GymSummaryPanel workoutData={workoutData} planName={planName} />
         )}
       </div>
     </div>

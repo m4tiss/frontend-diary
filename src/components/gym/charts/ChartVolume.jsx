@@ -60,7 +60,7 @@ const ChartVolume = ({ friendId }) => {
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: t('chart.volume'), color: "#FF0000" }]}
+        series={[{ data: data, label: t('general.volume'), color: "#FF0000" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
       />
     </div>

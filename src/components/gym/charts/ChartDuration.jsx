@@ -66,7 +66,7 @@ const ChartDuration = ({ friendId }) => {
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: t('chart.duration'), color: "#FF0000" }]}
+        series={[{ data: data, label: t('general.duration'), color: "#FF0000" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
         yAxis={[{
           scaleType: "linear",

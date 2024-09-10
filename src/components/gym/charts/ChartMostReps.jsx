@@ -91,7 +91,7 @@ const ChartMostReps = ({ name_exercise }) => {
           series={[
             {
               data: data.map((item) => item.reps),
-              label: t('chart.reps'),
+              label: t('general.reps'),
               color: "#A020F0",
             },
           ]}

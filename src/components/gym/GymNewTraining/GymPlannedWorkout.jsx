@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const GymPlannedWorkout = () => {
+  const { t } = useTranslation();
   const [chosenPlan, setChosenPlan] = useState(null);
   const [routines, setRoutines] = useState([]);
   const navigate = useNavigate();
@@ -54,7 +56,9 @@ const GymPlannedWorkout = () => {
   return (
     <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full flex flex-col items-center">
-        <h2 className="text-5xl my-10 font-semibold">Planned Workout</h2>
+        <h2 className="text-5xl my-10 font-semibold">
+          {t("newTraining.plannedWorkout")}
+        </h2>
         {routines.map((routine) => (
           <div
             key={routine.gym_routine_id}
@@ -77,7 +81,7 @@ const GymPlannedWorkout = () => {
         ${routines.length === 0 ? "opacity-50" : "opacity-100"}
         `}
         >
-          Do training
+          {t("newTraining.doWorkout")}
         </button>
       </div>
     </div>

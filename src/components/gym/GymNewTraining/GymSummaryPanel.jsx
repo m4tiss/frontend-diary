@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ReactStars from "react-stars";
 import axios from "../../../config/axios";
+import { useTranslation } from "react-i18next";
 import { getAuthToken } from "../../../config/auth";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const GymSummaryPanel = ({ workoutData, planName }) => {
+  const { t } = useTranslation();
   const [data, setData] = useState({
     duration: "00:00:00",
     note: "",
@@ -39,7 +41,6 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
       });
       toast.success("Workout added!");
       setTimeout(() => navigate("/gym/history"), 2000);
-      //fetchUserInfo();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -50,7 +51,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
       <div className="w-full flex justify-evenly">
         <div className="flex flex-col">
           <div className="text-left flex w-96 flex-col dark:text-white">
-            <label className="px-2 text-xl">Duration</label>
+            <label className="px-2 text-xl">{t('general.duration')}</label>
             <input
               value={data.duration}
               onChange={(e) => setData({ ...data, duration: e.target.value })}
@@ -60,7 +61,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
           </div>
 
           <div className="text-left flex w-96 flex-col  rounded-xl p-2  dark:text-white">
-            <label className="px-2 text-xl">Rating</label>
+            <label className="px-2 text-xl">{t('general.rating')}</label>
 
             <input
               value={data.rating}
@@ -83,13 +84,13 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
           </div>
         </div>
         <div className="text-left flex flex-col dark:text-white">
-          <label className="px-2 text-xl">Note</label>
+          <label className="px-2 text-xl">{t('general.note')}</label>
           <textarea
             value={data.note}
             onChange={(e) => setData({ ...data, note: e.target.value })}
             className="resize-none text-2xl p-2 w-80 2xl:w-96 min-h-40 bg-[#e9ecef] shadow-xl rounded-2xl outline-none dark:bg-run-night-element "
             type="text"
-            placeholder="Best run every..."
+            placeholder={t('newTraining.notePlaceholder')}
           ></textarea>
         </div>
       </div>
@@ -97,7 +98,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
         onClick={() => handleAddWorkout()}
         className={`rounded-2xl bg-lime-500 text-xl text-white p-2`}
       >
-        Save workout
+        {t('newTraining.saveWorkout')}
       </button>
       <ToastContainer/>
     </div>

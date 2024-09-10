@@ -5,6 +5,17 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   pl: {
     translation: {
+      general: {
+        page: "Strona",
+        next: "Następna",
+        previous: "Poprzednia",
+        reps: "Powtórzenia",
+        weight: "Ciężar",
+        volume: "Objętość",
+        duration: "Czas trwania",
+        rating:"Ocena",
+        note:"Notatka"
+      },
       navbar: {
         lightMode: "Tryb dzienny",
         nightMode: "Tryb nocny",
@@ -20,25 +31,48 @@ const resources = {
         stats: "Statystyki",
         friends: "Znajomi",
       },
+      newTraining: {
+        plannedWorkout: "Planowany trening",
+        quickWorkout: "Szybki trening",
+        doWorkout: "Zrób trening",
+        avaiableExercises: "Dostępne Ćwiczenia",
+        selectedExercises: "Wybrane Ćwiczenia",
+        noExercises: "Brak wybranych ćwiczeń",
+        searchExercise: "Wyszukaj ćwiczenie",
+        nextStep:"Następny krok",
+        summary:"Podsumowanie",
+        addSet:"Dodaj serię",
+        removeSet:"Usuń serię",
+        saveWorkout:"Zapisz trening",
+        notePlaceholder:"Najlepszy trening w życiu..."   
+      },
       chart: {
-        noData:"Brak danych do wyświetlenia",
+        noData: "Brak danych do wyświetlenia",
         durationTitle: "Czas trwania ostatnich treningów",
-        duration:"Czas trawnia",
         muscleUsed: "Zaangażowane grupy mięśniowe",
         rating: "Histogram ocen treningów",
         setsTitle: "Ilość serii w ostatnich treningach",
         sets: "Serie",
         volumeTitle: "Objętość w ostatnich treningach",
-        volume: "Objętość",
-        mostReps:"Najwięcej powtórzeń w serii",
-        reps:"Powtórzenia",
-        heaviestWeight:"Najcięższy ciężar w serii",
-        weight:"Ciężar"
+        mostReps: "Najwięcej powtórzeń w serii",
+        heaviestWeight: "Najcięższy ciężar w serii",
       },
     },
   },
   gb: {
     translation: {
+      general: {
+        page: "Page",
+        next: "Next",
+        previous: "Previous",
+        reps: "Reps",
+        weight: "Weight",
+        volume: "Volume",
+        duration: "Duration",
+        rating:"Rating",
+        note:"Note"
+
+      },
       navbar: {
         lightMode: "Light Mode",
         nightMode: "Night Mode",
@@ -54,20 +88,31 @@ const resources = {
         stats: "Stats",
         friends: "Friends",
       },
+      newTraining: {
+        plannedWorkout: "Planned Workout",
+        quickWorkout: "Quick Workout",
+        doWorkout: "Do Workout",
+        avaiableExercises: "Avaiable Exercises",
+        selectedExercises: "Selected Exercises",
+        noExercises: "No exercises selected",
+        searchExercise:"Search exercise",
+        nextStep:"Next step",
+        summary:"Summary",
+        addSet:"Add set",
+        removeSet:"Remove set",
+        saveWorkout:"Save workout",
+        notePlaceholder:"Best run ever..."        
+      },
       chart: {
-        noData:"No Data to Display",
+        noData: "No Data to Display",
         durationTitle: "Duration of Recent Workouts",
-        duration:"Duration",
         muscleUsed: "Muscle Groups Used",
         rating: "Training Ratings Histogram",
         setsTitle: "Number of Sets in Recent Workouts",
         sets: "Sets",
         volumeTitle: "Volume in Recent Workouts",
-        volume: "Volume",
-        mostReps:"Most Reps in a Set",
-        reps:"Reps",
-        heaviestWeight:"Heaviest Weight in a Set",
-        weight:"Weight"
+        mostReps: "Most Reps in a Set",
+        heaviestWeight: "Heaviest Weight in a Set",
       },
     },
   },

@@ -86,7 +86,7 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
           series={[
             {
               data: data.map((item) => item.weight),
-              label: t('chart.weight'),
+              label: t('general.weight'),
               color: "#ff4b00",
             },
           ]}
