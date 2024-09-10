@@ -1,5 +1,6 @@
 import { calculateDaysWithUs } from "../../functions/statsCalculations";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import "swiper/css";
@@ -14,6 +15,7 @@ import SwiperCore from "swiper";
 SwiperCore.use([Autoplay]);
 
 const StatsUserProfileSlider = ({ friends, created_at }) => {
+  const { t } = useTranslation();
   const [numberOfAllWorkouts, setNumberOfAllWorkouts] = useState(0);
 
   useEffect(() => {
@@ -41,15 +43,15 @@ const StatsUserProfileSlider = ({ friends, created_at }) => {
       loop={true}
     >
       <SwiperSlide>
-        <ProfileStatsSlide number={friends} description="Friends" />
+        <ProfileStatsSlide number={friends} description={t('shared.friends.friends')} />
       </SwiperSlide>
       <SwiperSlide>
-        <ProfileStatsSlide number={numberOfAllWorkouts} description="All trainings" />
+        <ProfileStatsSlide number={numberOfAllWorkouts} description={t('gym.profile.allTrainings')} />
       </SwiperSlide>
       <SwiperSlide>
         <ProfileStatsSlide
           number={calculateDaysWithUs(created_at)}
-          description="Days with us"
+          description={t('gym.profile.daysWithUs')}
         />
       </SwiperSlide>
     </Swiper>

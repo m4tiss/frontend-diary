@@ -14,6 +14,7 @@ const resources = {
         },
         friends: {
           friends: "Znajomi",
+          addFriend:"Dodaj znajomego",
           joinedPlatform: "Dołączył do platformy",
           usersToInvite: "Użytkownicy do zaproszenia",
           pendingUsers: "Oczekujący użytkownicy",
@@ -38,6 +39,18 @@ const resources = {
           duration: "Czas trwania",
           rating: "Ocena",
           note: "Notatka",
+        },
+        profile:{
+          showRecords:"Zobacz rekordy",
+          addRoutine:"Dodaj rutynę",
+          showAchievements:"Zobacz osiągnięcia",
+          addNewGoal:"Dodaj nowy cel",
+          showGoals:"Zobacz cele",
+          chat:"Czaty",
+          allTrainings:"Wszytskie treningi",
+          daysWithUs:"Dni Z Nami",
+          email:"Email",
+          birth:"Data urodzenia"
         },
         dashboard: {
           title: "TRENUJ CODZIENNIE",
@@ -99,6 +112,7 @@ const resources = {
         },
         friends: {
           friends: "Friends",
+          addFriend:"Add Friend",
           joinedPlatform: "Joined platform",
           usersToInvite: "Users To Invite",
           pendingUsers: "Pending Users",
@@ -124,7 +138,18 @@ const resources = {
           rating: "Rating",
           note: "Note",
         },
-
+        profile:{
+          showRecords:"Show records",
+          addRoutine:"Add routine",
+          showAchievements:"Show achievements",
+          addNewGoal:"Add new goal",
+          showGoals:"Show goals",
+          chat:"Chats",
+          allTrainings:"All workouts",
+          daysWithUs:"Days With Us",
+          email:"Email",
+          birth:"Date of birth"
+        },
         dashboard: {
           title: "TRAINING EVERYDAY",
           description:

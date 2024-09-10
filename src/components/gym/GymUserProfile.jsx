@@ -9,6 +9,7 @@ import axios from "../../config/axios";
 import { AnimatePresence } from "framer-motion";
 import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
+import { useTranslation } from "react-i18next";
 import { TbCategoryPlus } from "react-icons/tb";
 import { GiAchievement } from "react-icons/gi";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
@@ -22,7 +23,8 @@ import { useUser } from "../../providers/UserProvider";
 import { ToastContainer, toast } from "react-toastify";
 import GymAddRoutine from "./GymAddRoutine";
 
-const RunUserProfile = () => {
+const GymUserProfile = () => {
+  const { t } = useTranslation();
   const { userInfo } = useUser();
   const [isGoalOpen, setIsGoalOpen] = useState(false);
   const [isRoutineOpen, setIsRoutineOpen] = useState(false);
@@ -116,7 +118,7 @@ const RunUserProfile = () => {
       </div>
       <div className="2xl:w-1/3 flex px-5 2xl:px-0 flex-col ">
         <h2 className="text-4xl 2xl:text-left dark:text-white  text-center font-semibold my-5">
-          Friends
+          {t('shared.friends.friends')}
         </h2>
         <div className="w-full overflow-hidden h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
           {friends.slice(0, visibleFriendsCount).map((user, index) => (
@@ -128,7 +130,7 @@ const RunUserProfile = () => {
               className="rounded-full cursor-pointer hover:scale-110 duration-200 hover:rotate-90"
               size={100}
             />
-            <label className="text-xl">Add Friends</label>
+            <label className="text-xl">{t('shared.friends.addFriend')}</label>
           </div>
         </div>
 
@@ -136,40 +138,40 @@ const RunUserProfile = () => {
           <PagePanel
             onClick={() => navigate("/gym/records")}
             type={"gym"}
-            title="Show records"
+            title={t('gym.profile.showRecords')}
             icon={<GiTrophyCup size={50} color="white" />}
           />
           <PagePanel
             onClick={toggleRoutineDialog}
             type={"gym"}
-            title="Add routine"
+            title={t('gym.profile.addRoutine')}
             icon={<TbNotes size={50} color="white" />}
           />
           <PagePanel
             //onClick={() => navigate("/run/achievements")}
             type={"gym"}
-            title="Show achievements"
+            title={t('gym.profile.showAchievements')}
             icon={<GiAchievement size={50} color="white" />}
           />
           <PagePanel
-           //onClick={toggleGoalDialog}
+            //onClick={toggleGoalDialog}
             type={"gym"}
-            title="Add new goal"
+            title={t('gym.profile.addNewGoal')}
             icon={<GoGoal size={50} color="white" />}
           />
           <PagePanel
             //onClick={() => navigate("/run/goals")}
             type={"gym"}
-            title="Show goals"
+            title={t('gym.profile.showGoals')}
             icon={<LuGoal size={50} color="white" />}
           />
           <PagePanel
             onClick={() => navigate("/gym/chats")}
             type={"gym"}
-            title="Chats"
+            title={t('gym.profile.chat')}
             icon={<IoChatboxEllipsesOutline size={50} color="white" />}
           />
-          
+
           {/* <AnimatePresence>
             {isGoalOpen && (
               <RunAddGoal
@@ -204,7 +206,7 @@ const RunUserProfile = () => {
         <div className="flex flex-col 2xl:w-96 gap-2 px-5 2xl:px-0 w-full">
           <div className="w-full h-24 dark:bg-run-night-element dark:text-white bg-white rounded-xl  flex justify-evenly items-center px-10 shadow-xl">
             <div className="flex-grow flex flex-col">
-              <label>Email</label>
+              <label>{t('gym.profile.email')}</label>
               <h2 className="text-xl border-white max-w-60 font-semibold">
                 {userInfo.email}
               </h2>
@@ -212,7 +214,7 @@ const RunUserProfile = () => {
           </div>
           <div className="w-full h-24 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
             <div className="flex-grow">
-              <label>Date of birth</label>
+              <label>{t('gym.profile.birth')}</label>
               <h2 className="text-xl font-semibold">
                 {formattedDate(userInfo.date_of_birth || "0000-00-00")}
               </h2>
@@ -226,4 +228,4 @@ const RunUserProfile = () => {
   );
 };
 
-export default RunUserProfile;
+export default GymUserProfile;
