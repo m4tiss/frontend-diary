@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 
 const convertDurationToSeconds = (duration) => {
@@ -11,7 +12,6 @@ const convertDurationToSeconds = (duration) => {
 };
 
 const convertSecondsToDuration = (seconds) => {
-  //console.log("Converting seconds:", seconds); // Debug
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = seconds % 60;
@@ -21,6 +21,7 @@ const convertSecondsToDuration = (seconds) => {
 const ChartDuration = ({ friendId }) => {
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const token = getAuthToken();
@@ -61,11 +62,11 @@ const ChartDuration = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-full">
-      <h2 className="text-2xl p-2">Last training duration</h2>
+      <h2 className="text-2xl p-2">{t('chart.durationTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: "Duration", color: "#FF0000" }]}
+        series={[{ data: data, label: t('chart.duration'), color: "#FF0000" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
         yAxis={[{
           scaleType: "linear",

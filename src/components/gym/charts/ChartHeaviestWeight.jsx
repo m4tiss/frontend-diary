@@ -4,9 +4,11 @@ import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import { format } from "date-fns";
 import SyncLoader from "react-spinners/SyncLoader";
+import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChartHeaviestWeight = ({ name_exercise }) => {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -77,15 +79,15 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
   return (
     <div className="flex flex-col gap-10">
       <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-        <h2 className="text-2xl">Heaviest weight in set</h2>
+        <h2 className="text-2xl">{t('chart.heaviestWeight')}</h2>
         <LineChart
           width={window.innerWidth > 768 ? 500 : 300}
           height={300}
           series={[
             {
               data: data.map((item) => item.weight),
-              label: "Weight",
-              color: "#1DA1F2",
+              label: t('chart.weight'),
+              color: "#ff4b00",
             },
           ]}
           xAxis={[{ scaleType: "point", data: xLabels }]}

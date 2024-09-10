@@ -5,14 +5,14 @@ import { PieChart } from "@mui/x-charts";
 import SyncLoader from "react-spinners/SyncLoader";
 import DarkModeContext from "../../../providers/DarkModeProvider";
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 const ChartMuscleUsed = ({ friendId, range = "all"}) => {
 
   const { darkMode } = useContext(DarkModeContext);
-
   const [categoriesData, setCategoriesData] = useState({});
   const [loading, setLoading] = useState(true);
-  
+  const { t } = useTranslation();
 
   useEffect(() => {
     setLoading(true)
@@ -65,9 +65,9 @@ const ChartMuscleUsed = ({ friendId, range = "all"}) => {
 
   return (
     <div className="flex flex-col items-center py-10 bg-white rounded-xl w-full shadow-xl">
-      <div className="text-2xl p-2">Muscle Groups Used</div>
+      <div className="text-2xl p-2">{t('chart.muscleUsed')}</div>
       {isEmptyData ? (
-        <div>No data available</div>
+        <div>{t('chart.noData')}</div>
       ) : (
         <PieChart
           colors={transformDataForPieChart().map((data) => data.color)}

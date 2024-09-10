@@ -19,10 +19,7 @@ const GymDashboard = () => {
           {t('dashboard.title')}
           </h2>
           <h2 className="text-[30px] tracking-tighter md:px-40 text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-            nesciunt molestiae Eum nesciunt molestiae suscipit ex! ex! Possimus
-            a officia, quas, dolore quaerat similique ipsum rem iure, eum
-            repellendus sit qui recusandae porro. Architecto.Y
+          {t('dashboard.description')}
           </h2>
         </div>
       </div>
@@ -39,28 +36,28 @@ const GymDashboard = () => {
         className=" flex-grow flex flex-wrap gap-10 my-10 md:my-0  justify-center items-center"
       >
         <DashboardPanel
-          title="New training"
+          title= {t('dashboard.newTraining')}
           icon={doTraining}
           type="gym"
           onclick={() => navigate("/gym/newTraining")}
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
         />
         <DashboardPanel
-          title="History training"
+          title= {t('dashboard.historyTraining')}
           icon={history}
           type="gym"
           onclick={() => navigate("/gym/history")}
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
         />
         <DashboardPanel
-          title="Stats"
+          title= {t('dashboard.stats')}
           icon={stats}
           type="gym"
           onclick={() => navigate("/gym/stats")}
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
         />
         <DashboardPanel
-          title="Friends"
+          title={t('dashboard.friends')}
           icon={friends}
           type="gym"
           background="linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"

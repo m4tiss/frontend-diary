@@ -5,11 +5,13 @@ import axios from "../../../config/axios";
 import { format } from "date-fns";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 const ChartVolume = ({ friendId }) => {
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const token = getAuthToken();
@@ -54,11 +56,11 @@ const ChartVolume = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">Last Training Volume</h2>
+      <h2 className="text-2xl p-2">{t('chart.volumeTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: "Volume", color: "#FF0000" }]}
+        series={[{ data: data, label: t('chart.volume'), color: "#FF0000" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
       />
     </div>
