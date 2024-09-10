@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import axios from "../../config/axios";
 import ReactStars from "react-stars";
+import { useTranslation } from "react-i18next";
 import { CiStar } from "react-icons/ci";
 import { getAuthToken } from "../../config/auth";
 import { MdOutlineNoteAlt } from "react-icons/md";
@@ -15,7 +16,8 @@ import {
   formattedData,
 } from "../../functions/formatData";
 
-const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
+const GymTrainingDetails = ({planName, toggleDialog, workoutId, onDelete }) => {
+  const { t } = useTranslation();
   const [selectedExercise, setSelectedExercise] = useState(0);
   const [workout, setWorkout] = useState();
 
@@ -54,7 +56,7 @@ const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex items-center px-10 justify-between">
-          <h2 className="text-4xl">QUICK WORKOUT</h2>
+          <h2 className="text-4xl">{planName}</h2>
           <div className="flex gap-5">
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -62,7 +64,7 @@ const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
             onClick={handleDelete}
             className="mt-4 px-4 py-2 h-fit shadow-xl bg-red-500 text-white rounded"
           >
-            Delete
+            {t('shared.actions.delete')}
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -70,7 +72,7 @@ const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
             onClick={toggleDialog}
             className="mt-4 px-4 py-2 h-fit shadow-xl bg-lime-500 text-white rounded"
           >
-            Edit
+            {t('shared.actions.edit')}
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -78,7 +80,7 @@ const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
             onClick={toggleDialog}
             className="mt-4 px-4 py-2 h-fit shadow-xl bg-purple-500 text-white rounded"
           >
-            Close
+            {t('shared.actions.close')}
           </motion.button>
           </div>
 
@@ -112,11 +114,11 @@ const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
                   <table className="w-full bg-white text-2xl h-fit text-center rounded-lg outline-none border-none">
                     <thead>
                       <tr>
-                        <th>Reps</th>
+                        <th>{t('gym.general.reps')}</th>
                         <th></th>
-                        <th>Weight</th>
+                        <th>{t('gym.general.weight')}</th>
                         <th></th>
-                        <th>Volume</th>
+                        <th>{t('gym.general.volume')}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -157,7 +159,7 @@ const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
             <div>
               <div className="w-full flex justify-center items-end gap-3">
                 <MdOutlineTimer size={35} />
-                <h2 className="text-3xl font-semibold">Duration</h2>
+                <h2 className="text-3xl font-semibold">{t('gym.general.duration')}</h2>
               </div>
               <label className="text-xl">
                 {formattedDuration(workout?.duration || "00:00:00")}
@@ -166,14 +168,14 @@ const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
             <div>
               <div className="flex justify-center items-end gap-3">
                 <CiCalendarDate size={35} />
-                <h2 className="text-3xl font-semibold">Date</h2>
+                <h2 className="text-3xl font-semibold">{t('gym.general.date')}</h2>
               </div>
               <label className="text-xl">{formattedTime(workout?.date)|| "00:00:00"} {formattedDate(workout?.date) || "00:00:00"}</label>
             </div>
             <div>
               <div className="flex justify-center items-end gap-3">
                 <CiStar size={35} />
-                <h2 className="text-3xl font-semibold">Rating</h2>
+                <h2 className="text-3xl font-semibold">{t('gym.general.rating')}</h2>
               </div>
               <div className="flex justify-center items-center gap-3">
                 <h2 className="text-xl">
@@ -192,7 +194,7 @@ const GymTrainingDetails = ({ toggleDialog, workoutId, onDelete }) => {
             <div className="max-h-48">
               <div className=" flex justify-center items-end gap-3">
                 <MdOutlineNoteAlt size={35} />
-                <h2 className="text-3xl font-semibold">Note</h2>
+                <h2 className="text-3xl font-semibold">{t('gym.general.note')}</h2>
               </div>
               <label>{workout?.note}</label>
             </div>

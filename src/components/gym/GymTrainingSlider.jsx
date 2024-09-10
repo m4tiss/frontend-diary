@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import "swiper/css";
@@ -12,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const GymTrainingSlider = () => {
   const [workouts, setWorkouts] = useState([]);
-
+  const { t } = useTranslation();
 
   const handleDelete = (id) => {
     const token = getAuthToken();
@@ -60,7 +61,7 @@ const GymTrainingSlider = () => {
       {workouts.length === 0 ? (
         <SwiperSlide key={-1}>
           <div className="w-full h-96 flex gap-20 m-5 flex-col items-center justify-center">
-            <h2 className="text-5xl dark:text-white">No available trainings</h2>
+            <h2 className="text-5xl dark:text-white">{t('gym.historyTraining.noTrainings')}</h2>
             <motion.button
               onClick={() => navigate("/gym/newTraining")}
               whileHover={{ scale: 1.1 }}
@@ -71,7 +72,7 @@ const GymTrainingSlider = () => {
                   "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
               }}
             >
-              Add new trainings
+             {t('gym.historyTraining.addTraining')}
             </motion.button>
           </div>
         </SwiperSlide>

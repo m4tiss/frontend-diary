@@ -4,8 +4,9 @@ import { calculateDaysWithUs } from "../../../functions/statsCalculations";
 import { useContext } from "react";
 import DarkModeContext from "../../../providers/DarkModeProvider";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useTranslation } from "react-i18next";
 const GymFriendAdvancedInfo = ({ friendInfo }) => {
-
+  const { t } = useTranslation();
     const { darkMode } = useContext(DarkModeContext);
 
     return (
@@ -22,7 +23,7 @@ const GymFriendAdvancedInfo = ({ friendInfo }) => {
               }
             className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col justify-center items-center text">
               <label className="text-4xl">{friendInfo?.friends_count}</label>
-              <h2 className="text-xl">Friends</h2>
+              <h2 className="text-xl">{t('shared.friends.friends')}</h2>
             </div>
             <div 
             
@@ -38,7 +39,7 @@ const GymFriendAdvancedInfo = ({ friendInfo }) => {
               <label className="text-4xl">
                 {formattedDate(friendInfo?.date_of_birth)}
               </label>
-              <h2 className="text-xl">Birth Date</h2>
+              <h2 className="text-xl">{t('shared.profile.birth')}</h2>
             </div>
             <div
               style={
@@ -54,11 +55,11 @@ const GymFriendAdvancedInfo = ({ friendInfo }) => {
               <label className="text-4xl">
                 {calculateDaysWithUs(friendInfo?.created_at)}
               </label>
-              <h2 className="text-xl">Days on platform</h2>
+              <h2 className="text-xl">{t('shared.profile.daysOnPlatform')}</h2>
             </div>
             <div className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col
             justify-center items-center cursor-pointer bg-[#d90429] text gap-2">
-              <h2>Remove friend</h2>
+              <h2>{t('shared.profile.removeFriend')}</h2>
               <RiDeleteBin6Line/>
             </div>
           </div>

@@ -14,7 +14,7 @@ const resources = {
         },
         friends: {
           friends: "Znajomi",
-          addFriend:"Dodaj znajomego",
+          addFriend: "Dodaj znajomego",
           joinedPlatform: "Dołączył do platformy",
           usersToInvite: "Użytkownicy do zaproszenia",
           pendingUsers: "Oczekujący użytkownicy",
@@ -26,6 +26,16 @@ const resources = {
           accept: "Akceptuj",
           reject: "Odrzuć",
         },
+        profile: {
+          removeFriend: "Usuń znajomego",
+          daysOnPlatform: "Dni na platformie",
+          birth: "Data urodzenia",
+        },
+        actions:{
+          delete:"Usuń",
+          edit:"Edytuj",
+          close:"Zamknij"
+        }
       },
       run: {},
       gym: {
@@ -39,18 +49,22 @@ const resources = {
           duration: "Czas trwania",
           rating: "Ocena",
           note: "Notatka",
+          sets: "Serie",
+          workouts: "Treningi",
+          muscles: "Grupy mięśni",
+          date:"Data"
         },
-        profile:{
-          showRecords:"Zobacz rekordy",
-          addRoutine:"Dodaj rutynę",
-          showAchievements:"Zobacz osiągnięcia",
-          addNewGoal:"Dodaj nowy cel",
-          showGoals:"Zobacz cele",
-          chat:"Czaty",
-          allTrainings:"Wszytskie treningi",
-          daysWithUs:"Dni Z Nami",
-          email:"Email",
-          birth:"Data urodzenia"
+        profile: {
+          showRecords: "Zobacz rekordy",
+          addRoutine: "Dodaj rutynę",
+          showAchievements: "Zobacz osiągnięcia",
+          addNewGoal: "Dodaj nowy cel",
+          showGoals: "Zobacz cele",
+          chat: "Czaty",
+          allTrainings: "Wszystkie treningi",
+          daysWithUs: "Dni z nami",
+          email: "Email",
+          birth: "Data urodzenia",
         },
         dashboard: {
           title: "TRENUJ CODZIENNIE",
@@ -60,6 +74,14 @@ const resources = {
           historyTraining: "Historia treningów",
           stats: "Statystyki",
           friends: "Znajomi",
+        },
+        historyTraining: {
+          filtration:"Filtracja",
+          category:"Kategoria",
+          title:"Regularne trenowanie",
+          description:"Regularny trening siłowy to klucz do poprawy kondycji fizycznej i zdrowia. Wzmacnia mięśnie, poprawia gęstość kości i wspomaga metabolizm. Regularne ćwiczenia zwiększają wydolność organizmu, pomagają w utrzymaniu prawidłowej wagi oraz redukują ryzyko wielu chorób. Dobrze zbilansowany plan treningowy powinien obejmować różnorodne ćwiczenia, by angażować wszystkie grupy mięśniowe i umożliwiać ich równomierny rozwój.",
+          noTrainings:"Brak dostępnych treningów",
+          addTraining:"Dodaj trening"
         },
         newTraining: {
           plannedWorkout: "Planowany trening",
@@ -82,7 +104,6 @@ const resources = {
           muscleUsed: "Zaangażowane grupy mięśniowe",
           rating: "Histogram ocen treningów",
           setsTitle: "Ilość serii w ostatnich treningach",
-          sets: "Serie",
           volumeTitle: "Objętość w ostatnich treningach",
           mostReps: "Najwięcej powtórzeń w serii",
           heaviestWeight: "Najcięższy ciężar w serii",
@@ -112,7 +133,7 @@ const resources = {
         },
         friends: {
           friends: "Friends",
-          addFriend:"Add Friend",
+          addFriend: "Add Friend",
           joinedPlatform: "Joined platform",
           usersToInvite: "Users To Invite",
           pendingUsers: "Pending Users",
@@ -123,6 +144,16 @@ const resources = {
           invitationText: "want to be your friend. Do you accept?",
           accept: "Accept",
           reject: "Reject",
+        },
+        profile: {
+          removeFriend: "Remove Friend",
+          daysOnPlatform: "Days on platform",
+          birth: "Birth date",
+        },
+        actions:{
+          delete:"Delete",
+          edit:"Edit",
+          close:"Close"
         },
       },
       run: {},
@@ -137,18 +168,22 @@ const resources = {
           duration: "Duration",
           rating: "Rating",
           note: "Note",
+          sets: "Sets",
+          workouts: "Workouts",
+          muscles: "Muscle used",
+          date:"Date"
         },
-        profile:{
-          showRecords:"Show records",
-          addRoutine:"Add routine",
-          showAchievements:"Show achievements",
-          addNewGoal:"Add new goal",
-          showGoals:"Show goals",
-          chat:"Chats",
-          allTrainings:"All workouts",
-          daysWithUs:"Days With Us",
-          email:"Email",
-          birth:"Date of birth"
+        profile: {
+          showRecords: "Show records",
+          addRoutine: "Add routine",
+          showAchievements: "Show achievements",
+          addNewGoal: "Add new goal",
+          showGoals: "Show goals",
+          chat: "Chats",
+          allTrainings: "All workouts",
+          daysWithUs: "Days with us",
+          email: "Email",
+          birth: "Date of birth",
         },
         dashboard: {
           title: "TRAINING EVERYDAY",
@@ -158,6 +193,14 @@ const resources = {
           historyTraining: "History training",
           stats: "Stats",
           friends: "Friends",
+        },
+        historyTraining: {
+          filtration:"Filtration",
+          category:"Category",
+          title:"Regular strength training",
+          description:"Regular strength training is essential for improving physical fitness and health. It strengthens muscles, enhances bone density, and supports metabolism. Consistent exercise boosts overall endurance, helps maintain a healthy weight, and reduces the risk of various diseases. A well-balanced workout plan should include a variety of exercises to engage all muscle groups and ensure balanced development.",
+          noTrainings:"No available trainings",
+          addTraining:"Add training"
         },
         newTraining: {
           plannedWorkout: "Planned Workout",
@@ -180,7 +223,6 @@ const resources = {
           muscleUsed: "Muscle Groups Used",
           rating: "Training Ratings Histogram",
           setsTitle: "Number of Sets in Recent Workouts",
-          sets: "Sets",
           volumeTitle: "Volume in Recent Workouts",
           mostReps: "Most Reps in a Set",
           heaviestWeight: "Heaviest Weight in a Set",

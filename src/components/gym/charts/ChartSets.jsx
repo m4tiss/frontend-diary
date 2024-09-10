@@ -60,7 +60,7 @@ const ChartSets = ({ friendId }) => {
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: t('gym.chart.sets'), color: "#1DA1F2" }]}
+        series={[{ data: data, label: t('gym.general.sets'), color: "#1DA1F2" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
       />
     </div>

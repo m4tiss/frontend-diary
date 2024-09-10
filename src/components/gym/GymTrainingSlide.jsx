@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-stars";
+import { useTranslation } from "react-i18next";
 import pic from "../../images/trainig_panel.jpg";
 
 import {
@@ -12,6 +13,7 @@ import { AnimatePresence } from "framer-motion";
 import GymTrainingDetails from "./GymTrainingDetails";
 
 const GymTrainingSlide = ({ workout, onDelete }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDialog = () => {
     setIsOpen(!isOpen);
@@ -33,10 +35,10 @@ const GymTrainingSlide = ({ workout, onDelete }) => {
       </div>
       <div className="flex justify-evenly w-full px-5  text-xl">
         <span className=" text-center">
-          Sets: <span className="">{workout.sets}</span>
+         {t('gym.general.sets')}: <span className="">{workout.sets}</span>
         </span>
         <span className="">
-          Weights: <span className="">{workout.volume} kg</span>
+        {t('gym.general.weight')}: <span className="">{workout.volume} kg</span>
         </span>
       </div>
 
@@ -61,6 +63,7 @@ const GymTrainingSlide = ({ workout, onDelete }) => {
       <AnimatePresence>
         {isOpen && (
           <GymTrainingDetails
+            planName={workout.planName}
             toggleDialog={toggleDialog}
             workoutId={workout.workoutId}
             onDelete={onDelete}

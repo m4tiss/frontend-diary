@@ -6,6 +6,7 @@ import { CiDumbbell } from "react-icons/ci";
 import { BsHeartPulse } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { TbCategory } from "react-icons/tb";
+import { useTranslation } from "react-i18next";
 import { CiStar } from "react-icons/ci";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { GiMuscleUp } from "react-icons/gi";
@@ -13,6 +14,7 @@ import { GiWeight } from "react-icons/gi";
 import { GiGymBag } from "react-icons/gi";
 import GymFriendChartModal from "./GymFriendChartModal";
 const GymFriendCharts = ({ friendInfo, friendId }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState(null);
 
@@ -29,7 +31,7 @@ const GymFriendCharts = ({ friendInfo, friendId }) => {
             setType("Workouts");
           }}
           type={"gym"}
-          title="Workouts"
+          title={t('gym.general.workouts')}
           icon={<CiDumbbell size={50} color="white" />}
         />
         <FriendChartPanel
@@ -38,7 +40,7 @@ const GymFriendCharts = ({ friendInfo, friendId }) => {
             setType("Muscles");
           }}
           type={"gym"}
-          title="Muscles"
+          title={t('gym.general.muscles')}
           icon={<GiMuscleUp size={50} color="white" />}
         />
 
@@ -48,7 +50,7 @@ const GymFriendCharts = ({ friendInfo, friendId }) => {
             setType("Volume");
           }}
           type={"gym"}
-          title="Volume"
+          title={t('gym.general.volume')}
           icon={<GiWeight size={50} color="white" />}
         />
         <FriendChartPanel
@@ -57,7 +59,7 @@ const GymFriendCharts = ({ friendInfo, friendId }) => {
             setType("Rating");
           }}
           type={"gym"}
-          title="Rating"
+          title={t('gym.general.rating')}
           icon={<CiStar size={50} color="white" />}
         />
         <FriendChartPanel
@@ -66,7 +68,7 @@ const GymFriendCharts = ({ friendInfo, friendId }) => {
             setType("Sets");
           }}
           type={"gym"}
-          title="Sets"
+          title={t('gym.general.sets')}
           icon={<GiGymBag size={50} color="white" />}
         />
         <FriendChartPanel
@@ -75,7 +77,7 @@ const GymFriendCharts = ({ friendInfo, friendId }) => {
             setType("Duration");
           }}
           type={"gym"}
-          title="Duration"
+          title={t('gym.general.duration')}
           icon={<MdOutlineAccessTime size={50} color="white" />}
         />
       </div>
