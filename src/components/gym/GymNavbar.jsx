@@ -57,7 +57,7 @@ const GymNavbar = ({ setNavBarType }) => {
           >
             <CgGym size={50} />
           </button>
-          <h2 className="text-2xl text-white mx-5">YourWebsite</h2>
+          <h2 className="text-2xl text-white mx-5">YourDiary</h2>
           <motion.button
             onClick={toggleDisplayMode}
             whileHover={{ scale: 1.1 }}

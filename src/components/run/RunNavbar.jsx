@@ -99,7 +99,7 @@ const RunNavbar = ({ setNavBarType }) => {
           >
             {darkMode ? "Light" : "Dark"} Mode {darkMode ? <LuSun/> : <LuMoonStar/>}
           </motion.button>
-          <h2 className="text-2xl text-white mx-5 flex">YourWebsite</h2>
+          <h2 className="text-2xl text-white mx-5 flex">YourDiary</h2>
           <button
             onClick={() => navigate("/run/dashboard")}
             className="text-2xl text-white mx-5"

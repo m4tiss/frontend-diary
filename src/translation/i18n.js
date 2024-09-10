@@ -141,6 +141,15 @@ const resources = {
           year: "Rok",
           all: "Wszystko",
         },
+        routine:{
+          newRoutine:"Stwórz nową rutynę",
+          name:"Nazwa rutyny",
+          save:"Zapisz rutynę",
+          avaiableExercises: "Dostępne Ćwiczenia",
+          selectedExercises: "Wybrane Ćwiczenia",
+          noExercises: "Brak wybranych ćwiczeń",
+          searchExercise: "Wyszukaj ćwiczenie"
+        }
       },
     },
   },
@@ -281,6 +290,15 @@ const resources = {
           year: "Year",
           all: "All",
         },
+        routine:{
+          newRoutine:"Create new routine",
+          name:"Routine name",
+          save:"Save routine",
+          avaiableExercises: "Avaiable Exercises",
+          selectedExercises: "Selected Exercises",
+          noExercises: "No exercises selected",
+          searchExercise: "Search exercise",
+        }
       },
     },
   },

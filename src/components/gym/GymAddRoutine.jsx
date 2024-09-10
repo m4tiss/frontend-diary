@@ -3,19 +3,21 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { getAuthToken } from "../../config/auth";
+import { useTranslation } from "react-i18next";
 import GymExercisePanel from "./GymNewTraining/GymExercisePanel";
 import GymFiltrationPanel from "./GymNewTraining/GymFiltrationPanel";
 import axios from "../../config/axios";
 import "react-toastify/dist/ReactToastify.css";
 
 const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
+  const { t } = useTranslation();
   const [routineName, setRoutineName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [availableExercises, setAvailableExercises] = useState([]);
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedExercisesPage, setSelectedExercisesPage] = useState(1);
-  const [searchPattern, setSearchPattern] = useState(""); // New state for search input
+  const [searchPattern, setSearchPattern] = useState("");
   const exercisesPerPage = 6;
 
   const categories = [
@@ -141,14 +143,14 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex w-full items-center justify-between">
-          <div className="text-3xl">Create new routine</div>
+          <div className="text-3xl">{t('gym.routine.newRoutine')}</div>
 
           <div className="flex flex-col justify-center items-center">
-            <label>Routine name</label>
+            <label>{t('gym.routine.name')}</label>
             <input
               className="bg-[#e9ecef] p-3 w-96 text-lg rounded-full outline-none"
               type="text"
-              placeholder="Routine name"
+              placeholder={t('gym.routine.name')}
               value={routineName}
               onChange={(e) => setRoutineName(e.target.value)}
             />
@@ -161,7 +163,7 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
               onClick={toggleRoutineDialog}
               className="mt-4 px-4 py-2 h-fit shadow-xl bg-purple-500 text-white rounded"
             >
-              Close
+              {t('shared.actions.close')}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -169,7 +171,7 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
               onClick={handleSubmit}
               className="mt-4 px-4 py-2 h-fit shadow-xl bg-lime-500 text-white rounded"
             >
-              Save routine
+              {t('gym.routine.save')}
             </motion.button>
           </div>
         </div>
@@ -189,21 +191,21 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
             <input
               className="bg-white p-4 w-96 text-xl rounded-full shadow-xl outline-none"
               type="text"
-              placeholder="Search exercise"
-              value={searchPattern} // Bind the search input to the state
-              onChange={(e) => setSearchPattern(e.target.value)} // Update search pattern
+              placeholder= {t('gym.routine.searchExercise')}
+              value={searchPattern} 
+              onChange={(e) => setSearchPattern(e.target.value)}
             />
           </div>
         </div>
 
         <h2 className="text-black w-full text-xl justify-start py-5">
-          Available Exercises
+        {t('gym.routine.avaiableExercises')}
         </h2>
 
         <div className="flex w-full justify-start gap-10">
         {currentExercises.length === 0 ? (
               <div className="w-full flex justify-center items-center text-black h-20 text-2xl">
-                No exercises selected
+                 {t('gym.routine.noExercises')}
               </div>
             ) : (
                 currentExercises.map((exercise) => (
@@ -223,9 +225,9 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
             disabled={currentPage === 1}
             className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
           >
-            Previous
+            {t('gym.general.previous')}
           </button>
-          <span className="text-black">{`Page ${currentPage} of ${Math.ceil(
+          <span className="text-black">{`${t('gym.general.page')} ${currentPage} of ${Math.ceil(
             filteredExercises.length / exercisesPerPage
           )}`}</span>
           <button
@@ -235,18 +237,18 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
             }
             className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
           >
-            Next
+           {t('gym.general.next')}
           </button>
         </div>
 
         <h2 className="text-black w-full text-xl justify-start py-10">
-          Selected Exercises
+        {t('gym.routine.selectedExercises')}
         </h2>
         <div className="flex w-full justify-start gap-10">
           <div className="flex w-full justify-start gap-10">
             {currentSelectedExercises.length === 0 ? (
               <div className="w-full flex justify-center items-center text-black h-20 text-2xl">
-                No exercises selected
+               {t('gym.routine.noExercises')}
               </div>
             ) : (
               currentSelectedExercises.map((exercise) => (
@@ -267,9 +269,9 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
             disabled={selectedExercisesPage === 1}
             className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
           >
-            Previous
+           {t('gym.general.previous')}
           </button>
-          <span className="text-black">{`Page ${selectedExercisesPage} of ${Math.ceil(
+          <span className="text-black">{`${t('gym.general.page')} ${selectedExercisesPage} of ${Math.ceil(
             selectedExercises.length / exercisesPerPage
           )}`}</span>
           <button
@@ -281,7 +283,7 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
             }
             className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
           >
-            Next
+            {t('gym.general.next')}
           </button>
         </div>
         <ToastContainer />

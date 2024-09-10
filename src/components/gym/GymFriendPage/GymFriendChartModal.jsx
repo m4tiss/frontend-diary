@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useUser } from "../../../providers/UserProvider";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import ChartMuscleUsed from "../charts/ChartMuscleUsed";
 import ChartVolume from "../charts/ChartVolume";
 import ChartSets from "../charts/ChartSets";
@@ -10,6 +11,7 @@ import ChartDuration from "../charts/ChartDuration";
 import ChartRating from "../charts/ChartRating";
 
 const GymFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
+  const { t } = useTranslation();
   const { userInfo } = useUser();
 
   const renderChartContent = (friendId) => {
@@ -100,7 +102,7 @@ const GymFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
             onClick={toggleDialog}
             className="mt-4 px-4 py-2 h-fit shadow-xl bg-red-500 text-white rounded"
           >
-            Close
+            {t('shared.actions.close')}
           </motion.button>
         </div>
         <div className="w-full flex flex-grow ">
