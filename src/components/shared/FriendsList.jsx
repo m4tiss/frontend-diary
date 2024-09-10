@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "../../config/axios";
+import { useTranslation } from "react-i18next";
 import { getAuthToken } from "../../config/auth";
 import FriendPanel from "./FriendPanel";
 import { motion } from "framer-motion";
 
 const FriendsList = () => {
+  const { t } = useTranslation();
   const [friends, setFriends] = useState([]);
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const FriendsList = () => {
           animate={{ y: 0 }}
           className="w-full flex justify-center items-center text-4xl"
         >
-          No friends available to display
+         {t('shared.friends.noFriends')}
         </motion.div>
       ) : (
         <>

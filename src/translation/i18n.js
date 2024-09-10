@@ -12,10 +12,19 @@ const resources = {
           logIn: "Zaloguj się",
           logout: "Wyloguj",
         },
-        friends:{
-          friends:"Znajomi",
-          joinedPlatform:"Dołączył do platformy"
-        }
+        friends: {
+          friends: "Znajomi",
+          joinedPlatform: "Dołączył do platformy",
+          usersToInvite: "Użytkownicy do zaproszenia",
+          pendingUsers: "Oczekujący użytkownicy",
+          noFriends: "Brak znajomych do wyświetlenia",
+          noPending: "Brak oczekujących użytkowników do wyświetlenia",
+          sendInvitation: "Wyślij zaproszenie",
+          newFriend: "Szukaj użytkowników",
+          invitationText: "chce być twoim znajomym. Akceptujesz?",
+          accept: "Akceptuj",
+          reject: "Odrzuć",
+        },
       },
       run: {},
       gym: {
@@ -65,17 +74,17 @@ const resources = {
           mostReps: "Najwięcej powtórzeń w serii",
           heaviestWeight: "Najcięższy ciężar w serii",
         },
-        stats:{
-        personalStats: "Statystyki osobiste",
-        totalVolume: "Łączna objętość",
-        workoutSessions: "Sesje treningowe",
-        totalSets: "Łączna liczba serii",
-        totalTime: "Łączny czas",
-         week:"Tydzień",
-         month:"Miesiąć",
-         year:"Rok",
-         all:"Wszystko" 
-        }
+        stats: {
+          personalStats: "Statystyki osobiste",
+          totalVolume: "Łączna objętość",
+          workoutSessions: "Sesje treningowe",
+          totalSets: "Łączna liczba serii",
+          totalTime: "Łączny czas",
+          week: "Tydzień",
+          month: "Miesiąć",
+          year: "Rok",
+          all: "Wszystko",
+        },
       },
     },
   },
@@ -88,10 +97,19 @@ const resources = {
           logIn: "Log In",
           logout: "Logout",
         },
-        friends:{
-          friends:"Friends",
-          joinedPlatform:"Joined platform"
-        }
+        friends: {
+          friends: "Friends",
+          joinedPlatform: "Joined platform",
+          usersToInvite: "Users To Invite",
+          pendingUsers: "Pending Users",
+          noFriends: "No friends available to display",
+          noPending: "No pending users available to display",
+          sendInvitation: "Send invitation",
+          newFriend: "Search users",
+          invitationText: "want to be your friend. Do you accept?",
+          accept: "Accept",
+          reject: "Reject",
+        },
       },
       run: {},
       gym: {
@@ -142,17 +160,17 @@ const resources = {
           mostReps: "Most Reps in a Set",
           heaviestWeight: "Heaviest Weight in a Set",
         },
-        stats:{
-          personalStats:"Personal Stats",
-          totalVolume:"Total Volume",
-          workoutSessions:"Workout Sessions",
-          totalSets:"Total Sets",
-          totalTime:"Total Time",
-          week:"Week",
-          month:"Month",
-          year:"Year",
-          all:"All"
-        }
+        stats: {
+          personalStats: "Personal Stats",
+          totalVolume: "Total Volume",
+          workoutSessions: "Workout Sessions",
+          totalSets: "Total Sets",
+          totalTime: "Total Time",
+          week: "Week",
+          month: "Month",
+          year: "Year",
+          all: "All",
+        },
       },
     },
   },

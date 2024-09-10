@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import { motion } from "framer-motion";
 
 const UserToInvitePanel = ({ user, onDelete }) => {
+  const { t } = useTranslation();
   const sendInvitation = async (friend_id) => {
     const token = getAuthToken();
     const resposne = await axios.post(
@@ -45,7 +46,7 @@ const UserToInvitePanel = ({ user, onDelete }) => {
         onClick={handleSending}
         className="text-white bg-gray-400 p-2 rounded-xl text-xl "
       >
-        Send Invitation
+        {t('shared.friends.sendInvitation')}
       </motion.button>
     </motion.div>
   );

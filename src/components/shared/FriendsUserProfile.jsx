@@ -1,7 +1,8 @@
 import { useUser } from "../../providers/UserProvider";
+import { useTranslation } from "react-i18next";
 import { formattedDate } from "../../functions/formatData";
 const FriendsUserProfile = ({color}) => {
-
+  const { t } = useTranslation();
   const { userInfo } = useUser();
 
   let background = ""
@@ -27,11 +28,11 @@ const FriendsUserProfile = ({color}) => {
         </div>
       </div>
       <div className="flex justify-between text-white my-3">
-        <span>Joined platform</span>{" "}
+        <span>{t('shared.friends.joinedPlatform')}</span>
         <span>{formattedDate(userInfo.created_at)}</span>
       </div>
       <div className="flex justify-between text-white my-3">
-        <span>Friends</span> <span>{userInfo.friends_count}</span>
+        <span>{t('shared.friends.friends')}</span> <span>{userInfo.friends_count}</span>
       </div>
     </div>
   );

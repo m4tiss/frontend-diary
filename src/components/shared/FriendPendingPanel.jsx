@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import { motion } from "framer-motion";
 
 const FriendPendingPanel = ({ user, onDelete }) => {
+  const { t } = useTranslation();
   const acceptInvitation = async (friend_id) => {
     const token = getAuthToken();
     const resposne = await axios.post(
@@ -45,7 +46,7 @@ const FriendPendingPanel = ({ user, onDelete }) => {
       <label className="text-2xl">{user.nickname}</label>
       </div>
       <div className="flex flex-col items-center gap-10">
-        <h2 className="text-4xl">{user.nickname} want to be your friend. Do you accept?</h2>
+        <h2 className="text-4xl">{user.nickname} {t('shared.friends.invitationText')}</h2>
       <div className="flex gap-10">
         <motion.button
           whileHover={{ scale: 1.1 }}
@@ -53,14 +54,14 @@ const FriendPendingPanel = ({ user, onDelete }) => {
           className=" bg-lime-400 text-white text-4xl p-3 rounded-xl"
           onClick={handleAccept}
         >
-          Accept
+         {t('shared.friends.accept')}
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 500 }}
           className=" bg-red-400 text-white text-4xl p-3 rounded-xl"
         >
-          Reject
+          {t('shared.friends.reject')}
         </motion.button>
       </div>
       </div>

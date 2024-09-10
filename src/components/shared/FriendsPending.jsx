@@ -4,7 +4,7 @@ import { getAuthToken } from "../../config/auth";
 import FriendPendingPanel from "./FriendPendingPanel";
 import { motion,AnimatePresence } from "framer-motion";
 import { EffectFlip } from 'swiper/modules';
-
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -16,7 +16,7 @@ import { useUser } from "../../providers/UserProvider";
 
 
 const FriendsPending = () => {
-
+  const { t } = useTranslation();
   const [pendingUsers, setPendingUsers] = useState([]);
   const { fetchUserInfo } = useUser();
 
@@ -52,7 +52,7 @@ const FriendsPending = () => {
         initial={{ y: 50 }}
         animate={{ y: 0 }}
         className="w-full flex justify-center items-center text-4xl">
-           No pending users available to display
+           {t('shared.friends.noPending')}
         </motion.div>
       ) : (
         <Swiper

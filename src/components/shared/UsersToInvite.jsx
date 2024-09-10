@@ -2,16 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "../../config/axios";
 import { getAuthToken } from "../../config/auth";
 import UserToInvitePanel from "./UserToInvitePanel";
+import { useTranslation } from "react-i18next";
 import { IoIosRefresh } from "react-icons/io";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/autoplay";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion} from "framer-motion";
 
 const UsersToInvite = () => {
+  const { t } = useTranslation();
   const [usersToInvite, setUsersToInvite] = useState([]);
   const [searchPattern, setSearchPattern] = useState("");
 
@@ -91,7 +87,7 @@ const UsersToInvite = () => {
         <input
           className="bg-white p-2 text-3xl rounded-xl shadow-xl outline-none"
           type="text"
-          placeholder="Search new friend"
+          placeholder={t('shared.friends.newFriend')}
           value={searchPattern}
           onChange={handleSearchChange}
         />
