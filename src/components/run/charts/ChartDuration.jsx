@@ -1,6 +1,7 @@
 import { LineChart } from "@mui/x-charts";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
+import { useTranslation } from "react-i18next";
 import axios from "../../../config/axios";
 import { format } from "date-fns";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,7 +12,7 @@ const convertDurationToSeconds = (duration) => {
 };
 
 const convertSecondsToDuration = (seconds) => {
-  console.log("Converting seconds:", seconds); // Debug
+  console.log("Converting seconds:", seconds);
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = seconds % 60;
@@ -19,6 +20,7 @@ const convertSecondsToDuration = (seconds) => {
 };
 
 const ChartDuration = ({ friendId }) => {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
 
@@ -33,12 +35,12 @@ const ChartDuration = ({ friendId }) => {
       })
       .then((res) => {
         let response = res.data.data;
-        console.log("API Response:", response); // Debug
+        console.log("API Response:", response);
         response.sort((a, b) => new Date(a.date) - new Date(b.date));
 
         const durationData = response.map((item) => {
           const seconds = convertDurationToSeconds(item.duration);
-          console.log("Converted to seconds:", seconds); // Debug
+          console.log("Converted to seconds:", seconds);
           return seconds;
         });
 
@@ -61,22 +63,16 @@ const ChartDuration = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-full">
-      <h2 className="text-2xl p-2">Last training duration</h2>
+      <h2 className="text-2xl p-2">{t('run.chart.durationTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: "Duration", color: "#FF0000" }]}
+        series={[{ data: data, label: t('run.general.duration'), color: "#FF0000" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
         yAxis={[{
           scaleType: "linear",
           valueFormatter: (value) => convertSecondsToDuration(value),
         }]}
-        // tooltip={{
-        //   valueFormatter: (params) => {
-        //     const value = params.value;
-        //     return convertSecondsToDuration(value);
-        //   },
-        // }}
       />
     </div>
   );

@@ -1,11 +1,13 @@
 import { LineChart } from "@mui/x-charts";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
+import { useTranslation } from "react-i18next";
 import axios from "../../../config/axios";
 import { format } from "date-fns";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChartDistance = ({ friendId }) => {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
 
@@ -40,11 +42,11 @@ const ChartDistance = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">Last training distance</h2>
+      <h2 className="text-2xl p-2">{t('run.chart.distanceTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}
-        series={[{ data: data, label: "Distance", color: "#FF0000" }]}
+        series={[{ data: data, label: t('run.general.distance'), color: "#FF0000" }]}
         xAxis={[{ scaleType: "point", data: xLabels }]}
       />
     </div>

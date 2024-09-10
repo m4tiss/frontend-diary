@@ -1,12 +1,14 @@
 import { LineChart } from "@mui/x-charts";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
+import { useTranslation } from "react-i18next";
 import axios from "../../../config/axios";
 import { format } from "date-fns";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChartAveragePulse = ({ friendId }) => {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [xLabels, setXLabels] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,16 +59,16 @@ const ChartAveragePulse = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">Last Training Average Pulse</h2>
+      <h2 className="text-2xl p-2">{t('run.chart.averagePulseTitle')}</h2>
       {data.length > 0 ? (
         <LineChart
           width={window.innerWidth > 768 ? 500 : 300}
           height={300}
-          series={[{ data: data, label: "Average Pulse", color: "#1DA1F2" }]}
+          series={[{ data: data, label: t('run.general.averagePulse'), color: "#1DA1F2" }]}
           xAxis={[{ scaleType: "point", data: xLabels }]}
         />
       ) : (
-        <div>No data available</div>
+        <div>{t('run.chart.noData')}</div>
       )}
     </div>
   );

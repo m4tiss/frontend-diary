@@ -11,10 +11,11 @@ import { useUser } from "../../providers/UserProvider";
 import DarkModeContext from "../../providers/DarkModeProvider";
 import ContentContext from "../../providers/ContentProvider";
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 const RunNavbar = ({ setNavBarType }) => {
   const RUN_COLOR = "#1DA1F2";
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { userInfo } = useUser();
   const { darkMode, toggleDisplayMode } = useContext(DarkModeContext);
@@ -71,7 +72,7 @@ const RunNavbar = ({ setNavBarType }) => {
           <NavbarButton
             bgColor="white"
             textColor={`${RUN_COLOR}`}
-            text="Logout"
+            text={t("shared.navbar.logout")}
             onClick={() => handleLogout()}
           />
           <motion.img
@@ -97,7 +98,15 @@ const RunNavbar = ({ setNavBarType }) => {
             transition={{ type: "spring", stiffness: 500 }}
             className={`dark:bg-white dark:text-run-night-element bg-run-night-element text-white text-xl flex justify-center gap-2 items-center font-bold min-w-44 h-10 px-4 rounded-full`}
           >
-            {darkMode ? "Light" : "Dark"} Mode {darkMode ? <LuSun/> : <LuMoonStar/>}
+            {darkMode ? (
+              <>
+                {t("shared.navbar.lightMode")} <LuSun />
+              </>
+            ) : (
+              <>
+                {t("shared.navbar.nightMode")} <LuMoonStar />
+              </>
+            )}
           </motion.button>
           <h2 className="text-2xl text-white mx-5 flex">YourDiary</h2>
           <button

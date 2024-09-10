@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
+import { useTranslation } from "react-i18next";
 import axios from "../../../config/axios";
 import { PieChart } from "@mui/x-charts";
 import SyncLoader from "react-spinners/SyncLoader";
 
 const ChartCategories = ({ friendId, range = "all" }) => {
+  const { t } = useTranslation();
   const [categoriesData, setCategoriesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +58,7 @@ const ChartCategories = ({ friendId, range = "all" }) => {
 
   return (
     <div className="flex flex-col items-center py-10 bg-white rounded-xl w-full shadow-xl">
-      <div className="text-2xl p-2">Categories</div>
+      <div className="text-2xl p-2">{t('run.chart.runTypesTitle')}</div>
       {categoriesData.length > 0 ? (
         <PieChart
           colors={transformDataForPieChart().map((data) => data.color)}
@@ -71,7 +73,7 @@ const ChartCategories = ({ friendId, range = "all" }) => {
           height={window.innerWidth > 768 ? 200 : 100}
         />
       ) : (
-        <div>No data available</div>
+        <div>{t('run.chart.noData')}</div>
       )}
     </div>
   );

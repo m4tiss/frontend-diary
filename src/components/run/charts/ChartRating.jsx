@@ -1,11 +1,13 @@
 import { BarChart } from "@mui/x-charts";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
+import { useTranslation } from "react-i18next";
 import axios from "../../../config/axios";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChartRating = ({ friendId }) => {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,7 +52,7 @@ const ChartRating = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">Training Ratings Histogram</h2>
+      <h2 className="text-2xl p-2">{t('run.chart.ratingTitle')}</h2>
       <BarChart
         color={"#FBC814"}
         xAxis={[{ scaleType: "band", data: xData }]}

@@ -31,35 +31,60 @@ const resources = {
           daysOnPlatform: "Dni na platformie",
           birth: "Data urodzenia",
         },
-        actions:{
-          delete:"Usuń",
-          edit:"Edytuj",
-          close:"Zamknij"
+        actions: {
+          delete: "Usuń",
+          edit: "Edytuj",
+          close: "Zamknij",
         },
-        login:{
-          loginTitle:"Logowanie",
-          loginButton:"Zaloguj",
-          email:"Email",
-          password:"Hasło",
-          noAccount:"Nie mam jeszcze konta",
+        login: {
+          loginTitle: "Logowanie",
+          loginButton: "Zaloguj",
+          email: "Email",
+          password: "Hasło",
+          noAccount: "Nie mam jeszcze konta",
 
-          users:"Użytkowników na platformie",
-          backgroundText:"TRENUJ I BIEGAJ"
+          users: "Użytkowników na platformie",
+          backgroundText: "TRENUJ I BIEGAJ",
         },
-        register:{
-          registerTitle:"Rejestracja",
-          registerButton:"Zarejestruj",
-          email:"Email",
-          password:"Hasło",
-          account:"Mam już konto",
+        register: {
+          registerTitle: "Rejestracja",
+          registerButton: "Zarejestruj",
+          email: "Email",
+          password: "Hasło",
+          account: "Mam już konto",
           birth: "Data urodzenia",
-          profilePhoto:" Zdjęcie profilowe",
-          nickname:"Nick",
-          description:"Opis",
-          noFile:"Brak pliku"
-        }
+          profilePhoto: " Zdjęcie profilowe",
+          nickname: "Nick",
+          description: "Opis",
+          noFile: "Brak pliku",
+        },
       },
-      run: {},
+      run: {
+        general: {
+          averagePulse: "Średnie tętno",
+          distance: "Dystans",
+          duration: "Czas trwania",
+          rating: "Ocena",
+          type:"Typ"
+        },
+        dashboard: {
+          title: "BIEGAJ CODZIENNIE",
+          description:
+            "Bieganie to nie tylko doskonały sposób na poprawę kondycji, ale również na zrelaksowanie umysłu. Każdy krok, który robisz, wzmacnia Twoje ciało, zwiększa wydolność serca i poprawia nastrój. Niezależnie od tego, czy biegasz dla zdrowia, formy, czy po prostu dla przyjemności, regularne bieganie przyczynia się do poprawy ogólnego samopoczucia. Nie potrzebujesz specjalistycznego sprzętu – wystarczy para wygodnych butów i trochę motywacji. Zrób pierwszy krok i dołącz do grona tych, którzy odkryli radość płynącą z biegania!",
+          newTraining: "Nowy trening",
+          historyTraining: "Historia treningów",
+          stats: "Statystyki",
+          friends: "Znajomi",
+        },
+        chart: {
+          noData:"Brak dostępnych danych",
+          averagePulseTitle: "Średnie tętna z niedawnych treningów",
+          distanceTitle: "Dystans z ostatnich treningów",
+          durationTitle: "Czas trwania ostatnich treningów",
+          ratingTitle: "Histogram ocen treningów",
+          runTypesTitle:"Rodzaje biegów podczas ostatnich treningów"
+        },
+      },
       gym: {
         general: {
           page: "Strona",
@@ -74,7 +99,7 @@ const resources = {
           sets: "Serie",
           workouts: "Treningi",
           muscles: "Grupy mięśni",
-          date:"Data"
+          date: "Data",
         },
         profile: {
           showRecords: "Zobacz rekordy",
@@ -98,12 +123,13 @@ const resources = {
           friends: "Znajomi",
         },
         historyTraining: {
-          filtration:"Filtracja",
-          category:"Kategoria",
-          title:"Regularne trenowanie",
-          description:"Regularny trening siłowy to klucz do poprawy kondycji fizycznej i zdrowia. Wzmacnia mięśnie, poprawia gęstość kości i wspomaga metabolizm. Regularne ćwiczenia zwiększają wydolność organizmu, pomagają w utrzymaniu prawidłowej wagi oraz redukują ryzyko wielu chorób. Dobrze zbilansowany plan treningowy powinien obejmować różnorodne ćwiczenia, by angażować wszystkie grupy mięśniowe i umożliwiać ich równomierny rozwój.",
-          noTrainings:"Brak dostępnych treningów",
-          addTraining:"Dodaj trening"
+          filtration: "Filtracja",
+          category: "Kategoria",
+          title: "Regularne trenowanie",
+          description:
+            "Regularny trening siłowy to klucz do poprawy kondycji fizycznej i zdrowia. Wzmacnia mięśnie, poprawia gęstość kości i wspomaga metabolizm. Regularne ćwiczenia zwiększają wydolność organizmu, pomagają w utrzymaniu prawidłowej wagi oraz redukują ryzyko wielu chorób. Dobrze zbilansowany plan treningowy powinien obejmować różnorodne ćwiczenia, by angażować wszystkie grupy mięśniowe i umożliwiać ich równomierny rozwój.",
+          noTrainings: "Brak dostępnych treningów",
+          addTraining: "Dodaj trening",
         },
         newTraining: {
           plannedWorkout: "Planowany trening",
@@ -141,15 +167,15 @@ const resources = {
           year: "Rok",
           all: "Wszystko",
         },
-        routine:{
-          newRoutine:"Stwórz nową rutynę",
-          name:"Nazwa rutyny",
-          save:"Zapisz rutynę",
+        routine: {
+          newRoutine: "Stwórz nową rutynę",
+          name: "Nazwa rutyny",
+          save: "Zapisz rutynę",
           avaiableExercises: "Dostępne Ćwiczenia",
           selectedExercises: "Wybrane Ćwiczenia",
           noExercises: "Brak wybranych ćwiczeń",
-          searchExercise: "Wyszukaj ćwiczenie"
-        }
+          searchExercise: "Wyszukaj ćwiczenie",
+        },
       },
     },
   },
@@ -181,34 +207,59 @@ const resources = {
           daysOnPlatform: "Days on platform",
           birth: "Birth date",
         },
-        actions:{
-          delete:"Delete",
-          edit:"Edit",
-          close:"Close"
+        actions: {
+          delete: "Delete",
+          edit: "Edit",
+          close: "Close",
         },
-        login:{
-          loginTitle:"Login",
-          loginButton:"Login",
-          email:"Email",
-          password:"Password",
-          noAccount:"I have no account",
-          users:"Users on our platform",
-          backgroundText:"TRAIN AND RUN"
+        login: {
+          loginTitle: "Login",
+          loginButton: "Login",
+          email: "Email",
+          password: "Password",
+          noAccount: "I have no account",
+          users: "Users on our platform",
+          backgroundText: "TRAIN AND RUN",
         },
-        register:{
-          registerTitle:"Register",
-          registerButton:"Register",
-          email:"Email",
-          password:"Password",
-          account:"I have an account",
+        register: {
+          registerTitle: "Register",
+          registerButton: "Register",
+          email: "Email",
+          password: "Password",
+          account: "I have an account",
           birth: "Birth date",
-          profilePhoto:" Profile photo",
-          nickname:"Nickname",
-          description:"Description",
-          noFile:"No file"
-        }
+          profilePhoto: " Profile photo",
+          nickname: "Nickname",
+          description: "Description",
+          noFile: "No file",
+        },
       },
-      run: {},
+      run: {
+        general: {
+          averagePulse: "Average pulse",
+          distance: "Distance",
+          duration: "Duration",
+          rating: "Rating",
+          type:"Type"
+        },
+        dashboard: {
+          title: "RUN EVERYDAY",
+          description:
+            "Running is not only a great way to improve your fitness, but also to relax your mind. Every step you take strengthens your body, boosts your heart’s performance, and lifts your mood. Whether you run for health, fitness, or simply for enjoyment, regular running contributes to overall well-being. You don’t need specialized equipment – just a comfortable pair of shoes and some motivation. Take the first step and join those who have discovered the joy of running!",
+          newTraining: "New training",
+          historyTraining: "History training",
+          stats: "Stats",
+          friends: "Friends",
+        },
+        chart: {
+          noData:"No data available",
+          averagePulseTitle: "Average heart rates from recent workouts",
+          distanceTitle: "Distance from recent workouts",
+          durationTitle: "Duration of Recent Workouts",
+          ratingTitle: "Training Ratings Histogram",
+          runTypesTitle:"Types of runs during recent workouts"
+        },
+      },
       gym: {
         general: {
           page: "Page",
@@ -223,7 +274,7 @@ const resources = {
           sets: "Sets",
           workouts: "Workouts",
           muscles: "Muscle used",
-          date:"Date"
+          date: "Date",
         },
         profile: {
           showRecords: "Show records",
@@ -247,12 +298,13 @@ const resources = {
           friends: "Friends",
         },
         historyTraining: {
-          filtration:"Filtration",
-          category:"Category",
-          title:"Regular strength training",
-          description:"Regular strength training is essential for improving physical fitness and health. It strengthens muscles, enhances bone density, and supports metabolism. Consistent exercise boosts overall endurance, helps maintain a healthy weight, and reduces the risk of various diseases. A well-balanced workout plan should include a variety of exercises to engage all muscle groups and ensure balanced development.",
-          noTrainings:"No available trainings",
-          addTraining:"Add training"
+          filtration: "Filtration",
+          category: "Category",
+          title: "Regular strength training",
+          description:
+            "Regular strength training is essential for improving physical fitness and health. It strengthens muscles, enhances bone density, and supports metabolism. Consistent exercise boosts overall endurance, helps maintain a healthy weight, and reduces the risk of various diseases. A well-balanced workout plan should include a variety of exercises to engage all muscle groups and ensure balanced development.",
+          noTrainings: "No available trainings",
+          addTraining: "Add training",
         },
         newTraining: {
           plannedWorkout: "Planned Workout",
@@ -290,15 +342,15 @@ const resources = {
           year: "Year",
           all: "All",
         },
-        routine:{
-          newRoutine:"Create new routine",
-          name:"Routine name",
-          save:"Save routine",
+        routine: {
+          newRoutine: "Create new routine",
+          name: "Routine name",
+          save: "Save routine",
           avaiableExercises: "Avaiable Exercises",
           selectedExercises: "Selected Exercises",
           noExercises: "No exercises selected",
           searchExercise: "Search exercise",
-        }
+        },
       },
     },
   },
