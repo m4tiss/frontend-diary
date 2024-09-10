@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "../../config/axios";
+import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import "react-toastify/dist/ReactToastify.css";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -11,6 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { motion } from "framer-motion";
 
 const Register = () => {
+  const { t } = useTranslation();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -22,7 +24,7 @@ const Register = () => {
 
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedFileName, setSelectedFileName] = useState(`No file`);
+  const [selectedFileName, setSelectedFileName] = useState(t('shared.register.noFile'));
 
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
@@ -31,7 +33,7 @@ const Register = () => {
       setSelectedFileName(`${file.name}`);
       setData({ ...data, profile_photo: file.name });
     } else {
-      setSelectedFileName(`No file`);
+      setSelectedFileName(t('shared.register.noFile'));
     }
   };
 
@@ -130,26 +132,26 @@ const Register = () => {
           >
             <div className="flex flex-col w-1/2">
               <h2 className="w-full text-4xl text-center font font-semibold">
-                Register
+              {t('shared.register.registerTitle')}
               </h2>
               <div className="flex flex-col">
-                <label className="p-2">Email</label>
+                <label className="p-2"> {t('shared.register.email')}</label>
                 <input
                   className="p-2 text-xl  text-black border-2 border-gray-200 outline-none"
                   type="email"
-                  placeholder="Email"
+                  placeholder={t('shared.register.email')}
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
                 />
               </div>
 
               <div className="flex flex-col">
-                <label className="p-2">Password</label>
+                <label className="p-2">{t('shared.register.password')}</label>
                 <input
                   minLength={6}
                   className="p-2 text-xl text-black border-2 border-gray-200 outline-none"
                   type="password"
-                  placeholder="Password"
+                  placeholder={t('shared.register.password')}
                   value={data.password}
                   onChange={(e) =>
                     setData({ ...data, password: e.target.value })
@@ -161,19 +163,19 @@ const Register = () => {
                 className="my-10 bg-[#e73725] rounded-3xl p-2 text-xl text-white"
                 type="submit"
               >
-                Register
+                {t('shared.register.registerButton')}
               </button>
               <label
                 onClick={() => navigate("/login")}
                 className="w-full text-center cursor-pointer"
               >
-                I have an account
+                {t('shared.register.account')}
               </label>
             </div>
             <div className="w-1/2">
               <div className="flex flex-col ">
                 <div className="flex justify-start gap-20 items-center">
-                  <label className="p-2">Birth Date</label>
+                  <label className="p-2">{t('shared.register.birth')}</label>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={["DatePicker"]}>
                       <DatePicker
@@ -191,7 +193,7 @@ const Register = () => {
                   </LocalizationProvider>
                 </div>
 
-                <label className="p-2">Profile photo</label>
+                <label className="p-2">{t('shared.register.profilePhoto')}</label>
                 <label
                   htmlFor="fileInput"
                   class="h-12 flex justify-center items-center px-4 py-2 bg-white-500
@@ -208,11 +210,11 @@ const Register = () => {
                   className="hidden"
                   onChange={handleFileSelect}
                 />
-                <label className="p-2">Nickname</label>
+                <label className="p-2">{t('shared.register.nickname')}</label>
                 <input
                   className="p-2 text-xl  text-black border-2 border-gray-200 outline-none"
                   type="text"
-                  placeholder="Nickname"
+                  placeholder={t('shared.register.nickname')}
                   value={data.nickname}
                   onChange={(e) =>
                     setData({ ...data, nickname: e.target.value })
@@ -221,11 +223,11 @@ const Register = () => {
               </div>
 
               <div className="flex flex-col ">
-                <label className="p-2">Description</label>
+                <label className="p-2">{t('shared.register.description')}</label>
                 <textarea
                   className="p-2 text-xl resize-none text-black border-2 border-gray-200 outline-none"
                   type="text"
-                  placeholder="Description"
+                  placeholder={t('shared.register.description')}
                   value={data.description}
                   onChange={(e) =>
                     setData({ ...data, description: e.target.value })

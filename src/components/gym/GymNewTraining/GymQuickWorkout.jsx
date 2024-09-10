@@ -140,7 +140,7 @@ const GymQuickWorkout = () => {
           disabled={currentPage === 1}
           className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
         >
-          {t("general.previous")}
+          {t("gym.general.previous")}
         </button>
         <span className="text-black">{`${t(
           "gym.general.page"
@@ -166,7 +166,7 @@ const GymQuickWorkout = () => {
         <div className="flex w-full justify-start gap-10">
           {currentSelectedExercises.length === 0 ? (
             <div className="w-full flex justify-center items-center text-black h-24 text-4xl">
-              {t("newTraining.noExercises")}
+              {t("gym.newTraining.noExercises")}
             </div>
           ) : (
             currentSelectedExercises.map((exercise) => (
@@ -187,7 +187,7 @@ const GymQuickWorkout = () => {
           disabled={selectedExercisesPage === 1}
           className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
         >
-          {t("general.previous")}
+          {t("gym.general.previous")}
         </button>
         <span className="text-black">{`${t(
           "gym.general.page"

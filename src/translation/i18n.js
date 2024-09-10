@@ -35,6 +35,28 @@ const resources = {
           delete:"Usuń",
           edit:"Edytuj",
           close:"Zamknij"
+        },
+        login:{
+          loginTitle:"Logowanie",
+          loginButton:"Zaloguj",
+          email:"Email",
+          password:"Hasło",
+          noAccount:"Nie mam jeszcze konta",
+
+          users:"Użytkowników na platformie",
+          backgroundText:"TRENUJ I BIEGAJ"
+        },
+        register:{
+          registerTitle:"Rejestracja",
+          registerButton:"Zarejestruj",
+          email:"Email",
+          password:"Hasło",
+          account:"Mam już konto",
+          birth: "Data urodzenia",
+          profilePhoto:" Zdjęcie profilowe",
+          nickname:"Nick",
+          description:"Opis",
+          noFile:"Brak pliku"
         }
       },
       run: {},
@@ -155,6 +177,27 @@ const resources = {
           edit:"Edit",
           close:"Close"
         },
+        login:{
+          loginTitle:"Login",
+          loginButton:"Login",
+          email:"Email",
+          password:"Password",
+          noAccount:"I have no account",
+          users:"Users on our platform",
+          backgroundText:"TRAIN AND RUN"
+        },
+        register:{
+          registerTitle:"Register",
+          registerButton:"Register",
+          email:"Email",
+          password:"Password",
+          account:"I have an account",
+          birth: "Birth date",
+          profilePhoto:" Profile photo",
+          nickname:"Nickname",
+          description:"Description",
+          noFile:"No file"
+        }
       },
       run: {},
       gym: {

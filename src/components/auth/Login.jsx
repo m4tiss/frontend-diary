@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { auth } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import axios from "../../config/axios";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,6 +20,7 @@ import ContentContext from "../../providers/ContentProvider";
 import { useContext } from "react";
 
 const Login = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [numberOfUsers, setNumberOfUsers] = useState(0);
@@ -84,7 +86,7 @@ const Login = () => {
             animate={{ y: 0 }}
             className="text-9xl font-bold"
           >
-            TRAINING AND RUN
+            {t('shared.login.backgroundText')}
           </motion.h1>
         </div>
         <div className="2xl:w-1/2 w-full my-10 2xl:my-0 flex justify-center items-center z-50">
@@ -95,25 +97,25 @@ const Login = () => {
             onSubmit={handleLogin}
           >
             <h2 className="w-full text-4xl text-center font font-semibold">
-              Login
+            {t('shared.login.loginTitle')}
             </h2>
             <div className="flex flex-col">
-              <label className="p-2">Email</label>
+              <label className="p-2">{t('shared.login.email')}</label>
               <input
                 className="p-2 text-2xl  text-black border-2 border-gray-200 outline-none"
                 type="email"
-                placeholder="Email"
+                placeholder={t('shared.login.email')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
             <div className="flex flex-col ">
-              <label className="p-2">Password</label>
+              <label className="p-2">{t('shared.login.password')}</label>
               <input
                 className="p-2 text-2xl text-black border-2 border-gray-200 outline-none"
                 type="password"
-                placeholder="Password"
+                placeholder={t('shared.login.password')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -123,13 +125,13 @@ const Login = () => {
               className="my-10 bg-[#e73725] rounded-3xl p-2 text-2xl text-white"
               type="submit"
             >
-              Login
+              {t('shared.login.loginButton')}
             </button>
             <label
               onClick={() => navigate("/register")}
               className="w-full text-center cursor-pointer"
             >
-              I have no account
+              {t('shared.login.noAccount')}
             </label>
           </motion.form>
         </div>
@@ -143,7 +145,7 @@ const Login = () => {
               <motion.h1 className="text-9xl font-semibold">
                 {rounded}
               </motion.h1>
-              <h2 className="text-4xl">Users on our platform</h2>
+              <h2 className="text-4xl">{t('shared.login.users')}</h2>
               {/* <h2 className="text-9xl">Better everyday</h2> */}
             </div>
           </motion.div>
