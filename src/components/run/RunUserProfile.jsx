@@ -16,13 +16,14 @@ import PagePanel from "../shared/PagePanel";
 import { useNavigate } from "react-router-dom";
 import ChartTrainings from "../shared/charts/ChartTrainings";
 import { formattedDate } from "../../functions/formatData";
-
+import { useTranslation } from "react-i18next";
 import { useUser } from "../../providers/UserProvider";
 import RunAddGoal from "./RunAddGoal";
 import { ToastContainer, toast } from "react-toastify";
 import RunAddCategory from "./RunAddCategory";
 
 const RunUserProfile = () => {
+  const { t } = useTranslation();
   const { userInfo } = useUser();
   const [isGoalOpen, setIsGoalOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -114,7 +115,7 @@ const RunUserProfile = () => {
       </div>
       <div className="2xl:w-1/3 flex px-5 2xl:px-0 flex-col ">
         <h2 className="text-4xl 2xl:text-left dark:text-white  text-center font-semibold my-5">
-          Friends
+        {t('shared.friends.friends')}
         </h2>
         <div className="w-full overflow-hidden h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
           {friends.slice(0, visibleFriendsCount).map((user, index) => (
@@ -124,7 +125,7 @@ const RunUserProfile = () => {
             <IoMdAdd
             onClick={() => navigate("/run/friends")}
             className="rounded-full cursor-pointer hover:scale-110 duration-200 hover:rotate-90" size={100} />
-            <label className="text-xl">Add Friends</label>
+            <label className="text-xl">{t('shared.friends.addFriend')}</label>
           </div>
         </div>
 
@@ -132,37 +133,37 @@ const RunUserProfile = () => {
           <PagePanel
            onClick={() => navigate("/run/records")}
             type={"run"}
-            title="Show records"
+            title={t('run.profile.showRecords')}
             icon={<GiTrophyCup size={50} color="white" />}
           />
           <PagePanel
            onClick={toggleCategoryDialog}
             type={"run"}
-            title="Add category"
+            title={t('run.profile.addCategory')}
             icon={<TbCategoryPlus size={50} color="white" />}
           />
           <PagePanel
             onClick={() => navigate("/run/achievements")}
             type={"run"}
-            title="Show achievements"
+            title={t('run.profile.showAchievements')}
             icon={<GiAchievement size={50} color="white" />}
           />
           <PagePanel
             onClick={toggleGoalDialog}
             type={"run"}
-            title="Add new goal"
+            title={t('run.profile.addNewGoal')}
             icon={<GoGoal size={50} color="white" />}
           />
           <PagePanel
             onClick={() => navigate("/run/goals")}
             type={"run"}
-            title="Show goals"
+            title={t('run.profile.showGoals')}
             icon={<LuGoal size={50} color="white" />}
           />
           <PagePanel
           onClick={() => navigate("/run/chats")}
             type={"run"}
-            title="Chats"
+            title={t('run.profile.chat')}
             icon={<IoChatboxEllipsesOutline size={50} color="white" />}
           />
           <AnimatePresence>
@@ -199,7 +200,7 @@ const RunUserProfile = () => {
         <div className="flex flex-col 2xl:w-96 gap-2 px-5 2xl:px-0 w-full">
           <div className="w-full h-24 dark:bg-run-night-element dark:text-white bg-white rounded-xl  flex justify-evenly items-center px-10 shadow-xl">
             <div className="flex-grow flex flex-col">
-              <label>Email</label>
+              <label>{t('run.profile.email')}</label>
               <h2 className="text-xl border-white max-w-60 font-semibold">
                 {userInfo.email}
               </h2>
@@ -207,7 +208,7 @@ const RunUserProfile = () => {
           </div>
           <div className="w-full h-24 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
             <div className="flex-grow">
-              <label>Date of birth</label>
+              <label>{t('run.profile.birth')}</label>
               <h2 className="text-xl font-semibold">
                 {formattedDate(userInfo.date_of_birth || "0000-00-00")}
               </h2>

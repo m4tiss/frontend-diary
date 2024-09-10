@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { LineChart, BarChart, PieChart } from "@mui/x-charts";
+import { useTranslation } from "react-i18next";
 import SmallStatsPanel from "../shared/SmallStatsPanel";
 import RunStatsProfile from "../run/RunStatsProfile";
 import FriendStatsPanel from "../shared/FriendStatsPanel";
@@ -11,6 +12,7 @@ import { formattedData, formattedDuration } from "../../functions/formatData";
 import ChartDuration from "./charts/ChartDuration";
 
 const RunStats = () => {
+  const { t } = useTranslation();
   const { userInfo } = useUser();
 
   const [stats, setStats] = useState({
@@ -87,7 +89,7 @@ const RunStats = () => {
       <div className="w-full 2xl:w-3/4  flex flex-col p-5  items-center">
         <div className="w-full m-5 flex justify-center items-center">
           <span className="text-2xl dark:text-white font-semibold">
-            Personal stats
+            {t('run.stats.personalStats')}
           </span>
         </div>
         <div className="flex justify-center w-full gap-5 mb-10">
@@ -95,45 +97,45 @@ const RunStats = () => {
             className={getButtonStyle("week")}
             onClick={() => handleRangeChange("week")}
           >
-            Week
+            {t('run.stats.week')}
           </button>
           <button
             className={getButtonStyle("month")}
             onClick={() => handleRangeChange("month")}
           >
-            Month
+            {t('run.stats.month')}
           </button>
           <button
             className={getButtonStyle("year")}
             onClick={() => handleRangeChange("year")}
           >
-            Year
+            {t('run.stats.year')}
           </button>
           <button
             className={getButtonStyle("all")}
             onClick={() => handleRangeChange("all")}
           >
-            All
+           {t('run.stats.all')}
           </button>
         </div>
         <div className="flex flex-col 2xl:flex-row justify-between w-full gap-5">
           <SmallStatsPanel
-            title="Total Kilometers"
+            title={t('run.stats.totalDistance')}
             description={formattedData(stats.distance)}
             loading={loadingStats}
           />
           <SmallStatsPanel
-            title="Total Time"
+            title={t('run.stats.totalTime')}
             description={formattedDuration(stats.duration)}
             loading={loadingStats}
           />
           <SmallStatsPanel
-            title="Avg. Rating"
+            title={t('run.stats.averageRating')}
             description={formattedData(stats.avgRating)}
             loading={loadingStats}
           />
           <SmallStatsPanel
-            title="Avg. Pulse"
+            title={t('run.stats.averagePulse')}
             description={stats.avgPulse}
             loading={loadingStats}
           />
@@ -149,7 +151,7 @@ const RunStats = () => {
           <RunStatsProfile />
           <div className="bg-white dark:bg-run-night-element text-black dark:text-white flex flex-col rounded-2xl shadow-xl my-10 py-10 gap-2">
             <div className="flex flex-grow justify-evenly text-2xl font-semibold w-full">
-              <span>Friends</span> <span>{userInfo.friends_count}</span>
+              <span>{t('shared.friends.friends')}</span> <span>{userInfo.friends_count}</span>
             </div>
             {friends.slice(0, 5).map((user) => (
               <FriendStatsPanel key={user.user_id} user={user} />
