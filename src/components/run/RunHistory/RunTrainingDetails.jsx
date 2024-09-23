@@ -7,8 +7,10 @@ import {
   formattedTime,
   formattedDuration,
 } from "../../../functions/formatData";
+import { useTranslation } from "react-i18next";
 
 const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
+  const { t } = useTranslation();
   const handleDelete = () => {
     onDelete();
     toggleDialog();
@@ -34,7 +36,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
               onClick={handleDelete}
               className="mt-4 px-4 py-2 h-fit shadow-xl bg-red-500 text-white rounded"
             >
-              Delete
+              {t("shared.actions.delete")}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -42,7 +44,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
               onClick={toggleDialog}
               className="mt-4 px-4 py-2 h-fit shadow-xl bg-lime-500 text-white rounded"
             >
-              Edit
+              {t("shared.actions.edit")}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -50,7 +52,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
               onClick={toggleDialog}
               className="mt-4 px-4 py-2 h-fit shadow-xl bg-purple-500 text-white rounded"
             >
-              Close
+              {t("shared.actions.close")}
             </motion.button>
           </div>
         </div>
@@ -59,7 +61,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
             <h2 className="text-8xl text-center">
               {formattedDuration(training.duration)}
             </h2>
-            <label className="text-3xl">Duration</label>
+            <label className="text-3xl">{t("run.general.duration")}</label>
           </div>
           <div className="flex flex-col items-center justify-center w-1/3">
             <h2 className="text-7xl">{formattedData(training.rating || 0)}</h2>
@@ -71,18 +73,20 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
               value={training.rating}
               edit={false}
             />
+            <label className="text-3xl">{t("run.general.rating")}</label>
           </div>
           <div className="flex flex-col items-center justify-center w-1/3">
             <h2 className="text-8xl text-center">
               {formattedData(training.distance || 0)} km
             </h2>
-            <h2 className="text-3xl">Distance</h2>
+            <h2 className="text-3xl">{t("run.general.distance")}</h2>
           </div>
-          {/* <div className="w-1/4 flex flex-col justify-center items-center"></div> */}
         </div>
         <div className="w-full flex my-20 text-4xl text-center">
           <div className="w-1/2">{training.note}</div>
-          <div className="w-1/2">Average pulse: {training.average_pulse}</div>
+          <div className="w-1/2">
+            {t("run.general.averagePulse")}: {training.average_pulse}
+          </div>
         </div>
         <div className="w-full justify-center items-center flex gap-5 text-4xl">
           <h2 className=" text-4xl">{formattedTime(training.date)}</h2>

@@ -9,9 +9,11 @@ import { TbCategory } from "react-icons/tb";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { CiStar } from "react-icons/ci";
 import RunFriendChartModal from "./RunFriendChartModal";
+import { useTranslation } from "react-i18next";
 const RunFriendCharts = ({ friendInfo, friendId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState(null);
+  const { t } = useTranslation();
 
   const toggleDialog = () => {
     setIsOpen((prev) => !prev);
@@ -26,7 +28,7 @@ const RunFriendCharts = ({ friendInfo, friendId }) => {
             setType("Pulse");
           }}
           type={"run"}
-          title="Pulse"
+          title={t('run.general.averagePulse')}
           icon={<BsHeartPulse size={50} color="white" />}
         />
         <FriendChartPanel
@@ -35,7 +37,7 @@ const RunFriendCharts = ({ friendInfo, friendId }) => {
             setType("Trainings");
           }}
           type={"run"}
-          title="Trainings"
+          title={t('run.general.trainings')}
           icon={<CiDumbbell size={50} color="white" />}
         />
         <FriendChartPanel
@@ -44,7 +46,7 @@ const RunFriendCharts = ({ friendInfo, friendId }) => {
             setType("Distance");
           }}
           type={"run"}
-          title="Distance"
+          title={t('run.general.distance')}
           icon={<TbRun size={50} color="white" />}
         />
         <FriendChartPanel
@@ -53,7 +55,7 @@ const RunFriendCharts = ({ friendInfo, friendId }) => {
             setType("Rating");
           }}
           type={"run"}
-          title="Rating"
+          title={t('run.general.rating')}
           icon={<CiStar size={50} color="white" />}
         />
         <FriendChartPanel
@@ -62,7 +64,7 @@ const RunFriendCharts = ({ friendInfo, friendId }) => {
             setType("Categories");
           }}
           type={"run"}
-          title="Categories"
+          title={t('run.general.category')}
           icon={<TbCategory size={50} color="white" />}
         />
         <FriendChartPanel
@@ -71,7 +73,7 @@ const RunFriendCharts = ({ friendInfo, friendId }) => {
             setType("Duration");
           }}
           type={"run"}
-          title="Duration"
+          title={t('run.general.duration')}
           icon={<MdOutlineAccessTime size={50} color="white" />}
         />
       </div>

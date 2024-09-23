@@ -1,9 +1,11 @@
 import { formattedDate, formattedData } from "../../functions/formatData";
 import { calculateDaysDiff } from "../../functions/statsCalculations";
+import { useTranslation } from "react-i18next";
 
 const RunGoalPanel = ({ goal }) => {
+  const { t } = useTranslation();
   const daysLeft = calculateDaysDiff(goal.finish_date);
-  const daysLeftMessage = daysLeft === 1 ? "DAY LEFT" : "DAYS LEFT";
+  const daysLeftMessage = daysLeft === 1 ? t("run.goals.dayLeft") : t("run.goals.daysLeft");
 
   const percentageCompleted = (goal.current_goal / goal.goal) * 100;
 
@@ -12,16 +14,14 @@ const RunGoalPanel = ({ goal }) => {
 
   if (percentageCompleted >= 100) {
     statusColor = "#70e000";
-    statusText = "Completed"
-  }
-  else if (daysLeft === 0 ) {
-    statusColor = "#e63946"
-    statusText = "Not completed"
-}
-  else if (percentageCompleted >= 0 && percentageCompleted < 100 ) {
+    statusText = t("run.goals.completed");
+  } else if (daysLeft === 0) {
+    statusColor = "#e63946";
+    statusText = t("run.goals.notCompleted");
+  } else if (percentageCompleted >= 0 && percentageCompleted < 100) {
     statusColor = "#ffd60a";
-    statusText = "In progress"
-  } 
+    statusText = t("run.goals.inProgress");
+  }
 
   console.log(`text-[${statusColor}]`);
 
@@ -30,8 +30,8 @@ const RunGoalPanel = ({ goal }) => {
       <h2 className="text-6xl text-center">{goal.title}</h2>
       <label className="text-2xl text-center">{goal.description}</label>
       <div className="w-full flex flex-col justify-center items-center 2xl:flex-row 2xl:justify-evenly text-2xl">
-        <label>Created Date: {formattedDate(goal.create_date)}</label>
-        <label>Finish Date: {formattedDate(goal.finish_date)}</label>
+        <label>{t("run.goals.createdDate")} {formattedDate(goal.create_date)}</label>
+        <label>{t("run.goals.finishDate")} {formattedDate(goal.finish_date)}</label>
       </div>
       <label className="text-4xl">
         {formattedData(goal.current_goal)} km / {formattedData(goal.goal)} km

@@ -65,7 +65,10 @@ const resources = {
           distance: "Dystans",
           duration: "Czas trwania",
           rating: "Ocena",
-          type:"Typ"
+          note: "Notatka",
+          type: "Typ",
+          trainings: "Treningi",
+          category: "Kategorie",
         },
         dashboard: {
           title: "BIEGAJ CODZIENNIE",
@@ -78,7 +81,7 @@ const resources = {
         },
         profile: {
           showRecords: "Zobacz rekordy",
-          addCategory:"Dodaj kategorię",
+          addCategory: "Dodaj kategorię",
           showAchievements: "Zobacz osiągnięcia",
           addNewGoal: "Dodaj nowy cel",
           showGoals: "Zobacz cele",
@@ -87,6 +90,32 @@ const resources = {
           daysWithUs: "Dni z nami",
           email: "Email",
           birth: "Data urodzenia",
+        },
+        historyTraining: {
+          filtration: "Filtracja",
+          category: "Kategoria",
+          title: "Regularne trenowanie",
+          description:
+            "Regularny trening siłowy to klucz do poprawy kondycji fizycznej i zdrowia. Wzmacnia mięśnie, poprawia gęstość kości i wspomaga metabolizm. Regularne ćwiczenia zwiększają wydolność organizmu, pomagają w utrzymaniu prawidłowej wagi oraz redukują ryzyko wielu chorób. Dobrze zbilansowany plan treningowy powinien obejmować różnorodne ćwiczenia, by angażować wszystkie grupy mięśniowe i umożliwiać ich równomierny rozwój.",
+          noTrainings: "Brak dostępnych treningów",
+          addTraining: "Dodaj trening",
+        },
+        newTraining: {
+          doTraining: "Zrób trening",
+        },
+        goals: {
+          title: "Osiągnij swoje cele biegowe",
+          description:
+            "Odkryj swój pełny potencjał jako biegacz dzięki naszemu przewodnikowi po osiąganiu celów biegowych. Niezależnie od tego, czy dążysz do ukończenia pierwszego 5K, pokonania maratonu, czy poprawy swojego rekordu życiowego, ten przewodnik dostarcza narzędzi i strategii, których potrzebujesz. Dowiedz się, jak stworzyć skuteczny plan treningowy, utrzymać motywację i z pewnością pokonywać wyzwania. Pełen porad ekspertów, inspirujących historii i praktycznych wskazówek, ten przewodnik pomoże ci przekroczyć linię mety i świętować swoje biegowe osiągnięcia. Zrób pierwszy krok w kierunku swojego sukcesu biegowego już dziś!",
+          createdDate: "Data utworzenia: ",
+          finishDate: "Data zakończenia: ",
+          noGoals: "Brak dostępnych celów do wyświetlenia",
+          addGoal: "Dodaj nowe cele",
+          completed: "Zakończony",
+          notCompleted: "Niezakończony",
+          inProgress: "W trakcie",
+          dayLeft: "DZIEŃ POZOSTAŁ",
+          daysLeft: "DNI POZOSTAŁO"
         },
         stats: {
           personalStats: "Statystyki osobiste",
@@ -100,12 +129,12 @@ const resources = {
           all: "Wszystko",
         },
         chart: {
-          noData:"Brak dostępnych danych",
+          noData: "Brak dostępnych danych",
           averagePulseTitle: "Średnie tętna z niedawnych treningów",
           distanceTitle: "Dystans z ostatnich treningów",
           durationTitle: "Czas trwania ostatnich treningów",
           ratingTitle: "Histogram ocen treningów",
-          runTypesTitle:"Rodzaje biegów podczas ostatnich treningów"
+          runTypesTitle: "Rodzaje biegów podczas ostatnich treningów",
         },
       },
       gym: {
@@ -263,7 +292,10 @@ const resources = {
           distance: "Distance",
           duration: "Duration",
           rating: "Rating",
-          type:"Type"
+          note: "Note",
+          type: "Type",
+          trainings: "Trainings",
+          category: "Categories",
         },
         dashboard: {
           title: "RUN EVERYDAY",
@@ -276,7 +308,7 @@ const resources = {
         },
         profile: {
           showRecords: "Show records",
-          addCategory:"Add category",
+          addCategory: "Add category",
           showAchievements: "Show achievements",
           addNewGoal: "Add new goal",
           showGoals: "Show goals",
@@ -285,6 +317,32 @@ const resources = {
           daysWithUs: "Days with us",
           email: "Email",
           birth: "Date of birth",
+        },
+        historyTraining: {
+          filtration: "Filtration",
+          category: "Category",
+          title: "Regular strength training",
+          description:
+            "Regular strength training is essential for improving physical fitness and health. It strengthens muscles, enhances bone density, and supports metabolism. Consistent exercise boosts overall endurance, helps maintain a healthy weight, and reduces the risk of various diseases. A well-balanced workout plan should include a variety of exercises to engage all muscle groups and ensure balanced development.",
+          noTrainings: "No available trainings",
+          addTraining: "Add training",
+        },
+        newTraining: {
+          doTraining: "Do training",
+        },
+        goals: {
+          title: "Achieve Your Running Goals",
+          description:
+            "Unlock your full potential as a runner with our ultimate guide to achieving your running goals. Whether you're aiming to complete your first 5K, conquer a marathon, or improve your personal best, this guide provides you with the tools and strategies you need. Learn how to create an effective training plan, stay motivated, and overcome challenges with confidence. Packed with expert advice, inspiring stories, and practical tips, this guide will help you cross the finish line and celebrate your running achievements. Take the first step towards your running success today!",
+          createdDate: "Created Date: ",
+          finishDate:"Finish Date: ",
+          noGoals:"No goals available to display",
+          addGoal:"Add new goals",
+          completed:"Completed",
+          notCompleted:"Not Completed",
+          inProgress:"In Progress",
+          dayLeft:"DAY LEFT",
+          daysLeft:"DAYS LEFT"
         },
         stats: {
           personalStats: "Personal Stats",
@@ -298,12 +356,12 @@ const resources = {
           all: "All",
         },
         chart: {
-          noData:"No data available",
+          noData: "No data available",
           averagePulseTitle: "Average heart rates from recent workouts",
           distanceTitle: "Distance from recent workouts",
           durationTitle: "Duration of Recent Workouts",
           ratingTitle: "Training Ratings Histogram",
-          runTypesTitle:"Types of runs during recent workouts"
+          runTypesTitle: "Types of runs during recent workouts",
         },
       },
       gym: {

@@ -8,6 +8,7 @@ import ChartAveragePulse from "./charts/ChartAveragePulse";
 import ChartDistance from "./charts/ChartDistance";
 import { useUser } from "../../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const validateDuration = (duration) => {
   const regex = /^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
@@ -15,6 +16,7 @@ const validateDuration = (duration) => {
 };
 
 const RunNewTraining = () => {
+  const { t } = useTranslation();
   const { fetchUserInfo } = useUser();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -104,7 +106,7 @@ const RunNewTraining = () => {
       <div className="w-full 2xl:w-2/3 flex flex-col 2xl:flex-row justify-center">
         <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly mt-10 2xl:my-10">
           <div className="text-left flex flex-col dark:text-white">
-            <label className="px-2 text-xl">Duration</label>
+            <label className="px-2 text-xl">{t("run.general.duration")}</label>
             <input
               value={data.duration}
               onChange={(e) => setData({ ...data, duration: e.target.value })}
@@ -114,7 +116,7 @@ const RunNewTraining = () => {
           </div>
 
           <div className="text-left flex flex-col dark:text-white">
-            <label className="px-2 text-xl">Average pulse</label>
+            <label className="px-2 text-xl">{t("run.general.averagePulse")}</label>
             <input
               value={data.average_pulse}
               onChange={(e) =>
@@ -125,7 +127,7 @@ const RunNewTraining = () => {
             ></input>
           </div>
           <div className="text-left flex flex-col dark:text-white">
-            <label className="px-2 text-xl">Distance</label>
+            <label className="px-2 text-xl">{t("run.general.distance")}</label>
             <input
               value={data.distance}
               onChange={(e) => setData({ ...data, distance: e.target.value })}
@@ -135,7 +137,7 @@ const RunNewTraining = () => {
             ></input>
           </div>
           <div className="text-left flex flex-col  rounded-xl p-2 dark:text-white">
-            <label className="px-2 text-xl">Rating</label>
+            <label className="px-2 text-xl">{t("run.general.rating")}</label>
 
             <input
               value={data.rating}
@@ -159,7 +161,7 @@ const RunNewTraining = () => {
         </div>
         <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly my-10 ">
           <div className="text-left flex flex-col dark:text-white">
-            <label className="px-2 text-xl">Note</label>
+            <label className="px-2 text-xl">{t("run.general.note")}</label>
             <textarea
               value={data.note}
               onChange={(e) => setData({ ...data, note: e.target.value })}
@@ -199,7 +201,7 @@ const RunNewTraining = () => {
             }}
             className="text-2xl shadow-2xl text-white hover:scale-110 rounded-xl w-80 2xl:w-96 p-2 my-3 duration-200"
           >
-            Do training
+           {t("run.newTraining.doTraining")}
           </button>
         </div>
       </div>
