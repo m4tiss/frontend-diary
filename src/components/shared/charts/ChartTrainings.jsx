@@ -1,10 +1,12 @@
 import { BarChart } from "@mui/x-charts";
 import { getAuthToken } from "../../../config/auth";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "../../../config/axios";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChartTrainings = ({ friendId }) => {
+  const { t, i18n } = useTranslation(); // Dodaj i18n do nasłuchiwania na zmiany języka
   const [chartData, setChartData] = useState({
     xAxis: [
       {
@@ -15,8 +17,18 @@ const ChartTrainings = ({ friendId }) => {
     ],
     yAxis: [{ label: "Trainings" }],
     series: [
-      { name: "Run", data: [], color: "#1DA1F2", label: "Run" },
-      { name: "Gym", data: [], color: "#FF0000", label: "Gym" },
+      {
+        name: t("shared.chart.run"),
+        data: [],
+        color: "#1DA1F2",
+        label: t("shared.chart.run"),
+      },
+      {
+        name: t("shared.chart.gym"),
+        data: [],
+        color: "#FF0000",
+        label: t("shared.chart.gym"),
+      },
     ],
   });
 
@@ -35,7 +47,7 @@ const ChartTrainings = ({ friendId }) => {
         const runData = response.run.map((item) => item.count);
         const gymData = response.gym.map((item) => item.count);
         const labels = response.run.map((item) =>
-          new Date(item.month).toLocaleString("en-US", { month: "long" })
+          new Date(item.month).toLocaleString(i18n.language, { month: "long" })
         );
 
         setChartData({
@@ -43,20 +55,30 @@ const ChartTrainings = ({ friendId }) => {
             {
               scaleType: "band",
               data: labels,
-              label: "Months",
+              label: t("shared.chart.months"), 
             },
           ],
-          yAxis: [{ label: "Trainings" }],
+          yAxis: [{ label: t("shared.chart.trainings") }],
           series: [
-            { name: "Run", data: runData, color: "#1DA1F2", label: "Run" },
-            { name: "Gym", data: gymData, color: "#FF0000", label: "Gym" },
+            {
+              name: t("shared.chart.run"),
+              data: runData,
+              color: "#1DA1F2",
+              label: t("shared.chart.run"),
+            },
+            {
+              name: t("shared.chart.gym"),
+              data: gymData,
+              color: "#FF0000",
+              label: t("shared.chart.gym"),
+            },
           ],
         });
       })
       .catch((error) => {
         console.error("Error fetching trainings data:", error);
       });
-  }, []);
+  }, [friendId, t, i18n.language]);
 
   return (
     <div className="w-fit dark:bg-run-night-element dark:text-white bg-white shadow-xl rounded-xl">

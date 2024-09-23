@@ -58,6 +58,12 @@ const resources = {
           description: "Opis",
           noFile: "Brak pliku",
         },
+        chart:{
+          run:"Bieganie",
+          gym:"Trening siłowy",
+          trainings:"Treningi",
+          months:"Miesiące"
+        }
       },
       run: {
         general: {
@@ -116,6 +122,12 @@ const resources = {
           inProgress: "W trakcie",
           dayLeft: "DZIEŃ POZOSTAŁ",
           daysLeft: "DNI POZOSTAŁO"
+        },
+        records:{
+          personalRecords:"Rekordy personalne",
+          longestDistance:"Najdłuższy dystans",
+          highestAveragePulse:"Najwyższe średnie tętno",
+          longestTraining:"Najdłuższy trening"
         },
         stats: {
           personalStats: "Statystyki osobiste",
@@ -285,6 +297,12 @@ const resources = {
           description: "Description",
           noFile: "No file",
         },
+        chart:{
+          run:"Run",
+          gym:"Gym",
+          trainings:"Trainings",
+          months:"Months"
+        }
       },
       run: {
         general: {
@@ -343,6 +361,12 @@ const resources = {
           inProgress:"In Progress",
           dayLeft:"DAY LEFT",
           daysLeft:"DAYS LEFT"
+        },
+        records: {
+          personalRecords: "Personal Records",
+          longestDistance: "Longest Distance",
+          highestAveragePulse: "Highest Average Pulse",
+          longestTraining: "Longest Training"
         },
         stats: {
           personalStats: "Personal Stats",

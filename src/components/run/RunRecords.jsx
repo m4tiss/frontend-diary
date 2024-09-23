@@ -3,6 +3,7 @@ import { getAuthToken } from "../../config/auth";
 import { useState, useEffect } from "react";
 import { formattedDuration, formattedData } from "../../functions/formatData";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -11,6 +12,7 @@ import "swiper/css/effect-coverflow";
 
 const RunRecords = () => {
   const [records, setRecords] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const token = getAuthToken();
@@ -23,7 +25,7 @@ const RunRecords = () => {
       .then((res) => {
         const respone = res.data.records;
         setRecords(respone);
-        console.log(respone)
+        console.log(respone);
       })
       .catch((error) => {
         console.error("Error fetching records data:", error);
@@ -38,8 +40,10 @@ const RunRecords = () => {
           animate={{ y: 0 }}
           className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center"
         >
-          <label className="text-7xl">{formattedData(records.longest_distance||0.0)} km</label>
-          <h2 className="text-2xl">Longest Distance</h2>
+          <label className="text-7xl">
+            {formattedData(records.longest_distance || 0.0)} km
+          </label>
+          <h2 className="text-2xl">{t("run.records.longestDistance")}</h2>
         </motion.div>
         <motion.div
           initial={{ y: -50 }}
@@ -47,7 +51,7 @@ const RunRecords = () => {
           className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center"
         >
           <label className="text-7xl">{records.highest_average_pulse}</label>
-          <h2 className="text-2xl">Highest average pulse</h2>
+          <h2 className="text-2xl">{t("run.records.highestAveragePulse")}</h2>
         </motion.div>
         <motion.div
           initial={{ y: -50 }}
@@ -57,23 +61,13 @@ const RunRecords = () => {
           <label className="text-5xl">
             {formattedDuration(records.longest_duration || "00:00:00")}
           </label>
-          <h2 className="text-2xl">Longest Training</h2>
-        </motion.div>
-        <motion.div
-          initial={{ y: -50 }}
-          animate={{ y: 0 }}
-          className="w-80 h-96 bg-white shadow-xl rounded-xl flex-col flex justify-center items-center"
-        >
-          <label className="text-6xl">1300</label>
-          <h2 className="text-2xl">Most calories</h2>
+          <h2 className="text-2xl">{t("run.records.longestTraining")}</h2>
         </motion.div>
       </div>
 
-      <motion.div
-                initial={{ y: 50 }}
-                animate={{ y: 0 }}>
+      <motion.div initial={{ y: 50 }} animate={{ y: 0 }}>
         <h1 className="text-9xl opacity-50 font-bold text-black dark:text-white">
-          PERSONAL RECORDS
+        {t("run.records.personalRecords")}
         </h1>
       </motion.div>
     </div>
