@@ -40,10 +40,10 @@ const RunFriendAdvancedInfo = ({ friendInfo, friendId }) => {
                     "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
                 }
           }
-          className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col justify-center items-center text"
+          className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col justify-center items-center"
         >
           <label className="text-4xl">{friendInfo?.friends_count}</label>
-          <h2 className="text-xl">{t('shared.friends.friends')}</h2>
+          <h2 className="text-xl">{t("shared.friends.friends")}</h2>
         </div>
         <div
           style={
@@ -54,12 +54,12 @@ const RunFriendAdvancedInfo = ({ friendInfo, friendId }) => {
                     "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
                 }
           }
-          className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col justify-center items-center text"
+          className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col justify-center items-center"
         >
           <label className="text-4xl">
             {formattedDate(friendInfo?.date_of_birth)}
           </label>
-          <h2 className="text-xl">{t('shared.profile.birth')}</h2>
+          <h2 className="text-xl">{t("shared.profile.birth")}</h2>
         </div>
         <div
           style={
@@ -75,14 +75,14 @@ const RunFriendAdvancedInfo = ({ friendInfo, friendId }) => {
           <label className="text-4xl">
             {calculateDaysWithUs(friendInfo?.created_at)}
           </label>
-          <h2 className="text-xl">{t('shared.profile.daysOnPlatform')}</h2>
+          <h2 className="text-xl">{t("shared.profile.daysOnPlatform")}</h2>
         </div>
         <div
           onClick={handleRemoveFriend}
           className="min-w-52 min-h-28 rounded-xl text-white text-3xl p-2 flex flex-col justify-center items-center cursor-pointer bg-[#d90429] text"
         >
-          <h2>{t('shared.profile.removeFriend')}</h2>
-          <RiDeleteBin6Line/>
+          <h2>{t("shared.profile.removeFriend")}</h2>
+          <RiDeleteBin6Line />
         </div>
       </div>
     </div>

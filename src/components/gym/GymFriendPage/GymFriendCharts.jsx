@@ -23,7 +23,7 @@ const GymFriendCharts = ({ friendInfo, friendId }) => {
   };
 
   return (
-    <div className="w-1/3 flex flex-col justify-center items-center bg-white dark:bg-run-night-element rounded-xl m-10 shadow-xl">
+    <div className="w-full xl:w-1/3 flex flex-col justify-center items-center bg-white dark:bg-run-night-element rounded-xl py-5 xl:m-10 xl:px-10 shadow-xl">
       <div className="flex flex-wrap gap-5 justify-center">
       <FriendChartPanel
           onClick={() => {

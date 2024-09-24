@@ -37,6 +37,7 @@ const GymNavbar = ({ setNavBarType }) => {
     setRunContent();
   };
 
+  console.log(`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo?.profile_photo}`)
   return (
     <div className="w-full md:h-20 h-fit flex flex-col md:flex-row shadow-xl">
       <div
