@@ -85,7 +85,7 @@ const UsersToInvite = () => {
         </div>
 
         <input
-          className="bg-white p-2 text-3xl rounded-xl shadow-xl outline-none"
+          className="bg-white p-2 text-xl xl:text-3xl rounded-xl shadow-xl outline-none"
           type="text"
           placeholder={t('shared.friends.newFriend')}
           value={searchPattern}

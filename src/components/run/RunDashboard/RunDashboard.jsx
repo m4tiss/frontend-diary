@@ -12,7 +12,7 @@ const RunDashbnoard = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full flex flex-col flex-grow dark:bg-run-night-background">
+    <div className="w-full flex flex-col flex-grow dark:bg-run-night-background py-10 xl:py-0">
       <div className="flex-grow flex justify-center items-center">
         <div className="text-black dark:text-white w-3/4 flex flex-col justify-center items-center">
           <h2 className="text-[80px] text-center font-bold tracking-tighter">

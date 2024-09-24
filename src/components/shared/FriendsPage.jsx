@@ -14,12 +14,12 @@ const FriendsPage = ({ color }) => {
   };
 
   return (
-    <div className="w-full flex justify-center items-stretch flex-grow bg-[#e9ecef]">
-      <div className="w-3/4 p-20 flex flex-col gap-20 flex-grow">
-        <div className="w-full text-center justify-center items-center text-2xl flex">
+    <div className="w-full flex flex-col-reverse xl:flex-row justify-center items-stretch flex-grow bg-[#e9ecef] py-10 xl:py-0 gap-10 xl:gap-0">
+      <div className="w-full xl:w-3/4 px-5 xl:p-20 flex flex-col gap-20 flex-grow">
+        <div className="w-full text-center justify-center items-center text-md xl:text-2xl flex">
           <div
             onClick={() => handlePanelChange("Friends")}
-            className={`cursor-pointer w-1/3 p-2 rounded-tl-2xl rounded-bl-2xl ${
+            className={`cursor-pointer w-1/3 min-h-16 flex justify-center items-center p-2 rounded-tl-2xl rounded-bl-2xl ${
               choosenPanel === "Friends"
                 ? `bg-${color}-400 text-white`
                 : `bg-white`
@@ -29,7 +29,7 @@ const FriendsPage = ({ color }) => {
           </div>
           <div
             onClick={() => handlePanelChange("Users To Invite")}
-            className={`cursor-pointer w-1/3 p-2 ${
+            className={`cursor-pointer w-1/3 min-h-16 flex justify-center items-center p-2 ${
               choosenPanel === "Users To Invite"
                 ? `bg-${color}-400 text-white`
                 : `bg-white`
@@ -39,7 +39,7 @@ const FriendsPage = ({ color }) => {
           </div>
           <div
             onClick={() => handlePanelChange("Pending Users")}
-            className={`cursor-pointer w-1/3 p-2 rounded-tr-2xl rounded-br-2xl ${
+            className={`cursor-pointer w-1/3 min-h-16 flex justify-center items-center p-2 rounded-tr-2xl rounded-br-2xl ${
               choosenPanel === "Pending Users"
                 ? `bg-${color}-400 text-white`
                 : `bg-white`
@@ -53,7 +53,7 @@ const FriendsPage = ({ color }) => {
         {choosenPanel === "Users To Invite" && <UsersToInvite />}
         {choosenPanel === "Pending Users" && <FriendsPending />}
       </div>
-      <div className="w-1/4 flex flex-col flex-grow">
+      <div className="w-full xl:w-1/4 flex flex-col flex-grow px-5 xl:px-0">
         <FriendsUserProfile color={color} />
       </div>
     </div>

@@ -10,7 +10,7 @@ const FriendsUserProfile = ({color}) => {
   else background = "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
   return (
     <div
-      className="rounded-3xl flex flex-col h-full p-10 m-10 shadow-xl"
+      className="rounded-3xl flex flex-col h-full p-10 xl:m-10 shadow-xl"
       style={{ backgroundImage: `${background}` }}
     >
       <div className="flex">

@@ -28,7 +28,7 @@ const UserToInvitePanel = ({ user, onDelete }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}
-      className="flex flex-col justify-evenly items-center shadow-xl p-10 min-w-96 h-96 bg-white"
+      className="flex flex-col justify-evenly items-center shadow-xl p-10 min-w-80 xl:min-w-96 h-96 bg-white"
     >
       <img
         style={{

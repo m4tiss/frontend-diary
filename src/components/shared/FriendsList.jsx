@@ -28,12 +28,12 @@ const FriendsList = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-wrap gap-5">
+    <div className="w-full flex xl:justify-start justify-center flex-wrap gap-5">
       {friends.length === 0 ? (
         <motion.div
           initial={{ y: 50 }}
           animate={{ y: 0 }}
-          className="w-full flex justify-center items-center text-4xl"
+          className="w-full flex justify-center items-center text-center text-4xl"
         >
          {t('shared.friends.noFriends')}
         </motion.div>

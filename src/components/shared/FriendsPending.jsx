@@ -41,7 +41,7 @@ const FriendsPending = () => {
     setPendingUsers((prevUsers) =>
       prevUsers.filter((user) => user.user_id !== userId)
     );
-    console.log("usuwanie z listy w freinds pending")
+    console.log("usuwanie z listy w friends pending")
     fetchUserInfo();
   };
 
@@ -51,7 +51,7 @@ const FriendsPending = () => {
         <motion.div 
         initial={{ y: 50 }}
         animate={{ y: 0 }}
-        className="w-full flex justify-center items-center text-4xl">
+        className="w-full flex justify-center items-center text-center text-4xl">
            {t('shared.friends.noPending')}
         </motion.div>
       ) : (

@@ -50,7 +50,7 @@ const GymNavbar = ({ setNavBarType }) => {
               }
         }
       >
-        <div className="flex items-center justify-start gap-5">
+        <div className="flex flex-col md:flex-row items-center justify-start gap-5">
           <button
             onClick={() => navigate("/gym/dashboard")}
             className="text-2xl text-white mx-5 "

@@ -31,7 +31,7 @@ const FriendPendingPanel = ({ user, onDelete }) => {
 
   return (
     <motion.div
-      className="flex justify-evenly items-center shadow-xl p-10 w-full h-96 bg-white"
+      className="flex flex-col xl:flex-row justify-evenly items-center shadow-xl gap-5 p-10 w-full h-96 bg-white"
     >
       <div className="flex flex-col items-center gap-5">
       <img
@@ -46,12 +46,12 @@ const FriendPendingPanel = ({ user, onDelete }) => {
       <label className="text-2xl">{user.nickname}</label>
       </div>
       <div className="flex flex-col items-center gap-10">
-        <h2 className="text-4xl">{user.nickname} {t('shared.friends.invitationText')}</h2>
+        <h2 className=" hidden xl:flex text-4xl text-center">{user.nickname} {t('shared.friends.invitationText')}</h2>
       <div className="flex gap-10">
         <motion.button
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 500 }}
-          className=" bg-lime-400 text-white text-4xl p-3 rounded-xl"
+          className=" bg-lime-400 text-white text-2xl xl:text-4xl p-3 rounded-xl"
           onClick={handleAccept}
         >
          {t('shared.friends.accept')}
@@ -59,7 +59,7 @@ const FriendPendingPanel = ({ user, onDelete }) => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 500 }}
-          className=" bg-red-400 text-white text-4xl p-3 rounded-xl"
+          className=" bg-red-400 text-white text-2xl xl:text-4xl p-3 rounded-xl"
         >
           {t('shared.friends.reject')}
         </motion.button>
