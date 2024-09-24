@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import "swiper/css";
@@ -13,7 +12,30 @@ import { useNavigate } from "react-router-dom";
 
 const RunTrainingSlider = ({ categoryName }) => {
   const [trainings, setTrainings] = useState([]);
+  const [visibleSlidesCount, setVisibleSlidesCount] = useState(getVisibleSlidesCount());
   const navigate = useNavigate();
+
+  function getVisibleSlidesCount() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 700) {
+      return 1;
+    } else if (screenWidth < 1700) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleSlidesCount(getVisibleSlidesCount());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleDelete = (id) => {
     const token = getAuthToken();
@@ -27,7 +49,6 @@ const RunTrainingSlider = ({ categoryName }) => {
         setTrainings((prevTrainings) =>
           prevTrainings.filter((training) => training.run_workout_id !== id)
         );
-        
         console.log("Przeładowałem");
       })
       .catch((error) => {
@@ -54,7 +75,7 @@ const RunTrainingSlider = ({ categoryName }) => {
   return (
     <Swiper
       className="w-full flex justify-center items-center text-center"
-      slidesPerView={trainings.length === 0 ? 1 : 3}
+      slidesPerView={trainings.length === 0 ? 1 : visibleSlidesCount}
       grabCursor={true}
     >
       {trainings.length === 0 ? (
@@ -62,7 +83,7 @@ const RunTrainingSlider = ({ categoryName }) => {
           <div className="w-full h-96 flex gap-20 m-5 flex-col items-center justify-center">
             <h2 className="text-5xl dark:text-white">No available trainings</h2>
             <motion.button
-            onClick={() => navigate("/run/newTraining")}
+              onClick={() => navigate("/run/newTraining")}
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 500 }}
               className="text-white p-3 rounded-xl shadow-xl text-xl"

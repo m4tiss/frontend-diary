@@ -19,7 +19,7 @@ const RunTrainingSlide = ({ training, onDelete }) => {
 
   return (
     <div
-      className="w-96 h-96 flex flex-col items-center justify-evenly rounded-2xl
+      className="w-60 xl:w-96 h-80 xl:h-96 flex flex-col items-center justify-evenly rounded-2xl
            bg-white border-black m-5 dark:text-white cursor-pointer shadow-xl dark:bg-run-night-element"
       onClick={toggleDialog}
     >
