@@ -59,16 +59,24 @@ const ChartAveragePulse = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">{t('run.chart.averagePulseTitle')}</h2>
+      <h2 className="text-center text-xl xl:text-2xl p-2">
+        {t("run.chart.averagePulseTitle")}
+      </h2>
       {data.length > 0 ? (
         <LineChart
           width={window.innerWidth > 768 ? 500 : 300}
           height={300}
-          series={[{ data: data, label: t('run.general.averagePulse'), color: "#1DA1F2" }]}
+          series={[
+            {
+              data: data,
+              label: t("run.general.averagePulse"),
+              color: "#1DA1F2",
+            },
+          ]}
           xAxis={[{ scaleType: "point", data: xLabels }]}
         />
       ) : (
-        <div>{t('run.chart.noData')}</div>
+        <div>{t("run.chart.noData")}</div>
       )}
     </div>
   );

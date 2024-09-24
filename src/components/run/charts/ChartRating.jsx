@@ -52,7 +52,7 @@ const ChartRating = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
-      <h2 className="text-2xl p-2">{t('run.chart.ratingTitle')}</h2>
+      <h2 className="text-center text-xl xl:text-2xl p-2">{t('run.chart.ratingTitle')}</h2>
       <BarChart
         color={"#FBC814"}
         xAxis={[{ scaleType: "band", data: xData }]}

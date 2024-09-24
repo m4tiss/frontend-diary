@@ -62,7 +62,7 @@ const ChartDuration = ({ friendId }) => {
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-full">
-      <h2 className="text-2xl p-2">{t('gym.chart.durationTitle')}</h2>
+      <h2 className="text-center text-xl xl:text-2xl  p-2">{t('gym.chart.durationTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}
         height={300}

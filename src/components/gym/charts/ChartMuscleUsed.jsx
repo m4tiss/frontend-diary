@@ -65,7 +65,7 @@ const ChartMuscleUsed = ({ friendId, range = "all"}) => {
 
   return (
     <div className="flex flex-col items-center py-10 bg-white rounded-xl w-full shadow-xl">
-      <div className="text-2xl p-2">{t('gym.chart.muscleUsed')}</div>
+      <div className="text-center text-xl xl:text-2xl p-2">{t('gym.chart.muscleUsed')}</div>
       {isEmptyData ? (
         <div>{t('gym.chart.noData')}</div>
       ) : (
