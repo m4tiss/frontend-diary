@@ -1,5 +1,5 @@
-import { formattedDate, formattedData } from "../../functions/formatData";
-import { calculateDaysDiff } from "../../functions/statsCalculations";
+import { formattedDate, formattedData } from "../../../functions/formatData";
+import { calculateDaysDiff } from "../../../functions/statsCalculations";
 import { useTranslation } from "react-i18next";
 
 const RunGoalPanel = ({ goal }) => {

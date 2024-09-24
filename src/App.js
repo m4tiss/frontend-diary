@@ -5,32 +5,32 @@ import {
   useNavigate,
   Navigate,
 } from "react-router-dom";
-import GymDashboard from "./components/gym/GymDashboard";
+import GymDashboard from "./components/gym/GymDashboard/GymDashboard";
 import GymStats from "./components/gym/GymStats/GymStats";
-import GymNavbar from "./components/gym/GymNavbar";
-import GymHistory from "./components/gym/GymHistory";
+import GymNavbar from "./components/gym/GymNavbar/GymNavbar";
+import GymHistory from "./components/gym/GymHistory/GymHistory";
 import GymNewTraining from "./components/gym/GymNewTraining/GymNewTraining";
 
-import RunDashboard from "./components/run/RunDashboard";
-import RunNavbar from "./components/run/RunNavbar";
+import RunDashboard from "./components/run/RunDashboard/RunDashboard";
+import RunNavbar from "./components/run/RunNavbar/RunNavbar";
 
 import Login from "./components/auth/Login";
-import RunNewTraining from "./components/run/RunNewTraining";
+import RunNewTraining from "./components/run/RunNewTraining/RunNewTraining";
 import RunHistory from "./components/run/RunHistory/RunHistory";
-import RunStats from "./components/run/RunStats";
+import RunStats from "./components/run/RunStats/RunStats";
 import Register from "./components/auth/Register";
 
 import { useUser } from "./providers/UserProvider";
-import GymUserProfile from "./components/gym/GymUserProfile";
-import RunUserProfile from "./components/run/RunUserProfile";
-import RunGoals from "./components/run/RunGoals";
+import GymUserProfile from "./components/gym/GymProfile/GymUserProfile";
+import RunUserProfile from "./components/run/RunProfile/RunUserProfile";
+import RunGoals from "./components/run/RunGoals/RunGoals";
 import FriendsPage from "./components/shared/FriendsPage";
 import RunAchievementPage from "./components/run/RunAchievementPage";
 import { useEffect, useState, useContext } from "react";
 import DarkModeContext from "./providers/DarkModeProvider";
 import RunFriendPage from "./components/run/RunFriendPage/RunFriendPage";
 import ChatPage from "./components/shared/ChatPage/ChatPage";
-import RunRecords from "./components/run/RunRecords";
+import RunRecords from "./components/run/RunRecords/RunRecords";
 import GymQuickWorkout from "./components/gym/GymNewTraining/GymQuickWorkout";
 import GymPlannedWorkout from "./components/gym/GymNewTraining/GymPlannedWorkout";
 import GymWorkoutDetails from "./components/gym/GymNewTraining/GymWorkoutDetails";

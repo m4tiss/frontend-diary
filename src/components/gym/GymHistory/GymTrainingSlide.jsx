@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-stars";
 import { useTranslation } from "react-i18next";
-import pic from "../../images/trainig_panel.jpg";
+import pic from "../../../images/trainig_panel.jpg";
 
 import {
   formattedDate,
   formattedData,
   formattedDuration,
   formattedTime,
-} from "../../functions/formatData";
+} from "../../../functions/formatData";
 import { AnimatePresence } from "framer-motion";
 import GymTrainingDetails from "./GymTrainingDetails";
 

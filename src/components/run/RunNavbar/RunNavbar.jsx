@@ -1,15 +1,15 @@
 import { TbRun } from "react-icons/tb";
 import { CgGym } from "react-icons/cg";
-import { auth } from "../../config/firebase";
+import { auth } from "../../../config/firebase";
 import { signOut } from "firebase/auth";
-import NavbarButton from "../shared/NavbarButton";
+import NavbarButton from "../../shared/NavbarButton";
 import { useNavigate } from "react-router-dom";
 import { LuMoonStar } from "react-icons/lu";
 import { LuSun } from "react-icons/lu";
 import { motion } from "framer-motion";
-import { useUser } from "../../providers/UserProvider";
-import DarkModeContext from "../../providers/DarkModeProvider";
-import ContentContext from "../../providers/ContentProvider";
+import { useUser } from "../../../providers/UserProvider";
+import DarkModeContext from "../../../providers/DarkModeProvider";
+import ContentContext from "../../../providers/ContentProvider";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 

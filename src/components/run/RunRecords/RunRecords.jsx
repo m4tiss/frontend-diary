@@ -1,7 +1,7 @@
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
 import { useState, useEffect } from "react";
-import { formattedDuration, formattedData } from "../../functions/formatData";
+import { formattedDuration, formattedData } from "../../../functions/formatData";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import "swiper/css";

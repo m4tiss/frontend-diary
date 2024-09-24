@@ -1,8 +1,8 @@
-import { useUser } from "../../providers/UserProvider";
-import DarkModeContext from "../../providers/DarkModeProvider";
+import { useUser } from "../../../providers/UserProvider";
+import DarkModeContext from "../../../providers/DarkModeProvider";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { formattedDate } from "../../functions/formatData";
+import { formattedDate } from "../../../functions/formatData";
 
 const RunStatsProfile = () => {
   const { t } = useTranslation();

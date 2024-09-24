@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import axios from "../../config/axios";
+import axios from "../../../config/axios";
 import ReactStars from "react-stars";
 import { useTranslation } from "react-i18next";
 import { CiStar } from "react-icons/ci";
-import { getAuthToken } from "../../config/auth";
+import { getAuthToken } from "../../../config/auth";
 import { MdOutlineNoteAlt } from "react-icons/md";
 import { MdOutlineTimer } from "react-icons/md";
 import { CiCalendarDate } from "react-icons/ci";
@@ -14,7 +14,7 @@ import {
   formattedDate,
   formattedTime,
   formattedData,
-} from "../../functions/formatData";
+} from "../../../functions/formatData";
 
 const GymTrainingDetails = ({planName, toggleDialog, workoutId, onDelete }) => {
   const { t } = useTranslation();

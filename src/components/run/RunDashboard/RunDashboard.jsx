@@ -1,8 +1,8 @@
-import DashboardPanel from "../shared/DashboardPanel";
-import doTraining from "../../icons/do_white.svg";
-import history from "../../icons/history.svg";
-import stats from "../../icons/stats.svg";
-import friends from "../../icons/friends2.svg";
+import DashboardPanel from "../../shared/DashboardPanel";
+import doTraining from "../../../icons/do_white.svg";
+import history from "../../../icons/history.svg";
+import stats from "../../../icons/stats.svg";
+import friends from "../../../icons/friends2.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";

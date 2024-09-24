@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { getAuthToken } from "../../config/auth";
+import { getAuthToken } from "../../../config/auth";
 import ReactStars from "react-stars";
-import axios from "../../config/axios";
+import axios from "../../../config/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ChartAveragePulse from "./charts/ChartAveragePulse";
-import ChartDistance from "./charts/ChartDistance";
-import { useUser } from "../../providers/UserProvider";
+import ChartAveragePulse from "../charts/ChartAveragePulse";
+import ChartDistance from "../charts/ChartDistance";
+import { useUser } from "../../../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 

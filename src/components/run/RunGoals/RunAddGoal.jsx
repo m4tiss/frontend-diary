@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { ToastContainer ,toast } from "react-toastify";
-import { getAuthToken } from "../../config/auth";
-import axios from '../../config/axios'
+import { getAuthToken } from "../../../config/auth";
+import axios from '../../../config/axios'
 import dayjs from "dayjs";
 import "react-toastify/dist/ReactToastify.css";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";

@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
-import { LineChart, BarChart, PieChart } from "@mui/x-charts";
 import { useTranslation } from "react-i18next";
-import SmallStatsPanel from "../shared/SmallStatsPanel";
-import RunStatsProfile from "../run/RunStatsProfile";
-import FriendStatsPanel from "../shared/FriendStatsPanel";
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
-import ChartCategories from "./charts/ChartCategories";
-import { useUser } from "../../providers/UserProvider";
-import { formattedData, formattedDuration } from "../../functions/formatData";
-import ChartDuration from "./charts/ChartDuration";
+import SmallStatsPanel from "../../shared/SmallStatsPanel";
+import RunStatsProfile from "./RunStatsProfile";
+import FriendStatsPanel from "../../shared/FriendStatsPanel";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
+import ChartCategories from "./../charts/ChartCategories";
+import { useUser } from "../../../providers/UserProvider";
+import { formattedData, formattedDuration } from "../../../functions/formatData";
+import ChartDuration from "./../charts/ChartDuration";
 
 const RunStats = () => {
   const { t } = useTranslation();

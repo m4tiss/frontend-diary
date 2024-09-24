@@ -1,54 +1,52 @@
 import { useState, useEffect } from "react";
-import { TbNotesOff } from "react-icons/tb";
-import FriendDivProfile from "../shared/FriendDivProfile";
-import StatsUserProfileSlider from "../shared/StatsUserProfileSlider";
+
+import FriendDivProfile from "../../shared/FriendDivProfile";
+import StatsUserProfileSlider from "../../shared/StatsUserProfileSlider";
 import { IoMdAdd } from "react-icons/io";
 import { GoGoal } from "react-icons/go";
-import { getAuthToken } from "../../config/auth";
-import axios from "../../config/axios";
+import { getAuthToken } from "../../../config/auth";
+import axios from "../../../config/axios";
 import { AnimatePresence } from "framer-motion";
 import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
-import { useTranslation } from "react-i18next";
 import { TbCategoryPlus } from "react-icons/tb";
 import { GiAchievement } from "react-icons/gi";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import PagePanel from "../shared/PagePanel";
+import PagePanel from "../../shared/PagePanel";
 import { useNavigate } from "react-router-dom";
-import ChartTrainings from "../shared/charts/ChartTrainings";
-import { formattedDate } from "../../functions/formatData";
-import { TbNotes } from "react-icons/tb";
-
-import { useUser } from "../../providers/UserProvider";
+import ChartTrainings from "../../shared/charts/ChartTrainings";
+import { formattedDate } from "../../../functions/formatData";
+import { useTranslation } from "react-i18next";
+import { useUser } from "../../../providers/UserProvider";
+import RunAddGoal from "../RunGoals/RunAddGoal";
 import { ToastContainer, toast } from "react-toastify";
-import GymAddRoutine from "./GymAddRoutine";
+import RunAddCategory from "../RunAddCategory";
 
-const GymUserProfile = () => {
+const RunUserProfile = () => {
   const { t } = useTranslation();
   const { userInfo } = useUser();
   const [isGoalOpen, setIsGoalOpen] = useState(false);
-  const [isRoutineOpen, setIsRoutineOpen] = useState(false);
-  const [visibleFriendsCount, setVisibleFriendsCount] = useState(
-    getVisibleFriendsCount()
-  );
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [visibleFriendsCount, setVisibleFriendsCount] = useState(getVisibleFriendsCount());
 
   const toggleGoalDialog = () => {
     setIsGoalOpen((prev) => !prev);
   };
 
-  const toggleRoutineDialog = () => {
-    setIsRoutineOpen((prev) => !prev);
+  const toggleCategoryDialog = () => {
+    setIsCategoryOpen((prev) => !prev);
   };
 
-  const successRoutineDialog = () => {
-    setIsRoutineOpen((prev) => !prev);
-    toast.success("Routine added!");
+  const successCategoryDialog = () => {
+    setIsCategoryOpen((prev) => !prev);
+    toast.success("Category added!");
   };
 
   const successGoalDialog = () => {
     setIsGoalOpen((prev) => !prev);
     toast.success("Goal added!");
   };
+
 
   function getVisibleFriendsCount() {
     const screenWidth = window.innerWidth;
@@ -66,11 +64,12 @@ const GymUserProfile = () => {
       setVisibleFriendsCount(getVisibleFriendsCount());
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
+
 
   const navigate = useNavigate();
 
@@ -95,7 +94,7 @@ const GymUserProfile = () => {
   }, []);
 
   let linearColor =
-    "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)";
+    "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)";
 
   return (
     <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-run-night-background">
@@ -111,14 +110,12 @@ const GymUserProfile = () => {
         />
         <div className="bg-white dark:bg-run-night-element dark:text-white 2xl:w-96 w-full text-center mx-20 p-2 rounded-xl shadow-xl">
           <h2 className="text-3xl font-semibold">{userInfo.nickname}</h2>
-          <p className="text-lg text-center overflow-x-hidden">
-            {userInfo.description}
-          </p>
+          <p className="text-lg text-center overflow-x-hidden">{userInfo.description}</p>
         </div>
       </div>
       <div className="2xl:w-1/3 flex px-5 2xl:px-0 flex-col ">
         <h2 className="text-4xl 2xl:text-left dark:text-white  text-center font-semibold my-5">
-          {t('shared.friends.friends')}
+        {t('shared.friends.friends')}
         </h2>
         <div className="w-full overflow-hidden h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
           {friends.slice(0, visibleFriendsCount).map((user, index) => (
@@ -126,67 +123,63 @@ const GymUserProfile = () => {
           ))}
           <div className="flex flex-col justify-center items-center gap-2">
             <IoMdAdd
-              onClick={() => navigate("/gym/friends")}
-              className="rounded-full cursor-pointer hover:scale-110 duration-200 hover:rotate-90"
-              size={100}
-            />
+            onClick={() => navigate("/run/friends")}
+            className="rounded-full cursor-pointer hover:scale-110 duration-200 hover:rotate-90" size={100} />
             <label className="text-xl">{t('shared.friends.addFriend')}</label>
           </div>
         </div>
 
         <div className="h-fit flex-wrap flex dark:bg-run-night-element dark:text-white bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
           <PagePanel
-            onClick={() => navigate("/gym/records")}
-            type={"gym"}
-            title={t('gym.profile.showRecords')}
+           onClick={() => navigate("/run/records")}
+            type={"run"}
+            title={t('run.profile.showRecords')}
             icon={<GiTrophyCup size={50} color="white" />}
           />
           <PagePanel
-            onClick={toggleRoutineDialog}
-            type={"gym"}
-            title={t('gym.profile.addRoutine')}
-            icon={<TbNotes size={50} color="white" />}
+           onClick={toggleCategoryDialog}
+            type={"run"}
+            title={t('run.profile.addCategory')}
+            icon={<TbCategoryPlus size={50} color="white" />}
           />
           <PagePanel
-            //onClick={() => navigate("/run/achievements")}
-            type={"gym"}
-            title={t('gym.profile.showAchievements')}
-            icon={<GiAchievement size={50} color="white" 
-            />}
+            onClick={() => navigate("/run/achievements")}
+            type={"run"}
+            title={t('run.profile.showAchievements')}
+            icon={<GiAchievement size={50} color="white" />}
           />
           <PagePanel
-            //onClick={toggleGoalDialog}
-            type={"gym"}
-            title={t('gym.profile.addNewGoal')}
+            onClick={toggleGoalDialog}
+            type={"run"}
+            title={t('run.profile.addNewGoal')}
             icon={<GoGoal size={50} color="white" />}
           />
           <PagePanel
-            //onClick={() => navigate("/run/goals")}
-            type={"gym"}
-            title={t('gym.profile.showGoals')}
+            onClick={() => navigate("/run/goals")}
+            type={"run"}
+            title={t('run.profile.showGoals')}
             icon={<LuGoal size={50} color="white" />}
           />
           <PagePanel
-            onClick={() => navigate("/gym/chats")}
-            type={"gym"}
-            title={t('gym.profile.chat')}
+          onClick={() => navigate("/run/chats")}
+            type={"run"}
+            title={t('run.profile.chat')}
             icon={<IoChatboxEllipsesOutline size={50} color="white" />}
           />
-
-          {/* <AnimatePresence>
+          <AnimatePresence>
             {isGoalOpen && (
               <RunAddGoal
-                toggleGoalDialog={toggleGoalDialog}
-                successGoalDialog={successGoalDialog}
+              toggleGoalDialog={toggleGoalDialog}
+              successGoalDialog={successGoalDialog}
               />
             )}
-          </AnimatePresence> */}
+          </AnimatePresence>
 
           <AnimatePresence>
-            {isRoutineOpen && (
-              <GymAddRoutine
-                toggleRoutineDialog={toggleRoutineDialog}
-                successRoutineDialog={successRoutineDialog}
+            {isCategoryOpen && (
+              <RunAddCategory
+              toggleCategoryDialog={toggleCategoryDialog}
+              successCategoryDialog={successCategoryDialog}
               />
             )}
           </AnimatePresence>
@@ -207,7 +200,7 @@ const GymUserProfile = () => {
         <div className="flex flex-col 2xl:w-96 gap-2 px-5 2xl:px-0 w-full">
           <div className="w-full h-24 dark:bg-run-night-element dark:text-white bg-white rounded-xl  flex justify-evenly items-center px-10 shadow-xl">
             <div className="flex-grow flex flex-col">
-              <label>{t('gym.profile.email')}</label>
+              <label>{t('run.profile.email')}</label>
               <h2 className="text-xl border-white max-w-60 font-semibold">
                 {userInfo.email}
               </h2>
@@ -215,7 +208,7 @@ const GymUserProfile = () => {
           </div>
           <div className="w-full h-24 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex justify-evenly items-center  px-10 shadow-xl">
             <div className="flex-grow">
-              <label>{t('gym.profile.birth')}</label>
+              <label>{t('run.profile.birth')}</label>
               <h2 className="text-xl font-semibold">
                 {formattedDate(userInfo.date_of_birth || "0000-00-00")}
               </h2>
@@ -229,4 +222,4 @@ const GymUserProfile = () => {
   );
 };
 
-export default GymUserProfile;
+export default RunUserProfile;
