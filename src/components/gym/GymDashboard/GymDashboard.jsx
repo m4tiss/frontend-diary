@@ -14,11 +14,11 @@ const GymDashboard = () => {
   return (
     <div className="w-full flex flex-col flex-grow dark:bg-gym-night-background py-10 xl:py-0">
       <div className="flex-grow flex justify-center items-center">
-        <div className="w-3/4 flex flex-col justify-center items-center dark:text-white">
+        <div className="text-black dark:text-white w-3/4 flex flex-col justify-center items-center">
           <h2 className="text-6xl xl:text-[80px] text-center  font-bold tracking-tighter">
           {t('gym.dashboard.title')}
           </h2>
-          <h2 className="text-[30px] tracking-tighter md:px-40 text-center">
+          <h2 className="text-[30px] my-10 md:my-0 tracking-tighter md:px-40 text-center">
           {t('gym.dashboard.description')}
           </h2>
         </div>
@@ -33,7 +33,7 @@ const GymDashboard = () => {
             },
           },
         }}
-        className=" flex-grow flex flex-wrap gap-10 my-10 md:my-0  justify-center items-center"
+        className=" flex-grow flex flex-wrap gap-10 my-10 md:my-0 justify-center items-center"
       >
         <DashboardPanel
           title= {t('gym.dashboard.newTraining')}

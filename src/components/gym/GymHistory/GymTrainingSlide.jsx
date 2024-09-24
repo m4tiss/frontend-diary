@@ -15,13 +15,14 @@ import GymTrainingDetails from "./GymTrainingDetails";
 const GymTrainingSlide = ({ workout, onDelete }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+
   const toggleDialog = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <div
-      className="w-96 h-96 flex flex-col items-center justify-evenly rounded-2xl
+      className="w-60 xl:w-96 h-80 xl:h-96 flex flex-col items-center justify-evenly rounded-2xl
            bg-white border-black m-5 cursor-pointer shadow-xl"
       onClick={toggleDialog}
     >
@@ -33,12 +34,13 @@ const GymTrainingSlide = ({ workout, onDelete }) => {
           {formattedDuration(workout.duration)}
         </span>
       </div>
-      <div className="flex justify-evenly w-full px-5  text-xl">
+      <div className="flex justify-evenly w-full px-5 text-xl">
         <span className=" text-center">
-         {t('gym.general.sets')}: <span className="">{workout.sets}</span>
+          {t("gym.general.sets")}: <span className="">{workout.sets}</span>
         </span>
         <span className="">
-        {t('gym.general.weight')}: <span className="">{workout.volume} kg</span>
+          {t("gym.general.weight")}:{" "}
+          <span className="">{workout.volume} kg</span>
         </span>
       </div>
 
@@ -56,9 +58,7 @@ const GymTrainingSlide = ({ workout, onDelete }) => {
       <div className="w-full flex justify-evenly items-center">
         <img width={80} src={pic} />
         <h2 className="text-xl">{formattedTime(workout.date)}</h2>
-        <h2 className="text-xl">
-          {formattedDate(workout.date || "00:00:00")}
-        </h2>
+        <h2 className="text-xl">{formattedDate(workout.date || "00:00:00")}</h2>
       </div>
       <AnimatePresence>
         {isOpen && (

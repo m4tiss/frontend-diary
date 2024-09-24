@@ -41,4 +41,3 @@ const GymStatsProfile = () => {
 };
 
 export default GymStatsProfile;
-//➘ ➙

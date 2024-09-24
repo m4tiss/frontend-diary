@@ -88,15 +88,15 @@ const StatsGym = () => {
   };
 
   return (
-    <div className="w-full flex flex-grow bg-[#e9ecef]">
-      <div className="w-3/4 flex flex-col p-10 justify-center items-center flex-wrap h-fit">
+    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-run-night-background">
+      <div className="w-full 2xl:w-3/4  flex flex-col p-5  items-center">
         <div className="w-full m-5 flex justify-center items-center">
-          <span className="text-2xl font-semibold">
+          <span className="text-2xl dark:text-white font-semibold">
             {" "}
             {t("gym.stats.personalStats")}
           </span>
         </div>
-        <div className="flex justify-center w-full gap-5 mb-10">
+        <div className="flex flex-col 2xl:flex-row justify-center w-full gap-5 mb-10">
           <button
             className={getButtonStyle("week")}
             onClick={() => handleRangeChange("week")}
@@ -122,7 +122,7 @@ const StatsGym = () => {
             {t("gym.stats.all")}
           </button>
         </div>
-        <div className="flex justify-between w-full gap-5">
+        <div className="flex flex-col 2xl:flex-row justify-between w-full gap-5">
           <SmallStatsPanel
             title={t("gym.stats.totalVolume")}
             description={stats.totalVolume + " kg"}
@@ -144,13 +144,13 @@ const StatsGym = () => {
             loading={loadingStats}
           />
         </div>
-        <div className="w-full flex justify-between m-5 gap-5">
+        <div className="w-full flex flex-col 2xl:flex-row justify-between m-5 gap-5">
           <ChartDuration />
           <ChartMuscleUsed range={selectedRange} />
         </div>
       </div>
 
-      <div className="w-1/4 flex flex-col">
+      <div className="w-full 2xl:w-1/4 flex flex-col">
         <div className="flex-grow m-10">
           <GymStatsProfile />
           <div className="bg-white dark:bg-run-night-element text-black dark:text-white flex flex-col rounded-2xl shadow-xl my-10 py-10 gap-2">

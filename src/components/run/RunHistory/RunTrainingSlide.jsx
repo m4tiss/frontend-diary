@@ -33,7 +33,7 @@ const RunTrainingSlide = ({ training, onDelete }) => {
           {formattedData(training.distance || 0)} km
         </span>
       </div>
-      <div className="flex justify-evenly w-full px-5  text-xl">
+      <div className="flex justify-evenly w-full px-5 text-xl">
         <span className=" text-center">
           <span className="">
             {formattedDuration(training.duration || "00:00:00")}

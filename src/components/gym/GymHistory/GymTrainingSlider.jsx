@@ -13,8 +13,32 @@ import { useNavigate } from "react-router-dom";
 
 const GymTrainingSlider = () => {
   const [workouts, setWorkouts] = useState([]);
+  const [visibleSlidesCount, setVisibleSlidesCount] = useState(getVisibleSlidesCount());
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
+  function getVisibleSlidesCount() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 700) {
+      return 1;
+    } else if (screenWidth < 1700) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleSlidesCount(getVisibleSlidesCount());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  
   const handleDelete = (id) => {
     const token = getAuthToken();
     axios
@@ -36,7 +60,7 @@ const GymTrainingSlider = () => {
   };
 
 
-  const navigate = useNavigate();
+  
   useEffect(() => {
     const token = getAuthToken();
     axios
@@ -55,7 +79,7 @@ const GymTrainingSlider = () => {
   return (
     <Swiper
       className="w-full flex justify-center items-center text-center"
-      slidesPerView={workouts.length === 0 ? 1 : 3}
+      slidesPerView={workouts.length === 0 ? 1 : visibleSlidesCount}
       grabCursor={true}
     >
       {workouts.length === 0 ? (
