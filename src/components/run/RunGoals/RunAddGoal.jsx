@@ -58,14 +58,14 @@ const RunAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
 
   return createPortal(
     <div
-      className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
+      className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 "
       onClick={toggleGoalDialog}
     >
       <motion.div
         initial={{ scale: 0.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.2, opacity: 0 }}
-        className="bg-white flex flex-col rounded-xl p-6 shadow-xl w-1/3 h-fit overflow-auto"
+        className="bg-white flex flex-col rounded-xl p-6 shadow-xl w-11/12 xl:w-1/3 h-fit overflow-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-3xl font-semibold text-center">ADD NEW GOAL</h2>
@@ -101,7 +101,7 @@ const RunAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
           setData({ ...data, goal: e.target.value })
           }
         />
-        <div className="flex w-full justify-start gap-20 items-center">
+        <div className="flex flex-col xl:flex-row w-full justify-start  xl:gap-20 items-start xl:items-center">
           <label className="w-fit p-2">Finish Date</label>
           <div className="flex flex-grow justify-center items-center">
             <LocalizationProvider dateAdapter={AdapterDayjs}>

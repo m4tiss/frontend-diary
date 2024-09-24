@@ -3,4 +3,18 @@ const instance = axios.create({
   baseURL: process.env.API_URL || "http://localhost:3000/",
 });
 
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem("token");
+
+      window.location.href = "http://localhost:3001/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default instance;

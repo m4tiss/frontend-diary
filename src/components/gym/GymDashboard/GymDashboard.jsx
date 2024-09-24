@@ -12,10 +12,10 @@ const GymDashboard = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full flex flex-col flex-grow dark:bg-gym-night-background">
+    <div className="w-full flex flex-col flex-grow dark:bg-gym-night-background py-10 xl:py-0">
       <div className="flex-grow flex justify-center items-center">
         <div className="w-3/4 flex flex-col justify-center items-center dark:text-white">
-          <h2 className="text-[80px] text-center  font-bold tracking-tighter">
+          <h2 className="text-6xl xl:text-[80px] text-center  font-bold tracking-tighter">
           {t('gym.dashboard.title')}
           </h2>
           <h2 className="text-[30px] tracking-tighter md:px-40 text-center">

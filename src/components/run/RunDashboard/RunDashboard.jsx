@@ -15,7 +15,7 @@ const RunDashbnoard = () => {
     <div className="w-full flex flex-col flex-grow dark:bg-run-night-background py-10 xl:py-0">
       <div className="flex-grow flex justify-center items-center">
         <div className="text-black dark:text-white w-3/4 flex flex-col justify-center items-center">
-          <h2 className="text-[80px] text-center font-bold tracking-tighter">
+          <h2 className="text-6xl xl:text-[80px] text-center font-bold tracking-tighter">
             {t("run.dashboard.title")}
           </h2>
           <h2 className="text-[30px] my-10 md:my-0 tracking-tighter md:px-40 text-center">

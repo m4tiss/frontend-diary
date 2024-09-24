@@ -37,7 +37,7 @@ const RunGoals = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background">
+    <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0 px-5">
       <div className="w-full 2xl:w-1/2 flex flex-col text-center items-center text-black dark:text-white justify-center gap-5">
         <h2 className="text-7xl">{t("run.goals.title")}</h2>
         <label className="text-2xl px-10">
@@ -47,7 +47,7 @@ const RunGoals = () => {
 
       <div className="w-full 2xl:w-1/2 flex px-40 py-20 justify-center items-center">
         <Swiper
-          className="w-full flex min-w-72 h-full shadow-xl bg-white dark:bg-run-night-element rounded-xl"
+          className="w-full flex min-w-80 h-full shadow-xl bg-white dark:bg-run-night-element rounded-xl"
           slidesPerView={1}
           grabCursor={true}
           spaceBetween={30}

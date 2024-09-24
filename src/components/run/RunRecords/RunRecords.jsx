@@ -33,8 +33,8 @@ const RunRecords = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-grow flex-col justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background">
-      <div className="w-full flex flex-col 2xl:flex-row justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background">
+    <div className="w-full flex flex-grow flex-col-reverse justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0 px-5 gap-10 xl:gap-0">
+      <div className="w-full flex flex-col 2xl:flex-row justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background  gap-10 xl:gap-0">
         <motion.div
           initial={{ y: -50 }}
           animate={{ y: 0 }}
@@ -66,7 +66,7 @@ const RunRecords = () => {
       </div>
 
       <motion.div initial={{ y: 50 }} animate={{ y: 0 }}>
-        <h1 className="text-9xl opacity-50 font-bold text-black dark:text-white">
+        <h1 className="text-4xl xl:text-9xl opacity-50 font-bold text-black dark:text-white">
         {t("run.records.personalRecords")}
         </h1>
       </motion.div>
