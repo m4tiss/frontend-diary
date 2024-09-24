@@ -7,15 +7,14 @@ import DarkModeContext from "../../../providers/DarkModeProvider";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-const ChartMuscleUsed = ({ friendId, range = "all"}) => {
-
+const ChartMuscleUsed = ({ friendId, range = "all" }) => {
   const { darkMode } = useContext(DarkModeContext);
   const [categoriesData, setCategoriesData] = useState({});
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const fetchData = async () => {
       try {
         const token = getAuthToken();
@@ -24,7 +23,7 @@ const ChartMuscleUsed = ({ friendId, range = "all"}) => {
             Authorization: "Bearer " + token,
           },
           params: {
-            friend_id: friendId || undefined, 
+            friend_id: friendId || undefined,
             range: range,
           },
         });
@@ -49,14 +48,25 @@ const ChartMuscleUsed = ({ friendId, range = "all"}) => {
   };
 
   const getCategoryColor = (index) => {
-    const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#ff5e4e"];
+    const colors = [
+      "#FF6384",
+      "#36A2EB",
+      "#FFCE56",
+      "#4BC0C0",
+      "#9966FF",
+      "#ff5e4e",
+    ];
     return colors[index % colors.length];
   };
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-10 bg-white rounded-xl w-full shadow-xl">
-        <SyncLoader color={darkMode ? "#FFFFFF" : "#000000"} size={20} aria-label="Loading Spinner" />
+        <SyncLoader
+          color={darkMode ? "#FFFFFF" : "#000000"}
+          size={20}
+          aria-label="Loading Spinner"
+        />
       </div>
     );
   }
@@ -65,9 +75,11 @@ const ChartMuscleUsed = ({ friendId, range = "all"}) => {
 
   return (
     <div className="flex flex-col items-center py-10 bg-white rounded-xl w-full shadow-xl">
-      <div className="text-center text-xl xl:text-2xl p-2">{t('gym.chart.muscleUsed')}</div>
+      <div className="text-center text-xl xl:text-2xl p-2">
+        {t("gym.chart.muscleUsed")}
+      </div>
       {isEmptyData ? (
-        <div>{t('gym.chart.noData')}</div>
+        <div>{t("gym.chart.noData")}</div>
       ) : (
         <PieChart
           colors={transformDataForPieChart().map((data) => data.color)}
@@ -76,6 +88,8 @@ const ChartMuscleUsed = ({ friendId, range = "all"}) => {
               paddingAngle: 1,
               cornerRadius: 5,
               data: transformDataForPieChart(),
+              highlightScope: { fade: "global", highlight: "item" },
+              faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
             },
           ]}
           width={window.innerWidth > 768 ? 550 : 300}

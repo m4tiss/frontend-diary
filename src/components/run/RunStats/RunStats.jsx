@@ -91,7 +91,7 @@ const RunStats = () => {
             {t('run.stats.personalStats')}
           </span>
         </div>
-        <div className="flex justify-center w-full gap-5 mb-10">
+        <div className="flex flex-col 2xl:flex-row justify-center w-full gap-5 mb-10">
           <button
             className={getButtonStyle("week")}
             onClick={() => handleRangeChange("week")}

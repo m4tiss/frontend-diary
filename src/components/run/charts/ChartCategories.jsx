@@ -19,7 +19,7 @@ const ChartCategories = ({ friendId, range = "all" }) => {
             Authorization: "Bearer " + token,
           },
           params: {
-            friend_id: friendId || undefined, 
+            friend_id: friendId || undefined,
             range: range,
           },
         });
@@ -57,8 +57,10 @@ const ChartCategories = ({ friendId, range = "all" }) => {
   }
 
   return (
-    <div className="flex flex-col items-center py-10 bg-white rounded-xl w-full shadow-xl">
-      <div className="text-center text-xl xl:text-2xl p-2">{t('run.chart.runTypesTitle')}</div>
+    <div className="flex flex-col items-center justify-center py-10 bg-white rounded-xl w-full shadow-xl">
+      <div className="text-center text-xl xl:text-2xl p-2">
+        {t("run.chart.runTypesTitle")}
+      </div>
       {categoriesData.length > 0 ? (
         <PieChart
           colors={transformDataForPieChart().map((data) => data.color)}
@@ -67,13 +69,16 @@ const ChartCategories = ({ friendId, range = "all" }) => {
               paddingAngle: 1,
               cornerRadius: 5,
               data: transformDataForPieChart(),
+              highlightScope: { fade: "global", highlight: "item" },
+              faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
+
             },
           ]}
           width={window.innerWidth > 768 ? 500 : 300}
           height={window.innerWidth > 768 ? 200 : 100}
         />
       ) : (
-        <div>{t('run.chart.noData')}</div>
+        <div>{t("run.chart.noData")}</div>
       )}
     </div>
   );

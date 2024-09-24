@@ -64,10 +64,10 @@ const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
         initial={{ scale: 0.2, opacity: 0, y: 300 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.2, opacity: 0, y: 300 }}
-        className="bg-white flex flex-col items-center rounded-xl p-6 shadow-xl w-3/4 h-3/4 overflow-auto"
+        className="bg-white flex flex-col items-center rounded-xl p-6 shadow-xl w-11/12 h-5/6 xl:w-3/4 xl:h-3/4 overflow-auto gap-10 xl:gap-0"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-full flex items-center px-10 justify-between">
+        <div className="w-full flex flex-col xl:flex-row items-center px-10 justify-between">
           <h2 className="text-4xl">Chart {type}</h2>
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -78,8 +78,8 @@ const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
             Close
           </motion.button>
         </div>
-        <div className="w-full flex flex-grow ">
-          <div className="w-1/2 flex flex-col items-center flex-grow justify-evenly">
+        <div className="w-full flex flex-col xl:flex-row flex-grow gap-10 xl:gap-0">
+          <div className="w-full xl:w-1/2 flex flex-col items-center flex-grow justify-evenly gap-10 xl:gap-0">
             <div className="flex justify-center items-center gap-5">
               <img
                 style={{
@@ -94,7 +94,7 @@ const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
             </div>
             {renderChartContent(-1)}
           </div>
-          <div className="w-1/2 flex flex-col items-center flex-grow justify-evenly">
+          <div className="w-full xl:w-1/2 flex flex-col items-center flex-grow justify-evenly gap-10 xl:gap-0">
             <div className="flex justify-center items-center gap-5">
               <img
                 style={{

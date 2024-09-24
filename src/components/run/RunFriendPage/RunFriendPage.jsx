@@ -30,11 +30,11 @@ const RunFriendPage = () => {
   }, [friendId]);
 
   return (
-    <div className="w-full flex flex-col flex-grow bg-[#e9ecef] dark:bg-run-night-background">
+    <div className="w-full flex flex-col flex-grow bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0 px-5 gap-10 xl:gap-0">
       <FriendBasicInfo friendInfo={friendInfo} />
-      <div className="w-full flex justify-center flex-grow">
-        <RunFriendAdvancedInfo friendInfo={friendInfo} friendId={friendId}/>
-        <RunFriendCharts friendInfo={friendInfo} friendId={friendId}/>
+      <div className="w-full flex flex-col xl:flex-row justify-center flex-grow gap-10 xl:gap-0">
+        <RunFriendAdvancedInfo friendInfo={friendInfo} friendId={friendId} />
+        <RunFriendCharts friendInfo={friendInfo} friendId={friendId} />
         <RunFriendActions />
       </div>
     </div>

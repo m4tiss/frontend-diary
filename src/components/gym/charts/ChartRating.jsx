@@ -59,8 +59,8 @@ const ChartRating = ({ friendId }) => {
         series={[
             { data: yData, color: "#FBC814" },
           ]}
-        width={500}
-        height={300}
+          width={window.innerWidth > 768 ? 500 : 300}
+          height={300}
       />
     </div>
   );
