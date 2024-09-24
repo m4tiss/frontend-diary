@@ -105,6 +105,7 @@ const resources = {
             "Regularny trening siłowy to klucz do poprawy kondycji fizycznej i zdrowia. Wzmacnia mięśnie, poprawia gęstość kości i wspomaga metabolizm. Regularne ćwiczenia zwiększają wydolność organizmu, pomagają w utrzymaniu prawidłowej wagi oraz redukują ryzyko wielu chorób. Dobrze zbilansowany plan treningowy powinien obejmować różnorodne ćwiczenia, by angażować wszystkie grupy mięśniowe i umożliwiać ich równomierny rozwój.",
           noTrainings: "Brak dostępnych treningów",
           addTraining: "Dodaj trening",
+          all:"Wszytskie"
         },
         newTraining: {
           doTraining: "Zrób trening",
@@ -194,6 +195,7 @@ const resources = {
             "Regularny trening siłowy to klucz do poprawy kondycji fizycznej i zdrowia. Wzmacnia mięśnie, poprawia gęstość kości i wspomaga metabolizm. Regularne ćwiczenia zwiększają wydolność organizmu, pomagają w utrzymaniu prawidłowej wagi oraz redukują ryzyko wielu chorób. Dobrze zbilansowany plan treningowy powinien obejmować różnorodne ćwiczenia, by angażować wszystkie grupy mięśniowe i umożliwiać ich równomierny rozwój.",
           noTrainings: "Brak dostępnych treningów",
           addTraining: "Dodaj trening",
+          all:"Wszytskie"
         },
         newTraining: {
           plannedWorkout: "Planowany trening",
@@ -344,6 +346,7 @@ const resources = {
             "Regular strength training is essential for improving physical fitness and health. It strengthens muscles, enhances bone density, and supports metabolism. Consistent exercise boosts overall endurance, helps maintain a healthy weight, and reduces the risk of various diseases. A well-balanced workout plan should include a variety of exercises to engage all muscle groups and ensure balanced development.",
           noTrainings: "No available trainings",
           addTraining: "Add training",
+          all: "All"
         },
         newTraining: {
           doTraining: "Do training",
@@ -433,6 +436,7 @@ const resources = {
             "Regular strength training is essential for improving physical fitness and health. It strengthens muscles, enhances bone density, and supports metabolism. Consistent exercise boosts overall endurance, helps maintain a healthy weight, and reduces the risk of various diseases. A well-balanced workout plan should include a variety of exercises to engage all muscle groups and ensure balanced development.",
           noTrainings: "No available trainings",
           addTraining: "Add training",
+          all: "All",
         },
         newTraining: {
           plannedWorkout: "Planned Workout",

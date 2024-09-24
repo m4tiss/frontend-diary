@@ -1,10 +1,10 @@
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { LineChart } from "@mui/x-charts/LineChart";
-import ChartHeaviestWeight from "./charts/ChartHeaviestWeight";
-import ChartMostReps from "./charts/ChartMostReps";
+import ChartHeaviestWeight from "../charts/ChartHeaviestWeight";
+import ChartMostReps from "../charts/ChartMostReps";
 
 const GymRecords = () => {
   const [availableExercises, setAvailableExercises] = useState([]);

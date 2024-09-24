@@ -151,7 +151,8 @@ const GymUserProfile = () => {
             //onClick={() => navigate("/run/achievements")}
             type={"gym"}
             title={t('gym.profile.showAchievements')}
-            icon={<GiAchievement size={50} color="white" />}
+            icon={<GiAchievement size={50} color="white" 
+            />}
           />
           <PagePanel
             //onClick={toggleGoalDialog}

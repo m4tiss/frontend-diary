@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import SmallStatsPanel from "../shared/SmallStatsPanel";
+import SmallStatsPanel from "../../shared/SmallStatsPanel";
 import GymStatsProfile from "./GymStatsProfile";
-import FriendStatsPanel from "../shared/FriendStatsPanel";
-import ChartMuscleUsed from "./charts/ChartMuscleUsed";
-import { useUser } from "../../providers/UserProvider";
+import FriendStatsPanel from "../../shared/FriendStatsPanel";
+import ChartMuscleUsed from "../charts/ChartMuscleUsed";
+import { useUser } from "../../../providers/UserProvider";
 import { useTranslation } from "react-i18next";
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
-import ChartDuration from "./charts/ChartDuration";
-import { formattedDuration } from "../../functions/formatData";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
+import ChartDuration from "../charts/ChartDuration";
+import { formattedDuration } from "../../../functions/formatData";
 
 const StatsGym = () => {
   const { t } = useTranslation();

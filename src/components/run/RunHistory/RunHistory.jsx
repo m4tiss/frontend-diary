@@ -55,7 +55,7 @@ const RunHistory = () => {
               onChange={handleCategoryChange}
               className="bg-run-night-element text-white p-2 rounded mb-4"
             >
-              <option value="">All</option>
+              <option value="">{t('run.historyTraining.all')}</option>
               {categories.map((category) => (
                 <option
                   key={category.run_category_id}

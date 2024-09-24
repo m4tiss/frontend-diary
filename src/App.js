@@ -6,7 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import GymDashboard from "./components/gym/GymDashboard";
-import GymStats from "./components/gym/GymStats";
+import GymStats from "./components/gym/GymStats/GymStats";
 import GymNavbar from "./components/gym/GymNavbar";
 import GymHistory from "./components/gym/GymHistory";
 import GymNewTraining from "./components/gym/GymNewTraining/GymNewTraining";
@@ -35,7 +35,7 @@ import GymQuickWorkout from "./components/gym/GymNewTraining/GymQuickWorkout";
 import GymPlannedWorkout from "./components/gym/GymNewTraining/GymPlannedWorkout";
 import GymWorkoutDetails from "./components/gym/GymNewTraining/GymWorkoutDetails";
 import GymFriendPage from "./components/gym/GymFriendPage/GymFriendPage";
-import GymRecords from "./components/gym/GymRecords";
+import GymRecords from "./components/gym/GymRecords/GymRecords";
 import Languages from "./components/shared/Langauges";
 
 function App() {

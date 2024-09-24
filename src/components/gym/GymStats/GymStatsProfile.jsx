@@ -1,8 +1,8 @@
-import { useUser } from "../../providers/UserProvider";
-import DarkModeContext from "../../providers/DarkModeProvider";
+import { useUser } from "../../../providers/UserProvider";
+import DarkModeContext from "../../../providers/DarkModeProvider";
 import { useTranslation } from "react-i18next";
 import { useContext } from "react";
-import { formattedDate } from "../../functions/formatData";
+import { formattedDate } from "../../../functions/formatData";
 const GymStatsProfile = () => {
   const { t } = useTranslation();
   const { userInfo } = useUser();

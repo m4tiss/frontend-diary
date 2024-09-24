@@ -30,7 +30,7 @@ const GymHistory = () => {
               //onChange={handleCategoryChange}
               className="bg-run-night-element text-white p-2 rounded mb-4"
             >
-              <option value="">All</option>
+              <option value=""> {t('gym.historyTraining.all')}</option>
               {/* {categories.map((category) => (
               <option key={category.run_category_id} value={category.category_name}>
                 {category.category_name}
