@@ -24,7 +24,9 @@ const Register = () => {
 
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedFileName, setSelectedFileName] = useState(t('shared.register.noFile'));
+  const [selectedFileName, setSelectedFileName] = useState(
+    t("shared.register.noFile")
+  );
 
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
@@ -33,7 +35,7 @@ const Register = () => {
       setSelectedFileName(`${file.name}`);
       setData({ ...data, profile_photo: file.name });
     } else {
-      setSelectedFileName(t('shared.register.noFile'));
+      setSelectedFileName(t("shared.register.noFile"));
     }
   };
 
@@ -121,119 +123,104 @@ const Register = () => {
           "background-image":
             "linear-gradient(to top, #ffffff, #f1d3f5, #fc9fcd, #ff6685, #e73725)",
         }}
-        className="min-h-screen flex "
+        className="min-h-screen flex"
       >
-        <div className="w-full my-10 2xl:my-0 flex justify-center items-center z-50">
+        <div className="w-full my-10 2xl:my-0 px-5 xl:px-0 flex justify-center  items-center z-50">
           <motion.form
             initial={{ y: 50 }}
             animate={{ y: 0 }}
-            className="flex h-fit w-1/2 p-10 gap-10 bg-white rounded-2xl shadow-xl"
+            className="flex h-fit w-full p-5 xl:w-1/2 flex-col xl:flex-row xl:p-10 xl:gap-10 bg-white rounded-2xl shadow-xl"
             onSubmit={handleRegister}
           >
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-full xl:w-1/2">
               <h2 className="w-full text-4xl text-center font font-semibold">
-              {t('shared.register.registerTitle')}
+                {t("shared.register.registerTitle")}
               </h2>
-              <div className="flex flex-col">
-                <label className="p-2"> {t('shared.register.email')}</label>
-                <input
-                  className="p-2 text-xl  text-black border-2 border-gray-200 outline-none"
-                  type="email"
-                  placeholder={t('shared.register.email')}
-                  value={data.email}
-                  onChange={(e) => setData({ ...data, email: e.target.value })}
-                />
+              <label className="p-2"> {t("shared.register.email")}</label>
+              <input
+                className="p-2 text-xl  text-black border-2 border-gray-200 outline-none"
+                type="email"
+                placeholder={t("shared.register.email")}
+                value={data.email}
+                onChange={(e) => setData({ ...data, email: e.target.value })}
+              />
+
+              <label className="p-2">{t("shared.register.password")}</label>
+              <input
+                minLength={6}
+                className="p-2 text-xl text-black border-2 border-gray-200 outline-none"
+                type="password"
+                placeholder={t("shared.register.password")}
+                value={data.password}
+                onChange={(e) => setData({ ...data, password: e.target.value })}
+              />
+
+              <label className="p-2">{t("shared.register.nickname")}</label>
+              <input
+                className="p-2 text-xl  text-black border-2 border-gray-200 outline-none"
+                type="text"
+                placeholder={t("shared.register.nickname")}
+                value={data.nickname}
+                onChange={(e) => setData({ ...data, nickname: e.target.value })}
+              />
+              <label className="p-2">{t("shared.register.description")}</label>
+              <textarea
+                className="p-2 text-xl resize-none text-black border-2 border-gray-200 outline-none"
+                type="text"
+                placeholder={t("shared.register.description")}
+                value={data.description}
+                onChange={(e) =>
+                  setData({ ...data, description: e.target.value })
+                }
+              />
+            </div>
+            <div className="w-full xl:w-1/2 flex flex-col justify-evenly">
+              <div className="flex flex-col xl:flex-row xl:gap-20 items-start xl:items-center">
+                <label className="p-2">{t("shared.register.birth")}</label>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={["DatePicker"]}>
+                    <DatePicker
+                      maxDate={today}
+                      onChange={(date) =>
+                        setData({
+                          ...data,
+                          date_of_birth: date ? date.format("YYYY-MM-DD") : "",
+                        })
+                      }
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
               </div>
 
-              <div className="flex flex-col">
-                <label className="p-2">{t('shared.register.password')}</label>
-                <input
-                  minLength={6}
-                  className="p-2 text-xl text-black border-2 border-gray-200 outline-none"
-                  type="password"
-                  placeholder={t('shared.register.password')}
-                  value={data.password}
-                  onChange={(e) =>
-                    setData({ ...data, password: e.target.value })
-                  }
-                />
-              </div>
-
+              <label className="p-2">{t("shared.register.profilePhoto")}</label>
+              <label
+                htmlFor="fileInput"
+                class="h-12 flex justify-center items-center px-4 py-2 bg-white-500
+                   text-[#e73725] 
+                  border-2 border-[#e73725] 
+                  rounded-3xl 
+                    cursor-pointer transition-colors duration-300 hover:text-white hover:bg-[#e73725]"
+              >
+                {selectedFileName}
+              </label>
+              <input
+                type="file"
+                id="fileInput"
+                className="hidden"
+                onChange={handleFileSelect}
+              />
               <button
                 className="my-10 bg-[#e73725] rounded-3xl p-2 text-xl text-white"
                 type="submit"
               >
-                {t('shared.register.registerButton')}
+                {t("shared.register.registerButton")}
               </button>
               <label
                 onClick={() => navigate("/login")}
                 className="w-full text-center cursor-pointer"
               >
-                {t('shared.register.account')}
+                {t("shared.register.account")}
               </label>
-            </div>
-            <div className="w-1/2">
-              <div className="flex flex-col ">
-                <div className="flex justify-start gap-20 items-center">
-                  <label className="p-2">{t('shared.register.birth')}</label>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["DatePicker"]}>
-                      <DatePicker
-                        maxDate={today}
-                        onChange={(date) =>
-                          setData({
-                            ...data,
-                            date_of_birth: date
-                              ? date.format("YYYY-MM-DD")
-                              : "",
-                          })
-                        }
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
-                </div>
-
-                <label className="p-2">{t('shared.register.profilePhoto')}</label>
-                <label
-                  htmlFor="fileInput"
-                  class="h-12 flex justify-center items-center px-4 py-2 bg-white-500
-                   text-[#e73725] 
-                  border-2 border-[#e73725] 
-                  rounded-3xl 
-                    cursor-pointer transition-colors duration-300 hover:text-white hover:bg-[#e73725]"
-                >
-                  {selectedFileName}
-                </label>
-                <input
-                  type="file"
-                  id="fileInput"
-                  className="hidden"
-                  onChange={handleFileSelect}
-                />
-                <label className="p-2">{t('shared.register.nickname')}</label>
-                <input
-                  className="p-2 text-xl  text-black border-2 border-gray-200 outline-none"
-                  type="text"
-                  placeholder={t('shared.register.nickname')}
-                  value={data.nickname}
-                  onChange={(e) =>
-                    setData({ ...data, nickname: e.target.value })
-                  }
-                />
-              </div>
-
-              <div className="flex flex-col ">
-                <label className="p-2">{t('shared.register.description')}</label>
-                <textarea
-                  className="p-2 text-xl resize-none text-black border-2 border-gray-200 outline-none"
-                  type="text"
-                  placeholder={t('shared.register.description')}
-                  value={data.description}
-                  onChange={(e) =>
-                    setData({ ...data, description: e.target.value })
-                  }
-                />
-              </div>
             </div>
           </motion.form>
         </div>
