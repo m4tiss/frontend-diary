@@ -164,7 +164,7 @@ const GymUserProfile = () => {
             icon={<LuGoal size={50} color="white" />}
           />
           <PagePanel
-            onClick={() => navigate("/gym/chats")}
+            // onClick={() => navigate("/gym/chats")}
             type={"gym"}
             title={t('gym.profile.chat')}
             icon={<IoChatboxEllipsesOutline size={50} color="white" />}

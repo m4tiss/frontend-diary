@@ -13,8 +13,8 @@ const GymNewTraining = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full flex flex-col flex-grow bg-[#e9ecef]">
-      <div className="flex justify-evenly my-20">
+    <div className="w-full flex flex-col flex-grow bg-[#e9ecef] py-10 xl:py-0 gap-10 xl:gap-0">
+      <div className="flex flex-col xl:flex-row items-center justify-evenly xl:my-20 gap-10 xl:gap-0">
         <motion.div
           onClick={() => navigate("/gym/plannedWorkout")}
           initial={{ scale: 0.5, opacity: 0.5 }}
@@ -45,7 +45,7 @@ const GymNewTraining = () => {
           <h2>{t('gym.newTraining.quickWorkout')}</h2>
         </motion.div>
       </div>
-      <div className="w-full flex justify-evenly">
+      <div className="w-full flex flex-col xl:flex-row items-center justify-evenly gap-10 xl:gap-0">
         <ChartVolume />
         <ChartSets />
       </div>

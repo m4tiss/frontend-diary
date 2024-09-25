@@ -11,7 +11,7 @@ instance.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       localStorage.removeItem("token");
 
-      window.location.href = "http://localhost:3001/login";
+      window.location.href = "http://localhost:3000/login";
     }
     return Promise.reject(error);
   }

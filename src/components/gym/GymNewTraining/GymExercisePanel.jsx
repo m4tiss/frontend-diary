@@ -31,7 +31,7 @@ const iconPath = icons[exercise.photo_exercise];
       initial={{ scale: 0.5, opacity: 0.5 }}
       animate={{ scale: 1, opacity: 1 }}
       whileTap={{ scale: 0.7 }}
-      className={`rounded-2xl shadow-xl flex items-center gap-5 justify-center bg-white h-${height} w-64 text-black cursor-pointer`}
+      className={`rounded-2xl shadow-xl px-5 flex items-center gap-5 justify-center bg-white h-${height} w-64 text-black cursor-pointer`}
     >
       <h2>{exercise.name_exercise}</h2>
       <img

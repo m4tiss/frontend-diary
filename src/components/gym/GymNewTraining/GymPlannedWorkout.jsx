@@ -54,9 +54,9 @@ const GymPlannedWorkout = () => {
   };
 
   return (
-    <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background">
+    <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:py-0">
       <div className="w-full flex flex-col items-center">
-        <h2 className="text-5xl my-10 font-semibold">
+        <h2 className="text-3xl xl:text-5xl my-10 font-semibold">
           {t("gym.newTraining.plannedWorkout")}
         </h2>
         {routines.map((routine) => (
@@ -65,7 +65,7 @@ const GymPlannedWorkout = () => {
             onClick={() => handleDivClick(routine)}
             className={`${chosenPlan === routine ? "bg-red-500" : "bg-white"}
           ${chosenPlan === routine ? "text-white" : "text-black"}
-           text-2xl shadow-2xl rounded-xl w-96 p-2 my-3 cursor-pointer`}
+           text-2xl shadow-2xl rounded-xl text-center min-w-80 xl:min-w-96 p-2 my-3 cursor-pointer`}
           >
             {routine.name_routine}
           </div>
@@ -77,7 +77,7 @@ const GymPlannedWorkout = () => {
             backgroundImage:
               "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
           }}
-          className={`text-2xl shadow-2xl text-white hover:scale-110 rounded-xl w-96 p-2 my-3 duration-200
+          className={`text-2xl shadow-2xl text-white hover:scale-110 rounded-xl min-w-80 xl:min-w-96 p-2 my-3 duration-200
         ${routines.length === 0 ? "opacity-50" : "opacity-100"}
         `}
         >

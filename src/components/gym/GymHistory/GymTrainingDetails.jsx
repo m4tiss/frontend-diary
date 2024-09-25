@@ -52,11 +52,11 @@ const GymTrainingDetails = ({planName, toggleDialog, workoutId, onDelete }) => {
         initial={{ scale: 0.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.2, opacity: 0 }}
-        className="bg-white flex flex-col items-center rounded-xl p-6 shadow-xl w-3/4 h-3/4 overflow-auto"
+        className="bg-white flex flex-col items-center rounded-xl p-6 shadow-xl w-3/4 h-3/4 overflow-auto gap-10 xl:gap-0"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-full flex items-center px-10 justify-between">
-          <h2 className="text-4xl">{planName}</h2>
+        <div className="w-full flex flex-col xl:flex-row items-center px-10 justify-between">
+          <h2 className="text-4xl text-center">{planName}</h2>
           <div className="flex gap-5">
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -85,8 +85,8 @@ const GymTrainingDetails = ({planName, toggleDialog, workoutId, onDelete }) => {
           </div>
 
         </div>
-        <div className="w-full flex flex-grow">
-          <div className="flex w-1/6 flex-col justify-center items-center">
+        <div className="w-full flex flex-col xl:flex-row flex-grow gap-10 xl:gap-0">
+          <div className="flex w-full xl:w-1/6 flex-col justify-center items-center">
             {workout && workout.workoutData && (
               <>
                 {workout.workoutData.map((exercise, index) => (
@@ -105,13 +105,13 @@ const GymTrainingDetails = ({planName, toggleDialog, workoutId, onDelete }) => {
               </>
             )}
           </div>
-          <div className="w-4/6 flex flex-col justify-center items-center">
+          <div className="w-full xl:w-4/6 flex flex-col justify-center items-center">
             {selectedExercise === -1 ? (
               <div className="text-2xl">Summary of the Workout</div>
             ) : (
               currentExercise && (
                 <>
-                  <table className="w-full bg-white text-2xl h-fit text-center rounded-lg outline-none border-none">
+                  <table className="w-full bg-white text-lg xl:text-2xl h-fit text-center rounded-lg outline-none border-none">
                     <thead>
                       <tr>
                         <th>{t('gym.general.reps')}</th>
@@ -129,7 +129,7 @@ const GymTrainingDetails = ({planName, toggleDialog, workoutId, onDelete }) => {
                               min={0}
                               type="number"
                               step="1"
-                              className="w outline-none w-40 p-2 rounded-2xl"
+                              className="w outline-none w-16 xl:w-40 p-2 rounded-2xl"
                               value={set.reps}
                               disabled={true}
                             />
@@ -140,7 +140,7 @@ const GymTrainingDetails = ({planName, toggleDialog, workoutId, onDelete }) => {
                               min={0}
                               type="number"
                               step="0.1"
-                              className="outline-none w-40 p-2 rounded-2xl"
+                              className="outline-none w-16 xl:w-40 p-2 rounded-2xl"
                               value={set.weight}
                               disabled={true}
                             />
@@ -155,7 +155,7 @@ const GymTrainingDetails = ({planName, toggleDialog, workoutId, onDelete }) => {
               )
             )}
           </div>
-          <div className="w-1/6 flex flex-col gap-10 justify-center text-center items-center">
+          <div className="w-full xl:w-1/6 flex flex-col gap-10 justify-center text-center items-center">
             <div>
               <div className="w-full flex justify-center items-end gap-3">
                 <MdOutlineTimer size={35} />

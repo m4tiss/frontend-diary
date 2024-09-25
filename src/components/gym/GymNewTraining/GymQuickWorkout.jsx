@@ -97,9 +97,9 @@ const GymQuickWorkout = () => {
   );
 
   return (
-    <div className="w-full flex flex-grow flex-col items-center px-20 bg-[#e9ecef] dark:bg-run-night-background">
-      <div className="w-full flex pt-10  justify-between h-fit gap-5">
-        <div className="flex h-fit gap-5">
+    <div className="w-full flex flex-grow flex-col items-center xl:px-20 py-10 bg-[#e9ecef] dark:bg-run-night-background">
+      <div className="w-full flex flex-col xl:flex-row justify-between h-fit gap-5">
+        <div className="flex h-fit flex-row flex-wrap justify-center xl:justify-start gap-5">
           {categories.map((category, index) => (
             <GymFiltrationPanel
               key={index}
@@ -109,9 +109,9 @@ const GymQuickWorkout = () => {
             />
           ))}
         </div>
-        <div>
+        <div className="flex justify-center items-center">
           <input
-            className="bg-white p-4 w-96 text-xl rounded-full shadow-xl outline-none"
+            className="bg-white p-4 min-w-80 xl:min-w-96 text-xl rounded-full shadow-xl outline-none"
             type="text"
             placeholder={t("gym.newTraining.searchExercise")}
             //value={searchPattern}
@@ -119,11 +119,11 @@ const GymQuickWorkout = () => {
           />
         </div>
       </div>
-      <h2 className="text-black w-full text-xl justify-start py-5">
+      <h2 className="text-center xl:text-start text-black w-full text-xl py-5">
         {t("gym.newTraining.avaiableExercises")}
       </h2>
 
-      <div className="flex w-full justify-start gap-10">
+      <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
         {currentExercises.map((exercise) => (
           <GymExercisePanel
             height={24}
@@ -134,7 +134,7 @@ const GymQuickWorkout = () => {
         ))}
       </div>
 
-      <div className="flex w-full justify-between py-10">
+      <div className="flex w-full items-center justify-center xl:justify-between gap-10 xl:gap-0 py-10">
         <button
           onClick={() => handlePageChange(-1)}
           disabled={currentPage === 1}
@@ -159,11 +159,10 @@ const GymQuickWorkout = () => {
         </button>
       </div>
 
-      <h2 className="text-black w-full text-xl justify-start py-10">
+      <h2 className="text-center xl:text-start text-black w-full text-xl py-10">
         {t("gym.newTraining.selectedExercises")}
       </h2>
-      <div className="flex w-full justify-start gap-10">
-        <div className="flex w-full justify-start gap-10">
+        <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
           {currentSelectedExercises.length === 0 ? (
             <div className="w-full flex justify-center items-center text-black h-24 text-4xl">
               {t("gym.newTraining.noExercises")}
@@ -179,9 +178,8 @@ const GymQuickWorkout = () => {
             ))
           )}
         </div>
-      </div>
 
-      <div className="flex w-full justify-between py-10">
+      <div className="flex w-full items-center justify-center xl:justify-between gap-10 xl:gap-0 py-10">
         <button
           onClick={() => handleSelectedExercisesPageChange(-1)}
           disabled={selectedExercisesPage === 1}

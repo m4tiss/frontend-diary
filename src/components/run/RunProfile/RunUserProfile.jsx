@@ -137,13 +137,13 @@ const RunUserProfile = () => {
             icon={<GiTrophyCup size={50} color="white" />}
           />
           <PagePanel
-           onClick={toggleCategoryDialog}
+          // onClick={toggleCategoryDialog}
             type={"run"}
             title={t('run.profile.addCategory')}
             icon={<TbCategoryPlus size={50} color="white" />}
           />
           <PagePanel
-            onClick={() => navigate("/run/achievements")}
+            //onClick={() => navigate("/run/achievements")}
             type={"run"}
             title={t('run.profile.showAchievements')}
             icon={<GiAchievement size={50} color="white" />}
@@ -161,7 +161,7 @@ const RunUserProfile = () => {
             icon={<LuGoal size={50} color="white" />}
           />
           <PagePanel
-          onClick={() => navigate("/run/chats")}
+          //onClick={() => navigate("/run/chats")}
             type={"run"}
             title={t('run.profile.chat')}
             icon={<IoChatboxEllipsesOutline size={50} color="white" />}

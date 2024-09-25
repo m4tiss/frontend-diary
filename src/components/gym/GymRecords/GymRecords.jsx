@@ -33,7 +33,7 @@ const GymRecords = () => {
   };
 
   return (
-    <div className="w-full flex flex-grow flex-col justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background">
+    <div className="w-full flex flex-grow flex-col justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:py-0 gap-10 xl:gap-0">
       <div className="flex justify-center items-center gap-10">
         <select
           value={selectedExercise}
@@ -50,7 +50,7 @@ const GymRecords = () => {
           ))}
         </select>
       </div>
-      <div className="flex justify-between gap-10">
+      <div className="flex flex-col xl:flex-row justify-between gap-10">
           <ChartHeaviestWeight name_exercise={selectedExercise}/>
           <ChartMostReps name_exercise={selectedExercise}/>
       </div>

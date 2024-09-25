@@ -54,8 +54,8 @@ const GymWorkoutDetails = () => {
   const currentExercise = workoutData[selectedExercise];
 
   return (
-    <div className="w-full flex flex-grow flex-col items-center py-10 px-20 bg-[#e9ecef] dark:bg-run-night-background">
-      <div className="w-fit flex text-2xl bg-white p-2 gap-5 rounded-tr-2xl rounded-tl-2xl shadow-xl">
+    <div className="w-full flex flex-grow flex-col items-center py-10 xl:px-20 bg-[#e9ecef] dark:bg-run-night-background gap-10 xl:gap-0">
+      <div className="w-fit flex flex-col xl:flex-row text-2xl bg-white p-3 xl:p-2 gap-5 xl:rounded-tr-2xl xl:rounded-tl-2xl shadow-xl">
         {selectedExercises.length === 0 ? (
           <div className="text-red-500 text-lg">No exercises to display.</div>
         ) : (
@@ -86,7 +86,7 @@ const GymWorkoutDetails = () => {
       <div className="bg-white rounded-2xl shadow-xl flex flex-col justify-evenly flex-grow p-10 w-3/4">
         {currentExercise ? (
           <>
-            <table className="w-full bg-white text-2xl h-fit text-center rounded-lg outline-none border-none">
+            <table className="w-full bg-white text-lg xl:text-2xl h-fit text-center rounded-lg outline-none border-none">
               <thead>
                 <tr>
                   <th>{t("gym.general.reps")}</th>
@@ -104,7 +104,7 @@ const GymWorkoutDetails = () => {
                         min={0}
                         type="number"
                         step="1"
-                        className="bg-[#e9ecef] outline-none w-40 p-2 rounded-2xl"
+                        className="bg-[#e9ecef] outline-none w-16 xl:w-40 p-2 rounded-2xl"
                         value={set.reps}
                         onChange={(e) =>
                           handleInputChange(setIndex, "reps", e.target.value)
@@ -117,7 +117,7 @@ const GymWorkoutDetails = () => {
                         min={0}
                         type="number"
                         step="0.1"
-                        className="bg-[#e9ecef] outline-none w-40 p-2 rounded-2xl"
+                        className="bg-[#e9ecef] outline-none w-16 xl:w-40 p-2 rounded-2xl"
                         value={set.weight}
                         onChange={(e) =>
                           handleInputChange(setIndex, "weight", e.target.value)
@@ -130,7 +130,7 @@ const GymWorkoutDetails = () => {
                 ))}
               </tbody>
             </table>
-            <div className="w-full text-white text-xl flex justify-evenly mt-4">
+            <div className="w-full text-white text-md xl:text-xl flex justify-evenly mt-4">
               <button
                 className="bg-red-500 p-2 rounded-2xl"
                 onClick={handleRemoveSet}

@@ -110,7 +110,9 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
       return;
     }
 
-    const exercises = selectedExercises.map((exercise) => exercise.name_exercise);
+    const exercises = selectedExercises.map(
+      (exercise) => exercise.name_exercise
+    );
     try {
       const token = getAuthToken();
       const response = await axios.post(
@@ -139,18 +141,17 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
         initial={{ scale: 0.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.2, opacity: 0 }}
-        className="bg-white flex flex-col rounded-xl p-6 mx-10 shadow-xl w-full h-5/6"
+        className="bg-white flex flex-col rounded-xl p-6 xl:mx-10 shadow-xl w-full h-5/6 overflow-y-scroll"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex w-full items-center justify-between">
-          <div className="text-3xl">{t('gym.routine.newRoutine')}</div>
-
+        <div className="flex flex-col xl:flex-row w-full items-center justify-between gap-5 xl:gap-0 mb-5">
+          <div className="text-3xl">{t("gym.routine.newRoutine")}</div>
           <div className="flex flex-col justify-center items-center">
-            <label>{t('gym.routine.name')}</label>
+            <label>{t("gym.routine.name")}</label>
             <input
-              className="bg-[#e9ecef] p-3 w-96 text-lg rounded-full outline-none"
+              className="bg-[#e9ecef] p-3 w-80 xl:w-96 text-lg rounded-full outline-none"
               type="text"
-              placeholder={t('gym.routine.name')}
+              placeholder={t("gym.routine.name")}
               value={routineName}
               onChange={(e) => setRoutineName(e.target.value)}
             />
@@ -163,7 +164,7 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
               onClick={toggleRoutineDialog}
               className="mt-4 px-4 py-2 h-fit shadow-xl bg-purple-500 text-white rounded"
             >
-              {t('shared.actions.close')}
+              {t("shared.actions.close")}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -171,13 +172,13 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
               onClick={handleSubmit}
               className="mt-4 px-4 py-2 h-fit shadow-xl bg-lime-500 text-white rounded"
             >
-              {t('gym.routine.save')}
+              {t("gym.routine.save")}
             </motion.button>
           </div>
         </div>
 
-        <div className="w-full flex pt-10 justify-between h-fit gap-5">
-          <div className="flex h-fit gap-5">
+        <div className="w-full flex flex-col xl:flex-row justify-between h-fit gap-5">
+          <div className="flex h-fit flex-row flex-wrap justify-center xl:justify-start gap-5">
             {categories.map((category, index) => (
               <GymFiltrationPanel
                 key={index}
@@ -187,68 +188,70 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
               />
             ))}
           </div>
-          <div>
+          <div className="flex justify-center items-center">
             <input
-              className="bg-white p-4 w-96 text-xl rounded-full shadow-xl outline-none"
+              className="bg-white p-4 min-w-80 xl:min-w-96 text-xl rounded-full shadow-xl outline-none"
               type="text"
-              placeholder= {t('gym.routine.searchExercise')}
-              value={searchPattern} 
+              placeholder={t("gym.routine.searchExercise")}
+              value={searchPattern}
               onChange={(e) => setSearchPattern(e.target.value)}
             />
           </div>
         </div>
 
-        <h2 className="text-black w-full text-xl justify-start py-5">
-        {t('gym.routine.avaiableExercises')}
+        <h2 className="text-center xl:text-starttext-black w-full text-xl justify-start py-5">
+          {t("gym.routine.avaiableExercises")}
         </h2>
 
-        <div className="flex w-full justify-start gap-10">
-        {currentExercises.length === 0 ? (
-              <div className="w-full flex justify-center items-center text-black h-20 text-2xl">
-                 {t('gym.routine.noExercises')}
-              </div>
-            ) : (
-                currentExercises.map((exercise) => (
-                <GymExercisePanel
-                  height={20}
-                  key={exercise.gym_exercise_id}
-                  exercise={exercise}
-                  onClick={() => handleAddExercise(exercise)}
-                />
-              ))
-            )}
+        <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
+          {currentExercises.length === 0 ? (
+            <div className="w-full flex justify-center items-center text-black h-20 text-2xl">
+              {t("gym.routine.noExercises")}
+            </div>
+          ) : (
+            currentExercises.map((exercise) => (
+              <GymExercisePanel
+                height={20}
+                key={exercise.gym_exercise_id}
+                exercise={exercise}
+                onClick={() => handleAddExercise(exercise)}
+              />
+            ))
+          )}
         </div>
 
-        <div className="flex w-full justify-between py-10">
+        <div className="flex w-full items-center justify-center xl:justify-between gap-10 xl:gap-0 py-10">
           <button
             onClick={() => handlePageChange(-1)}
             disabled={currentPage === 1}
             className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
           >
-            {t('gym.general.previous')}
+            {t("gym.general.previous")}
           </button>
-          <span className="text-black">{`${t('gym.general.page')} ${currentPage} of ${Math.ceil(
+          <span className="text-black">{`${t(
+            "gym.general.page"
+          )} ${currentPage} of ${Math.ceil(
             filteredExercises.length / exercisesPerPage
           )}`}</span>
           <button
             onClick={() => handlePageChange(1)}
             disabled={
-              currentPage === Math.ceil(filteredExercises.length / exercisesPerPage)
+              currentPage ===
+              Math.ceil(filteredExercises.length / exercisesPerPage)
             }
             className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
           >
-           {t('gym.general.next')}
+            {t("gym.general.next")}
           </button>
         </div>
 
-        <h2 className="text-black w-full text-xl justify-start py-10">
-        {t('gym.routine.selectedExercises')}
+        <h2 className=" text-center xl:text-start text-black w-full text-xl justify-start py-10">
+          {t("gym.routine.selectedExercises")}
         </h2>
-        <div className="flex w-full justify-start gap-10">
-          <div className="flex w-full justify-start gap-10">
+          <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
             {currentSelectedExercises.length === 0 ? (
               <div className="w-full flex justify-center items-center text-black h-20 text-2xl">
-               {t('gym.routine.noExercises')}
+                {t("gym.routine.noExercises")}
               </div>
             ) : (
               currentSelectedExercises.map((exercise) => (
@@ -261,7 +264,6 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
               ))
             )}
           </div>
-        </div>
 
         <div className="flex w-full justify-between py-10">
           <button
@@ -269,9 +271,11 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
             disabled={selectedExercisesPage === 1}
             className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
           >
-           {t('gym.general.previous')}
+            {t("gym.general.previous")}
           </button>
-          <span className="text-black">{`${t('gym.general.page')} ${selectedExercisesPage} of ${Math.ceil(
+          <span className="text-black">{`${t(
+            "gym.general.page"
+          )} ${selectedExercisesPage} of ${Math.ceil(
             selectedExercises.length / exercisesPerPage
           )}`}</span>
           <button
@@ -283,7 +287,7 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
             }
             className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
           >
-            {t('gym.general.next')}
+            {t("gym.general.next")}
           </button>
         </div>
         <ToastContainer />
