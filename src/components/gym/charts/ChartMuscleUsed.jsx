@@ -74,7 +74,7 @@ const ChartMuscleUsed = ({ friendId, range = "all" }) => {
   const isEmptyData = Object.keys(categoriesData).length === 0;
 
   return (
-    <div className="flex flex-col items-center py-10 bg-white rounded-xl w-full shadow-xl">
+    <div className="flex flex-col items-center py-10 bg-white text-black rounded-xl w-full shadow-xl">
       <div className="text-center text-xl xl:text-2xl p-2">
         {t("gym.chart.muscleUsed")}
       </div>

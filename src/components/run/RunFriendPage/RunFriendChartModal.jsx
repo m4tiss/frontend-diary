@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useUser } from "../../../providers/UserProvider";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
-import { useState } from "react";
+import { useContext } from "react";
+import DarkModeContext from "../../../providers/DarkModeProvider";
 import ChartAveragePulse from "../charts/ChartAveragePulse";
 import ChartDistance from "../charts/ChartDistance";
 import ChartCategories from "../charts/ChartCategories";
@@ -11,6 +12,7 @@ import ChartRating from "../charts/ChartRating";
 
 const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
   const { userInfo } = useUser();
+  const { darkMode } = useContext(DarkModeContext);
 
   const renderChartContent = (friendId) => {
     switch (type) {
@@ -64,7 +66,9 @@ const RunFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
         initial={{ scale: 0.2, opacity: 0, y: 300 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.2, opacity: 0, y: 300 }}
-        className="bg-white flex flex-col items-center rounded-xl p-6 shadow-xl w-11/12 h-5/6 xl:w-3/4 xl:h-3/4 overflow-auto gap-10 xl:gap-0"
+        className={`${darkMode? `bg-run-night-background text-white` : `bg-white`}
+          flex flex-col items-center rounded-xl p-6 shadow-xl w-11/12 h-5/6 xl:w-3/4 xl:h-3/4 
+          overflow-auto gap-10 xl:gap-0`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col xl:flex-row items-center px-10 justify-between">

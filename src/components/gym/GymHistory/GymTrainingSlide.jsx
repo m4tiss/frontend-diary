@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-stars";
 import { useTranslation } from "react-i18next";
-import pic from "../../../images/trainig_panel.jpg";
+import gymIcon from "../../../icons/gymIconLight.png";
 
 import {
   formattedDate,
@@ -56,7 +56,7 @@ const GymTrainingSlide = ({ workout, onDelete }) => {
         />
       </div>
       <div className="w-full flex justify-evenly items-center">
-        <img width={80} src={pic} />
+        <img width={80} src={gymIcon} />
         <h2 className="text-xl">{formattedTime(workout.date)}</h2>
         <h2 className="text-xl">{formattedDate(workout.date || "00:00:00")}</h2>
       </div>

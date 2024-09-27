@@ -81,7 +81,7 @@ const ChartTrainings = ({ friendId }) => {
   }, [friendId, t, i18n.language]);
 
   return (
-    <div className="w-fit dark:bg-run-night-element dark:text-white bg-white shadow-xl rounded-xl">
+    <div className="w-fit bg-white text-black shadow-xl rounded-xl">
       <BarChart
         xAxis={chartData.xAxis}
         yAxis={chartData.yAxis}

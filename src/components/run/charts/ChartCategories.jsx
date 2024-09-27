@@ -55,9 +55,9 @@ const ChartCategories = ({ friendId, range = "all" }) => {
       </div>
     );
   }
-
+ 
   return (
-    <div className="flex flex-col items-center justify-center py-10 bg-white rounded-xl w-full shadow-xl">
+    <div className="flex flex-col items-center justify-center py-10 bg-white text-black rounded-xl w-full shadow-xl">
       <div className="text-center text-xl xl:text-2xl p-2">
         {t("run.chart.runTypesTitle")}
       </div>

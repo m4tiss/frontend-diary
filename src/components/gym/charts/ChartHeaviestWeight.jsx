@@ -78,7 +78,7 @@ const ChartHeaviestWeight = ({ name_exercise }) => {
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
+      <div className="bg-white text-black flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
         <h2 className="text-center text-xl xl:text-2xl ">{t('gym.chart.heaviestWeight')}</h2>
         <LineChart
           width={window.innerWidth > 768 ? 500 : 300}

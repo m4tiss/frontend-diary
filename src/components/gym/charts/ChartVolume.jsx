@@ -55,7 +55,7 @@ const ChartVolume = ({ friendId }) => {
   }
 
   return (
-    <div className="bg-white flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
+    <div className="bg-white text-black flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
       <h2 className="text-center text-xl xl:text-2xl p-2">{t('gym.chart.volumeTitle')}</h2>
       <LineChart
         width={window.innerWidth > 768 ? 500 : 300}

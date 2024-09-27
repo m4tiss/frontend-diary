@@ -1,5 +1,8 @@
 import ReactStars from "react-stars";
-import pic from "../../../icons/runIcon.png";
+import { useContext } from "react";
+import DarkModeContext from "../../../providers/DarkModeProvider";
+import iconDark from "../../../icons/runIconDark.png";
+import iconLight from "../../../icons/runIconLight.png";
 import RunTrainingDetails from "./RunTrainingDetails";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -11,6 +14,8 @@ import {
 } from "../../../functions/formatData";
 
 const RunTrainingSlide = ({ training, onDelete }) => {
+
+  const { darkMode } = useContext(DarkModeContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDialog = () => {
@@ -29,12 +34,12 @@ const RunTrainingSlide = ({ training, onDelete }) => {
         </h2>
       </div>
       <div className="flex justify-start w-full px-5  text-xl">
-        <span className="text-5xl text-center  w-full">
+        <span className="text-5xl text-center w-full">
           {formattedData(training.distance || 0)} km
         </span>
       </div>
       <div className="flex justify-evenly w-full px-5 text-xl">
-        <span className=" text-center">
+        <span className="text-center">
           <span className="">
             {formattedDuration(training.duration || "00:00:00")}
           </span>
@@ -55,11 +60,11 @@ const RunTrainingSlide = ({ training, onDelete }) => {
           edit={false}
         />
       </div>
-      <div className=" w-full flex justify-evenly items-center">
-        <img width={60} src={pic} />
+      <div className="w-full flex justify-evenly items-center">
+        <img width={60} src={darkMode ? iconDark : iconLight} alt="Run Icon" />
         <div className="flex gap-5">
-          <h2 className=" text-xl">{formattedTime(training.date)}</h2>
-          <h2 className=" text-xl">{formattedDate(training.date)}</h2>
+          <h2 className="text-xl">{formattedTime(training.date)}</h2>
+          <h2 className="text-xl">{formattedDate(training.date)}</h2>
         </div>
       </div>
       <AnimatePresence>
