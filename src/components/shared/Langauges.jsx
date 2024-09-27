@@ -11,74 +11,79 @@ const Languages = () => {
     setLanguage(lng);
   };
 
+  const flagStyles = {
+    borderRadius: "50%",
+    objectFit: "cover",
+    margin: "0px 4px",
+    border: `2px solid ${darkMode ? "white" : "black"}`,
+  };
+
   const languages = [
     {
       id: 1,
-      child: (
-        <>
-          PL
-          <ReactCountryFlag
-            countryCode="PL"
-            svg
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              margin: "0px 4px",
-              border: `2px solid ${darkMode ? "white" : "black"} `,
-              cursor: 'pointer'
-            }}
-            title="PL"
-          />
-        </>
-      ),
-      onClick: () => changeLanguage('pl')
+      code: "PL",
+      countryCode: "PL",
+      label: "PL",
+      onClick: () => changeLanguage("pl"),
     },
     {
       id: 2,
-      child: (
-        <>
-          EN
-          <ReactCountryFlag
-            countryCode="GB"
-            svg
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              margin: "0px 4px",
-              border: `2px solid ${darkMode ? "white" : "black"} `,
-              cursor: 'pointer'
-            }}
-            title="GB"
-          />
-        </>
-      ),
-      onClick: () => changeLanguage('gb')
+      code: "GB",
+      countryCode: "GB",
+      label: "EN",
+      onClick: () => changeLanguage("gb"),
     },
   ];
-  
+
   return (
-    <div className="hidden lg:flex flex-col top-[85%] left-0 fixed z-50">
-      <ul>
-        {languages.map(({ id, child,onClick }) => (
-          <li
-          onClick={onClick}
+    <>
+      <div className="w-full lg:hidden absolute top-[10%] flex justify-between z-50">
+        {languages.map(({ id, countryCode, onClick }) => (
+          <div
             key={id}
-            className={
-              `flex justify-end gap-5 cursor-pointer
-               items-center w-36 h-14 px-2 ml-[-80px] hover:ml-[-20px]
-                 ${darkMode ? "text-white" : "text-black"}
-                 hover:rounded-md duration-300`
-            }
+            onClick={onClick}
+            className={`flex justify-center items-center w-12 h-12 rounded-full
+              ${darkMode ? "text-white" : "text-black"} cursor-pointer`}
           >
-            {child}
-          </li>
+            <ReactCountryFlag
+              countryCode={countryCode}
+              svg
+              style={{
+                ...flagStyles,
+                width: "32px",
+                height: "32px",
+              }}
+              title={countryCode}
+            />
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+
+      <div className="hidden lg:flex flex-col top-[85%] left-0 fixed z-50">
+        <ul>
+          {languages.map(({ id, label, countryCode, onClick }) => (
+            <li
+              key={id}
+              onClick={onClick}
+              className={`flex justify-end gap-5 cursor-pointer items-center w-36 h-14 px-2 ml-[-80px] hover:ml-[-20px]
+                ${darkMode ? "text-white" : "text-black"} hover:rounded-md duration-300`}
+            >
+              {label}
+              <ReactCountryFlag
+                countryCode={countryCode}
+                svg
+                style={{
+                  ...flagStyles,
+                  width: "40px",
+                  height: "40px",
+                }}
+                title={countryCode}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 
