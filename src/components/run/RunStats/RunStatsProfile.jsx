@@ -7,15 +7,11 @@ import { formattedDate } from "../../../functions/formatData";
 const RunStatsProfile = () => {
   const { t } = useTranslation();
   const { userInfo } = useUser();
-  const { darkMode} = useContext(DarkModeContext);
   return (
     <div
       className="rounded-3xl flex flex-col p-10 shadow-xl"
 
-      style={
-        darkMode
-          ? { backgroundColor: "#0a84ff" }
-          : {
+      style={ {
               backgroundImage:
                "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
             }
