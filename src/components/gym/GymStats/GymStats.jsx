@@ -88,7 +88,7 @@ const StatsGym = () => {
   };
 
   return (
-    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-run-night-background">
+    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-gym-night-background">
       <div className="w-full 2xl:w-3/4  flex flex-col p-5  items-center">
         <div className="w-full m-5 flex justify-center items-center">
           <span className="text-2xl dark:text-white font-semibold">
@@ -96,7 +96,7 @@ const StatsGym = () => {
             {t("gym.stats.personalStats")}
           </span>
         </div>
-        <div className="flex flex-col 2xl:flex-row justify-center w-full gap-5 mb-10">
+        <div className="flex flex-col 2xl:flex-row justify-center w-full gap-5 mb-10 text-black dark:text-white">
           <button
             className={getButtonStyle("week")}
             onClick={() => handleRangeChange("week")}

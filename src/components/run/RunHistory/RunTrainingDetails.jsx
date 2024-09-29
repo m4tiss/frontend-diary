@@ -8,9 +8,12 @@ import {
   formattedDuration,
 } from "../../../functions/formatData";
 import { useTranslation } from "react-i18next";
+import { useContext } from "react";
+import DarkModeContext from "../../../providers/DarkModeProvider";
 
 const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
   const { t } = useTranslation();
+  const { darkMode } = useContext(DarkModeContext)
   const handleDelete = () => {
     onDelete();
     toggleDialog();
@@ -24,7 +27,10 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
         initial={{ scale: 0.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.2, opacity: 0 }}
-        className="bg-white flex flex-col items-center rounded-xl p-6 shadow-xl w-3/4 h-3/4 gap-5 xl:gap-0 overflow-auto"
+        className={` flex flex-col items-center 
+          rounded-xl p-6 shadow-xl w-3/4 h-3/4 gap-5 xl:gap-0 overflow-auto
+          ${darkMode? `bg-run-night-background text-white` : `bg-white text-black`}
+          `}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col xl:flex-row items-center px-10 justify-between">

@@ -95,7 +95,7 @@ const GymUserProfile = () => {
     "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)";
 
   return (
-    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-run-night-background">
+    <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-gym-night-background">
       <div className="2xl:w-1/3 px-5 2xl:px-0 flex flex-col justify-center items-center">
         <img
           style={{

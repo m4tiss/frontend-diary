@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 const GymHistory = () => {
   const { t } = useTranslation();
   return (
-    <div className="w-full flex flex-grow items-stretch bg-[#e9ecef] dark:bg-run-night-background gap-10 p-5 xl:p-10">
+    <div className="w-full flex flex-grow items-stretch bg-[#e9ecef] dark:bg-gym-night-background gap-10 p-5 xl:p-10">
       <div className="flex flex-col-reverse xl:flex-row w-full gap-10 xl:gap-0">
         <div className="w-full px-5 xl:px-0 xl:w-3/4 flex flex-col items-center justify-evenly flex-grow">
           <GymTrainingSlider />

@@ -33,7 +33,7 @@ const FriendsList = () => {
         <motion.div
           initial={{ y: 50 }}
           animate={{ y: 0 }}
-          className="w-full flex justify-center items-center text-center text-4xl"
+          className="w-full flex justify-center items-center text-center text-4xl text-black dark:text-white"
         >
          {t('shared.friends.noFriends')}
         </motion.div>

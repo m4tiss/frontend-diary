@@ -102,7 +102,7 @@ function GymLayout() {
         <Route path="history" element={<GymHistory />} />
         <Route path="newTraining" element={<GymNewTraining />} />
         <Route path="stats" element={<GymStats />} />
-        <Route path="friends" element={<FriendsPage color="red" />} />
+        <Route path="friends" element={<FriendsPage />} />
         <Route path="friend/:friendId" element={<GymFriendPage />} />
         <Route path="quickWorkout" element={<GymQuickWorkout />} />
         <Route path="plannedWorkout" element={<GymPlannedWorkout />} />
@@ -132,7 +132,7 @@ function RunLayout() {
         <Route path="newTraining" element={<RunNewTraining />} />
         <Route path="history" element={<RunHistory />} />
         <Route path="goals" element={<RunGoals />} />
-        <Route path="friends" element={<FriendsPage color="blue" />} />
+        <Route path="friends" element={<FriendsPage/>} />
         <Route path="stats" element={<RunStats />} />
         <Route path="friend/:friendId" element={<RunFriendPage />} />
         <Route path="achievements" element={<RunAchievementPage />} />

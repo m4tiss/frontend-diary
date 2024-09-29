@@ -30,10 +30,10 @@ const GymFriendPage = () => {
   }, [friendId]);
 
   return (
-    <div className="w-full flex flex-col flex-grow bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0 px-5 gap-10 xl:gap-0">
+    <div className="w-full flex flex-col flex-grow bg-[#e9ecef] dark:bg-gym-night-background py-10 xl:px-0 px-5 gap-10 xl:gap-0">
       <FriendBasicInfo friendInfo={friendInfo} />
       <div className="w-full flex flex-col xl:flex-row justify-center flex-grow gap-10 xl:gap-0">
-        <GymFriendAdvancedInfo friendInfo={friendInfo} />
+        <GymFriendAdvancedInfo friendInfo={friendInfo} friendId={friendId} />
         <GymFriendCharts friendInfo={friendInfo} friendId={friendId}/>
         <GymFriendActions />
       </div>

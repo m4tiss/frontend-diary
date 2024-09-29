@@ -23,7 +23,7 @@ const GymTrainingSlide = ({ workout, onDelete }) => {
   return (
     <div
       className="w-60 xl:w-96 h-80 xl:h-96 flex flex-col items-center justify-evenly rounded-2xl
-           bg-white border-black m-5 cursor-pointer shadow-xl"
+           bg-white bg:bg-rub m-5 cursor-pointer shadow-xl"
       onClick={toggleDialog}
     >
       <div>
