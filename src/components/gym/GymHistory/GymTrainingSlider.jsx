@@ -73,6 +73,7 @@ const GymTrainingSlider = () => {
         let response = res.data.workouts;
         response = response.sort((a, b) => new Date(b.date) - new Date(a.date));
         setWorkouts(response);
+        console.log(response);
       });
   }, []);
 

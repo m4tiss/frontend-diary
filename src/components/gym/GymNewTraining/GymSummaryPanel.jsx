@@ -5,10 +5,16 @@ import { useTranslation } from "react-i18next";
 import { getAuthToken } from "../../../config/auth";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import dayjs from "dayjs";
 
 const GymSummaryPanel = ({ workoutData, planName }) => {
   const { t } = useTranslation();
   const [data, setData] = useState({
+    date: "",
     duration: "00:00:00",
     note: "",
     rating: 0.0,
@@ -19,6 +25,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
   const handleAddWorkout = async () => {
     try {
       const workout = {
+        date: data.date,
         duration: data.duration,
         note: data.note,
         rating: data.rating,
@@ -47,7 +54,26 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center gap-10">
+    <div className="w-full flex flex-col items-center gap-8">
+      <div className="flex flex-col  items-start xl:items-center">
+        <label className="px-2 text-xl w-full text-center">{t("gym.general.date")}</label>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+          <DateTimePicker
+              ampm={false}
+              onChange={(date) =>
+                setData({
+                  ...data,
+                  date: date
+                    ? dayjs(date).format("YYYY-MM-DD HH:mm")
+                    : "",
+                })
+              }
+              renderInput={(params) => <input {...params} />}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+      </div>
       <div className="flex flex-col items-center">
         <label className="px-2 text-xl">{t("gym.general.duration")}</label>
         <input
@@ -71,7 +97,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
         ></input>
         <ReactStars
           count={5}
-          size={50}
+          size={45}
           edit={false}
           value={data.rating}
           color1="#e9ecef"
@@ -83,7 +109,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
         <textarea
           value={data.note}
           onChange={(e) => setData({ ...data, note: e.target.value })}
-          className="resize-none text-2xl p-2 w-60 xl:w-96 min-h-40 bg-[#e9ecef] shadow-xl rounded-2xl outline-none dark:bg-run-night-element "
+          className="resize-none text-2xl p-2 w-60 xl:w-96 min-h-20 bg-[#e9ecef] shadow-xl rounded-2xl outline-none dark:bg-run-night-element "
           type="text"
           placeholder={t("gym.newTraining.notePlaceholder")}
         ></textarea>

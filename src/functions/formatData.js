@@ -25,10 +25,19 @@ export function formattedDate(dateString) {
 export const formattedTime = (dateString) => {
   if (!dateString) {
     return 'Invalid time';
-}
+  }
+
   const date = new Date(dateString);
-  return format(date, "HH:mm");
+  if (isNaN(date.getTime())) {
+    return 'Invalid date';
+  }
+
+  const hours = String(date.getUTCHours()).padStart(2, '0'); 
+  const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+
+  return `${hours}:${minutes}`;
 };
+
 
 export const formattedDuration = (duration) => {
 
