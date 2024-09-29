@@ -284,7 +284,7 @@ const resources = {
           email: "Email",
           password: "Password",
           noAccount: "I have no account",
-          users: "Users on our platform",
+          users: "Users on our <br/> platform",
           backgroundText: "TRAIN AND RUN",
         },
         register: {

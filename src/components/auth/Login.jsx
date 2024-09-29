@@ -142,11 +142,10 @@ const Login = () => {
             className="flex h-fit 2xl:w-fit w-80 text-white text-center"
           >
             <div className="flex-grow flex flex-col justify-center items-center">
-              <motion.h1 className="text-9xl font-semibold">
+              <motion.h1 className="text-9xl font-semibold text-black xl:text-white">
                 {rounded}
               </motion.h1>
-              <h2 className="text-4xl">{t('shared.login.users')}</h2>
-              {/* <h2 className="text-9xl">Better everyday</h2> */}
+              <h2 className="text-4xl text-black xl:text-white"  dangerouslySetInnerHTML={{ __html: t('shared.login.users') }}></h2>
             </div>
           </motion.div>
         </div>

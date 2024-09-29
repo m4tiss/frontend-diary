@@ -9,6 +9,11 @@ import ChartDistance from "../charts/ChartDistance";
 import { useUser } from "../../../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import dayjs from "dayjs";
 
 const validateDuration = (duration) => {
   const regex = /^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
@@ -23,6 +28,7 @@ const RunNewTraining = () => {
   const [chosenPlan, setChosenPlan] = useState(null);
   const [data, setData] = useState({
     run_category_id: 0,
+    date: "",
     duration: "03:00:00",
     note: "",
     rating: 0.0,
@@ -51,6 +57,7 @@ const RunNewTraining = () => {
 
   const handleSubmit = async () => {
     if (
+      !data.date ||
       !data.duration ||
       !data.rating ||
       !data.average_pulse ||
@@ -69,6 +76,7 @@ const RunNewTraining = () => {
     try {
       const runData = {
         run_category_id: data.run_category_id,
+        date: data.date,
         duration: data.duration,
         note: data.note,
         rating: data.rating,
@@ -104,8 +112,28 @@ const RunNewTraining = () => {
   return (
     <div className="w-full flex flex-col 2xl:flex-row flex-grow bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full 2xl:w-2/3 flex flex-col 2xl:flex-row justify-center">
-        <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly mt-10 2xl:my-10">
-          <div className="text-left flex flex-col dark:text-white">
+        <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly mt-10 2xl:my-10 gap-10">
+          <div className="flex flex-col  items-start xl:items-center">
+            <label className="px-2 text-xl w-full text-center">
+              {t("gym.general.date")}
+            </label>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker"]}>
+                <DateTimePicker
+                  className="bg-white"
+                  ampm={false}
+                  onChange={(date) =>
+                    setData({
+                      ...data,
+                      date: date ? dayjs(date).format("YYYY-MM-DD HH:mm") : "",
+                    })
+                  }
+                  renderInput={(params) => <input {...params} />}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
+          </div>
+          <div className="text-center flex flex-col dark:text-white">
             <label className="px-2 text-xl">{t("run.general.duration")}</label>
             <input
               value={data.duration}
@@ -115,8 +143,10 @@ const RunNewTraining = () => {
             ></input>
           </div>
 
-          <div className="text-left flex flex-col dark:text-white">
-            <label className="px-2 text-xl">{t("run.general.averagePulse")}</label>
+          <div className="text-center flex flex-col dark:text-white">
+            <label className="px-2 text-xl">
+              {t("run.general.averagePulse")}
+            </label>
             <input
               value={data.average_pulse}
               onChange={(e) =>
@@ -126,7 +156,7 @@ const RunNewTraining = () => {
               placeholder="150"
             ></input>
           </div>
-          <div className="text-left flex flex-col dark:text-white">
+          <div className="text-center flex flex-col dark:text-white">
             <label className="px-2 text-xl">{t("run.general.distance")}</label>
             <input
               value={data.distance}
@@ -136,7 +166,7 @@ const RunNewTraining = () => {
               placeholder="20.3"
             ></input>
           </div>
-          <div className="text-left flex flex-col  rounded-xl p-2 dark:text-white">
+          <div className="text-center flex flex-col  rounded-xl p-2 dark:text-white">
             <label className="px-2 text-xl">{t("run.general.rating")}</label>
 
             <input
@@ -159,8 +189,8 @@ const RunNewTraining = () => {
             />
           </div>
         </div>
-        <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly my-10 ">
-          <div className="text-left flex flex-col dark:text-white">
+        <div className="w-full 2xl:w-1/2 flex flex-col items-center justify-evenly my-10 gap-10">
+          <div className="text-center flex flex-col dark:text-white">
             <label className="px-2 text-xl">{t("run.general.note")}</label>
             <textarea
               value={data.note}
@@ -201,7 +231,7 @@ const RunNewTraining = () => {
             }}
             className="text-2xl shadow-2xl text-white hover:scale-110 rounded-xl w-80 2xl:w-96 p-2 my-3 duration-200"
           >
-           {t("run.newTraining.doTraining")}
+            {t("run.newTraining.doTraining")}
           </button>
         </div>
       </div>
