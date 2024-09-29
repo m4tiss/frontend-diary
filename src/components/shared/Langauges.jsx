@@ -37,13 +37,13 @@ const Languages = () => {
 
   return (
     <>
-      <div className="w-full lg:hidden absolute top-[10%] flex justify-between z-50">
+      <div className="w-full lg:hidden absolute  top-[10%] pointer-events-none flex justify-between">
         {languages.map(({ id, countryCode, onClick }) => (
           <div
             key={id}
             onClick={onClick}
             className={`flex justify-center items-center w-12 h-12 rounded-full
-              ${darkMode ? "text-white" : "text-black"} cursor-pointer`}
+              ${darkMode ? "text-white" : "text-black"} cursor-pointer z-50 pointer-events-auto`}
           >
             <ReactCountryFlag
               countryCode={countryCode}
