@@ -1,4 +1,4 @@
-import { auth } from "./";
+import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
 import axios from "axios";
 const instance = axios.create({
