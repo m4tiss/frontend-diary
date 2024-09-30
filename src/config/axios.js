@@ -1,17 +1,28 @@
+import { auth } from "./";
+import { signOut } from "firebase/auth";
 import axios from "axios";
 const instance = axios.create({
   baseURL: process.env.API_URL || "https://backend-diary-jqjw.onrender.com/",
 });
 
+
+const handleLogout = () => {
+  signOut(auth)
+    .then(() => {
+      console.log("User logged out");
+    })
+    .catch((error) => {
+      console.error("Error logging out: ", error);
+    });
+    localStorage.removeItem("token");
+};
 instance.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem("token");
-
-      window.location.href = "https://diary.mateuszgwozdz.pl/login";
+      handleLogout();
     }
     return Promise.reject(error);
   }

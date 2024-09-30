@@ -30,6 +30,7 @@ const GymNavbar = ({ setNavBarType }) => {
       .catch((error) => {
         console.error("Error logging out: ", error);
       });
+      localStorage.removeItem("token");
   };
 
   const toggle = () => {
