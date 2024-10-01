@@ -83,7 +83,7 @@ const GymWorkoutDetails = () => {
           </>
         )}
       </div>
-      <div className="bg-white rounded-2xl shadow-xl flex flex-col justify-evenly flex-grow p-10 w-3/4">
+      <div className="bg-white rounded-2xl shadow-xl flex flex-col justify-evenly items-center flex-grow p-10 w-3/4">
         {currentExercise ? (
           <>
             <table className="w-full bg-white text-lg xl:text-2xl h-fit text-center rounded-lg outline-none border-none">
