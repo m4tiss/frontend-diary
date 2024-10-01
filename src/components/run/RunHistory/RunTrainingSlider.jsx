@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import "swiper/css";
@@ -11,6 +12,7 @@ import { getAuthToken } from "../../../config/auth";
 import { useNavigate } from "react-router-dom";
 
 const RunTrainingSlider = ({ categoryName }) => {
+  const { t } = useTranslation();
   const [trainings, setTrainings] = useState([]);
   const [visibleSlidesCount, setVisibleSlidesCount] = useState(getVisibleSlidesCount());
   const navigate = useNavigate();
@@ -80,8 +82,8 @@ const RunTrainingSlider = ({ categoryName }) => {
     >
       {trainings.length === 0 ? (
         <SwiperSlide key={-1}>
-          <div className="w-full h-96 flex gap-20 m-5 flex-col items-center justify-center">
-            <h2 className="text-5xl dark:text-white">No available trainings</h2>
+          <div className="w-full h-96 flex gap-20 flex-col items-center justify-center">
+            <h2 className="text-5xl dark:text-white">   {t('run.historyTraining.noTrainings')}</h2>
             <motion.button
               onClick={() => navigate("/run/newTraining")}
               whileHover={{ scale: 1.1 }}
@@ -92,7 +94,7 @@ const RunTrainingSlider = ({ categoryName }) => {
                   "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
               }}
             >
-              Add new trainings
+              {t('run.historyTraining.addTraining')}
             </motion.button>
           </div>
         </SwiperSlide>

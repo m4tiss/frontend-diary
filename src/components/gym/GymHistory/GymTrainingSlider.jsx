@@ -85,7 +85,7 @@ const GymTrainingSlider = () => {
     >
       {workouts.length === 0 ? (
         <SwiperSlide key={-1}>
-          <div className="w-full h-96 flex gap-20 m-5 flex-col items-center justify-center">
+          <div className="w-full h-96 flex gap-20 flex-col items-center justify-center">
             <h2 className="text-5xl dark:text-white">{t('gym.historyTraining.noTrainings')}</h2>
             <motion.button
               onClick={() => navigate("/gym/newTraining")}
