@@ -82,6 +82,7 @@ const ChartMuscleUsed = ({ friendId, range = "all" }) => {
         <div>{t("gym.chart.noData")}</div>
       ) : (
         <PieChart
+        
           colors={transformDataForPieChart().map((data) => data.color)}
           series={[
             {
@@ -92,8 +93,16 @@ const ChartMuscleUsed = ({ friendId, range = "all" }) => {
               faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
             },
           ]}
+          margin={window.innerWidth > 768 ? { top: 100, left: 100, right:100 } : { top: 150, left: 20, right:20 }}
           width={window.innerWidth > 768 ? 550 : 300}
-          height={window.innerWidth > 768 ? 200 : 100}
+          height={window.innerWidth > 768 ? 300 : 400}
+          slotProps={{
+            legend: {
+              direction: 'row',
+              position: { vertical: 'top', horizontal: 'middle' },
+              padding: 5,
+            },
+          }}
         />
       )}
     </div>
