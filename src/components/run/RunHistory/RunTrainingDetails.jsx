@@ -114,7 +114,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
               </div>
               {coordinates.length > 0 ? (
                 <div className="w-full flex justify-center items-center">
-                  {/* <MapContainer
+                  <MapContainer
                     center={coordinates[0]}
                     zoom={30}
                     style={
@@ -132,7 +132,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
                       <Marker key={index} position={position} icon={customIcon} />
                     ))}
                     <MapInteractions coordinates={coordinates} />
-                  </MapContainer> */}
+                  </MapContainer>
                 </div>
               ) : (
                 <div className="w-full pt-5 xl:pt-0 xl:h-[300px] flex justify-center items-center">
