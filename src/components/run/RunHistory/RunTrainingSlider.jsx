@@ -71,6 +71,7 @@ const RunTrainingSlider = ({ categoryName }) => {
         let response = res.data.workouts;
         response = response.sort((a, b) => new Date(b.date) - new Date(a.date));
         setTrainings(response);
+        console.log(response)
       });
   }, [categoryName]);
 

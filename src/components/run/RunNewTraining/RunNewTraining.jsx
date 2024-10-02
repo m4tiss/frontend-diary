@@ -82,7 +82,8 @@ const RunNewTraining = () => {
         rating: data.rating,
         average_pulse: data.average_pulse,
         distance: data.distance,
-      };
+        coordinates: [{ latitude: 52.1622751, longitude: 19.3942347 }, { latitude: 52.1622448, longitude: 19.3942924 }]
+        };
 
       const token = getAuthToken();
       const resposne = await axios.post("/run/workout", runData, {
@@ -194,6 +195,7 @@ const RunNewTraining = () => {
             <label className="px-2 text-xl">{t("run.general.note")}</label>
             <textarea
               value={data.note}
+              maxLength={299}
               onChange={(e) => setData({ ...data, note: e.target.value })}
               className="resize-none text-2xl p-2 w-80 2xl:w-96 min-h-40 shadow-xl rounded-2xl outline-none dark:bg-run-night-element "
               type="text"
