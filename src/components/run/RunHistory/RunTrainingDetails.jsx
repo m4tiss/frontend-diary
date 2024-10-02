@@ -7,6 +7,7 @@ import {
   TileLayer,
   Marker,
   Polyline,
+  useMap
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
@@ -32,6 +33,19 @@ const customIcon = new Icon({
   iconSize: [0, 0],
 });
 
+const MapInteractions = ({ coordinates }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (coordinates.length > 0) {
+      const firstCoordinate = coordinates[0];
+      map.setView(firstCoordinate, 13);
+    }
+  }, [coordinates, map]);
+
+  return null;
+};
+
 const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
   const { t } = useTranslation();
   const { darkMode } = useContext(DarkModeContext);
@@ -41,21 +55,10 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
     parseFloat(coord.longitude),
   ]);
 
-  const startPosition = coordinates[0];
-  const mapRef = useRef();
-
   const handleDelete = () => {
     onDelete();
     toggleDialog();
   };
-
-  useEffect(() => {
-    return () => {
-      if (mapRef.current) {
-        mapRef.current.leafletElement.remove();
-      }
-    };
-  }, []);
 
   return createPortal(
     <div
@@ -66,13 +69,9 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
         initial={{ scale: 0.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.2, opacity: 0 }}
-        className={` flex flex-col items-center 
+        className={`flex flex-col items-center 
           rounded-xl p-6 shadow-xl w-3/4 h-5/6 gap-10 xl:gap-10 overflow-auto
-          ${
-            darkMode
-              ? `bg-run-night-background text-white`
-              : `bg-white text-black`
-          }
+          ${darkMode ? `bg-run-night-background text-white` : `bg-white text-black`}
         `}
         onClick={(e) => e.stopPropagation()}
       >
@@ -116,10 +115,13 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
               {coordinates.length > 0 ? (
                 <div className="w-full flex justify-center items-center">
                   <MapContainer
-                    center={startPosition}
+                    center={coordinates[0]}
                     zoom={30}
-                    whenCreated={(map) => (mapRef.current = map)}
-                    style={window.innerWidth > 768 ? { height: "300px", width: "600px" } : { height: "250px", width: "250px" }}
+                    style={
+                      window.innerWidth > 768
+                        ? { height: "300px", width: "600px" }
+                        : { height: "250px", width: "250px" }
+                    }
                   >
                     <TileLayer
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -127,8 +129,9 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
                     />
                     <Polyline positions={coordinates} color="blue" />
                     {coordinates.map((position, index) => (
-                      <Marker key={index} position={position} icon={customIcon}></Marker>
+                      <Marker key={index} position={position} icon={customIcon} />
                     ))}
+                    <MapInteractions coordinates={coordinates} />
                   </MapContainer>
                 </div>
               ) : (
@@ -141,9 +144,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
             <div className="w-full text-center">
               <div className="w-full flex justify-center items-center gap-3">
                 <MdOutlineNoteAlt size={40} />
-                <h2 className="text-3xl font-semibold">
-                  {t("run.general.note")}
-                </h2>
+                <h2 className="text-3xl font-semibold">{t("run.general.note")}</h2>
               </div>
               <label className="w-96 overflow-hidden text-xl">{training.note}</label>
             </div>
@@ -152,46 +153,31 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
             <div>
               <div className="w-full flex justify-center items-end gap-3">
                 <GiPathDistance size={35} />
-                <h2 className="text-3xl font-semibold">
-                  {t("run.general.distance")}
-                </h2>
+                <h2 className="text-3xl font-semibold">{t("run.general.distance")}</h2>
               </div>
-              <label className="text-xl">
-                {formattedData(training.distance || 0)} km
-              </label>
+              <label className="text-xl">{formattedData(training.distance || 0)} km</label>
             </div>
 
             <div>
               <div className="w-full flex justify-center items-end gap-3">
                 <MdOutlineTimer size={35} />
-                <h2 className="text-3xl font-semibold">
-                  {t("run.general.duration")}
-                </h2>
+                <h2 className="text-3xl font-semibold">{t("run.general.duration")}</h2>
               </div>
-              <label className="text-xl">
-                {formattedDuration(training.duration || "00:00:00")}
-              </label>
+              <label className="text-xl">{formattedDuration(training.duration || "00:00:00")}</label>
             </div>
 
             <div>
               <div className="flex justify-center items-end gap-3">
                 <CiCalendarDate size={35} />
-                <h2 className="text-3xl font-semibold">
-                  {t("gym.general.date")}
-                </h2>
+                <h2 className="text-3xl font-semibold">{t("gym.general.date")}</h2>
               </div>
-              <label className="text-xl">
-                {formattedTime(training.date) || "00:00:00"}{" "}
-                {formattedDate(training.date) || "00:00:00"}
-              </label>
+              <label className="text-xl">{formattedTime(training.date) || "00:00:00"} {formattedDate(training.date) || "00:00:00"}</label>
             </div>
 
             <div>
               <div className="w-full flex justify-center items-end gap-3">
                 <CiWavePulse1 size={35} />
-                <h2 className="text-3xl font-semibold">
-                  {t("run.general.averagePulse")}
-                </h2>
+                <h2 className="text-3xl font-semibold">{t("run.general.averagePulse")}</h2>
               </div>
               <label className="text-xl">{training.average_pulse}</label>
             </div>
@@ -199,14 +185,10 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
             <div>
               <div className="flex justify-center items-end gap-3">
                 <CiStar size={35} />
-                <h2 className="text-3xl font-semibold">
-                  {t("run.general.rating")}
-                </h2>
+                <h2 className="text-3xl font-semibold">{t("run.general.rating")}</h2>
               </div>
               <div className="flex justify-center items-center gap-3">
-                <h2 className="text-xl">
-                  {formattedData(training.rating || 0)}
-                </h2>
+                <h2 className="text-xl">{formattedData(training.rating || 0)}</h2>
                 <ReactStars
                   count={5}
                   size={30}
