@@ -6,7 +6,6 @@ import {
   MapContainer,
   TileLayer,
   Marker,
-  Popup,
   Polyline,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -18,7 +17,7 @@ import {
   formattedDuration,
 } from "../../../functions/formatData";
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import DarkModeContext from "../../../providers/DarkModeProvider";
 
 import { CiStar } from "react-icons/ci";
@@ -32,6 +31,7 @@ const customIcon = new Icon({
   iconUrl: icon,
   iconSize: [0, 0],
 });
+
 const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
   const { t } = useTranslation();
   const { darkMode } = useContext(DarkModeContext);
@@ -42,11 +42,20 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
   ]);
 
   const startPosition = coordinates[0];
+  const mapRef = useRef();
 
   const handleDelete = () => {
     onDelete();
     toggleDialog();
   };
+
+  useEffect(() => {
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.leafletElement.remove();
+      }
+    };
+  }, []);
 
   return createPortal(
     <div
@@ -109,7 +118,8 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
                   <MapContainer
                     center={startPosition}
                     zoom={30}
-                    style={window.innerWidth > 768 ? { height: "300px", width: "600px" } :  { height: "250px", width: "250px" }}
+                    whenCreated={(map) => (mapRef.current = map)}
+                    style={window.innerWidth > 768 ? { height: "300px", width: "600px" } : { height: "250px", width: "250px" }}
                   >
                     <TileLayer
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -122,7 +132,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
                   </MapContainer>
                 </div>
               ) : (
-                <div className="w-full pt-5 xl:pt-0  xl:h-[300px] flex justify-center items-center">
+                <div className="w-full pt-5 xl:pt-0 xl:h-[300px] flex justify-center items-center">
                   <LuMapPinOff size={100} />
                 </div>
               )}
