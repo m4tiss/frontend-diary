@@ -82,7 +82,7 @@ const RunNewTraining = () => {
         rating: data.rating,
         average_pulse: data.average_pulse,
         distance: data.distance,
-        coordinates: [{ latitude: 52.1622751, longitude: 19.3942347 }, { latitude: 52.1622448, longitude: 19.3942924 }]
+        coordinates: []
         };
 
       const token = getAuthToken();

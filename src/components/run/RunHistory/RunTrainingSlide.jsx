@@ -4,6 +4,8 @@ import DarkModeContext from "../../../providers/DarkModeProvider";
 import iconDark from "../../../icons/runIconDark.png";
 import iconLight from "../../../icons/runIconLight.png";
 import RunTrainingDetails from "./RunTrainingDetails";
+import { LuMapPin } from "react-icons/lu";
+import { LuMapPinOff } from "react-icons/lu";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -14,7 +16,6 @@ import {
 } from "../../../functions/formatData";
 
 const RunTrainingSlide = ({ training, onDelete }) => {
-
   const { darkMode } = useContext(DarkModeContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -38,15 +39,14 @@ const RunTrainingSlide = ({ training, onDelete }) => {
           {formattedData(training.distance || 0)} km
         </span>
       </div>
-      <div className="flex justify-evenly w-full px-5 text-xl">
+      <div className="flex items-center justify-evenly w-full px-5 text-xl">
         <span className="text-center">
-          <span className="">
             {formattedDuration(training.duration || "00:00:00")}
-          </span>
         </span>
-        <span className="">
-          <span className="">2:30/km</span>
-        </span>
+        <div>
+          {training.coordinates.length > 0 ?(<LuMapPin size={40} />):( <LuMapPinOff size={40}/>)}
+
+        </div>
       </div>
 
       <div className="w-full flex justify-evenly items-center">
