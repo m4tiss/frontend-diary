@@ -9,9 +9,7 @@ import axios from "../../../config/axios";
 import { AnimatePresence } from "framer-motion";
 import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
-import { TbCategoryPlus } from "react-icons/tb";
 import { GiAchievement } from "react-icons/gi";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import PagePanel from "../../shared/PagePanel";
 import { useNavigate } from "react-router-dom";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
@@ -135,18 +133,24 @@ const RunUserProfile = () => {
             type={"run"}
             title={t('run.profile.showRecords')}
             icon={<GiTrophyCup size={50} color="white" />}
+          />          
+          <PagePanel
+          //onClick={() => navigate("/run/chats")}
+            type={"run"}
+            title={''}
+            //icon={<IoChatboxEllipsesOutline size={50} color="white" />}
           />
           <PagePanel
           // onClick={toggleCategoryDialog}
             type={"run"}
-            title={t('run.profile.addCategory')}
-            icon={<TbCategoryPlus size={50} color="white" />}
+            title={''}
+            //icon={<TbCategoryPlus size={50} color="white" />}
           />
           <PagePanel
             //onClick={() => navigate("/run/achievements")}
             type={"run"}
-            title={t('run.profile.showAchievements')}
-            icon={<GiAchievement size={50} color="white" />}
+            //title={t('run.profile.showAchievements')}
+            //icon={<GiAchievement size={50} color="white" />}
           />
           <PagePanel
             onClick={toggleGoalDialog}
@@ -160,12 +164,7 @@ const RunUserProfile = () => {
             title={t('run.profile.showGoals')}
             icon={<LuGoal size={50} color="white" />}
           />
-          <PagePanel
-          //onClick={() => navigate("/run/chats")}
-            type={"run"}
-            title={t('run.profile.chat')}
-            icon={<IoChatboxEllipsesOutline size={50} color="white" />}
-          />
+
           <AnimatePresence>
             {isGoalOpen && (
               <RunAddGoal

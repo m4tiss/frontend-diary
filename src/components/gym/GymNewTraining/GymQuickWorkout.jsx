@@ -119,7 +119,7 @@ const GymQuickWorkout = () => {
           />
         </div>
       </div>
-      <h2 className="text-center xl:text-start text-black w-full text-xl py-5">
+      <h2 className="text-center xl:text-start text-black dark:text-white w-full text-xl py-5">
         {t("gym.newTraining.avaiableExercises")}
       </h2>
 
@@ -142,7 +142,7 @@ const GymQuickWorkout = () => {
         >
           {t("gym.general.previous")}
         </button>
-        <span className="text-black">{`${t(
+        <span className="text-black dark:text-white">{`${t(
           "gym.general.page"
         )} ${currentPage} of ${Math.ceil(
           availableExercises.length / exercisesPerPage
@@ -159,12 +159,12 @@ const GymQuickWorkout = () => {
         </button>
       </div>
 
-      <h2 className="text-center xl:text-start text-black w-full text-xl py-10">
+      <h2 className="text-center xl:text-start text-black dark:text-white w-full text-xl py-10">
         {t("gym.newTraining.selectedExercises")}
       </h2>
         <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
           {currentSelectedExercises.length === 0 ? (
-            <div className="w-full flex justify-center items-center text-black h-24 text-4xl">
+            <div className="w-full flex justify-center items-center text-blac dark:text-white h-24 text-4xl">
               {t("gym.newTraining.noExercises")}
             </div>
           ) : (
@@ -187,7 +187,7 @@ const GymQuickWorkout = () => {
         >
           {t("gym.general.previous")}
         </button>
-        <span className="text-black">{`${t(
+        <span className="text-black dark:text-white">{`${t(
           "gym.general.page"
         )} ${selectedExercisesPage} of ${Math.ceil(
           selectedExercises.length / exercisesPerPage

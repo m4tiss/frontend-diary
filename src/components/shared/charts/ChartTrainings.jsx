@@ -81,7 +81,8 @@ const ChartTrainings = ({ friendId }) => {
   }, [friendId, t, i18n.language]);
 
   return (
-    <div className="w-fit bg-white text-black shadow-xl rounded-xl">
+    <div className="bg-white text-black flex flex-col justify-center items-center rounded-2xl shadow-xl p-3 w-fit">
+      <h2 className="text-center text-xl xl:text-2xl p-2">{t('shared.chart.workouts')}</h2>
       <BarChart
         xAxis={chartData.xAxis}
         yAxis={chartData.yAxis}
@@ -90,6 +91,7 @@ const ChartTrainings = ({ friendId }) => {
         height={300}
       />
     </div>
+
   );
 };
 

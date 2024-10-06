@@ -79,7 +79,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
         <input
           value={data.duration}
           onChange={(e) => setData({ ...data, duration: e.target.value })}
-          className="text-2xl p-2 w-60 xl:w-96 rounded-2xl outline-none shadow-xl bg-[#e9ecef] dark:bg-run-night-element"
+          className="text-2xl p-2 w-60 xl:w-96 dark:text-white rounded-2xl outline-none shadow-xl bg-[#e9ecef] dark:bg-run-night-element"
           placeholder="1h 30min"
         ></input>
       </div>
@@ -91,7 +91,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
           min={0}
           max={5}
           onChange={(e) => setData({ ...data, rating: e.target.value })}
-          className="text-2xl p-2 w-60 xl:w-96 rounded-2xl outline-none shadow-xl bg-[#e9ecef] dark:bg-run-night-element"
+          className="text-2xl p-2 w-60 xl:w-96 dark:text-white rounded-2xl outline-none shadow-xl bg-[#e9ecef] dark:bg-run-night-element"
           type="number"
           placeholder="20.3"
         ></input>
@@ -109,7 +109,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
         <textarea
           value={data.note}
           onChange={(e) => setData({ ...data, note: e.target.value })}
-          className="resize-none text-2xl p-2 w-60 xl:w-96 min-h-20 bg-[#e9ecef] shadow-xl rounded-2xl outline-none dark:bg-run-night-element "
+          className="resize-none text-2xl p-2 w-60 dark:text-white xl:w-96 min-h-20 bg-[#e9ecef] shadow-xl rounded-2xl outline-none dark:bg-run-night-element "
           type="text"
           placeholder={t("gym.newTraining.notePlaceholder")}
         ></textarea>

@@ -62,7 +62,8 @@ const resources = {
           run:"Bieganie",
           gym:"Trening siłowy",
           trainings:"Treningi",
-          months:"Miesiące"
+          months:"Miesiące",
+          workouts:"Treningi w ostatnich miesiącach"
         }
       },
       run: {
@@ -91,7 +92,7 @@ const resources = {
           showAchievements: "Zobacz osiągnięcia",
           addNewGoal: "Dodaj nowy cel",
           showGoals: "Zobacz cele",
-          chat: "Czaty",
+          removeRoutine: "Usuń rutynę",
           allTrainings: "Wszystkie treningi",
           daysWithUs: "Dni z nami",
           email: "Email",
@@ -172,7 +173,7 @@ const resources = {
           showAchievements: "Zobacz osiągnięcia",
           addNewGoal: "Dodaj nowy cel",
           showGoals: "Zobacz cele",
-          chat: "Czaty",
+          removeRoutine: "Usuń rutynę",
           allTrainings: "Wszystkie treningi",
           daysWithUs: "Dni z nami",
           email: "Email",
@@ -303,7 +304,8 @@ const resources = {
           run:"Run",
           gym:"Gym",
           trainings:"Trainings",
-          months:"Months"
+          months:"Months",
+          workouts:"Trainings in recent months"
         }
       },
       run: {
@@ -332,7 +334,7 @@ const resources = {
           showAchievements: "Show achievements",
           addNewGoal: "Add new goal",
           showGoals: "Show goals",
-          chat: "Chats",
+          removeRoutine: "Remove routine",
           allTrainings: "All workouts",
           daysWithUs: "Days with us",
           email: "Email",
@@ -413,7 +415,7 @@ const resources = {
           showAchievements: "Show achievements",
           addNewGoal: "Add new goal",
           showGoals: "Show goals",
-          chat: "Chats",
+          removeRoutine: "Remove routine",
           allTrainings: "All workouts",
           daysWithUs: "Days with us",
           email: "Email",

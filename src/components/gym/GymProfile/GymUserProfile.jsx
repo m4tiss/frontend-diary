@@ -15,7 +15,7 @@ import PagePanel from "../../shared/PagePanel";
 import { useNavigate } from "react-router-dom";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
 import { formattedDate } from "../../../functions/formatData";
-import { TbNotes } from "react-icons/tb";
+import { TbNotes,TbNotesOff  } from "react-icons/tb";
 import { useUser } from "../../../providers/UserProvider";
 import { ToastContainer, toast } from "react-toastify";
 import GymAddRoutine from "../GymAddRoutine";
@@ -137,6 +137,12 @@ const GymUserProfile = () => {
             type={"gym"}
             title={t('gym.profile.showRecords')}
             icon={<GiTrophyCup size={50} color="white" />}
+          />          
+          <PagePanel
+            //onClick={() => navigate("/run/achievements")}
+            type={"gym"}
+            //title={t('gym.profile.showAchievements')}
+            //icon={<GiAchievement size={50} color="white" />}
           />
           <PagePanel
             onClick={toggleRoutineDialog}
@@ -144,12 +150,11 @@ const GymUserProfile = () => {
             title={t('gym.profile.addRoutine')}
             icon={<TbNotes size={50} color="white" />}
           />
-          <PagePanel
-            //onClick={() => navigate("/run/achievements")}
+         <PagePanel
+            // onClick={() => navigate("/gym/chats")}
             type={"gym"}
-            title={t('gym.profile.showAchievements')}
-            icon={<GiAchievement size={50} color="white" 
-            />}
+            title={t('gym.profile.removeRoutine')}
+            icon={<TbNotesOff size={50} color="white" />}
           />
           <PagePanel
             //onClick={toggleGoalDialog}
@@ -163,12 +168,7 @@ const GymUserProfile = () => {
             title={t('gym.profile.showGoals')}
             icon={<LuGoal size={50} color="white" />}
           />
-          <PagePanel
-            // onClick={() => navigate("/gym/chats")}
-            type={"gym"}
-            title={t('gym.profile.chat')}
-            icon={<IoChatboxEllipsesOutline size={50} color="white" />}
-          />
+ 
 
           {/* <AnimatePresence>
             {isGoalOpen && (

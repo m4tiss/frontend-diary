@@ -5,7 +5,7 @@ const SmallStatsPanel = ({ title, description, loading }) => {
   const { darkMode } = useContext(DarkModeContext);
 
   return (
-    <div className="min-w-72 min-h-28 flex flex-col bg-[white] dark:bg-run-night-element dark:text-white rounded-2xl items-center justify-start shadow-xl p-5">
+    <div className="w-full min-h-28 flex flex-col bg-[white] dark:bg-run-night-element dark:text-white rounded-2xl items-center justify-start shadow-xl p-5">
       <div className="flex justify-start text-xl mb-2 font-semibold">
         {title}
       </div>
