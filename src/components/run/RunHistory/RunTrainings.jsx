@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 const RunTrainings = ({ categoryName }) => {
   const { t } = useTranslation();
   const [trainings, setTrainings] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
@@ -23,36 +25,50 @@ const RunTrainings = ({ categoryName }) => {
         setTrainings((prevTrainings) =>
           prevTrainings.filter((training) => training.run_workout_id !== id)
         );
-        console.log("Przeładowałem");
       })
       .catch((error) => {
         console.error("Error deleting training:", error);
       });
   };
 
-  useEffect(() => {
+  const fetchTrainings = async (currentPage) => {
     const token = getAuthToken();
-    axios
-      .get("/run/workout/all", {
+    try {
+      const res = await axios.get("/run/workout/all/pageable", {
         headers: {
           Authorization: "Bearer " + token,
         },
-        params: categoryName ? { category_name: categoryName } : {},
-      })
-      .then((res) => {
-        let response = res.data.workouts;
-        response = response.sort((a, b) => new Date(b.date) - new Date(a.date));
-        setTrainings(response);
-        console.log(response);
+        params: {
+          page: currentPage,
+         // category_name: categoryName || null,
+        },
       });
+
+      const response = res.data.workouts;
+      setTrainings((prevTrainings) => [...prevTrainings, ...response]);
+      setHasMore(res.data.hasMore);
+    } catch (error) {
+      console.error("Error fetching trainings:", error);
+    }
+  };
+
+  useEffect(() => {
+    setPage(1);
+    setTrainings([]);
+    fetchTrainings(1);
   }, [categoryName]);
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchTrainings(nextPage);
+  };
 
   return (
     <>
       {trainings.length === 0 ? (
         <div className="w-full h-96 flex gap-20 flex-col items-center justify-center">
           <h2 className="text-5xl dark:text-white">
-            {" "}
             {t("run.historyTraining.noTrainings")}
           </h2>
           <motion.button
@@ -61,7 +77,7 @@ const RunTrainings = ({ categoryName }) => {
             transition={{ type: "spring", stiffness: 500 }}
             className="text-white p-3 rounded-xl shadow-xl text-xl"
             style={{
-              "background-image":
+              backgroundImage:
                 "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
             }}
           >
@@ -69,12 +85,31 @@ const RunTrainings = ({ categoryName }) => {
           </motion.button>
         </div>
       ) : (
-        trainings.map((item) => (
-          <RunTrainingPanel
-            training={item}
-            onDelete={() => handleDelete(item.run_workout_id)}
-          />
-        ))
+        <>
+          {trainings.map((item) => (
+            <RunTrainingPanel
+              key={item.run_workout_id}
+              training={item}
+              onDelete={() => handleDelete(item.run_workout_id)}
+            />
+          ))}
+          {hasMore && trainings.length > 0 && (
+            <div className="w-full flex justify-center">
+              <motion.button
+                onClick={handleLoadMore}
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 500 }}
+                className="w-40 text-white p-3 rounded-xl shadow-xl text-xl mt-4"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
+                }}
+              >
+                {t("run.historyTraining.loadMore")}
+              </motion.button>
+            </div>
+          )}
+        </>
       )}
     </>
   );

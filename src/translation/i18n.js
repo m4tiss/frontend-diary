@@ -58,13 +58,13 @@ const resources = {
           description: "Opis",
           noFile: "Brak pliku",
         },
-        chart:{
-          run:"Bieganie",
-          gym:"Trening siłowy",
-          trainings:"Treningi",
-          months:"Miesiące",
-          workouts:"Treningi w ostatnich miesiącach"
-        }
+        chart: {
+          run: "Bieganie",
+          gym: "Trening siłowy",
+          trainings: "Treningi",
+          months: "Miesiące",
+          workouts: "Treningi w ostatnich miesiącach",
+        },
       },
       run: {
         general: {
@@ -101,12 +101,10 @@ const resources = {
         historyTraining: {
           filtration: "Filtracja",
           category: "Kategoria",
-          title: "Regularne trenowanie",
-          description:
-            "Regularny trening siłowy to klucz do poprawy kondycji fizycznej i zdrowia. Wzmacnia mięśnie, poprawia gęstość kości i wspomaga metabolizm. Regularne ćwiczenia zwiększają wydolność organizmu, pomagają w utrzymaniu prawidłowej wagi oraz redukują ryzyko wielu chorób. Dobrze zbilansowany plan treningowy powinien obejmować różnorodne ćwiczenia, by angażować wszystkie grupy mięśniowe i umożliwiać ich równomierny rozwój.",
           noTrainings: "Brak dostępnych treningów",
           addTraining: "Dodaj trening",
-          all:"Wszytskie"
+          all: "Wszytskie",
+          loadMore: "Załaduj więcej",
         },
         newTraining: {
           doTraining: "Zrób trening",
@@ -123,13 +121,13 @@ const resources = {
           notCompleted: "Niezakończony",
           inProgress: "W trakcie",
           dayLeft: "DZIEŃ POZOSTAŁ",
-          daysLeft: "DNI POZOSTAŁO"
+          daysLeft: "DNI POZOSTAŁO",
         },
-        records:{
-          personalRecords:"Rekordy personalne",
-          longestDistance:"Najdłuższy dystans",
-          highestAveragePulse:"Najwyższe średnie tętno",
-          longestTraining:"Najdłuższy trening"
+        records: {
+          personalRecords: "Rekordy personalne",
+          longestDistance: "Najdłuższy dystans",
+          highestAveragePulse: "Najwyższe średnie tętno",
+          longestTraining: "Najdłuższy trening",
         },
         stats: {
           personalStats: "Statystyki osobiste",
@@ -191,12 +189,10 @@ const resources = {
         historyTraining: {
           filtration: "Filtracja",
           category: "Kategoria",
-          title: "Regularne trenowanie",
-          description:
-            "Regularny trening siłowy to klucz do poprawy kondycji fizycznej i zdrowia. Wzmacnia mięśnie, poprawia gęstość kości i wspomaga metabolizm. Regularne ćwiczenia zwiększają wydolność organizmu, pomagają w utrzymaniu prawidłowej wagi oraz redukują ryzyko wielu chorób. Dobrze zbilansowany plan treningowy powinien obejmować różnorodne ćwiczenia, by angażować wszystkie grupy mięśniowe i umożliwiać ich równomierny rozwój.",
           noTrainings: "Brak dostępnych treningów",
           addTraining: "Dodaj trening",
-          all:"Wszytskie"
+          all: "Wszytskie",
+          loadMore: "Załaduj więcej",
         },
         newTraining: {
           plannedWorkout: "Planowany trening",
@@ -300,13 +296,13 @@ const resources = {
           description: "Description",
           noFile: "No file",
         },
-        chart:{
-          run:"Run",
-          gym:"Gym",
-          trainings:"Trainings",
-          months:"Months",
-          workouts:"Trainings in recent months"
-        }
+        chart: {
+          run: "Run",
+          gym: "Gym",
+          trainings: "Trainings",
+          months: "Months",
+          workouts: "Trainings in recent months",
+        },
       },
       run: {
         general: {
@@ -348,7 +344,8 @@ const resources = {
             "Regular strength training is essential for improving physical fitness and health. It strengthens muscles, enhances bone density, and supports metabolism. Consistent exercise boosts overall endurance, helps maintain a healthy weight, and reduces the risk of various diseases. A well-balanced workout plan should include a variety of exercises to engage all muscle groups and ensure balanced development.",
           noTrainings: "No available trainings",
           addTraining: "Add training",
-          all: "All"
+          all: "All",
+          loadMore: "Load more",
         },
         newTraining: {
           doTraining: "Do training",
@@ -358,20 +355,20 @@ const resources = {
           description:
             "Unlock your full potential as a runner with our ultimate guide to achieving your running goals. Whether you're aiming to complete your first 5K, conquer a marathon, or improve your personal best, this guide provides you with the tools and strategies you need. Learn how to create an effective training plan, stay motivated, and overcome challenges with confidence. Packed with expert advice, inspiring stories, and practical tips, this guide will help you cross the finish line and celebrate your running achievements. Take the first step towards your running success today!",
           createdDate: "Created Date: ",
-          finishDate:"Finish Date: ",
-          noGoals:"No goals available to display",
-          addGoal:"Add new goals",
-          completed:"Completed",
-          notCompleted:"Not Completed",
-          inProgress:"In Progress",
-          dayLeft:"DAY LEFT",
-          daysLeft:"DAYS LEFT"
+          finishDate: "Finish Date: ",
+          noGoals: "No goals available to display",
+          addGoal: "Add new goals",
+          completed: "Completed",
+          notCompleted: "Not Completed",
+          inProgress: "In Progress",
+          dayLeft: "DAY LEFT",
+          daysLeft: "DAYS LEFT",
         },
         records: {
           personalRecords: "Personal Records",
           longestDistance: "Longest Distance",
           highestAveragePulse: "Highest Average Pulse",
-          longestTraining: "Longest Training"
+          longestTraining: "Longest Training",
         },
         stats: {
           personalStats: "Personal Stats",
@@ -439,6 +436,7 @@ const resources = {
           noTrainings: "No available trainings",
           addTraining: "Add training",
           all: "All",
+          loadMore: "Load more",
         },
         newTraining: {
           plannedWorkout: "Planned Workout",
