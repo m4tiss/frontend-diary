@@ -36,16 +36,6 @@ const GymHistory = () => {
       <div className="w-full px-5 xl:px-0 flex flex-grow flex-wrap justify-center">
         <GymTrainings />
       </div>
-      <button
-        // onClick={() =>
-        //   navigate("/gym/workoutDetails", {
-        //     state: { selectedExercises, planName: "QUICK WORKOUT" },
-        //   })
-        // }
-        className={`w-28 py-3 rounded-2xl bg-lime-500 text-white`}
-      >
-        Load more
-      </button>
     </div>
   );
 };

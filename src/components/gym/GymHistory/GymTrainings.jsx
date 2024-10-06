@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const GymTrainings = () => {
   const [workouts, setWorkouts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -23,58 +25,92 @@ const GymTrainings = () => {
         setWorkouts((prevWorkouts) =>
           prevWorkouts.filter((workout) => workout.workoutId !== id)
         );
-        
-        console.log("Przeładowałem");
       })
       .catch((error) => {
         console.error("Error deleting gym workout:", error);
       });
   };
- 
-  useEffect(() => {
+
+  const fetchWorkouts = async (currentPage) => {
     const token = getAuthToken();
-    axios
-      .get("/gym/workout/all", {
+    try {
+      const res = await axios.get("/gym/workout/all/pageable", {
         headers: {
           Authorization: "Bearer " + token,
         },
-      })
-      .then((res) => {
-        let response = res.data.workouts;
-        response = response.sort((a, b) => new Date(b.date) - new Date(a.date));
-        setWorkouts(response);
-        console.log(response);
+        params: {
+          page: currentPage,
+        },
       });
+
+      const response = res.data.workouts;
+      setWorkouts((prevWorkouts) => [...prevWorkouts, ...response]);
+      setHasMore(res.data.hasMore);
+    } catch (error) {
+      console.error("Error fetching gym workouts:", error);
+    }
+  };
+
+  useEffect(() => {
+    setPage(1);
+    setWorkouts([]);
+    fetchWorkouts(1); 
   }, []);
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchWorkouts(nextPage);
+  };
 
   return (
     <>
       {workouts.length === 0 ? (
-          <div className="w-full h-96 flex gap-20 flex-col items-center justify-center">
-            <h2 className="text-5xl dark:text-white">{t('gym.historyTraining.noTrainings')}</h2>
-            <motion.button
-              onClick={() => navigate("/gym/newTraining")}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 500 }}
-              className="text-white p-3 rounded-xl shadow-xl text-xl"
-              style={{
-                "background-image":
-                  "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
-              }}
-            >
-             {t('gym.historyTraining.addTraining')}
-            </motion.button>
-          </div>
+        <div className="w-full h-96 flex gap-20 flex-col items-center justify-center">
+          <h2 className="text-5xl dark:text-white">
+            {t("gym.historyTraining.noTrainings")}
+          </h2>
+          <motion.button
+            onClick={() => navigate("/gym/newTraining")}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 500 }}
+            className="text-white p-3 rounded-xl shadow-xl text-xl"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
+            }}
+          >
+            {t("gym.historyTraining.addTraining")}
+          </motion.button>
+        </div>
       ) : (
-        workouts.slice(0,4).map((workout) => (
+        <>
+          {workouts.map((workout) => (
             <GymTrainingPanel
+              key={workout.workoutId}
               workout={workout}
               onDelete={() => handleDelete(workout.workoutId)}
             />
-        ))
-      )}  
-      </>
-
+          ))}
+          {hasMore && workouts.length > 0 && (
+            <div className="w-full flex justify-center">
+              <motion.button
+                onClick={handleLoadMore}
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 500 }}
+                className="w-40 text-white p-3 rounded-xl shadow-xl text-xl mt-4"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
+                }}
+              >
+                {t("gym.historyTraining.loadMore")}
+              </motion.button>
+            </div>
+          )}
+        </>
+      )}
+    </>
   );
 };
 
