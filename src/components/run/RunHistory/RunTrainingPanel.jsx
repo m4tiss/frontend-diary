@@ -15,7 +15,7 @@ import {
   formattedDuration,
 } from "../../../functions/formatData";
 
-const RunTrainingSlide = ({ training, onDelete }) => {
+const RunTrainingPanel = ({ training, onDelete }) => {
   const { darkMode } = useContext(DarkModeContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,8 +25,8 @@ const RunTrainingSlide = ({ training, onDelete }) => {
 
   return (
     <div
-      className="w-60 xl:w-96 h-80 xl:h-96 flex flex-col items-center justify-evenly rounded-2xl
-           bg-white border-black m-5 dark:text-white cursor-pointer shadow-xl dark:bg-run-night-element"
+      className="w-80 sm:w-96 h-80 sm:h-96 flex flex-col items-center justify-evenly rounded-2xl
+           bg-white border-black m-5 dark:text-white cursor-pointer dark:bg-run-night-element"
       onClick={toggleDialog}
     >
       <div>
@@ -80,4 +80,4 @@ const RunTrainingSlide = ({ training, onDelete }) => {
   );
 };
 
-export default RunTrainingSlide;
+export default RunTrainingPanel;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import RunTrainingSlider from "./RunTrainingSlider";
+import RunTrainings from "./RunTrainings";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
 import { useTranslation } from "react-i18next";
@@ -29,18 +29,8 @@ const RunHistory = () => {
   };
 
   return (
-    <div className="w-full flex flex-grow items-stretch bg-[#e9ecef] dark:bg-run-night-background gap-10 p-5 xl:p-10">
-      <div className="flex flex-col-reverse xl:flex-row w-full gap-10 xl:gap-0">
-        <div className="w-full px-5 xl:px-0 xl:w-3/4 flex flex-col items-center justify-evenly flex-grow">
-          <RunTrainingSlider categoryName={category} />
-          <div className="w-full xl:w-1/2 text-center gap-5 p-3 rounded-xl shadow-xl bg-white flex flex-col dark:bg-run-night-element dark:text-white">
-            <h2 className="text-5xl">{t("gym.historyTraining.title")}</h2>
-            <label className="text-xl">
-              {t("gym.historyTraining.description")}
-            </label>
-          </div>
-        </div>
-        <div
+    <div className="w-full flex flex-grow flex-col items-center bg-[#e9ecef] dark:bg-gym-night-background gap-10 p-5 xl:p-10">
+              <div
           style={{
             "background-image":
               "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
@@ -71,7 +61,19 @@ const RunHistory = () => {
             </select>
           </div>
         </div>
+        <div className="w-full px-5 xl:px-0 flex flex-grow flex-wrap justify-center">
+          <RunTrainings categoryName={category} />
       </div>
+      <button
+        // onClick={() =>
+        //   navigate("/gym/workoutDetails", {
+        //     state: { selectedExercises, planName: "QUICK WORKOUT" },
+        //   })
+        // }
+        className={`w-28 py-3 rounded-2xl bg-lime-500 text-white`}
+      >
+        Load more
+      </button>
     </div>
   );
 };

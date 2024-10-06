@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ReactStars from "react-stars";
 import { useTranslation } from "react-i18next";
 import gymIcon from "../../../icons/gymIconLight.png";
-
 import {
   formattedDate,
   formattedData,
@@ -12,7 +11,7 @@ import {
 import { AnimatePresence } from "framer-motion";
 import GymTrainingDetails from "./GymTrainingDetails";
 
-const GymTrainingSlide = ({ workout, onDelete }) => {
+const GymTrainingPanel = ({ workout, onDelete }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,15 +21,15 @@ const GymTrainingSlide = ({ workout, onDelete }) => {
 
   return (
     <div
-      className="w-60 xl:w-96 h-80 xl:h-96 flex flex-col items-center justify-evenly rounded-2xl
-           bg-white bg:bg-rub m-5 cursor-pointer shadow-xl"
+      className="w-80 sm:w-96 h-80 sm:h-96 flex flex-col items-center justify-evenly rounded-2xl
+           bg-white bg:bg-rub m-5 cursor-pointer"
       onClick={toggleDialog}
     >
       <div>
         <h2 className="text-2xl">{workout.planName}</h2>
       </div>
       <div className="flex justify-start w-full px-5  text-xl">
-        <span className="text-5xl text-center  w-full">
+        <span className="text-5xl text-center w-full">
           {formattedDuration(workout.duration)}
         </span>
       </div>
@@ -74,4 +73,4 @@ const GymTrainingSlide = ({ workout, onDelete }) => {
   );
 };
 
-export default GymTrainingSlide;
+export default GymTrainingPanel;

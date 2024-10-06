@@ -1,44 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import GymTrainingSlide from "./GymTrainingSlide";
+import GymTrainingPanel from "./GymTrainingPanel";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
 import { useNavigate } from "react-router-dom";
 
-const GymTrainingSlider = () => {
+const GymTrainings = () => {
   const [workouts, setWorkouts] = useState([]);
-  const [visibleSlidesCount, setVisibleSlidesCount] = useState(getVisibleSlidesCount());
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  function getVisibleSlidesCount() {
-    const screenWidth = window.innerWidth;
-    if (screenWidth < 700) {
-      return 1;
-    } else if (screenWidth < 1700) {
-      return 2;
-    } else {
-      return 3;
-    }
-  }
-  useEffect(() => {
-    const handleResize = () => {
-      setVisibleSlidesCount(getVisibleSlidesCount());
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-  
   const handleDelete = (id) => {
     const token = getAuthToken();
     axios
@@ -58,9 +30,7 @@ const GymTrainingSlider = () => {
         console.error("Error deleting gym workout:", error);
       });
   };
-
-
-  
+ 
   useEffect(() => {
     const token = getAuthToken();
     axios
@@ -78,13 +48,8 @@ const GymTrainingSlider = () => {
   }, []);
 
   return (
-    <Swiper
-      className="w-full flex justify-center items-center text-center"
-      slidesPerView={workouts.length === 0 ? 1 : visibleSlidesCount}
-      grabCursor={true}
-    >
+    <>
       {workouts.length === 0 ? (
-        <SwiperSlide key={-1}>
           <div className="w-full h-96 flex gap-20 flex-col items-center justify-center">
             <h2 className="text-5xl dark:text-white">{t('gym.historyTraining.noTrainings')}</h2>
             <motion.button
@@ -100,19 +65,17 @@ const GymTrainingSlider = () => {
              {t('gym.historyTraining.addTraining')}
             </motion.button>
           </div>
-        </SwiperSlide>
       ) : (
-        workouts.map((workout) => (
-          <SwiperSlide  key={workout.workoutId}>
-            <GymTrainingSlide
+        workouts.slice(0,4).map((workout) => (
+            <GymTrainingPanel
               workout={workout}
               onDelete={() => handleDelete(workout.workoutId)}
             />
-          </SwiperSlide>
         ))
-      )}
-    </Swiper>
+      )}  
+      </>
+
   );
 };
 
-export default GymTrainingSlider;
+export default GymTrainings;
