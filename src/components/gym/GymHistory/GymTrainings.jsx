@@ -10,9 +10,9 @@ const GymTrainings = () => {
   const [workouts, setWorkouts] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const navigate = useNavigate();
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
+  
   const handleDelete = (id) => {
     const token = getAuthToken();
     axios

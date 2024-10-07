@@ -164,6 +164,7 @@ const resources = {
           workouts: "Treningi",
           muscles: "Grupy mięśni",
           date: "Data",
+          select:"Wybierz ćwiczenie"
         },
         profile: {
           showRecords: "Zobacz rekordy",
@@ -405,6 +406,7 @@ const resources = {
           workouts: "Workouts",
           muscles: "Muscle used",
           date: "Date",
+          select:"Select exercise"
         },
         profile: {
           showRecords: "Show records",

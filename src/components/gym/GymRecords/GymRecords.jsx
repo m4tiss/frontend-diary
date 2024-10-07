@@ -1,14 +1,14 @@
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { LineChart } from "@mui/x-charts/LineChart";
+import { useTranslation } from "react-i18next";
 import ChartHeaviestWeight from "../charts/ChartHeaviestWeight";
 import ChartMostReps from "../charts/ChartMostReps";
 
 const GymRecords = () => {
   const [availableExercises, setAvailableExercises] = useState([]);
   const [selectedExercise, setSelectedExercise] = useState("Bench press");
+  const { t } = useTranslation();
 
   useEffect(() => {
     const token = getAuthToken();
@@ -28,31 +28,33 @@ const GymRecords = () => {
       });
   }, []);
 
-  const handleCategoryChange = (e) => {
-    setSelectedExercise(e.target.value);
+  const handleCategoryChange = (exercise) => {
+    setSelectedExercise(exercise);
   };
 
   return (
-    <div className="w-full flex flex-grow flex-col justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:py-0 gap-10 xl:gap-0">
-      <div className="flex justify-center items-center gap-10">
-        <select
-          value={selectedExercise}
-          onChange={handleCategoryChange}
-          className="bg-run-night-element text-white p-2 rounded"
-        >
+    <div className="w-full flex flex-col 2xl:flex-row flex-grow justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:py-0 gap-10 2xl:gap-0">
+      <div className="flex flex-col justify-center items-center gap-10 relative w-[300px]">
+        <h2 className="text-3xl">{t('gym.general.select')}</h2>
+        <div className="bg-gray-200 text-black rounded  w-full max-h-40 2xl:max-h-96 overflow-y-auto">
           {availableExercises.map((exercise) => (
-            <option
+            <div
               key={exercise.gym_exercise_id}
-              value={exercise.name_exercise}
+              className={`p-2 cursor-pointer ${
+                selectedExercise === exercise.name_exercise
+                  ? "bg-pink-400 text-white"
+                  : "hover:bg-gray-300"
+              }`}
+              onClick={() => handleCategoryChange(exercise.name_exercise)}
             >
               {exercise.name_exercise}
-            </option>
+            </div>
           ))}
-        </select>
+        </div>
       </div>
       <div className="flex flex-col xl:flex-row justify-between gap-10">
-          <ChartHeaviestWeight name_exercise={selectedExercise}/>
-          <ChartMostReps name_exercise={selectedExercise}/>
+        <ChartHeaviestWeight name_exercise={selectedExercise} />
+        <ChartMostReps name_exercise={selectedExercise} />
       </div>
     </div>
   );

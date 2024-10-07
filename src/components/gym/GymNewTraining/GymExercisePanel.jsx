@@ -18,13 +18,12 @@ const icons = {
   'legsIcon.jpg': legsIcon,
 };
 
-const GymExercisePanel = ({ height,exercise, onClick }) => {
+const GymExercisePanel = ({ height, exercise, onClick }) => {
 
 
 
 
 const iconPath = icons[exercise.photo_exercise];
-  console.log(exercise)
   return (
     <motion.div
       onClick={onClick}

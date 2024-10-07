@@ -90,14 +90,6 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete }) => {
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 500 }}
               onClick={toggleDialog}
-              className="mt-4 px-4 py-2 h-fit shadow-xl bg-lime-500 text-white rounded"
-            >
-              {t("shared.actions.edit")}
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 500 }}
-              onClick={toggleDialog}
               className="mt-4 px-4 py-2 h-fit shadow-xl bg-purple-500 text-white rounded"
             >
               {t("shared.actions.close")}

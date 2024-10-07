@@ -6,7 +6,7 @@ import axios from "../../../config/axios";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChartTrainings = ({ friendId }) => {
-  const { t, i18n } = useTranslation(); // Dodaj i18n do nasłuchiwania na zmiany języka
+  const { t, i18n } = useTranslation();
   const [chartData, setChartData] = useState({
     xAxis: [
       {
@@ -55,7 +55,8 @@ const ChartTrainings = ({ friendId }) => {
             {
               scaleType: "band",
               data: labels,
-              label: t("shared.chart.months"), 
+              label: t("shared.chart.months"),
+               
             },
           ],
           yAxis: [{ label: t("shared.chart.trainings") }],
