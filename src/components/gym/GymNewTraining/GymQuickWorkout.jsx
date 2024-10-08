@@ -11,6 +11,7 @@ const GymQuickWorkout = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [availableExercises, setAvailableExercises] = useState([]);
   const [selectedExercises, setSelectedExercises] = useState([]);
+  const [searchPattern, setSearchPattern] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedExercisesPage, setSelectedExercisesPage] = useState(1);
   const exercisesPerPage = 6;
@@ -51,6 +52,7 @@ const GymQuickWorkout = () => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    setSearchPattern("");
   };
 
   const handleAddExercise = (exercise) => {
@@ -81,9 +83,18 @@ const GymQuickWorkout = () => {
     setSelectedExercisesPage((prevPage) => prevPage + direction);
   };
 
+  const handleSearchChange = (e) => {
+    setSearchPattern(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const filteredExercises = availableExercises.filter((exercise) =>
+    exercise.name_exercise.toLowerCase().includes(searchPattern.toLowerCase())
+  );
+
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises = availableExercises.slice(
+  const currentExercises = filteredExercises.slice(
     indexOfFirstExercise,
     indexOfLastExercise
   );
@@ -114,8 +125,8 @@ const GymQuickWorkout = () => {
             className="bg-white p-4 min-w-80 xl:min-w-96 text-xl rounded-full shadow-xl outline-none"
             type="text"
             placeholder={t("gym.newTraining.searchExercise")}
-            //value={searchPattern}
-            //onChange={handleSearchChange}
+            value={searchPattern}
+            onChange={handleSearchChange}
           />
         </div>
       </div>
@@ -124,14 +135,20 @@ const GymQuickWorkout = () => {
       </h2>
 
       <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
-        {currentExercises.map((exercise) => (
-          <GymExercisePanel
-            height={24}
-            key={exercise.gym_exercise_id}
-            exercise={exercise}
-            onClick={() => handleAddExercise(exercise)}
-          />
-        ))}
+        {currentExercises.length === 0 ? (
+            <div className="w-full flex justify-center items-center text-black dark:text-white h-24 text-4xl">
+              {t("gym.newTraining.noExercises")}
+            </div>
+          ) : (
+            currentExercises.map((exercise) => (
+              <GymExercisePanel
+                height={24}
+                key={exercise.gym_exercise_id}
+                exercise={exercise}
+                onClick={() => handleAddExercise(exercise)}
+              />
+            ))
+          )}
       </div>
 
       <div className="flex w-full items-center justify-center xl:justify-between gap-10 xl:gap-0 py-10">
@@ -145,13 +162,12 @@ const GymQuickWorkout = () => {
         <span className="text-black dark:text-white">{`${t(
           "gym.general.page"
         )} ${currentPage} of ${Math.ceil(
-          availableExercises.length / exercisesPerPage
+          filteredExercises.length / exercisesPerPage
         )}`}</span>
         <button
           onClick={() => handlePageChange(1)}
           disabled={
-            currentPage ===
-            Math.ceil(availableExercises.length / exercisesPerPage)
+            currentPage === Math.ceil(filteredExercises.length / exercisesPerPage)
           }
           className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
         >
@@ -164,7 +180,7 @@ const GymQuickWorkout = () => {
       </h2>
         <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
           {currentSelectedExercises.length === 0 ? (
-            <div className="w-full flex justify-center items-center text-blac dark:text-white h-24 text-4xl">
+            <div className="w-full flex justify-center items-center text-black dark:text-white h-24 text-4xl">
               {t("gym.newTraining.noExercises")}
             </div>
           ) : (

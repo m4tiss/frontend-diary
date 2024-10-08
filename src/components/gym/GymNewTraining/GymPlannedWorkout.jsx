@@ -56,7 +56,7 @@ const GymPlannedWorkout = () => {
   return (
     <div className="w-full flex flex-grow flex-col 2xl:flex-row justify-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:py-0">
       <div className="w-full flex flex-col items-center">
-        <h2 className="text-3xl xl:text-5xl my-10 font-semibold">
+        <h2 className="text-3xl xl:text-5xl text-black dark:text-white my-10 font-semibold">
           {t("gym.newTraining.plannedWorkout")}
         </h2>
         {routines.map((routine) => (

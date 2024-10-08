@@ -13,7 +13,7 @@ const GymNewTraining = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full flex flex-col flex-grow bg-[#e9ecef] py-10 xl:py-0 gap-10 xl:gap-0">
+    <div className="w-full flex flex-col flex-grow bg-[#e9ecef] dark:bg-gym-night-background py-10 xl:py-0 gap-10 xl:gap-0">
       <div className="flex flex-col xl:flex-row items-center justify-evenly xl:my-20 gap-10 xl:gap-0">
         <motion.div
           onClick={() => navigate("/gym/plannedWorkout")}
