@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { getAuthToken } from "../../config/auth";
+import { getAuthToken } from "../../../config/auth";
 import { useTranslation } from "react-i18next";
-import GymExercisePanel from "./GymNewTraining/GymExercisePanel";
-import GymFiltrationPanel from "./GymNewTraining/GymFiltrationPanel";
-import axios from "../../config/axios";
+import GymExercisePanel from "../GymNewTraining/GymExercisePanel";
+import GymFiltrationPanel from "../GymNewTraining/GymFiltrationPanel";
+import axios from "../../../config/axios";
 import "react-toastify/dist/ReactToastify.css";
 
 const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
