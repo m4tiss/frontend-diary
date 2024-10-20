@@ -3,6 +3,7 @@ import FriendDivProfile from "../../shared/FriendDivProfile";
 import StatsUserProfileSlider from "../../shared/StatsUserProfileSlider";
 import { IoMdAdd } from "react-icons/io";
 import { GoGoal } from "react-icons/go";
+import { TbTimelineEvent } from "react-icons/tb";
 import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import { AnimatePresence } from "framer-motion";
@@ -138,10 +139,10 @@ const GymUserProfile = () => {
             icon={<GiTrophyCup size={50} color="white" />}
           />
           <PagePanel
-            //onClick={() => navigate("/run/achievements")}
+            onClick={() => navigate("/gym/posts")}
             type={"gym"}
-            //title={t('gym.profile.showAchievements')}
-            //icon={<GiAchievement size={50} color="white" />}
+            title={t('gym.profile.social')}
+            icon={<TbTimelineEvent size={50} color="white" />}
           />
           <PagePanel
             onClick={toggleRoutineDialog}

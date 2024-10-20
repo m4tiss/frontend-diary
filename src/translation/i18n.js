@@ -97,6 +97,7 @@ const resources = {
           daysWithUs: "Dni z nami",
           email: "Email",
           birth: "Data urodzenia",
+          social: "Społeczność"
         },
         historyTraining: {
           filtration: "Filtracja",
@@ -177,6 +178,7 @@ const resources = {
           daysWithUs: "Dni z nami",
           email: "Email",
           birth: "Data urodzenia",
+          social: "Społeczność"
         },
         dashboard: {
           title: "TRENUJ CODZIENNIE",
@@ -336,6 +338,7 @@ const resources = {
           daysWithUs: "Days with us",
           email: "Email",
           birth: "Date of birth",
+          social: "Social"
         },
         historyTraining: {
           filtration: "Filtration",
@@ -419,6 +422,7 @@ const resources = {
           daysWithUs: "Days with us",
           email: "Email",
           birth: "Date of birth",
+          social: "Social"
         },
         dashboard: {
           title: "TRAINING EVERYDAY",

@@ -10,6 +10,7 @@ import { AnimatePresence } from "framer-motion";
 import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
 import { GiAchievement } from "react-icons/gi";
+import { TbTimelineEvent } from "react-icons/tb";
 import PagePanel from "../../shared/PagePanel";
 import { useNavigate } from "react-router-dom";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
@@ -135,10 +136,10 @@ const RunUserProfile = () => {
             icon={<GiTrophyCup size={50} color="white" />}
           />          
           <PagePanel
-          //onClick={() => navigate("/run/chats")}
+            onClick={() => navigate("/run/posts")}
             type={"run"}
-            title={''}
-            //icon={<IoChatboxEllipsesOutline size={50} color="white" />}
+            title={t('run.profile.social')}
+            icon={<TbTimelineEvent size={50} color="white" />}
           />
           <PagePanel
           // onClick={toggleCategoryDialog}
