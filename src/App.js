@@ -37,6 +37,7 @@ import GymWorkoutDetails from "./components/gym/GymNewTraining/GymWorkoutDetails
 import GymFriendPage from "./components/gym/GymFriendPage/GymFriendPage";
 import GymRecords from "./components/gym/GymRecords/GymRecords";
 import Languages from "./components/shared/Langauges";
+import PostsPage from "./components/shared/Posts/PostsPage";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -109,6 +110,7 @@ function GymLayout() {
         <Route path="workoutDetails" element={<GymWorkoutDetails />} />
         <Route path="records" element={<GymRecords />} />
         <Route path="chats" element={<ChatPage />} />
+        <Route path="posts" element={<PostsPage />} />
         <Route path="*" element={<Navigate to="/gym/dashboard" />} />
       </Routes>
     </div>
@@ -138,7 +140,7 @@ function RunLayout() {
         <Route path="achievements" element={<RunAchievementPage />} />
         <Route path="records" element={<RunRecords />} />
         <Route path="chats" element={<ChatPage />} />
-
+        <Route path="posts" element={<PostsPage />} />
         <Route path="*" element={<Navigate to="/run/dashboard" />} />
       </Routes>
     </div>
