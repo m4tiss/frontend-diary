@@ -22,8 +22,8 @@ const GymPostPanel = ({ post }) => {
   };
 
   return (
-    <div className="w-1/2 h-80 flex bg-white p-5 rounded-xl">
-      <div className="w-1/2 flex flex-col gap-5">
+    <div className="w-80 2xl:w-1/2 2xl:min-h-80 flex flex-col 2xl:flex-row bg-white p-5 rounded-xl gap-5">
+      <div className="w-full 2xl:w-1/2 flex flex-col gap-5">
         <div className="flex justify-center items-center gap-2">
           <img
             style={{
@@ -36,25 +36,35 @@ const GymPostPanel = ({ post }) => {
           />
           <h2 className="text-2xl">{post?.nickname}</h2>
         </div>
-        <div className="text-center text-xl min-h-32 max-h-32">
+        <div className="text-center text-xl 2xl:min-h-32">
           {post?.description}
         </div>
-        <div className="flex gap-5 items-center px-10">
-          <div className="cursor-pointer" onClick={handleLike}>
-            <motion.div transition={{ type: "spring", stiffness: 300 }}>
+        <div className="flex gap-5 items-center 2xl:px-10 px-2">
+          <div
+            className="flex justify-center items-center gap-1"
+            onClick={handleLike}
+          >
+            <motion.div
+              className="cursor-pointer"
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <CiHeart size={35} color={isLiked ? "red" : "black"} />
             </motion.div>
+            <h2 className="text-xl">13</h2>
+          </div>
+          <div className="flex justify-center items-center gap-1">
+            <motion.div className="cursor-pointer">
+              <GoComment size={28} />
+            </motion.div>
+            <h2 className="text-xl">16</h2>
           </div>
           <div>
-            <GoComment size={25} />
-          </div>
-          <div>
-            <RiShareBoxFill size={25} />
+            <RiShareBoxFill size={28} />
           </div>
         </div>
       </div>
 
-      <div className="w-1/2 flex flex-col justify-evenly items-center gap-3">
+      <div className="w-full 2xl:w-1/2 flex flex-col justify-evenly items-center gap-3">
         <div className="flex justify-center items-center gap-10">
           <h2 className="text-2xl text-center">{post?.workout.planName}</h2>
           <img width={80} src={gymIcon} />

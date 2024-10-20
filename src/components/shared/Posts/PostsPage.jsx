@@ -53,26 +53,30 @@ const PostsPage = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-grow flex-col justify-start items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0 px-5 gap-8">
-      <div className="flex gap-10">
-        <div
+    <div className="w-full flex flex-grow flex-col justify-start items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0  gap-8">
+      <div className="flex flex-col 2xl:flex-row gap-10">
+        <motion.div
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 500 }}
           style={{
             backgroundImage:
               "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
           }}
-          className="h-12 w-36 flex text-white text-2xl justify-center items-center gap-3 rounded-xl"
+          className="h-12 w-36 flex text-white text-2xl justify-center items-center cursor-pointer gap-3 rounded-xl"
         >
           NEW <CgGym size={40}/>
-        </div>
-        <div
+        </motion.div>
+        <motion.div
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 500 }}
           style={{
             backgroundImage:
               "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
           }}
-          className="h-12 w-36 flex text-white  text-2xl justify-center items-center gap-3 rounded-xl"
+          className="h-12 w-36 flex text-white  text-2xl justify-center items-center cursor-pointer  gap-3 rounded-xl"
         >
           NEW <TbRun size={40}/>
-        </div>
+        </motion.div>
       </div>
       {posts.map((post) => {
         if (post.type === "run") {
