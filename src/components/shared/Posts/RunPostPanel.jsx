@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { CiHeart } from "react-icons/ci";
 import { GoComment } from "react-icons/go";
 import { RiShareBoxFill } from "react-icons/ri";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   formattedData,
   formattedTime,
@@ -11,6 +11,7 @@ import {
 } from "../../../functions/formatData";
 import ReactStars from "react-stars";
 import DarkModeContext from "../../../providers/DarkModeProvider";
+import RunTrainingDetails from "../../run/RunHistory/RunTrainingDetails";
 import iconDark from "../../../icons/runIconDark.png";
 import iconLight from "../../../icons/runIconLight.png";
 import { LuMapPin, LuMapPinOff } from "react-icons/lu";
@@ -21,6 +22,11 @@ const RunPostPanel = ({ post }) => {
   const { darkMode } = useContext(DarkModeContext);
   const [isLiked, setIsLiked] = useState(post?.isLike);
   const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDialog = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleLike = async () => {
     try {
@@ -114,8 +120,14 @@ const RunPostPanel = ({ post }) => {
             </motion.div>
             <h2 className="text-xl">16</h2>
           </div>
-          <div>
-            <RiShareBoxFill size={28} />
+          <div className="flex justify-center items-center gap-1">
+            <motion.div
+              className="cursor-pointer"
+              onClick={toggleDialog}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <RiShareBoxFill size={28} />
+            </motion.div>
           </div>
         </div>
       </div>
@@ -165,6 +177,15 @@ const RunPostPanel = ({ post }) => {
           <h2 className="text-xl">{formattedDate(post?.workout.date)}</h2>
         </div>
       </div>
+      <AnimatePresence>
+        {isOpen && (
+          <RunTrainingDetails
+            toggleDialog={toggleDialog}
+            training={post?.workout}
+            hideDelete={true}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

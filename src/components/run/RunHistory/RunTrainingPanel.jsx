@@ -73,6 +73,7 @@ const RunTrainingPanel = ({ training, onDelete }) => {
             toggleDialog={toggleDialog}
             training={training}
             onDelete={onDelete}
+            hideDelete={false}
           />
         )}
       </AnimatePresence>
