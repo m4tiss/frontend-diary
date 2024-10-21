@@ -35,10 +35,14 @@ const RunPostPanel = ({ post }) => {
     setIsOpenWorkout(!isOpenWorkout);
   };
 
+  const handleCommentAdd = () => {
+    setCommentsCount(commentsCount + 1); 
+  };
+
   const handleCommentDelete = () => {
     setCommentsCount(commentsCount - 1); 
   };
-  
+
   const handleLike = async () => {
     try {
       if (isLiked) return;
@@ -205,6 +209,7 @@ const RunPostPanel = ({ post }) => {
             toggleDialog={toggleComments}
             postId={post?.post_id}
             nickname={post?.nickname}
+            onCommentAdd={handleCommentAdd}
             onCommentDelete={handleCommentDelete}
           />
         )}

@@ -32,6 +32,9 @@ const GymPostPanel = ({ post }) => {
   const toggleWorkout = () => {
     setIsOpenWorkout(!isOpenWorkout);
   };
+  const handleCommentAdd = () => {
+    setCommentsCount(commentsCount + 1); 
+  };
 
   const handleCommentDelete = () => {
     setCommentsCount(commentsCount - 1); 
@@ -196,6 +199,7 @@ const GymPostPanel = ({ post }) => {
             toggleDialog={toggleComments}
             postId={post?.post_id}
             nickname={post?.nickname}
+            onCommentAdd={handleCommentAdd}
             onCommentDelete={handleCommentDelete}
           />
         )}

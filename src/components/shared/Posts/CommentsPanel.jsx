@@ -8,7 +8,13 @@ import { useState, useEffect } from "react";
 import { useUser } from "../../../providers/UserProvider";
 import { IoMdSend } from "react-icons/io";
 
-const CommentsPanel = ({ toggleDialog, postId, nickname,onCommentDelete }) => {
+const CommentsPanel = ({
+  toggleDialog,
+  postId,
+  nickname,
+  onCommentAdd,
+  onCommentDelete,
+}) => {
   const { userInfo } = useUser();
   const [comments, setComments] = useState([]);
   const { t } = useTranslation();
@@ -66,7 +72,7 @@ const CommentsPanel = ({ toggleDialog, postId, nickname,onCommentDelete }) => {
       ]);
 
       setNewComment("");
-      console.log("Komentarz dodany pomyślnie:", response.data);
+      onCommentAdd();
     } catch (error) {
       console.error("Błąd podczas dodawania komentarza:", error);
     }
@@ -76,7 +82,7 @@ const CommentsPanel = ({ toggleDialog, postId, nickname,onCommentDelete }) => {
     setComments((prevComments) =>
       prevComments.filter((comment) => comment.comment_id !== commentId)
     );
-    onCommentDelete(); 
+    onCommentDelete();
   };
 
   return createPortal(
@@ -105,9 +111,13 @@ const CommentsPanel = ({ toggleDialog, postId, nickname,onCommentDelete }) => {
             {t("shared.actions.close")}
           </motion.button>
         </div>
-        <div className="flex flex-col items-start flex-grow gap-3">
+        <div className="flex flex-col items-start flex-grow gap-3 overflow-y-auto">
           {comments.map((comment) => (
-            <CommentPanel key={comment.comment_id} comment={comment} onDelete={handleCommentDelete}/>
+            <CommentPanel
+              key={comment.comment_id}
+              comment={comment}
+              onDelete={handleCommentDelete}
+            />
           ))}
         </div>
         <div className="h-14 flex items-center">
