@@ -66,6 +66,7 @@ const GymTrainingPanel = ({ workout, onDelete }) => {
             toggleDialog={toggleDialog}
             workoutId={workout.workoutId}
             onDelete={onDelete}
+            hideDelete={false}
           />
         )}
       </AnimatePresence>

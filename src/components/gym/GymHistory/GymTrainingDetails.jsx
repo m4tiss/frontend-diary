@@ -21,6 +21,7 @@ const GymTrainingDetails = ({
   toggleDialog,
   workoutId,
   onDelete,
+  hideDelete,
 }) => {
   const { t } = useTranslation();
   const [selectedExercise, setSelectedExercise] = useState(0);
@@ -63,14 +64,16 @@ const GymTrainingDetails = ({
         <div className="w-full flex flex-col xl:flex-row items-center px-10 justify-between">
           <h2 className="text-4xl text-center">{planName}</h2>
           <div className="flex gap-5">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 500 }}
-              onClick={handleDelete}
-              className="mt-4 px-4 py-2 h-fit shadow-xl bg-red-500 text-white rounded"
-            >
-              {t("shared.actions.delete")}
-            </motion.button>
+            {!hideDelete && (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 500 }}
+                onClick={handleDelete}
+                className="mt-4 px-4 py-2 h-fit shadow-xl bg-red-500 text-white rounded"
+              >
+                {t("shared.actions.delete")}
+              </motion.button>
+            )}
             <motion.button
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 500 }}

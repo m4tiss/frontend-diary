@@ -5,7 +5,8 @@ import { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { GoComment } from "react-icons/go";
 import { RiShareBoxFill } from "react-icons/ri";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import GymTrainingDetails from "../../gym/GymHistory/GymTrainingDetails";
 import {
   formattedData,
   formattedTime,
@@ -19,6 +20,11 @@ const GymPostPanel = ({ post }) => {
   const { t } = useTranslation();
   const [isLiked, setIsLiked] = useState(post?.isLike);
   const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDialog = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleLike = async () => {
     try {
@@ -39,8 +45,8 @@ const GymPostPanel = ({ post }) => {
       );
 
       if (response.status === 200) {
-        setIsLiked(true); 
-        setLikesCount(likesCount + 1); 
+        setIsLiked(true);
+        setLikesCount(likesCount + 1);
       }
     } catch (error) {
       console.error("Error liking the post:", error);
@@ -50,9 +56,9 @@ const GymPostPanel = ({ post }) => {
   const handleUnlike = async () => {
     try {
       if (!isLiked) return;
-  
+
       const token = getAuthToken();
-  
+
       const response = await axios.post(
         "/shared/like/unlike",
         {
@@ -61,19 +67,18 @@ const GymPostPanel = ({ post }) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-          }
+          },
         }
       );
-  
+
       if (response.status === 200) {
         setIsLiked(false);
         setLikesCount(likesCount - 1);
       }
-      } catch (error) {
+    } catch (error) {
       console.error("Error unliking the post:", error);
     }
   };
-  
 
   return (
     <div className="w-80 2xl:w-1/2 2xl:min-h-80 flex flex-col 2xl:flex-row bg-white p-5 rounded-xl gap-5">
@@ -112,8 +117,14 @@ const GymPostPanel = ({ post }) => {
             </motion.div>
             <h2 className="text-xl">16</h2>
           </div>
-          <div>
-            <RiShareBoxFill size={28} />
+          <div className="flex justify-center items-center gap-1">
+            <motion.div
+              className="cursor-pointer"
+              onClick={toggleDialog}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <RiShareBoxFill size={28} />
+            </motion.div>
           </div>
         </div>
       </div>
@@ -157,6 +168,16 @@ const GymPostPanel = ({ post }) => {
           </h2>
         </div>
       </div>
+      <AnimatePresence>
+        {isOpen && (
+          <GymTrainingDetails
+            planName={post?.workout.planName}
+            toggleDialog={toggleDialog}
+            workoutId={post?.workout.workoutId}
+            hideDelete={true}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
