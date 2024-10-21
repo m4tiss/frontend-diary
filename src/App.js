@@ -151,7 +151,7 @@ const PrivateRoute = ({ children }) => {
   const { user, loading, error } = useUser();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="w-full h-full">Loading...</div>;
   }
 
   if (error) {
@@ -165,7 +165,7 @@ const PublicRoute = ({ children }) => {
   const { user, loading, error } = useUser();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="w-full h-full">Loading...</div>;
   }
 
   if (error) {

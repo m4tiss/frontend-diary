@@ -54,8 +54,10 @@ const CommentsPanel = ({ toggleDialog, postId, nickname }) => {
         }
       );
 
+
       setComments((prevComments) => [
         {
+          comment_id: response.data.comment_id,
           description: newComment,
           nickname: userInfo.nickname,
           profile_photo: userInfo.profile_photo,
