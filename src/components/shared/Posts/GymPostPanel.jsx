@@ -1,9 +1,11 @@
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { GoComment } from "react-icons/go";
 import { RiShareBoxFill } from "react-icons/ri";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import {
   formattedData,
   formattedTime,
@@ -15,11 +17,63 @@ import gymIcon from "../../../icons/gymIconLight.png";
 
 const GymPostPanel = ({ post }) => {
   const { t } = useTranslation();
-  const [isLiked, setIsLiked] = useState(false);
-  console.log(post);
-  const handleLike = () => {
-    setIsLiked(!isLiked);
+  const [isLiked, setIsLiked] = useState(post?.isLike);
+  const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
+
+  const handleLike = async () => {
+    try {
+      if (isLiked) return;
+
+      const token = getAuthToken();
+
+      const response = await axios.post(
+        "/shared/like",
+        {
+          post_id: post.post_id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setIsLiked(true); 
+        setLikesCount(likesCount + 1); 
+      }
+    } catch (error) {
+      console.error("Error liking the post:", error);
+    }
   };
+
+  const handleUnlike = async () => {
+    try {
+      if (!isLiked) return;
+  
+      const token = getAuthToken();
+  
+      const response = await axios.post(
+        "/shared/like/unlike",
+        {
+          post_id: post.post_id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+  
+      if (response.status === 200) {
+        setIsLiked(false);
+        setLikesCount(likesCount - 1);
+      }
+      } catch (error) {
+      console.error("Error unliking the post:", error);
+    }
+  };
+  
 
   return (
     <div className="w-80 2xl:w-1/2 2xl:min-h-80 flex flex-col 2xl:flex-row bg-white p-5 rounded-xl gap-5">
@@ -42,7 +96,7 @@ const GymPostPanel = ({ post }) => {
         <div className="flex gap-5 items-center 2xl:px-10 px-2">
           <div
             className="flex justify-center items-center gap-1"
-            onClick={handleLike}
+            onClick={isLiked ? handleUnlike : handleLike}
           >
             <motion.div
               className="cursor-pointer"
@@ -50,7 +104,7 @@ const GymPostPanel = ({ post }) => {
             >
               <CiHeart size={35} color={isLiked ? "red" : "black"} />
             </motion.div>
-            <h2 className="text-xl">13</h2>
+            <h2 className="text-xl">{likesCount}</h2>
           </div>
           <div className="flex justify-center items-center gap-1">
             <motion.div className="cursor-pointer">
@@ -69,13 +123,13 @@ const GymPostPanel = ({ post }) => {
           <h2 className="text-2xl text-center">{post?.workout.planName}</h2>
           <img width={80} src={gymIcon} />
         </div>
-        <div className="flex justify-start w-full px-5  text-xl">
+        <div className="flex justify-start w-full px-5 text-xl">
           <span className="text-5xl text-center w-full">
             {formattedDuration(post?.workout.duration)}
           </span>
         </div>
         <div className="flex justify-evenly w-full px-5 text-xl">
-          <span className=" text-center">
+          <span className="text-center">
             {t("gym.general.sets")}:{" "}
             <span className="">{post?.workout.totalSets}</span>
           </span>

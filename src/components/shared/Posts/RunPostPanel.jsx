@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CiHeart } from "react-icons/ci";
 import { GoComment } from "react-icons/go";
 import { RiShareBoxFill } from "react-icons/ri";
@@ -10,19 +10,70 @@ import {
   formattedDuration,
 } from "../../../functions/formatData";
 import ReactStars from "react-stars";
-import { useContext } from "react";
 import DarkModeContext from "../../../providers/DarkModeProvider";
 import iconDark from "../../../icons/runIconDark.png";
 import iconLight from "../../../icons/runIconLight.png";
-import { LuMapPin } from "react-icons/lu";
-import { LuMapPinOff } from "react-icons/lu";
+import { LuMapPin, LuMapPinOff } from "react-icons/lu";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
 
 const RunPostPanel = ({ post }) => {
   const { darkMode } = useContext(DarkModeContext);
-  const [isLiked, setIsLiked] = useState(false);
-  console.log(post);
-  const handleLike = () => {
-    setIsLiked(!isLiked);
+  const [isLiked, setIsLiked] = useState(post?.isLike);
+  const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
+
+  const handleLike = async () => {
+    try {
+      if (isLiked) return;
+
+      const token = getAuthToken();
+
+      const response = await axios.post(
+        "/shared/like",
+        {
+          post_id: post.post_id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setIsLiked(true); 
+        setLikesCount(likesCount + 1);
+      }
+    } catch (error) {
+      console.error("Error liking the post:", error);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      if (!isLiked) return;
+
+      const token = getAuthToken();
+
+      const response = await axios.post(
+        "/shared/like/unlike",
+        {
+          post_id: post.post_id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setIsLiked(false);
+        setLikesCount(likesCount - 1);
+      }
+    } catch (error) {
+      console.error("Error unliking the post:", error);
+    }
   };
 
   return (
@@ -37,16 +88,17 @@ const RunPostPanel = ({ post }) => {
             }}
             className="cursor-pointer object-cover"
             src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${post?.profile_photo}`}
+            alt="Profile"
           />
           <h2 className="text-2xl">{post?.nickname}</h2>
         </div>
-        <div className="text-center text-xl  2xl:min-h-32">
+        <div className="text-center text-xl 2xl:min-h-32">
           {post?.description}
         </div>
         <div className="flex gap-5 items-center 2xl:px-10 px-2">
           <div
             className="flex justify-center items-center gap-1"
-            onClick={handleLike}
+            onClick={isLiked ? handleUnlike : handleLike}
           >
             <motion.div
               className="cursor-pointer"
@@ -54,7 +106,7 @@ const RunPostPanel = ({ post }) => {
             >
               <CiHeart size={35} color={isLiked ? "red" : "black"} />
             </motion.div>
-            <h2 className="text-xl">13</h2>
+            <h2 className="text-xl">{likesCount}</h2>
           </div>
           <div className="flex justify-center items-center gap-1">
             <motion.div className="cursor-pointer">
@@ -79,7 +131,7 @@ const RunPostPanel = ({ post }) => {
             alt="Run Icon"
           />
         </div>
-        <div className="flex justify-start w-full px-5  text-xl">
+        <div className="flex justify-start w-full px-5 text-xl">
           <span className="text-5xl text-center w-full">
             {formattedData(post?.workout.distance || 0)} km
           </span>
@@ -109,10 +161,8 @@ const RunPostPanel = ({ post }) => {
           />
         </div>
         <div className="w-full flex justify-evenly items-center">
-
-            <h2 className="text-xl">{formattedTime(post?.workout.date)}</h2>
-            <h2 className="text-xl">{formattedDate(post?.workout.date)}</h2>
-
+          <h2 className="text-xl">{formattedTime(post?.workout.date)}</h2>
+          <h2 className="text-xl">{formattedDate(post?.workout.date)}</h2>
         </div>
       </div>
     </div>
