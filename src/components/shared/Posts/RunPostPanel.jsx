@@ -23,6 +23,7 @@ const RunPostPanel = ({ post }) => {
   const { darkMode } = useContext(DarkModeContext);
   const [isLiked, setIsLiked] = useState(post?.isLike);
   const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
+  const [commentsCount, setCommentsCount] = useState(post?.commentsCount || 0);
   const [isOpenWorkout, setIsOpenWorkout] = useState(false);
   const [isOpenComments, setIsOpenComments] = useState(false);
 
@@ -34,7 +35,7 @@ const RunPostPanel = ({ post }) => {
     setIsOpenWorkout(!isOpenWorkout);
   };
 
-  console.log(post)
+  console.log(post);
   const handleLike = async () => {
     try {
       if (isLiked) return;
@@ -54,7 +55,7 @@ const RunPostPanel = ({ post }) => {
       );
 
       if (response.status === 200) {
-        setIsLiked(true); 
+        setIsLiked(true);
         setLikesCount(likesCount + 1);
       }
     } catch (error) {
@@ -122,11 +123,10 @@ const RunPostPanel = ({ post }) => {
             <h2 className="text-xl">{likesCount}</h2>
           </div>
           <div className="flex justify-center items-center gap-1">
-            <motion.div className="cursor-pointer"
-            onClick={toggleComments}>
+            <motion.div className="cursor-pointer" onClick={toggleComments}>
               <GoComment size={28} />
             </motion.div>
-            <h2 className="text-xl">16</h2>
+            <h2 className="text-xl">{commentsCount}</h2>
           </div>
           <div className="flex justify-center items-center gap-1">
             <motion.div
@@ -170,7 +170,9 @@ const RunPostPanel = ({ post }) => {
         </div>
 
         <div className="w-full flex justify-evenly items-center">
-          <h2 className="text-3xl">{formattedData(post?.workout.rating || 0)}</h2>
+          <h2 className="text-3xl">
+            {formattedData(post?.workout.rating || 0)}
+          </h2>
           <ReactStars
             count={5}
             size={30}
@@ -195,11 +197,7 @@ const RunPostPanel = ({ post }) => {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {isOpenComments && (
-          <CommentsPanel
-            toggleDialog={toggleComments}
-          />
-        )}
+        {isOpenComments && <CommentsPanel toggleDialog={toggleComments} />}
       </AnimatePresence>
     </div>
   );

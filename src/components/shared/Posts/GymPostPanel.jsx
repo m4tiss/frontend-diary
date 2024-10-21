@@ -21,6 +21,7 @@ const GymPostPanel = ({ post }) => {
   const { t } = useTranslation();
   const [isLiked, setIsLiked] = useState(post?.isLike);
   const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
+  const [commentsCount, setCommentsCount] = useState(post?.commentsCount || 0);
   const [isOpenWorkout, setIsOpenWorkout] = useState(false);
   const [isOpenComments, setIsOpenComments] = useState(false);
 
@@ -122,7 +123,7 @@ const GymPostPanel = ({ post }) => {
             onClick={toggleComments}>
               <GoComment size={28} />
             </motion.div>
-            <h2 className="text-xl">16</h2>
+            <h2 className="text-xl">{commentsCount}</h2>
           </div>
           <div className="flex justify-center items-center gap-1">
             <motion.div
@@ -189,6 +190,8 @@ const GymPostPanel = ({ post }) => {
         {isOpenComments && (
           <CommentsPanel
             toggleDialog={toggleComments}
+            postId={post?.post_id}
+            nickname={post?.nickname}
           />
         )}
       </AnimatePresence>
