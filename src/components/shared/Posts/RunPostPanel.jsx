@@ -28,6 +28,7 @@ const RunPostPanel = ({ post }) => {
     setIsOpen(!isOpen);
   };
 
+  console.log(post)
   const handleLike = async () => {
     try {
       if (isLiked) return;
