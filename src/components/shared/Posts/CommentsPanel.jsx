@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { useUser } from "../../../providers/UserProvider";
 import { IoMdSend } from "react-icons/io";
 
-const CommentsPanel = ({ toggleDialog, postId, nickname }) => {
+const CommentsPanel = ({ toggleDialog, postId, nickname,onCommentDelete }) => {
   const { userInfo } = useUser();
   const [comments, setComments] = useState([]);
   const { t } = useTranslation();
@@ -54,10 +54,10 @@ const CommentsPanel = ({ toggleDialog, postId, nickname }) => {
         }
       );
 
-
       setComments((prevComments) => [
         {
           comment_id: response.data.comment_id,
+          user_id: response.data.user_id,
           description: newComment,
           nickname: userInfo.nickname,
           profile_photo: userInfo.profile_photo,
@@ -70,6 +70,13 @@ const CommentsPanel = ({ toggleDialog, postId, nickname }) => {
     } catch (error) {
       console.error("Błąd podczas dodawania komentarza:", error);
     }
+  };
+
+  const handleCommentDelete = (commentId) => {
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.comment_id !== commentId)
+    );
+    onCommentDelete(); 
   };
 
   return createPortal(
@@ -100,7 +107,7 @@ const CommentsPanel = ({ toggleDialog, postId, nickname }) => {
         </div>
         <div className="flex flex-col items-start flex-grow gap-3">
           {comments.map((comment) => (
-            <CommentPanel key={comment.comment_id} comment={comment} />
+            <CommentPanel key={comment.comment_id} comment={comment} onDelete={handleCommentDelete}/>
           ))}
         </div>
         <div className="h-14 flex items-center">

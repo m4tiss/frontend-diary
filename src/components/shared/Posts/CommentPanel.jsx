@@ -2,7 +2,7 @@ import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { useUser } from "../../../providers/UserProvider";
-const CommentPanel = ({ comment }) => {
+const CommentPanel = ({ comment,onDelete }) => {
   const { userInfo } = useUser();
 
   const handleDelete = async () => {
@@ -14,6 +14,9 @@ const CommentPanel = ({ comment }) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      if (response.status === 200) {
+        onDelete(comment.comment_id);
+      }
     } catch (error) {
       console.error("Błąd podczas usuwania komentarza:", error);
     }

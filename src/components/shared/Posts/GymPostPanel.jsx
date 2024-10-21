@@ -33,6 +33,10 @@ const GymPostPanel = ({ post }) => {
     setIsOpenWorkout(!isOpenWorkout);
   };
 
+  const handleCommentDelete = () => {
+    setCommentsCount(commentsCount - 1); 
+  };
+
   const handleLike = async () => {
     try {
       if (isLiked) return;
@@ -192,6 +196,7 @@ const GymPostPanel = ({ post }) => {
             toggleDialog={toggleComments}
             postId={post?.post_id}
             nickname={post?.nickname}
+            onCommentDelete={handleCommentDelete}
           />
         )}
       </AnimatePresence>
