@@ -5,9 +5,14 @@ import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import CommentPanel from "./CommentPanel";
 import { useState, useEffect } from "react";
+import { useUser } from "../../../providers/UserProvider";
+import { IoMdSend } from "react-icons/io";
 
 const CommentsPanel = ({ toggleDialog, postId, nickname }) => {
+  const { userInfo } = useUser();
   const [comments, setComments] = useState([]);
+  const { t } = useTranslation();
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -24,36 +29,47 @@ const CommentsPanel = ({ toggleDialog, postId, nickname }) => {
         console.log(response.data);
         setComments(response.data);
       } catch (error) {
-        console.error("Błąd podczas dodawania posta:", error);
+        console.error("Błąd podczas pobierania komentarzy:", error);
       }
     };
 
     getAllPosts();
-  }, []);
+  }, [postId]);
 
-  // const sendPost = async () => {
-  //   try {
-  //     const token = getAuthToken();
-  //     const response = await axios.post(
-  //       "/shared/comment",
-  //       {
-  //         post_id: postId,
-  //         description: "komentarz elegancki",
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
+  const sendComment = async () => {
+    if (!newComment.trim()) return;
 
-  //     console.log("Post dodany pomyślnie:", response.data);
-  //   } catch (error) {
-  //     console.error("Błąd podczas dodawania posta:", error);
-  //   }
-  // };
+    try {
+      const token = getAuthToken();
+      const response = await axios.post(
+        "/shared/comment",
+        {
+          post_id: postId,
+          description: newComment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-  const { t } = useTranslation();
+      setComments((prevComments) => [
+        {
+          description: newComment,
+          nickname: userInfo.nickname,
+          profile_photo: userInfo.profile_photo,
+        },
+        ...prevComments,
+      ]);
+
+      setNewComment("");
+      console.log("Komentarz dodany pomyślnie:", response.data);
+    } catch (error) {
+      console.error("Błąd podczas dodawania komentarza:", error);
+    }
+  };
+
   return createPortal(
     <div
       className="fixed inset-0 w-full h-full flex items-end justify-center z-50 bg-black bg-opacity-50"
@@ -85,7 +101,26 @@ const CommentsPanel = ({ toggleDialog, postId, nickname }) => {
             <CommentPanel key={comment.comment_id} comment={comment} />
           ))}
         </div>
-        <div className="h-12 bg-red-600">ds</div>
+        <div className="h-14 flex items-center">
+          <img
+            style={{
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+            }}
+            className="object-cover"
+            src={`${process.env.REACT_APP_IMAGES_URL}images/profilePhotos/${userInfo.profile_photo}`}
+          />
+          <input
+            className="flex-grow h-full border-b-2 border-black outline-none px-5"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder={"Komentarz"}
+          />
+          <div className="cursor-pointer" onClick={sendComment}>
+            <IoMdSend size={40} />
+          </div>
+        </div>
       </motion.div>
     </div>,
     document.body

@@ -197,7 +197,13 @@ const RunPostPanel = ({ post }) => {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {isOpenComments && <CommentsPanel toggleDialog={toggleComments} />}
+        {isOpenComments && (
+          <CommentsPanel
+            toggleDialog={toggleComments}
+            postId={post?.post_id}
+            nickname={post?.nickname}
+          />
+        )}
       </AnimatePresence>
     </div>
   );
