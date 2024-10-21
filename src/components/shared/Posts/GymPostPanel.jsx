@@ -15,15 +15,21 @@ import {
 } from "../../../functions/formatData";
 import ReactStars from "react-stars";
 import gymIcon from "../../../icons/gymIconLight.png";
+import CommentsPanel from "./CommentsPanel";
 
 const GymPostPanel = ({ post }) => {
   const { t } = useTranslation();
   const [isLiked, setIsLiked] = useState(post?.isLike);
   const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenWorkout, setIsOpenWorkout] = useState(false);
+  const [isOpenComments, setIsOpenComments] = useState(false);
 
-  const toggleDialog = () => {
-    setIsOpen(!isOpen);
+  const toggleComments = () => {
+    setIsOpenComments((prev) => !prev);
+  };
+
+  const toggleWorkout = () => {
+    setIsOpenWorkout(!isOpenWorkout);
   };
 
   const handleLike = async () => {
@@ -112,7 +118,8 @@ const GymPostPanel = ({ post }) => {
             <h2 className="text-xl">{likesCount}</h2>
           </div>
           <div className="flex justify-center items-center gap-1">
-            <motion.div className="cursor-pointer">
+            <motion.div className="cursor-pointer"
+            onClick={toggleComments}>
               <GoComment size={28} />
             </motion.div>
             <h2 className="text-xl">16</h2>
@@ -120,7 +127,7 @@ const GymPostPanel = ({ post }) => {
           <div className="flex justify-center items-center gap-1">
             <motion.div
               className="cursor-pointer"
-              onClick={toggleDialog}
+              onClick={toggleWorkout}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <RiShareBoxFill size={28} />
@@ -169,12 +176,19 @@ const GymPostPanel = ({ post }) => {
         </div>
       </div>
       <AnimatePresence>
-        {isOpen && (
+        {isOpenWorkout && (
           <GymTrainingDetails
             planName={post?.workout.planName}
-            toggleDialog={toggleDialog}
+            toggleDialog={toggleWorkout}
             workoutId={post?.workout.workoutId}
             hideDelete={true}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isOpenComments && (
+          <CommentsPanel
+            toggleDialog={toggleComments}
           />
         )}
       </AnimatePresence>
