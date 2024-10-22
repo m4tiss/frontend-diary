@@ -35,6 +35,7 @@ const resources = {
           delete: "Usuń",
           edit: "Edytuj",
           close: "Zamknij",
+          add:"Dodaj"
         },
         login: {
           loginTitle: "Logowanie",
@@ -277,6 +278,8 @@ const resources = {
           delete: "Delete",
           edit: "Edit",
           close: "Close",
+          add:"Add"
+
         },
         login: {
           loginTitle: "Login",
