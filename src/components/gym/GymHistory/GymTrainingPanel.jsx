@@ -22,7 +22,7 @@ const GymTrainingPanel = ({ workout, onDelete, showDetails }) => {
   return (
     <div
       className="w-80 sm:w-96 h-80 sm:h-96 flex flex-col items-center justify-evenly rounded-2xl
-           bg-white bg:bg-rub m-5 cursor-pointer"
+           bg-white m-5 cursor-pointer"
       onClick={toggleDialog}
     >
       <div>

@@ -15,7 +15,7 @@ import {
   formattedDuration,
 } from "../../../functions/formatData";
 
-const RunTrainingPanel = ({ training, onDelete }) => {
+const RunTrainingPanel = ({ training, onDelete,showDetails }) => {
   const { darkMode } = useContext(DarkModeContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -68,7 +68,7 @@ const RunTrainingPanel = ({ training, onDelete }) => {
         </div>
       </div>
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && showDetails && (
           <RunTrainingDetails
             toggleDialog={toggleDialog}
             training={training}

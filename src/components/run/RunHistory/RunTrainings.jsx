@@ -91,6 +91,7 @@ const RunTrainings = ({ categoryName }) => {
               key={item.run_workout_id}
               training={item}
               onDelete={() => handleDelete(item.run_workout_id)}
+              showDetails={true}
             />
           ))}
           {hasMore && trainings.length > 0 && (

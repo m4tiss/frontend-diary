@@ -87,7 +87,7 @@ const PostsPage = () => {
       </AnimatePresence>
 
       <AnimatePresence>
-        {isOpenNewRun && <NewRunPost toggleRun={toggleRun} />}
+        {isOpenNewRun && <NewRunPost toggleRun={toggleRun} postAdded={postAdded} />}
       </AnimatePresence>
     </div>
   );
