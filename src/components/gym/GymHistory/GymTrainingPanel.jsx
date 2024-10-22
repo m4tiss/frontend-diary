@@ -11,7 +11,7 @@ import {
 import { AnimatePresence } from "framer-motion";
 import GymTrainingDetails from "./GymTrainingDetails";
 
-const GymTrainingPanel = ({ workout, onDelete }) => {
+const GymTrainingPanel = ({ workout, onDelete, showDetails }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -60,7 +60,7 @@ const GymTrainingPanel = ({ workout, onDelete }) => {
         <h2 className="text-xl">{formattedDate(workout.date || "00:00:00")}</h2>
       </div>
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && showDetails && (
           <GymTrainingDetails
             planName={workout.planName}
             toggleDialog={toggleDialog}

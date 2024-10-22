@@ -14,6 +14,11 @@ const PostsPage = () => {
   const [posts, setPosts] = useState([]);
   const [isOpenNewGym, setIsOpenNewGym] = useState(false);
   const [isOpenNewRun, setIsOpenNewRun] = useState(false);
+  const [postsUpdated, setPostsUpdated] = useState(false);
+
+  const postAdded = () => {
+    setPostsUpdated((prev) => !prev);
+  };
 
   const toggleGym = () => {
     setIsOpenNewGym((prev) => !prev);
@@ -22,29 +27,6 @@ const PostsPage = () => {
   const toggleRun = () => {
     setIsOpenNewRun((prev) => !prev);
   };
-
-  // const sendPost = async () => {
-  //   try {
-  //     const token = getAuthToken();
-  //     const response = await axios.post(
-  //       "/shared/post",
-  //       {
-  //         gym_workout_id: null,
-  //         run_workout_id: 82,
-  //         description: "Opis treningu biegowego",
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-
-  //     console.log("Post dodany pomyślnie:", response.data);
-  //   } catch (error) {
-  //     console.error("Błąd podczas dodawania posta:", error);
-  //   }
-  // };
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -62,7 +44,7 @@ const PostsPage = () => {
     };
 
     getAllPosts();
-  }, []);
+  }, [postsUpdated]);
 
   return (
     <div className="w-full flex flex-grow flex-col justify-start items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0  gap-5">
@@ -101,7 +83,7 @@ const PostsPage = () => {
         return null;
       })}
       <AnimatePresence>
-        {isOpenNewGym && <NewGymPost toggleGym={toggleGym} />}
+        {isOpenNewGym && <NewGymPost toggleGym={toggleGym} postAdded={postAdded} />}
       </AnimatePresence>
 
       <AnimatePresence>

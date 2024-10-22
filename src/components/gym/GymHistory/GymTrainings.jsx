@@ -90,6 +90,7 @@ const GymTrainings = () => {
               key={workout.workoutId}
               workout={workout}
               onDelete={() => handleDelete(workout.workoutId)}
+              showDetails={true}
             />
           ))}
           {hasMore && workouts.length > 0 && (
