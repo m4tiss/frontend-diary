@@ -7,6 +7,8 @@ import { GoComment } from "react-icons/go";
 import { RiShareBoxFill } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
 import GymTrainingDetails from "../../gym/GymHistory/GymTrainingDetails";
+import { useUser } from "../../../providers/UserProvider";
+import { RiDeleteBin7Line } from "react-icons/ri";
 import {
   formattedData,
   formattedTime,
@@ -19,6 +21,7 @@ import CommentsPanel from "./CommentsPanel";
 
 const GymPostPanel = ({ post }) => {
   const { t } = useTranslation();
+  const { userInfo } = useUser();
   const [isLiked, setIsLiked] = useState(post?.isLike);
   const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
   const [commentsCount, setCommentsCount] = useState(post?.commentsCount || 0);
@@ -33,11 +36,11 @@ const GymPostPanel = ({ post }) => {
     setIsOpenWorkout(!isOpenWorkout);
   };
   const handleCommentAdd = () => {
-    setCommentsCount(commentsCount + 1); 
+    setCommentsCount(commentsCount + 1);
   };
 
   const handleCommentDelete = () => {
-    setCommentsCount(commentsCount - 1); 
+    setCommentsCount(commentsCount - 1);
   };
 
   const handleLike = async () => {
@@ -95,7 +98,7 @@ const GymPostPanel = ({ post }) => {
   };
 
   return (
-    <div className="w-80 2xl:w-1/2 2xl:min-h-80 flex flex-col 2xl:flex-row bg-white p-5 rounded-xl gap-5">
+    <div className="w-80 2xl:w-1/2 2xl:min-h-80 flex flex-col 2xl:flex-row bg-white p-5 rounded-xl gap-5 relative 2xl:pb-5 pb-14">
       <div className="w-full 2xl:w-1/2 flex flex-col gap-5">
         <div className="flex justify-center items-center gap-2">
           <img
@@ -126,8 +129,7 @@ const GymPostPanel = ({ post }) => {
             <h2 className="text-xl">{likesCount}</h2>
           </div>
           <div className="flex justify-center items-center gap-1">
-            <motion.div className="cursor-pointer"
-            onClick={toggleComments}>
+            <motion.div className="cursor-pointer" onClick={toggleComments}>
               <GoComment size={28} />
             </motion.div>
             <h2 className="text-xl">{commentsCount}</h2>
@@ -183,6 +185,11 @@ const GymPostPanel = ({ post }) => {
           </h2>
         </div>
       </div>
+      {post.user_id === userInfo.user_id && (
+        <div className="absolute bottom-0 right-0 w-full h-12 2xl:w-12 2xl:h-full bg-red-500 rounded-b-xl 2xl:rounded-b-none 2xl:rounded-tr-xl 2xl:rounded-br-xl text-white flex justify-center items-center cursor-pointer">
+          <RiDeleteBin7Line size={30} />
+        </div>
+      )}
       <AnimatePresence>
         {isOpenWorkout && (
           <GymTrainingDetails

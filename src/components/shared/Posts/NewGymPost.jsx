@@ -98,10 +98,10 @@ const NewGymPost = ({ toggleGym, postAdded }) => {
         initial={{ scale: 0.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.2, opacity: 0 }}
-        className="bg-[#e9ecef] flex flex-col items-center p-6 shadow-xl w-3/4 h-5/6 overflow-auto gap-10 xl:gap-5 "
+        className="bg-[#e9ecef] flex flex-col items-center p-6 shadow-xl w-full xl:w-3/4 h-5/6 overflow-auto gap-10 xl:gap-5 "
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full flex flex-col 2xl:flex-row justify-between items-center">
           <h2 className="text-2xl">Dodaj post</h2>
           <div className="flex gap-5">
             <motion.button

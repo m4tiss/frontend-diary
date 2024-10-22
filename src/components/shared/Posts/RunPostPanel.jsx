@@ -17,10 +17,13 @@ import iconLight from "../../../icons/runIconLight.png";
 import { LuMapPin, LuMapPinOff } from "react-icons/lu";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
+import { useUser } from "../../../providers/UserProvider";
+import { RiDeleteBin7Line } from "react-icons/ri";
 import CommentsPanel from "./CommentsPanel";
 
 const RunPostPanel = ({ post }) => {
   const { darkMode } = useContext(DarkModeContext);
+  const { userInfo } = useUser();
   const [isLiked, setIsLiked] = useState(post?.isLike);
   const [likesCount, setLikesCount] = useState(post?.likesCount || 0);
   const [commentsCount, setCommentsCount] = useState(post?.commentsCount || 0);
@@ -98,7 +101,7 @@ const RunPostPanel = ({ post }) => {
   };
 
   return (
-    <div className="w-80 2xl:w-1/2 flex flex-col 2xl:flex-row bg-white p-5 rounded-xl gap-5">
+    <div className="w-80 2xl:w-1/2 flex flex-col 2xl:flex-row bg-white p-5 rounded-xl gap-5 relative 2xl:pb-5 pb-14">
       <div className="w-full 2xl:w-1/2 flex flex-col gap-5">
         <div className="flex justify-center items-center gap-2">
           <img
@@ -194,6 +197,11 @@ const RunPostPanel = ({ post }) => {
           <h2 className="text-xl">{formattedDate(post?.workout.date)}</h2>
         </div>
       </div>
+      {post.user_id === userInfo.user_id && (
+        <div className="absolute bottom-0 right-0 w-full h-12 2xl:w-12 2xl:h-full bg-red-500 rounded-b-xl 2xl:rounded-b-none 2xl:rounded-tr-xl 2xl:rounded-br-xl text-white flex justify-center items-center cursor-pointer">
+          <RiDeleteBin7Line size={30} />
+        </div>
+      )}
       <AnimatePresence>
         {isOpenWorkout && (
           <RunTrainingDetails
