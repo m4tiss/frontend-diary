@@ -76,9 +76,9 @@ const PostsPage = () => {
       </div>
       {posts.map((post) => {
         if (post.type === "run") {
-          return <RunPostPanel key={post.post_id} post={post} />;
+          return <RunPostPanel key={post.post_id} post={post} onDelete={setPostsUpdated} />;
         } else if (post.type === "gym") {
-          return <GymPostPanel key={post.post_id} post={post} />;
+          return <GymPostPanel key={post.post_id} post={post} onDelete={setPostsUpdated} />;
         }
         return null;
       })}

@@ -21,7 +21,7 @@ import { useUser } from "../../../providers/UserProvider";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import CommentsPanel from "./CommentsPanel";
 
-const RunPostPanel = ({ post }) => {
+const RunPostPanel = ({ post, onDelete }) => {
   const { darkMode } = useContext(DarkModeContext);
   const { userInfo } = useUser();
   const [isLiked, setIsLiked] = useState(post?.isLike);
@@ -39,11 +39,11 @@ const RunPostPanel = ({ post }) => {
   };
 
   const handleCommentAdd = () => {
-    setCommentsCount(commentsCount + 1); 
+    setCommentsCount(commentsCount + 1);
   };
 
   const handleCommentDelete = () => {
-    setCommentsCount(commentsCount - 1); 
+    setCommentsCount(commentsCount - 1);
   };
 
   const handleLike = async () => {
@@ -97,6 +97,27 @@ const RunPostPanel = ({ post }) => {
       }
     } catch (error) {
       console.error("Error unliking the post:", error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const token = getAuthToken();
+
+      const response = await axios.delete("/shared/post", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          post_id: post.post_id,
+        },
+      });
+
+      if (response.status === 200) {
+        onDelete(post.post_id);
+      }
+    } catch (error) {
+      console.error("Error deleting the post:", error);
     }
   };
 
@@ -198,7 +219,10 @@ const RunPostPanel = ({ post }) => {
         </div>
       </div>
       {post.user_id === userInfo.user_id && (
-        <div className="absolute bottom-0 right-0 w-full h-12 2xl:w-12 2xl:h-full bg-red-500 rounded-b-xl 2xl:rounded-b-none 2xl:rounded-tr-xl 2xl:rounded-br-xl text-white flex justify-center items-center cursor-pointer">
+        <div
+          onClick={handleDelete}
+          className="absolute bottom-0 right-0 w-full h-12 2xl:w-12 2xl:h-full bg-red-500 rounded-b-xl 2xl:rounded-b-none 2xl:rounded-tr-xl 2xl:rounded-br-xl text-white flex justify-center items-center cursor-pointer"
+        >
           <RiDeleteBin7Line size={30} />
         </div>
       )}
