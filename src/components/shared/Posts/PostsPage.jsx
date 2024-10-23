@@ -11,6 +11,7 @@ import NewGymPost from "./NewGymPost";
 import NewRunPost from "./NewRunPost";
 
 const PostsPage = () => {
+  const { t } =useTranslation(); 
   const [posts, setPosts] = useState([]);
   const [isOpenNewGym, setIsOpenNewGym] = useState(false);
   const [isOpenNewRun, setIsOpenNewRun] = useState(false);
@@ -47,8 +48,8 @@ const PostsPage = () => {
   }, [postsUpdated]);
 
   return (
-    <div className="w-full flex flex-grow flex-col justify-start items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0  gap-5">
-      <div className="flex flex-col 2xl:flex-row gap-10">
+    <div className="w-full flex flex-grow flex-col justify-start items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0  gap-5">   
+      <div className="flex flex-col 2xl:flex-row gap-10">    
         <motion.div
           onClick={toggleGym}
           whileHover={{ scale: 1.05 }}
@@ -74,6 +75,7 @@ const PostsPage = () => {
           NEW <TbRun size={40} />
         </motion.div>
       </div>
+      <div className="text-2xl font-semibold">{t("shared.posts.lastPosts")}</div>
       {posts.map((post) => {
         if (post.type === "run") {
           return <RunPostPanel key={post.post_id} post={post} onDelete={setPostsUpdated} />;

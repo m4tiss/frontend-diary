@@ -66,6 +66,9 @@ const resources = {
           months: "Miesiące",
           workouts: "Treningi w ostatnich miesiącach",
         },
+        posts: {
+          lastPosts:"Ostatnie posty użytkowników"
+        }
       },
       run: {
         general: {
@@ -309,6 +312,9 @@ const resources = {
           months: "Months",
           workouts: "Trainings in recent months",
         },
+        posts: {
+          lastPosts:"Recent user posts"
+        }
       },
       run: {
         general: {
