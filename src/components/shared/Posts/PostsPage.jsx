@@ -5,20 +5,26 @@ import { TbRun } from "react-icons/tb";
 import { CgGym } from "react-icons/cg";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useContext } from "react";
 import RunPostPanel from "./RunPostPanel";
 import GymPostPanel from "./GymPostPanel";
 import NewGymPost from "./NewGymPost";
 import NewRunPost from "./NewRunPost";
+import ContentContext from "../../../providers/ContentProvider";
 
 const PostsPage = () => {
-  const { t } =useTranslation(); 
+  const { t } = useTranslation();
   const [posts, setPosts] = useState([]);
   const [isOpenNewGym, setIsOpenNewGym] = useState(false);
   const [isOpenNewRun, setIsOpenNewRun] = useState(false);
-  const [postsUpdated, setPostsUpdated] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const { isGymContent } = useContext(ContentContext);
 
   const postAdded = () => {
-    setPostsUpdated((prev) => !prev);
+    setPage(1);
+    setPosts([]);
+    fetchPosts(1);
   };
 
   const toggleGym = () => {
@@ -29,27 +35,41 @@ const PostsPage = () => {
     setIsOpenNewRun((prev) => !prev);
   };
 
-  useEffect(() => {
-    const getAllPosts = async () => {
-      try {
-        const token = getAuthToken();
-        const response = await axios.get("/shared/post/getAll", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setPosts(response.data);
-      } catch (error) {
-        console.error("Błąd podczas dodawania posta:", error);
-      }
-    };
+  const fetchPosts = async (currentPage) => {
+    try {
+      const token = getAuthToken();
+      const response = await axios.get("/shared/post/getAll", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          page: currentPage,
+        },
+      });
 
-    getAllPosts();
-  }, [postsUpdated]);
+      const { posts, hasMore } = response.data;
+      setPosts((prevPosts) => [...prevPosts, ...posts]);
+      setHasMore(hasMore);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+
+  useEffect(() => {
+    setPage(1);
+    setPosts([]);
+    fetchPosts(1);
+  }, []);
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchPosts(nextPage);
+  };
 
   return (
-    <div className="w-full flex flex-grow flex-col justify-start items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0  gap-5">   
-      <div className="flex flex-col 2xl:flex-row gap-10">    
+    <div className="w-full flex flex-grow flex-col justify-start items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:px-0 gap-5">
+      <div className="flex flex-col 2xl:flex-row gap-10">
         <motion.div
           onClick={toggleGym}
           whileHover={{ scale: 1.05 }}
@@ -75,21 +95,53 @@ const PostsPage = () => {
           NEW <TbRun size={40} />
         </motion.div>
       </div>
-      <div className="text-2xl font-semibold">{t("shared.posts.lastPosts")}</div>
+      <div className="text-2xl font-semibold">
+        {t("shared.posts.lastPosts")}
+      </div>
       {posts.map((post) => {
         if (post.type === "run") {
-          return <RunPostPanel key={post.post_id} post={post} onDelete={setPostsUpdated} />;
+          return (
+            <RunPostPanel key={post.post_id} post={post} onDelete={postAdded} />
+          );
         } else if (post.type === "gym") {
-          return <GymPostPanel key={post.post_id} post={post} onDelete={setPostsUpdated} />;
+          return (
+            <GymPostPanel key={post.post_id} post={post} onDelete={postAdded} />
+          );
         }
         return null;
       })}
+      {hasMore && (
+        <div className="w-full flex justify-center mt-4">
+          <motion.button
+            onClick={handleLoadMore}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 500 }}
+            className="w-40 text-white p-3 rounded-xl shadow-xl text-xl"
+            style={
+              isGymContent
+                ? {
+                    backgroundImage:
+                      "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
+                  }
+                : {
+                    backgroundImage:
+                      "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
+                  }
+            }
+          >
+            {t("gym.historyTraining.loadMore")}
+          </motion.button>
+        </div>
+      )}
       <AnimatePresence>
-        {isOpenNewGym && <NewGymPost toggleGym={toggleGym} postAdded={postAdded} />}
+        {isOpenNewGym && (
+          <NewGymPost toggleGym={toggleGym} postAdded={postAdded} />
+        )}
       </AnimatePresence>
-
       <AnimatePresence>
-        {isOpenNewRun && <NewRunPost toggleRun={toggleRun} postAdded={postAdded} />}
+        {isOpenNewRun && (
+          <NewRunPost toggleRun={toggleRun} postAdded={postAdded} />
+        )}
       </AnimatePresence>
     </div>
   );
