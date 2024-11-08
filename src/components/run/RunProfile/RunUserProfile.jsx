@@ -112,10 +112,7 @@ const RunUserProfile = () => {
           <p className="text-lg text-center overflow-x-hidden">{userInfo.description}</p>
         </div>
       </div>
-      <div className="2xl:w-1/3 flex px-5 2xl:px-0 flex-col ">
-        <h2 className="text-4xl 2xl:text-left dark:text-white  text-center font-semibold my-5">
-        {t('shared.friends.friends')}
-        </h2>
+      <div className="2xl:w-1/3 flex px-5 2xl:px-0 my-5 flex-col ">
         <div className="w-full overflow-hidden h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
           {friends.slice(0, visibleFriendsCount).map((user, index) => (
             <FriendDivProfile key={index} user={user} />
@@ -128,7 +125,7 @@ const RunUserProfile = () => {
           </div>
         </div>
 
-        <div className="h-fit flex-wrap flex dark:bg-run-night-element dark:text-white bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
+        <div className="h-fit flex-wrap flex dark:bg-run-night-element dark:text-white bg-white p-5 justify-center gap-5 my-5 rounded-xl shadow-xl">
           <PagePanel
            onClick={() => navigate("/run/records")}
             type={"run"}
@@ -165,7 +162,13 @@ const RunUserProfile = () => {
             title={t('run.profile.showGoals')}
             icon={<LuGoal size={50} color="white" />}
           />
-
+                    <PagePanel
+            onClick={() => navigate("/run/achievements")}
+            type={"run"}
+            title={t('run.profile.showAchievements')}
+            icon={<GiAchievement size={50} color="white" />}
+          />
+        
           <AnimatePresence>
             {isGoalOpen && (
               <RunAddGoal
@@ -188,7 +191,7 @@ const RunUserProfile = () => {
           style={{
             "background-image": linearColor,
           }}
-          className="h-32 mb-10 rounded-xl shadow-xl"
+          className="h-32 mb-5 rounded-xl shadow-xl"
         >
           <StatsUserProfileSlider
             friends={userInfo.friends_count}

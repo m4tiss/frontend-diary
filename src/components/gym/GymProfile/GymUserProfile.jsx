@@ -12,6 +12,7 @@ import { GiTrophyCup } from "react-icons/gi";
 import { useTranslation } from "react-i18next";
 import PagePanel from "../../shared/PagePanel";
 import { useNavigate } from "react-router-dom";
+import { GiAchievement } from "react-icons/gi";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
 import { formattedDate } from "../../../functions/formatData";
 import { TbNotes, TbNotesOff } from "react-icons/tb";
@@ -114,10 +115,7 @@ const GymUserProfile = () => {
         </div>
       </div>
       <div className="2xl:w-1/3 flex px-5 2xl:px-0 flex-col ">
-        <h2 className="text-4xl 2xl:text-left dark:text-white  text-center font-semibold my-5">
-          {t("shared.friends.friends")}
-        </h2>
-        <div className="w-full overflow-hidden h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly shadow-xl">
+        <div className="w-full overflow-hidden h-44 dark:bg-run-night-element dark:text-white bg-white rounded-xl flex items-center px-10 justify-evenly my-5 shadow-xl">
           {friends.slice(0, visibleFriendsCount).map((user, index) => (
             <FriendDivProfile key={index} user={user} />
           ))}
@@ -131,7 +129,7 @@ const GymUserProfile = () => {
           </div>
         </div>
 
-        <div className="h-fit flex-wrap flex dark:bg-run-night-element dark:text-white bg-white p-5 justify-center gap-5 my-10 rounded-xl shadow-xl">
+        <div className="h-fit flex-wrap flex dark:bg-run-night-element dark:text-white bg-white p-5 justify-center gap-5 my-5 rounded-xl shadow-xl">
           <PagePanel
             onClick={() => navigate("/gym/records")}
             type={"gym"}
@@ -168,6 +166,12 @@ const GymUserProfile = () => {
             title={t("gym.profile.showGoals")}
             icon={<LuGoal size={50} color="white" />}
           />
+          <PagePanel
+            onClick={() => navigate("/gym/achievements")}
+            type={"gym"}
+            title={t("gym.profile.showAchievements")}
+            icon={<GiAchievement size={50} color="white" />}
+          />
 
           <AnimatePresence>
             {isRemoveRoutineOpen && (
@@ -191,7 +195,7 @@ const GymUserProfile = () => {
           style={{
             "backgroundImage": linearColor,
           }}
-          className="h-32 mb-10 rounded-xl shadow-xl"
+          className="h-32 mb-5 rounded-xl shadow-xl"
         >
           <StatsUserProfileSlider
             friends={userInfo.friends_count}
