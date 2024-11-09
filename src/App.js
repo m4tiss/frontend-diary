@@ -25,7 +25,6 @@ import GymUserProfile from "./components/gym/GymProfile/GymUserProfile";
 import RunUserProfile from "./components/run/RunProfile/RunUserProfile";
 import RunGoals from "./components/run/RunGoals/RunGoals";
 import FriendsPage from "./components/shared/FriendsPage";
-import RunAchievementPage from "./components/run/RunAchievementPage";
 import { useEffect, useState, useContext } from "react";
 import DarkModeContext from "./providers/DarkModeProvider";
 import RunFriendPage from "./components/run/RunFriendPage/RunFriendPage";
