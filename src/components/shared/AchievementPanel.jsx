@@ -31,12 +31,12 @@ const AchievementPanel = ({ achievement }) => {
       >
         {icon}
       </div>
-      <div className="w-full flex items-center justify-center px-5 text-center flex-col my-2">
+      <div className="w-full flex min-h-36 items-center justify-center px-5 text-center flex-col my-2">
         <h2 className="text-2xl font-semibold">{achievement?.title}</h2>
         <span className="text-xl text-wrap">{achievement?.description}</span>
       </div>
       <div className="w-full px-5 font-semibold text-right text-xl">
-        {achievement?.percent}%
+        {achievement?.percent.toFixed(2)} %
         <Line percent={achievement?.percent} trailColor="#FFFFFF" strokeColor={lineColor} />
       </div>
     </div>
