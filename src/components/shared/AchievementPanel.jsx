@@ -1,10 +1,11 @@
 import { Line } from "rc-progress";
 import { GiWeight,GiGymBag } from "react-icons/gi";
+import { CiDumbbell } from "react-icons/ci";
 import { FaUserFriends } from "react-icons/fa";
 const AchievementPanel = ({ achievement }) => {
   let icon;
   if (achievement?.type === "workouts") {
-    icon = <GiWeight size={50} color="white" />;
+    icon = <CiDumbbell size={50} color="white" />;
   } else if (achievement?.type === "sets") {
     icon = <GiGymBag size={50} color="white"  />;
   } else if (achievement?.type === "friends") {
