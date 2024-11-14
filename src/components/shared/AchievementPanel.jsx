@@ -1,21 +1,24 @@
 import { Line } from "rc-progress";
-import { GiWeight,GiGymBag } from "react-icons/gi";
+import { FaRunning } from "react-icons/fa";
 import { CiDumbbell } from "react-icons/ci";
 import { FaUserFriends } from "react-icons/fa";
+import { useContext } from "react";
+import ContentContext from "../../providers/ContentProvider";
 const AchievementPanel = ({ achievement }) => {
+  const { isGymContent } = useContext(ContentContext);
+
   let icon;
   if (achievement?.type === "workouts") {
     icon = <CiDumbbell size={50} color="white" />;
-  } else if (achievement?.type === "sets") {
-    icon = <GiGymBag size={50} color="white"  />;
+  } else if (achievement?.type === "distance") {
+    icon = <FaRunning size={50} color="white" />;
   } else if (achievement?.type === "friends") {
-    icon = <FaUserFriends size={50} color="white"  />;
+    icon = <FaUserFriends size={50} color="white" />;
   }
 
-
-
   let lineColor = "#e63946";
-  if (achievement?.percent > 30 && achievement?.percent < 80) lineColor = "#ffd60a";
+  if (achievement?.percent > 30 && achievement?.percent < 80)
+    lineColor = "#ffd60a";
   if (achievement?.percent >= 80) lineColor = "#70e000";
 
   return (
@@ -26,8 +29,9 @@ const AchievementPanel = ({ achievement }) => {
       <div
         className="flex justify-center items-center w-20 h-20 rounded-xl shadow-xl absolute -top-10"
         style={{
-          backgroundImage:
-            "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)",
+          backgroundImage: isGymContent
+            ? "linear-gradient(to bottom, #e73725, #e62c37, #e22547, #dd2155, #d52362)"
+            : "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
         }}
       >
         {icon}
@@ -38,7 +42,11 @@ const AchievementPanel = ({ achievement }) => {
       </div>
       <div className="w-full px-5 font-semibold text-right text-xl">
         {achievement?.percent.toFixed(2)} %
-        <Line percent={achievement?.percent} trailColor="#FFFFFF" strokeColor={lineColor} />
+        <Line
+          percent={achievement?.percent}
+          trailColor="#FFFFFF"
+          strokeColor={lineColor}
+        />
       </div>
     </div>
   );
