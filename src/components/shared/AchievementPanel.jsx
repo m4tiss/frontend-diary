@@ -3,6 +3,7 @@ import { FaRunning } from "react-icons/fa";
 import { CiDumbbell } from "react-icons/ci";
 import { FaUserFriends } from "react-icons/fa";
 import { useContext } from "react";
+import { motion } from "framer-motion";
 import ContentContext from "../../providers/ContentProvider";
 const AchievementPanel = ({ achievement }) => {
   const { isGymContent } = useContext(ContentContext);
@@ -22,9 +23,10 @@ const AchievementPanel = ({ achievement }) => {
   if (achievement?.percent >= 80) lineColor = "#70e000";
 
   return (
-    <div
-      className="w-96 h-64 flex flex-col items-center justify-start rounded-2xl
-           bg-white dark:bg-run-night-element dark:text-white border-black m-5 cursor-pointer relative py-10"
+    <motion.div
+      whileHover={{ y: -20 }}
+      className="w-80 md:w-[500px] h-64 flex flex-col items-center justify-start rounded-2xl
+           bg-white dark:bg-run-night-element dark:text-white border-black m-5 relative py-10"
     >
       <div
         className="flex justify-center items-center w-20 h-20 rounded-xl shadow-xl absolute -top-10"
@@ -48,7 +50,7 @@ const AchievementPanel = ({ achievement }) => {
           strokeColor={lineColor}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -138,18 +138,18 @@ const RunUserProfile = () => {
             title={t('run.profile.social')}
             icon={<TbTimelineEvent size={50} color="white" />}
           />
-          <PagePanel
+          {/* <PagePanel
           // onClick={toggleCategoryDialog}
             type={"run"}
             title={''}
             //icon={<TbCategoryPlus size={50} color="white" />}
-          />
-          <PagePanel
+          /> */}
+          {/* <PagePanel
             //onClick={() => navigate("/run/achievements")}
             type={"run"}
             //title={t('run.profile.showAchievements')}
             //icon={<GiAchievement size={50} color="white" />}
-          />
+          /> */}
           <PagePanel
             onClick={toggleGoalDialog}
             type={"run"}

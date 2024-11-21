@@ -44,7 +44,7 @@ const RunAchievements = () => {
 
   return (
     <div className="w-full flex flex-col flex-grow justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background py-10  gap-6">
-      <h2 className="text-3xl my-2">Run Achievements</h2>
+      <h2 className="text-3xl my-2 dark:text-white">Run Achievements</h2>
       <div className="flex flex-wrap gap-8 py-20 justify-center">
         {runAchievements.map((achievement) => (
           <AchievementPanel
@@ -53,7 +53,7 @@ const RunAchievements = () => {
           />
         ))}
       </div>
-      <h2 className="text-3xl my-2">Social Achievements</h2>
+      <h2 className="text-3xl my-2 dark:text-white">Social Achievements</h2>
       <div className="flex flex-wrap gap-8 py-20 justify-center">
       {socialAchievements.map((achievement) => (
           <AchievementPanel
