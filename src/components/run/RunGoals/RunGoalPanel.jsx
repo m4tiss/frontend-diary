@@ -1,11 +1,14 @@
 import { formattedDate, formattedData } from "../../../functions/formatData";
 import { calculateDaysDiff } from "../../../functions/statsCalculations";
 import { useTranslation } from "react-i18next";
+import { FaArrowDown } from "react-icons/fa";
+import { RiDeleteBin7Line } from "react-icons/ri";
 
 const RunGoalPanel = ({ goal }) => {
   const { t } = useTranslation();
   const daysLeft = calculateDaysDiff(goal.finish_date);
-  const daysLeftMessage = daysLeft === 1 ? t("run.goals.dayLeft") : t("run.goals.daysLeft");
+  const daysLeftMessage =
+    daysLeft === 1 ? t("run.goals.dayLeft") : t("run.goals.daysLeft");
 
   let statusColor = "";
   let statusText = "";
@@ -21,31 +24,33 @@ const RunGoalPanel = ({ goal }) => {
     statusText = t("run.goals.inProgress");
   }
 
-  console.log(`text-[${statusColor}]`);
-
   return (
-    <div className="w-full h-full flex py-5 xl:py-20 gap-5  flex-col items-center dark:text-white dark:bg-run-night-element justify-between bg-white rounded-xl">
-      <h2 className="text-2xl xl:text-6xl text-center">{goal.title}</h2>
-      <label className="text-xl xl:text-2xl flex items-center justify-center text-center px-5 xl:px-0 xl:min-h-0 min-h-60">{goal.description}</label>
-      <div className="w-full flex flex-col justify-center items-center 2xl:flex-row 2xl:justify-evenly text-xl xl:text-2xl">
-        <label>{t("run.goals.createdDate")} {formattedDate(goal.create_date)}</label>
-        <label>{t("run.goals.finishDate")} {formattedDate(goal.finish_date)}</label>
+    <div className="w-80 xl:w-[600px] min-h-80 bg-white dark:bg-run-night-element flex flex-col justify-between items-center rounded-xl p-5 py-16 gap-5 relative">
+      <div
+        className="absolute left-0 top-0 w-full h-12 flex justify-center items-center rounded-t-xl"
+        style={{ backgroundColor: statusColor }}
+      >
+        <span className="text-lg xl:text-2xl text-white">{statusText} --- {daysLeft} {daysLeftMessage}</span>
       </div>
-      <label className="text-2xl xl:text-4xl">
+      <h2 className="text-3xl text-center">{goal.title}</h2>
+      <div className="w-full flex justify-evenly">
+        <label className="w-1/2 text-xl xl:text-2xl flex items-center justify-center text-center px-5 xl:px-0">
+          {goal.description}
+        </label>
+        <div className="w-1/2 flex flex-col justify-center items-center text-xl xl:text-2xl gap-5">
+          <label>{formattedDate(goal.create_date)}</label>
+          <FaArrowDown/>
+          <label>{formattedDate(goal.finish_date)}</label>
+        </div>
+      </div>
+
+      <label className="text-2xl ">
         {formattedData(goal.current_goal)} km / {formattedData(goal.goal)} km
       </label>
-      <label className="text-2xl xl:text-4xl">
-        Status: <span style={{ color: statusColor }}>{statusText}</span>
-      </label>
-      <h2
-        style={{
-          "background-image":
-            "linear-gradient(to bottom, #1da1f2, #1794e4, #1087d5, #087ac7, #006eb9)",
-        }}
-        className="text-2xl xl:text-5xl w-3/4 p-2 rounded-full shadow-xl text-center text-white"
-      >
-        {daysLeft} {daysLeftMessage}
-      </h2>
+
+      <div className="absolute w-12 right-0 bottom-0 h-12 flex justify-center items-center rounded-br-xl cursor-pointer">
+        <RiDeleteBin7Line color="red" size={30}/>
+      </div>
     </div>
   );
 };
