@@ -7,18 +7,16 @@ const RunGoalPanel = ({ goal }) => {
   const daysLeft = calculateDaysDiff(goal.finish_date);
   const daysLeftMessage = daysLeft === 1 ? t("run.goals.dayLeft") : t("run.goals.daysLeft");
 
-  const percentageCompleted = (goal.current_goal / goal.goal) * 100;
-
   let statusColor = "";
   let statusText = "";
 
-  if (percentageCompleted >= 100) {
+  if (goal?.percent >= 100) {
     statusColor = "#70e000";
     statusText = t("run.goals.completed");
   } else if (daysLeft === 0) {
     statusColor = "#e63946";
     statusText = t("run.goals.notCompleted");
-  } else if (percentageCompleted >= 0 && percentageCompleted < 100) {
+  } else if (goal?.percent >= 0 && goal?.percent < 100) {
     statusColor = "#ffd60a";
     statusText = t("run.goals.inProgress");
   }
