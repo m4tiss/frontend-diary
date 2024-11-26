@@ -39,6 +39,7 @@ import Languages from "./components/shared/Langauges";
 import PostsPage from "./components/shared/Posts/PostsPage";
 import GymAchievements from "./components/gym/GymAchievements.jsx/GymAchievements";
 import RunAchievements from "./components/run/RunAchievements/RunAchievements";
+import GymGoals from "./components/gym/GymGoals/GymGoals";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -104,6 +105,7 @@ function GymLayout() {
         <Route path="history" element={<GymHistory />} />
         <Route path="newTraining" element={<GymNewTraining />} />
         <Route path="stats" element={<GymStats />} />
+        <Route path="goals" element={<GymGoals />} />
         <Route path="friends" element={<FriendsPage />} />
         <Route path="friend/:friendId" element={<GymFriendPage />} />
         <Route path="achievements" element={<GymAchievements />} />

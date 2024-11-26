@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import RunGoalPanel from "./RunGoalPanel";
+import GymGoalPanel from "./GymGoalPanel";
 
-const RunGoals = () => {
+
+const GymGoals = () => {
   const [goals, setGoals] = useState([]);
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -14,16 +15,18 @@ const RunGoals = () => {
   useEffect(() => {
     const token = getAuthToken();
     axios
-      .get("/run/goal/all", {
+      .get("/gym/goal/all", {
         headers: {
           Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
         const response = res.data.goals;
+        
         const sortedGoals = response.sort(
           (a, b) => new Date(b.finish_date) - new Date(a.finish_date)
         );
+        console.log(sortedGoals)
         setGoals(sortedGoals);
       })
       .catch((error) => {
@@ -32,18 +35,18 @@ const RunGoals = () => {
   }, []);
 
   const deleteGoal = async (goalId) => {
-    const token = getAuthToken();
-    try {
-      await axios.delete(`/run/goal/${goalId}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+    // const token = getAuthToken();
+    // try {
+    //   await axios.delete(`/run/goal/${goalId}`, {
+    //     headers: {
+    //       Authorization: "Bearer " + token,
+    //     },
+    //   });
 
-      setGoals((prevGoals) => prevGoals.filter((goal) => goal.run_goal_id !== goalId));
-    } catch (error) {
-      console.error("Error deleting goal:", error);
-    }
+    //   setGoals((prevGoals) => prevGoals.filter((goal) => goal.run_goal_id !== goalId));
+    // } catch (error) {
+    //   console.error("Error deleting goal:", error);
+    // }
   };
 
   return (
@@ -72,7 +75,7 @@ const RunGoals = () => {
         ) : (
           <>
             {goals.map((goal) => (
-              <RunGoalPanel goal={goal} key={goal.run_goal_id} deleteGoal={deleteGoal} />
+              <GymGoalPanel goal={goal} key={goal.gym_goal_id} deleteGoal={deleteGoal} />
             ))}
           </>
         )}
@@ -81,4 +84,4 @@ const RunGoals = () => {
   );
 };
 
-export default RunGoals;
+export default GymGoals;

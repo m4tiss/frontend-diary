@@ -172,7 +172,7 @@ const GymUserProfile = () => {
             icon={<GoGoal size={50} color="white" />}
           />
           <PagePanel
-            //onClick={() => navigate("/run/goals")}
+            onClick={() => navigate("/gym/goals")}
             type={"gym"}
             title={t("gym.profile.showGoals")}
             icon={<LuGoal size={50} color="white" />}
