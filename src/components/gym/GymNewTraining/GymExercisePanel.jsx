@@ -21,8 +21,6 @@ const icons = {
 const GymExercisePanel = ({ height, exercise, onClick }) => {
 
 
-
-
 const iconPath = icons[exercise.photo_exercise];
   return (
     <motion.div

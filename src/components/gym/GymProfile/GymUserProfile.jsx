@@ -20,11 +20,13 @@ import { useUser } from "../../../providers/UserProvider";
 import { ToastContainer, toast } from "react-toastify";
 import GymAddRoutine from "../GymRoutine/GymAddRoutine";
 import GymRemoveRoutine from "../GymRoutine/GymRemoveRoutine";
+import GymAddGoal from "../GymGoals/GymAddGoal"
 
 const GymUserProfile = () => {
   const { t } = useTranslation();
   const { userInfo } = useUser();
   const [isRemoveRoutineOpen, setIsRemoveRoutineOpen] = useState(false);
+  const [isGoalOpen, setIsGoalOpen] = useState(false);
   const [isRoutineOpen, setIsRoutineOpen] = useState(false);
   const [visibleFriendsCount, setVisibleFriendsCount] = useState(
     getVisibleFriendsCount()
@@ -46,6 +48,15 @@ const GymUserProfile = () => {
   const successRemoveRoutine = () => {
     setIsRemoveRoutineOpen((prev) => !prev);
     toast.success("Routine removed!");
+  };
+
+  const toggleGoalDialog = () => {
+    setIsGoalOpen((prev) => !prev);
+  };
+
+  const successGoalDialog = () => {
+    setIsGoalOpen((prev) => !prev);
+    toast.success("Goal added!");
   };
 
   function getVisibleFriendsCount() {
@@ -155,7 +166,7 @@ const GymUserProfile = () => {
             icon={<TbNotesOff size={50} color="white" />}
           />
           <PagePanel
-            //onClick={toggleGoalDialog}
+            onClick={toggleGoalDialog}
             type={"gym"}
             title={t("gym.profile.addNewGoal")}
             icon={<GoGoal size={50} color="white" />}
@@ -172,6 +183,15 @@ const GymUserProfile = () => {
             title={t("gym.profile.showAchievements")}
             icon={<GiAchievement size={50} color="white" />}
           />
+
+          <AnimatePresence>
+            {isGoalOpen && (
+              <GymAddGoal
+              toggleGoalDialog={toggleGoalDialog}
+              successGoalDialog={successGoalDialog}
+              />
+            )}
+          </AnimatePresence>
 
           <AnimatePresence>
             {isRemoveRoutineOpen && (
