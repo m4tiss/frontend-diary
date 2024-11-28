@@ -35,25 +35,25 @@ const GymGoals = () => {
   }, []);
 
   const deleteGoal = async (goalId) => {
-    // const token = getAuthToken();
-    // try {
-    //   await axios.delete(`/run/goal/${goalId}`, {
-    //     headers: {
-    //       Authorization: "Bearer " + token,
-    //     },
-    //   });
+    const token = getAuthToken();
+    try {
+      await axios.delete(`/gym/goal/${goalId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
 
-    //   setGoals((prevGoals) => prevGoals.filter((goal) => goal.run_goal_id !== goalId));
-    // } catch (error) {
-    //   console.error("Error deleting goal:", error);
-    // }
+      setGoals((prevGoals) => prevGoals.filter((goal) => goal.gym_goal_id !== goalId));
+    } catch (error) {
+      console.error("Error deleting goal:", error);
+    }
   };
 
   return (
     <div className="w-full flex flex-grow flex-col justify-start bg-[#e9ecef] dark:bg-run-night-background py-10 px-5 gap-10">
       <div className="w-full flex flex-col text-center items-center text-black dark:text-white justify-center gap-5">
-        <h2 className="text-7xl">{t("run.goals.title")}</h2>
-        <label className="text-2xl px-10">{t("run.goals.description")}</label>
+        <h2 className="text-7xl">{t("gym.goals.title")}</h2>
+        <label className="text-2xl px-10">{t("gym.goals.description")}</label>
       </div>
 
       <div className="w-full flex justify-center flex-wrap gap-20">

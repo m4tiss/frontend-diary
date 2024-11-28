@@ -35,7 +35,7 @@ const resources = {
           delete: "Usuń",
           edit: "Edytuj",
           close: "Zamknij",
-          add:"Dodaj"
+          add: "Dodaj",
         },
         login: {
           loginTitle: "Logowanie",
@@ -67,8 +67,8 @@ const resources = {
           workouts: "Treningi w ostatnich miesiącach",
         },
         posts: {
-          lastPosts:"Ostatnie posty użytkowników"
-        }
+          lastPosts: "Ostatnie posty użytkowników",
+        },
       },
       run: {
         general: {
@@ -101,7 +101,7 @@ const resources = {
           daysWithUs: "Dni z nami",
           email: "Email",
           birth: "Data urodzenia",
-          social: "Społeczność"
+          social: "Społeczność",
         },
         historyTraining: {
           filtration: "Filtracja",
@@ -169,7 +169,7 @@ const resources = {
           workouts: "Treningi",
           muscles: "Grupy mięśni",
           date: "Data",
-          select:"Wybierz ćwiczenie"
+          select: "Wybierz ćwiczenie",
         },
         profile: {
           showRecords: "Zobacz rekordy",
@@ -182,7 +182,7 @@ const resources = {
           daysWithUs: "Dni z nami",
           email: "Email",
           birth: "Data urodzenia",
-          social: "Społeczność"
+          social: "Społeczność",
         },
         dashboard: {
           title: "TRENUJ CODZIENNIE",
@@ -246,6 +246,20 @@ const resources = {
           noExercises: "Brak wybranych ćwiczeń",
           searchExercise: "Wyszukaj ćwiczenie",
         },
+        goals: {
+          title: "Osiągnij swoje cele siłowe",
+          description:
+            "Odkryj swoją siłę dzięki naszemu przewodnikowi po treningu siłowym. Niezależnie od tego, czy chcesz zwiększyć masę mięśniową, poprawić siłę, czy zbudować wymarzoną sylwetkę, ten przewodnik dostarcza narzędzi i strategii, które pomogą ci osiągnąć sukces. Dowiedz się, jak tworzyć efektywne plany treningowe, unikać kontuzji i utrzymać motywację. Pełen wiedzy ekspertów, inspirujących historii i praktycznych wskazówek, ten przewodnik pomoże ci wyznaczać cele, przełamywać bariery i cieszyć się rezultatami. Zrób pierwszy krok na swojej siłowej drodze już dziś!",
+          createdDate: "Data utworzenia: ",
+          finishDate: "Data zakończenia: ",
+          noGoals: "Brak dostępnych celów do wyświetlenia",
+          addGoal: "Dodaj nowe cele",
+          completed: "Zakończony",
+          notCompleted: "Niezakończony",
+          inProgress: "W trakcie",
+          dayLeft: "DZIEŃ POZOSTAŁ",
+          daysLeft: "DNI POZOSTAŁO",
+        },
       },
     },
   },
@@ -281,8 +295,7 @@ const resources = {
           delete: "Delete",
           edit: "Edit",
           close: "Close",
-          add:"Add"
-
+          add: "Add",
         },
         login: {
           loginTitle: "Login",
@@ -313,8 +326,8 @@ const resources = {
           workouts: "Trainings in recent months",
         },
         posts: {
-          lastPosts:"Recent user posts"
-        }
+          lastPosts: "Recent user posts",
+        },
       },
       run: {
         general: {
@@ -347,7 +360,7 @@ const resources = {
           daysWithUs: "Days with us",
           email: "Email",
           birth: "Date of birth",
-          social: "Social"
+          social: "Social",
         },
         historyTraining: {
           filtration: "Filtration",
@@ -418,7 +431,7 @@ const resources = {
           workouts: "Workouts",
           muscles: "Muscle used",
           date: "Date",
-          select:"Select exercise"
+          select: "Select exercise",
         },
         profile: {
           showRecords: "Show records",
@@ -431,7 +444,7 @@ const resources = {
           daysWithUs: "Days with us",
           email: "Email",
           birth: "Date of birth",
-          social: "Social"
+          social: "Social",
         },
         dashboard: {
           title: "TRAINING EVERYDAY",
@@ -498,6 +511,21 @@ const resources = {
           noExercises: "No exercises selected",
           searchExercise: "Search exercise",
         },
+        goals: {
+          title: "Achieve Your Strength Goals",
+          description:
+            "Unlock your strength with our guide to strength training. Whether you aim to build muscle mass, improve strength, or achieve your dream physique, this guide provides the tools and strategies to help you succeed. Learn how to create effective training plans, avoid injuries, and stay motivated. Packed with expert knowledge, inspiring stories, and practical tips, this guide will help you set goals, overcome challenges, and enjoy the results. Take the first step on your strength journey today!",
+          createdDate: "Created Date: ",
+          finishDate: "Finish Date: ",
+          noGoals: "No available goals to display",
+          addGoal: "Add New Goals",
+          completed: "Completed",
+          notCompleted: "Not Completed",
+          inProgress: "In Progress",
+          dayLeft: "DAY LEFT",
+          daysLeft: "DAYS LEFT",
+        },
+        
       },
     },
   },

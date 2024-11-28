@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { Gauge } from "@mui/x-charts/Gauge";
+import { useState } from "react";
 import { formattedDate } from "../../../functions/formatData";
 import { calculateDaysDiff } from "../../../functions/statsCalculations";
 import { useTranslation } from "react-i18next";
@@ -23,68 +26,97 @@ const icons = {
 
 const GymGoalPanel = ({ goal, deleteGoal }) => {
   const { t } = useTranslation();
+  const [flipped, setFlipped] = useState(false);
+
   const daysLeft = calculateDaysDiff(goal.finish_date);
   const daysLeftMessage =
-    daysLeft === 1 ? t("run.goals.dayLeft") : t("run.goals.daysLeft");
+    daysLeft === 1 ? t("gym.goals.dayLeft") : t("gym.goals.daysLeft");
 
-  let statusColor = "";
-  let statusText = "";
+  const status = {
+    color:
+      goal?.percent >= 100 ? "#70e000" : daysLeft === 0 ? "#e63946" : "#ffd60a",
+    text:
+      goal?.percent >= 100
+        ? t("gym.goals.completed")
+        : daysLeft === 0
+        ? t("gym.goals.notCompleted")
+        : t("gym.goals.inProgress"),
+  };
 
-  if (goal?.percent >= 100) {
-    statusColor = "#70e000";
-    statusText = t("run.goals.completed");
-  } else if (daysLeft === 0) {
-    statusColor = "#e63946";
-    statusText = t("run.goals.notCompleted");
-  } else if (goal?.percent >= 0 && goal?.percent < 100) {
-    statusColor = "#ffd60a";
-    statusText = t("run.goals.inProgress");
-  }
+  const containerStyles =
+    "w-80 xl:w-[600px] min-h-96 flex flex-col justify-between items-center rounded-xl relative cursor-pointer";
+  const contentStyles =
+    "w-full h-full flex flex-col justify-evenly items-center bg-white dark:bg-run-night-element rounded-xl p-5 py-16 absolute backface-hidden";
+  const statusBarStyles =
+    "absolute left-0 top-0 w-full h-12 flex justify-center items-center rounded-t-xl";
 
   return (
-    <div className="w-80 xl:w-[600px] min-h-80 bg-white dark:bg-run-night-element flex flex-col justify-between items-center rounded-xl p-5 py-16 gap-5 relative">
+    <motion.div
+      className={containerStyles}
+      onClick={() => setFlipped(!flipped)}
+      initial={false}
+      animate={{ rotateY: flipped ? 180 : 0 }}
+      transition={{ duration: 0.6 }}
+      style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+    >
       <div
-        className="absolute left-0 top-0 w-full h-12 flex justify-center items-center rounded-t-xl"
-        style={{ backgroundColor: statusColor }}
+        className={contentStyles}
+        style={!flipped ? {} : { transform: "rotateY(180deg)" }}
       >
-        <span className="text-lg xl:text-2xl text-white">
-          {statusText} --- {daysLeft} {daysLeftMessage}
-        </span>
-      </div>
-      <h2 className="text-3xl text-center">{goal.title}</h2>
-      <div className="w-full flex justify-evenly">
-        <label className="w-1/2 text-xl xl:text-2xl flex items-center justify-center text-center px-5 xl:px-0">
-          {goal.description}
-        </label>
-        <div className="w-1/2 flex flex-col justify-center items-center text-xl xl:text-2xl gap-5">
-          <label>{formattedDate(goal.create_date)}</label>
-          <FaArrowDown />
-          <label>{formattedDate(goal.finish_date)}</label>
+        <div
+          className={statusBarStyles}
+          style={{ backgroundColor: status.color }}
+        >
+          <span className="text-lg xl:text-2xl text-white">
+            {status.text} --- {daysLeft} {daysLeftMessage}
+          </span>
+        </div>
+        <h2 className="text-3xl text-center font-semibold">{goal.title}</h2>
+
+        {!flipped ? (
+          <>
+            <div className="w-full flex justify-evenly">
+              <div className="w-1/2 flex flex-col  justify-center items-center text-2xl">
+                <Gauge
+                  value={goal.percent}
+                  startAngle={0}
+                  endAngle={360}
+                  innerRadius="80%"
+                  outerRadius="100%"
+                />
+                {goal.current_goal} / {goal.goal}
+              </div>
+              <div className="w-1/2 flex flex-col justify-center items-center text-xl xl:text-2xl gap-5">
+                <label>{formattedDate(goal.create_date)}</label>
+                <FaArrowDown />
+                <label>{formattedDate(goal.finish_date)}</label>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="w-full">
+            <label className="w-full max-h-48 text-xl xl:text-2xl flex items-center justify-center text-center px-5 xl:px-0">
+              {goal.description}
+            </label>
+          </div>
+        )}
+
+        <div className="absolute w-12 right-0 bottom-0 h-12 flex justify-center z-50 items-center rounded-br-xl cursor-pointer">
+          <RiDeleteBin7Line
+            color="red"
+            onClick={(event) => {
+              event.stopPropagation();
+              deleteGoal(goal.run_goal_id);
+            }}
+            size={30}
+          />
+        </div>
+        <div className="absolute p-2 left-0 bottom-0 flex justify-center items-center rounded-br-xl gap-2">
+          <img src={icons[goal.type]} alt={goal.type} className="w-16 h-16" />
+          <label className="text-xl font-semibold">{goal.type}</label>
         </div>
       </div>
-
-      <label className="text-2xl">
-        {goal.current_goal} / {goal.goal}
-      </label>
-
-      {/* Delete icon */}
-      <div
-        className="absolute w-12 right-0 bottom-0 h-12 flex justify-center items-center rounded-br-xl cursor-pointer"
-       // onClick={() => deleteGoal(goal.gym_goal_id)}
-      >
-        <RiDeleteBin7Line color="red" size={30} />
-      </div>
-
-      <div
-        className="absolute p-2 left-0 bottom-0 flex justify-center items-center rounded-br-xl gap-2"
-      >
-        <img
-          src={icons[goal.type]}
-          alt={goal.type}
-          className="w-16 h-16"
-        /> <label className="text-xl font-semibold">{goal.type}</label>
-      </div>
-    </div>
+    </motion.div>
   );
 };
 
