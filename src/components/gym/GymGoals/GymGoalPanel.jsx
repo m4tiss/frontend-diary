@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Gauge } from "@mui/x-charts/Gauge";
 import { useState } from "react";
 import { formattedDate } from "../../../functions/formatData";
 import { calculateDaysDiff } from "../../../functions/statsCalculations";
 import { useTranslation } from "react-i18next";
 import { FaArrowDown } from "react-icons/fa";
 import { RiDeleteBin7Line } from "react-icons/ri";
+import { Gauge } from "@mui/x-charts/Gauge";
 import chestIcon from "../../../icons/chestIcon.jpg";
 import backIcon from "../../../icons/backIcon.jpg";
 import bicepsIcon from "../../../icons/bicepsIcon.jpg";
@@ -76,12 +76,13 @@ const GymGoalPanel = ({ goal, deleteGoal }) => {
         {!flipped ? (
           <>
             <div className="w-full flex justify-evenly">
-              <div className="w-1/2 flex flex-col  justify-center items-center text-2xl">
-                <Gauge
+              <div className="w-1/2 flex flex-col  justify-center items-center text-xl xl:text-2xl">
+              <Gauge
+                   height={100}
                   value={goal.percent}
                   startAngle={0}
                   endAngle={360}
-                  innerRadius="80%"
+                  innerRadius="90%"
                   outerRadius="100%"
                 />
                 {goal.current_goal} / {goal.goal}
@@ -106,7 +107,7 @@ const GymGoalPanel = ({ goal, deleteGoal }) => {
             color="red"
             onClick={(event) => {
               event.stopPropagation();
-              deleteGoal(goal.run_goal_id);
+              deleteGoal(goal.gym_goal_id);
             }}
             size={30}
           />

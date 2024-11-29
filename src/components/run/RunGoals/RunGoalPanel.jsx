@@ -59,12 +59,13 @@ const RunGoalPanel = ({ goal, deleteGoal }) => {
         {!flipped ? (
           <>
             <div className="w-full flex justify-evenly">
-              <div className="w-1/2 flex flex-col  justify-center items-center text-2xl">
+              <div className="w-1/2 flex flex-col  justify-center items-center text-xl xl:text-2xl">
                 <Gauge
+                  height={100}
                   value={goal.percent}
                   startAngle={0}
                   endAngle={360}
-                  innerRadius="80%"
+                  innerRadius="90%"
                   outerRadius="100%"
                 />
                 {formattedData(goal.current_goal)} km /{" "}
