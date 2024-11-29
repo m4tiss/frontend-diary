@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { formattedDate } from "../../../functions/formatData";
+import { formattedDate,formattedData } from "../../../functions/formatData";
 import { calculateDaysDiff } from "../../../functions/statsCalculations";
 import { useTranslation } from "react-i18next";
 import { FaArrowDown } from "react-icons/fa";
 import { RiDeleteBin7Line } from "react-icons/ri";
-import { Gauge } from "@mui/x-charts/Gauge";
+import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import chestIcon from "../../../icons/chestIcon.jpg";
 import backIcon from "../../../icons/backIcon.jpg";
 import bicepsIcon from "../../../icons/bicepsIcon.jpg";
@@ -77,13 +77,26 @@ const GymGoalPanel = ({ goal, deleteGoal }) => {
           <>
             <div className="w-full flex justify-evenly">
               <div className="w-1/2 flex flex-col  justify-center items-center text-xl xl:text-2xl">
-              <Gauge
-                   height={100}
-                  value={goal.percent}
+                <Gauge
+                  height={100}
+                  value={(goal.percent).toFixed(0)}
                   startAngle={0}
                   endAngle={360}
                   innerRadius="90%"
                   outerRadius="100%"
+                  sx={(theme) => ({
+                    [`& .${gaugeClasses.valueArc}`]: {
+                      fill:
+                        goal.percent >= 100
+                          ? "#70e000"
+                          : goal.percent >= 50
+                          ? "#ffd60a"
+                          : "#e63946",
+                    },
+                    [`& .${gaugeClasses.referenceArc}`]: {
+                      fill: theme.palette.text.disabled,
+                    },
+                  })}
                 />
                 {goal.current_goal} / {goal.goal}
               </div>

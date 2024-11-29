@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Gauge } from "@mui/x-charts/Gauge";
+import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import { formattedDate, formattedData } from "../../../functions/formatData";
 import { calculateDaysDiff } from "../../../functions/statsCalculations";
 import { useTranslation } from "react-i18next";
@@ -60,13 +60,26 @@ const RunGoalPanel = ({ goal, deleteGoal }) => {
           <>
             <div className="w-full flex justify-evenly">
               <div className="w-1/2 flex flex-col  justify-center items-center text-xl xl:text-2xl">
-                <Gauge
+              <Gauge
                   height={100}
-                  value={goal.percent}
+                  value={(goal.percent).toFixed(0)}
                   startAngle={0}
                   endAngle={360}
                   innerRadius="90%"
                   outerRadius="100%"
+                  sx={(theme) => ({
+                    [`& .${gaugeClasses.valueArc}`]: {
+                      fill:
+                        goal.percent >= 100
+                          ? "#70e000"
+                          : goal.percent >= 50
+                          ? "#ffd60a"
+                          : "#e63946",
+                    },
+                    [`& .${gaugeClasses.referenceArc}`]: {
+                      fill: theme.palette.text.disabled,
+                    },
+                  })}
                 />
                 {formattedData(goal.current_goal)} km /{" "}
                 {formattedData(goal.goal)} km
