@@ -74,21 +74,6 @@ const Login = () => {
         }}
         className="min-h-screen flex flex-col 2xl:flex-row justify-center"
       >
-        <div className="hidden 2xl:flex absolute top-20 w-full h-full justify-center">
-          <motion.h1
-            style={{
-              scale: scaleText,
-              y: yText,
-              opacity: opacityText,
-              color: colorText,
-            }}
-            initial={{ y: -50 }}
-            animate={{ y: 0 }}
-            className="text-9xl font-bold"
-          >
-            {t('shared.login.backgroundText')}
-          </motion.h1>
-        </div>
         <div className="2xl:w-1/2 w-full my-10 2xl:my-0 flex justify-center items-center z-50">
           <motion.form
             initial={{ y: 50 }}
@@ -148,66 +133,6 @@ const Login = () => {
               <h2 className="text-4xl text-black xl:text-white"  dangerouslySetInnerHTML={{ __html: t('shared.login.users') }}></h2>
             </div>
           </motion.div>
-        </div>
-      </div>
-      <div
-        style={{
-          "background-image":
-            "linear-gradient(to bottom, #ffffff, #e2e3fb, #bbcaf9, #86b4f6, #1da1f2)",
-        }}
-        className="min-h-screen flex flex-col 2xl:flex-row py-10"
-      >
-        <div className="2xl:w-2/3 w-full flex flex-col items-center gap-10">
-          <motion.img
-            initial={{
-              opacity: 0,
-              x: -50,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              transition: {
-                duration: 1,
-              },
-            }}
-            viewport={{ once: true }}
-            className="w-[900px] shadow-xl rounded-xl"
-            src={LoginPage1}
-          />
-          <motion.img
-            initial={{
-              opacity: 0,
-              x: -50,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              transition: {
-                duration: 1,
-              },
-            }}
-            viewport={{ once: true }}
-            className="w-[900px] shadow-xl rounded-xl"
-            src={LoginPage3}
-          />
-        </div>
-        <div className="2xl:w-1/3 my-10 2xl:my-0 w-full flex justify-center items-center">
-          <motion.img
-            initial={{
-              opacity: 0,
-              x: 50,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              transition: {
-                duration: 1,
-              },
-            }}
-            viewport={{ once: true }}
-            className="w-[300px] shadow-xl rounded-xl"
-            src={LoginPage2}
-          />
         </div>
       </div>
       <ToastContainer />
