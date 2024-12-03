@@ -5,8 +5,9 @@ import RunTrainingPanel from "./RunTrainingPanel";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
-const RunTrainings = ({ categoryName }) => {
+const RunTrainings = ({ startDate, endDate }) => {
   const { t } = useTranslation();
   const [trainings, setTrainings] = useState([]);
   const [page, setPage] = useState(1);
@@ -40,10 +41,10 @@ const RunTrainings = ({ categoryName }) => {
         },
         params: {
           page: currentPage,
-         // category_name: categoryName || null,
+          startDate: startDate ? dayjs(startDate).format("YYYY-MM-DD HH:mm") : undefined,
+          endDate: endDate ? dayjs(endDate).format("YYYY-MM-DD HH:mm") : undefined,
         },
       });
-
       const response = res.data.workouts;
       setTrainings((prevTrainings) => [...prevTrainings, ...response]);
       setHasMore(res.data.hasMore);
@@ -56,7 +57,7 @@ const RunTrainings = ({ categoryName }) => {
     setPage(1);
     setTrainings([]);
     fetchTrainings(1);
-  }, [categoryName]);
+  }, [startDate, endDate]);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
@@ -66,7 +67,7 @@ const RunTrainings = ({ categoryName }) => {
 
   return (
     <>
-      {trainings.length === 0 ? (
+      {trainings.length === 0 && !hasMore ? (
         <div className="w-full h-96 flex gap-20 flex-col items-center justify-center">
           <h2 className="text-5xl dark:text-white">
             {t("run.historyTraining.noTrainings")}
