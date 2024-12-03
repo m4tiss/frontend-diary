@@ -110,6 +110,8 @@ const resources = {
           addTraining: "Dodaj trening",
           all: "Wszytskie",
           loadMore: "Załaduj więcej",
+          startDate: "Data rozpoczęcia",
+          endDate: "Data zakończenia",
         },
         newTraining: {
           doTraining: "Zrób trening",
@@ -200,6 +202,8 @@ const resources = {
           addTraining: "Dodaj trening",
           all: "Wszytskie",
           loadMore: "Załaduj więcej",
+          startDate: "Data rozpoczęcia",
+          endDate: "Data zakończenia",
         },
         newTraining: {
           plannedWorkout: "Planowany trening",
@@ -372,6 +376,8 @@ const resources = {
           addTraining: "Add training",
           all: "All",
           loadMore: "Load more",
+          startDate: "Start Date",
+          endDate: "End Date",
         },
         newTraining: {
           doTraining: "Do training",
@@ -465,6 +471,8 @@ const resources = {
           addTraining: "Add training",
           all: "All",
           loadMore: "Load more",
+          startDate: "Start Date",
+          endDate: "End Date",
         },
         newTraining: {
           plannedWorkout: "Planned Workout",
@@ -525,7 +533,6 @@ const resources = {
           dayLeft: "DAY LEFT",
           daysLeft: "DAYS LEFT",
         },
-        
       },
     },
   },
