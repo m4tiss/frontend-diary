@@ -19,12 +19,13 @@ const PostsPage = () => {
   const [isOpenNewRun, setIsOpenNewRun] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [pattern, setPattern] = useState("");
   const { isGymContent } = useContext(ContentContext);
 
   const postAdded = () => {
     setPage(1);
     setPosts([]);
-    fetchPosts(1);
+    fetchPosts(1, pattern);
   };
 
   const toggleGym = () => {
@@ -35,7 +36,7 @@ const PostsPage = () => {
     setIsOpenNewRun((prev) => !prev);
   };
 
-  const fetchPosts = async (currentPage) => {
+  const fetchPosts = async (currentPage, searchPattern) => {
     try {
       const token = getAuthToken();
       const response = await axios.get("/shared/post/getAll", {
@@ -44,11 +45,12 @@ const PostsPage = () => {
         },
         params: {
           page: currentPage,
+          pattern: searchPattern,
         },
       });
 
       const { posts, hasMore } = response.data;
-      setPosts((prevPosts) => [...prevPosts, ...posts]);
+      setPosts((prevPosts) => (currentPage === 1 ? posts : [...prevPosts, ...posts]));
       setHasMore(hasMore);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -58,13 +60,17 @@ const PostsPage = () => {
   useEffect(() => {
     setPage(1);
     setPosts([]);
-    fetchPosts(1);
-  }, []);
+    fetchPosts(1, pattern);
+  }, [pattern]);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
-    fetchPosts(nextPage);
+    fetchPosts(nextPage, pattern);
+  };
+
+  const handleSearchChange = (e) => {
+    setPattern(e.target.value);
   };
 
   return (
@@ -95,21 +101,36 @@ const PostsPage = () => {
           NEW <TbRun size={40} />
         </motion.div>
       </div>
+      <div className="w-80 my-4">
+        <input
+          type="text"
+          value={pattern}
+          onChange={handleSearchChange}
+          placeholder={"Nick.."}
+          className="w-full  p-3 rounded-lg text-xl border  dark:border-gray-700 outline-none  dark:bg-gray-800 dark:text-white"
+        />
+      </div>
       <div className="text-2xl font-semibold">
         {t("shared.posts.lastPosts")}
       </div>
-      {posts.map((post) => {
-        if (post.type === "run") {
-          return (
-            <RunPostPanel key={post.post_id} post={post} onDelete={postAdded} />
-          );
-        } else if (post.type === "gym") {
-          return (
-            <GymPostPanel key={post.post_id} post={post} onDelete={postAdded} />
-          );
-        }
-        return null;
-      })}
+
+      {posts.length === 0 ? (
+        <div className="text-4xl text-black">{t("shared.posts.noPosts")}</div>
+      ) : (
+        posts.map((post) => {
+          if (post.type === "run") {
+            return (
+              <RunPostPanel key={post.post_id} post={post} onDelete={postAdded} />
+            );
+          } else if (post.type === "gym") {
+            return (
+              <GymPostPanel key={post.post_id} post={post} onDelete={postAdded} />
+            );
+          }
+          return null;
+        })
+      )}
+
       {hasMore && (
         <div className="w-full flex justify-center mt-4">
           <motion.button
@@ -133,6 +154,7 @@ const PostsPage = () => {
           </motion.button>
         </div>
       )}
+
       <AnimatePresence>
         {isOpenNewGym && (
           <NewGymPost toggleGym={toggleGym} postAdded={postAdded} />

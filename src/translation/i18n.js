@@ -68,6 +68,7 @@ const resources = {
         },
         posts: {
           lastPosts: "Ostatnie posty użytkowników",
+          noPosts: "Brak postów do wyświetlenia"
         },
       },
       run: {
@@ -331,6 +332,7 @@ const resources = {
         },
         posts: {
           lastPosts: "Recent user posts",
+           noPosts: "No posts to display"
         },
       },
       run: {
