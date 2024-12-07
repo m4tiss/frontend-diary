@@ -41,8 +41,9 @@ export const formattedTime = (dateString) => {
 
 export const formattedDuration = (duration) => {
 
-  if(duration==="00:00:00")
+  if (!duration || duration === "00:00:00") {
     return '00:00:00';
+  }
   
   const [hours, minutes, seconds] = duration.split(":").map(Number);
   let formatted = "";

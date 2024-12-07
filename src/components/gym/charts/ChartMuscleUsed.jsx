@@ -6,8 +6,9 @@ import SyncLoader from "react-spinners/SyncLoader";
 import DarkModeContext from "../../../providers/DarkModeProvider";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs";
 
-const ChartMuscleUsed = ({ friendId, range = "all" }) => {
+const ChartMuscleUsed = ({ friendId, range = "all", startDate, endDate  }) => {
   const { darkMode } = useContext(DarkModeContext);
   const [categoriesData, setCategoriesData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -25,6 +26,12 @@ const ChartMuscleUsed = ({ friendId, range = "all" }) => {
           params: {
             friend_id: friendId || undefined,
             range: range,
+            startDate: startDate
+              ? dayjs(startDate).format("YYYY-MM-DD HH:mm")
+              : undefined,
+            endDate: endDate
+              ? dayjs(endDate).format("YYYY-MM-DD HH:mm")
+              : undefined,
           },
         });
         setCategoriesData(res.data.categories || {});
@@ -37,7 +44,7 @@ const ChartMuscleUsed = ({ friendId, range = "all" }) => {
     };
 
     fetchData();
-  }, [friendId, range]);
+  }, [friendId, range, startDate, endDate]);
 
   const transformDataForPieChart = () => {
     return Object.keys(categoriesData).map((category, index) => ({
