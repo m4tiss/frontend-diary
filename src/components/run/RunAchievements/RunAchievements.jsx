@@ -49,6 +49,7 @@ const RunAchievements = () => {
         {runAchievements.map((achievement) => (
           <AchievementPanel
             key={achievement.users_run_achievement_id}
+            type={"run"}
             achievement={achievement}
           />
         ))}
@@ -58,6 +59,7 @@ const RunAchievements = () => {
       {socialAchievements.map((achievement) => (
           <AchievementPanel
             key={achievement.users_social_achievement_id}
+            type={"shared"}
             achievement={achievement}
           />
         ))}

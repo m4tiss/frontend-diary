@@ -4,9 +4,11 @@ import { CiDumbbell } from "react-icons/ci";
 import { FaUserFriends } from "react-icons/fa";
 import { useContext } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import ContentContext from "../../providers/ContentProvider";
-const AchievementPanel = ({ achievement }) => {
+const AchievementPanel = ({ type, achievement }) => {
   const { isGymContent } = useContext(ContentContext);
+  const { t } = useTranslation();
 
   let icon;
   if (achievement?.type === "workouts") {
@@ -39,8 +41,8 @@ const AchievementPanel = ({ achievement }) => {
         {icon}
       </div>
       <div className="w-full flex min-h-36 items-center justify-center px-5 text-center flex-col my-2">
-        <h2 className="text-2xl font-semibold">{achievement?.title}</h2>
-        <span className="text-xl text-wrap">{achievement?.description}</span>
+        <h2 className="text-2xl font-semibold">{t(`${type}.achievements.${achievement?.title}`)}</h2>
+        <span className="text-xl text-wrap">{t(`${type}.achievements.${achievement?.description}`)}</span>
       </div>
       <div className="w-full px-5 font-semibold text-right text-xl">
         {achievement?.percent.toFixed(2)} %

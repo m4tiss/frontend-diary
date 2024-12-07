@@ -49,6 +49,7 @@ const GymAchievements = () => {
         {gymAchievements.map((achievement) => (
           <AchievementPanel
             key={achievement.users_gym_achievement_id}
+            type={"gym"}
             achievement={achievement}
           />
         ))}
@@ -58,6 +59,7 @@ const GymAchievements = () => {
       {socialAchievements.map((achievement) => (
           <AchievementPanel
             key={achievement.users_social_achievement_id}
+            type={"shared"}
             achievement={achievement}
           />
         ))}

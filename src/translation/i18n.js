@@ -6,6 +6,23 @@ const resources = {
   pl: {
     translation: {
       shared: {
+        achievements: {
+          first_circle_title: "Pierwszy Krąg",
+          first_circle_description:
+            "Osiągnąłeś 5 przyjaciół! Budowanie połączeń to świetny początek.",
+          growing_network_title: "Rosnąca Sieć",
+          growing_network_description:
+            "15 przyjaciół i rośnie! Twoja sieć społeczna się rozrasta.",
+          community_builder_title: "Budowniczy Społeczności",
+          community_builder_description:
+            "Z 50 przyjaciółmi łączysz się z dynamiczną społecznością!",
+          social_star_title: "Gwiazda Społeczności",
+          social_star_description:
+            "Osiągnąłeś 100 przyjaciół! Twoje połączenia nadal rosną — tak trzymaj!",
+          network_champion_title: "Mistrz Sieci",
+          network_champion_description:
+            "250 przyjaciół! Jesteś prawdziwym łącznikiem społecznym i inspiracją dla innych.",
+        },
         navbar: {
           lightMode: "Tryb dzienny",
           nightMode: "Tryb nocny",
@@ -69,10 +86,22 @@ const resources = {
         posts: {
           lastPosts: "Ostatnie posty użytkowników",
           noPosts: "Brak postów do wyświetlenia",
-          new:"Nowy"
+          new: "Nowy",
         },
       },
       run: {
+        achievements: {
+          marathon_achiever_title: "Mistrz Maratonu",
+          marathon_achiever_description: "Ukończyłeś maraton!",
+          ultra_runner_title: "Ultra Biegacz",
+          ultra_runner_description: "Ukończyłeś ultramaraton!",
+          endurance_master_title: "Mistrz Wytrzymałości",
+          endurance_master_description: "Osiągnąłeś 1000 kilometrów!",
+          long_distance_veteran_title: "Weteran Długich Dystansów",
+          long_distance_veteran_description: "Osiągnąłeś 5000 kilometrów!",
+          distance_legend_title: "Legenda Dystansu",
+          distance_legend_description: "Osiągnąłeś 10 000 kilometrów!",
+        },
         general: {
           averagePulse: "Średnie tętno",
           distance: "Dystans",
@@ -187,7 +216,8 @@ const resources = {
           standing_hammer_curl: "Uginanie ramion z hantlami (młotkowo)",
           spider_curl: "Uginanie ramion w oparciu (spider curl)",
           dumbbell_french_press: "Francuskie wyciskanie hantli",
-          straight_bar_tricep_extension: "Prostowanie ramion ze sztangą (triceps)",
+          straight_bar_tricep_extension:
+            "Prostowanie ramion ze sztangą (triceps)",
           leg_extension: "Wydłużanie nóg na maszynie",
           dumbbell_bulgarian_split_squat: "Bułgarski wykrok z hantlami",
           dumbbell_romanian_deadlift: "Martwy ciąg rumuński z hantlami",
@@ -201,7 +231,18 @@ const resources = {
           Triceps: "Tricepsy",
           Shoulders: "Barki",
           Abs: "Brzuch",
-          Legs: "Nogi"
+          Legs: "Nogi",
+        },
+        achievements: {
+          first_steps_title: "Pierwsze Kroki",
+          first_steps_description:
+            "Gratulacje za ukończenie 5 treningów! Każda podróż zaczyna się od jednego kroku, a Ty już zrobiłeś kilka. Kontynuuj w tym tempie!",
+          building_the_habit_title: "Budowanie Nawyków",
+          building_the_habit_description:
+            "Świetna robota! Ukończyłeś 20 treningów, pokazując zaangażowanie i determinację. Budujesz silny nawyk — trzymaj się tego kursu!",
+          centurion_title: "Centurion",
+          centurion_description:
+            "Niesamowite osiągnięcie! Z 100 treningami na koncie, jesteś prawdziwym wojownikiem fitnessu. Twoja ciężka praca i wytrwałość są inspirujące!",
         },
         general: {
           page: "Strona",
@@ -316,6 +357,23 @@ const resources = {
   gb: {
     translation: {
       shared: {
+        achievements: {
+          first_circle_title: "First Circle",
+          first_circle_description:
+            "You've reached 5 friends! Building connections is a great start.",
+          growing_network_title: "Growing Network",
+          growing_network_description:
+            "15 friends and counting! Your social network is expanding.",
+          community_builder_title: "Community Builder",
+          community_builder_description:
+            "With 50 friends, you’re connecting with a vibrant community!",
+          social_star_title: "Social Star",
+          social_star_description:
+            "You've hit 100 friends! Your connections keep growing—keep it up!",
+          network_champion_title: "Network Champion",
+          network_champion_description:
+            "250 friends! You're a true social connector and inspiration to others.",
+        },
         navbar: {
           lightMode: "Light Mode",
           nightMode: "Night Mode",
@@ -377,11 +435,24 @@ const resources = {
         },
         posts: {
           lastPosts: "Recent user posts",
-           noPosts: "No posts to display",
-            new:"New"
+          noPosts: "No posts to display",
+          new: "New",
         },
       },
       run: {
+        achievements: {
+          marathon_achiever_title: "Marathon Achiever",
+          marathon_achiever_description: "You have completed a marathon!",
+          ultra_runner_title: "Ultra Runner",
+          ultra_runner_description: "You have completed an ultra marathon!",
+          endurance_master_title: "Endurance Master",
+          endurance_master_description: "You have reached 1000 kilometers!",
+          long_distance_veteran_title: "Long Distance Veteran",
+          long_distance_veteran_description:
+            "You have reached 5000 kilometers!",
+          distance_legend_title: "Distance Legend",
+          distance_legend_description: "You have reached 10,000 kilometers!",
+        },
         general: {
           averagePulse: "Average pulse",
           distance: "Distance",
@@ -513,7 +584,18 @@ const resources = {
           Triceps: "Triceps",
           Shoulders: "Shoulders",
           Abs: "Abs",
-          Legs: "Legs"
+          Legs: "Legs",
+        },
+        achievements: {
+          first_steps_title: "First Steps",
+          first_steps_description:
+            "Congratulations on completing 5 workouts! Every journey begins with a single step, and you've taken the first few. Keep up the momentum!",
+          building_the_habit_title: "Building the Habit",
+          building_the_habit_description:
+            "Amazing work! You've completed 20 workouts, showing dedication and commitment. You're building a strong habit — keep pushing forward!",
+          centurion_title: "Centurion",
+          centurion_description:
+            "Incredible achievement! With 100 workouts under your belt, you're a true fitness warrior. Your hard work and perseverance are inspiring!",
         },
         general: {
           page: "Page",

@@ -37,7 +37,7 @@ import GymFriendPage from "./components/gym/GymFriendPage/GymFriendPage";
 import GymRecords from "./components/gym/GymRecords/GymRecords";
 import Languages from "./components/shared/Langauges";
 import PostsPage from "./components/shared/Posts/PostsPage";
-import GymAchievements from "./components/gym/GymAchievements.jsx/GymAchievements";
+import GymAchievements from "./components/gym/GymAchievements/GymAchievements";
 import RunAchievements from "./components/run/RunAchievements/RunAchievements";
 import GymGoals from "./components/gym/GymGoals/GymGoals";
 
