@@ -4,8 +4,9 @@ import { useTranslation } from "react-i18next";
 import axios from "../../../config/axios";
 import { PieChart } from "@mui/x-charts";
 import SyncLoader from "react-spinners/SyncLoader";
+import dayjs from "dayjs";
 
-const ChartCategories = ({ friendId, range = "all" }) => {
+const ChartCategories = ({ friendId, range = "all", startDate, endDate }) => {
   const { t } = useTranslation();
   const [categoriesData, setCategoriesData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,12 @@ const ChartCategories = ({ friendId, range = "all" }) => {
           params: {
             friend_id: friendId || undefined,
             range: range,
+            startDate: startDate
+              ? dayjs(startDate).format("YYYY-MM-DD HH:mm")
+              : undefined,
+            endDate: endDate
+              ? dayjs(endDate).format("YYYY-MM-DD HH:mm")
+              : undefined,
           },
         });
         const categories = res.data.categories;
@@ -33,7 +40,7 @@ const ChartCategories = ({ friendId, range = "all" }) => {
     };
 
     fetchData();
-  }, [friendId, range]);
+  }, [friendId, range, startDate, endDate]);
 
   const transformDataForPieChart = () => {
     return categoriesData.map((category, index) => ({
@@ -55,7 +62,7 @@ const ChartCategories = ({ friendId, range = "all" }) => {
       </div>
     );
   }
- 
+
   return (
     <div className="flex flex-col items-center justify-center py-10 bg-white text-black rounded-xl w-full shadow-xl">
       <div className="text-center text-xl xl:text-2xl p-2">
@@ -71,7 +78,6 @@ const ChartCategories = ({ friendId, range = "all" }) => {
               data: transformDataForPieChart(),
               highlightScope: { fade: "global", highlight: "item" },
               faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
-
             },
           ]}
           width={window.innerWidth > 768 ? 500 : 300}
