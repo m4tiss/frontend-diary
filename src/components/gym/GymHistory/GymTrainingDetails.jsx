@@ -98,7 +98,7 @@ const GymTrainingDetails = ({
                     }`}
                     onClick={() => setSelectedExercise(index)}
                   >
-                    {exercise.exerciseName}
+                    {t(`gym.exercises.${exercise.exerciseName}`)}
                   </div>
                 ))}
               </>

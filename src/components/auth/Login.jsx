@@ -13,9 +13,6 @@ import {
   animate,
   useScroll,
 } from "framer-motion";
-import LoginPage1 from "../../images/loginPage1.png";
-import LoginPage2 from "../../images/loginPage2.png";
-import LoginPage3 from "../../images/loginPage3.png";
 import ContentContext from "../../providers/ContentProvider";
 import { useContext } from "react";
 
@@ -29,12 +26,6 @@ const Login = () => {
 
   const count = useMotionValue(0);
   const rounded = useTransform(count, Math.round);
-  const { scrollY } = useScroll();
-
-  const yText = useTransform(scrollY, [0, 200, 300, 500], [0, 200, 300, 480]);
-  const scaleText = useTransform(scrollY, [0, 300, 500], [1, 0.7, 0.5]);
-  const colorText = useTransform(scrollY, [0, 300], ["#ffffff", "#000000"]);
-  const opacityText = useTransform(scrollY, [0, 300, 500], [0.5, 0.7, 1]);
   useEffect(() => {
     axios
       .get("/public/numberOfUsers")

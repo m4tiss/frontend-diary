@@ -7,6 +7,7 @@ const resources = {
     translation: {
       shared: {
         achievements: {
+          social:"Osiągnięcia Społeczne",
           first_circle_title: "Pierwszy Krąg",
           first_circle_description:
             "Osiągnąłeś 5 przyjaciół! Budowanie połączeń to świetny początek.",
@@ -91,6 +92,7 @@ const resources = {
       },
       run: {
         achievements: {
+          run:"Osiągnięcia Biegowe",
           marathon_achiever_title: "Mistrz Maratonu",
           marathon_achiever_description: "Ukończyłeś maraton!",
           ultra_runner_title: "Ultra Biegacz",
@@ -240,6 +242,7 @@ const resources = {
           Legs: "Nogi",
         },
         achievements: {
+          gym:"Osiągnięcia Siłowe",
           first_steps_title: "Pierwsze Kroki",
           first_steps_description:
             "Gratulacje za ukończenie 5 treningów! Każda podróż zaczyna się od jednego kroku, a Ty już zrobiłeś kilka. Kontynuuj w tym tempie!",
@@ -364,6 +367,7 @@ const resources = {
     translation: {
       shared: {
         achievements: {
+          social:"Social Achievements",
           first_circle_title: "First Circle",
           first_circle_description:
             "You've reached 5 friends! Building connections is a great start.",
@@ -447,6 +451,7 @@ const resources = {
       },
       run: {
         achievements: {
+          run:"Run Achievements",
           marathon_achiever_title: "Marathon Achiever",
           marathon_achiever_description: "You have completed a marathon!",
           ultra_runner_title: "Ultra Runner",
@@ -599,6 +604,7 @@ const resources = {
           Legs: "Legs",
         },
         achievements: {
+          gym:"Gym Achievements",
           first_steps_title: "First Steps",
           first_steps_description:
             "Congratulations on completing 5 workouts! Every journey begins with a single step, and you've taken the first few. Keep up the momentum!",

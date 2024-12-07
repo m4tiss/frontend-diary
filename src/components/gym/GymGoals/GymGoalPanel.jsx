@@ -127,7 +127,7 @@ const GymGoalPanel = ({ goal, deleteGoal }) => {
         </div>
         <div className="absolute p-2 left-0 bottom-0 flex justify-center items-center rounded-br-xl gap-2">
           <img src={icons[goal.type]} alt={goal.type} className="w-16 h-16" />
-          <label className="text-xl font-semibold">{goal.type}</label>
+          <label className="text-xl font-semibold">{t(`gym.categories.${goal.type}`)}</label>
         </div>
       </div>
     </motion.div>
