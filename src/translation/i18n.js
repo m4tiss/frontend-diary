@@ -68,7 +68,8 @@ const resources = {
         },
         posts: {
           lastPosts: "Ostatnie posty użytkowników",
-          noPosts: "Brak postów do wyświetlenia"
+          noPosts: "Brak postów do wyświetlenia",
+          new:"Nowy"
         },
       },
       run: {
@@ -191,6 +192,16 @@ const resources = {
           dumbbell_bulgarian_split_squat: "Bułgarski wykrok z hantlami",
           dumbbell_romanian_deadlift: "Martwy ciąg rumuński z hantlami",
           walking_lunges: "Wykroki chodzone",
+        },
+        categories: {
+          All: "Wszystkie",
+          Chest: "Klatka",
+          Back: "Plecy",
+          Biceps: "Bicepsy",
+          Triceps: "Tricepsy",
+          Shoulders: "Barki",
+          Abs: "Brzuch",
+          Legs: "Nogi"
         },
         general: {
           page: "Strona",
@@ -366,7 +377,8 @@ const resources = {
         },
         posts: {
           lastPosts: "Recent user posts",
-           noPosts: "No posts to display"
+           noPosts: "No posts to display",
+            new:"New"
         },
       },
       run: {
@@ -492,6 +504,16 @@ const resources = {
           dumbbell_bulgarian_split_squat: "Dumbbell Bulgarian Split Squat",
           dumbbell_romanian_deadlift: "Dumbbell Romanian Deadlift",
           walking_lunges: "Walking Lunges",
+        },
+        categories: {
+          All: "All",
+          Chest: "Chest",
+          Back: "Back",
+          Biceps: "Biceps",
+          Triceps: "Triceps",
+          Shoulders: "Shoulders",
+          Abs: "Abs",
+          Legs: "Legs"
         },
         general: {
           page: "Page",

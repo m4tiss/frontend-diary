@@ -47,7 +47,7 @@ const GymRecords = () => {
               }`}
               onClick={() => handleCategoryChange(exercise.name_exercise)}
             >
-              {exercise.name_exercise}
+              {t(`gym.exercises.${exercise.name_exercise}`)}
             </div>
           ))}
         </div>

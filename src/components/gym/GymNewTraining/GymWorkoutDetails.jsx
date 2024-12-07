@@ -20,7 +20,6 @@ const GymWorkoutDetails = () => {
       ],
     }));
     setWorkoutData(initialData);
-    console.log(selectedExercises);
   }, [selectedExercises]);
 
   const [selectedExercise, setSelectedExercise] = useState(0);
@@ -68,7 +67,7 @@ const GymWorkoutDetails = () => {
                 }`}
                 onClick={() => setSelectedExercise(index)}
               >
-                {exercise.name_exercise}
+                {t(`gym.exercises.${exercise.name_exercise}`)}
               </div>
             ))}
             <div

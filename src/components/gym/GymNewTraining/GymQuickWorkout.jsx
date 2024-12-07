@@ -17,16 +17,15 @@ const GymQuickWorkout = () => {
   const exercisesPerPage = 6;
 
   const categories = [
-    "All",
-    "Chest",
-    "Back",
-    "Biceps",
-    "Triceps",
-    "Shoulders",
-    "Abs",
-    "Legs",
+    { name: "All", label: t("gym.categories.All") },
+    { name: "Chest", label: t("gym.categories.Chest") },
+    { name: "Back", label: t("gym.categories.Back") },
+    { name: "Biceps", label: t("gym.categories.Biceps") },
+    { name: "Triceps", label: t("gym.categories.Triceps") },
+    { name: "Shoulders", label: t("gym.categories.Shoulders") },
+    { name: "Abs", label: t("gym.categories.Abs") },
+    { name: "Legs", label: t("gym.categories.Legs") },
   ];
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -111,12 +110,12 @@ const GymQuickWorkout = () => {
     <div className="w-full flex flex-grow flex-col items-center xl:px-20 py-10 bg-[#e9ecef] dark:bg-run-night-background">
       <div className="w-full flex flex-col xl:flex-row justify-between h-fit gap-5">
         <div className="flex h-fit flex-row flex-wrap justify-center xl:justify-start gap-5">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <GymFiltrationPanel
-              key={index}
-              title={category}
-              selected={selectedCategory === category}
-              onClick={() => handleCategoryClick(category)}
+              key={category.name}
+              title={category.label}
+              selected={selectedCategory === category.name}
+              onClick={() => handleCategoryClick(category.name)}
             />
           ))}
         </div>
@@ -136,19 +135,19 @@ const GymQuickWorkout = () => {
 
       <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
         {currentExercises.length === 0 ? (
-            <div className="w-full flex justify-center items-center text-black dark:text-white h-24 text-4xl">
-              {t("gym.newTraining.noExercises")}
-            </div>
-          ) : (
-            currentExercises.map((exercise) => (
-              <GymExercisePanel
-                height={24}
-                key={exercise.gym_exercise_id}
-                exercise={exercise}
-                onClick={() => handleAddExercise(exercise)}
-              />
-            ))
-          )}
+          <div className="w-full flex justify-center items-center text-black dark:text-white h-24 text-4xl">
+            {t("gym.newTraining.noExercises")}
+          </div>
+        ) : (
+          currentExercises.map((exercise) => (
+            <GymExercisePanel
+              height={24}
+              key={exercise.gym_exercise_id}
+              exercise={exercise}
+              onClick={() => handleAddExercise(exercise)}
+            />
+          ))
+        )}
       </div>
 
       <div className="flex w-full items-center justify-center xl:justify-between gap-10 xl:gap-0 py-10">
@@ -167,7 +166,8 @@ const GymQuickWorkout = () => {
         <button
           onClick={() => handlePageChange(1)}
           disabled={
-            currentPage === Math.ceil(filteredExercises.length / exercisesPerPage)
+            currentPage ===
+            Math.ceil(filteredExercises.length / exercisesPerPage)
           }
           className="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
         >
@@ -178,22 +178,22 @@ const GymQuickWorkout = () => {
       <h2 className="text-center xl:text-start text-black dark:text-white w-full text-xl py-10">
         {t("gym.newTraining.selectedExercises")}
       </h2>
-        <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
-          {currentSelectedExercises.length === 0 ? (
-            <div className="w-full flex justify-center items-center text-black dark:text-white h-24 text-4xl">
-              {t("gym.newTraining.noExercises")}
-            </div>
-          ) : (
-            currentSelectedExercises.map((exercise) => (
-              <GymExercisePanel
-                height={24}
-                key={exercise.gym_exercise_id}
-                exercise={exercise}
-                onClick={() => handleRemoveExercise(exercise)}
-              />
-            ))
-          )}
-        </div>
+      <div className="flex w-full flex-col xl:flex-row items-center xl:justify-start gap-10">
+        {currentSelectedExercises.length === 0 ? (
+          <div className="w-full flex justify-center items-center text-black dark:text-white h-24 text-4xl">
+            {t("gym.newTraining.noExercises")}
+          </div>
+        ) : (
+          currentSelectedExercises.map((exercise) => (
+            <GymExercisePanel
+              height={24}
+              key={exercise.gym_exercise_id}
+              exercise={exercise}
+              onClick={() => handleRemoveExercise(exercise)}
+            />
+          ))
+        )}
+      </div>
 
       <div className="flex w-full items-center justify-center xl:justify-between gap-10 xl:gap-0 py-10">
         <button

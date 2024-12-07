@@ -86,7 +86,7 @@ const PostsPage = () => {
           }}
           className="h-12 w-80 flex text-white text-2xl justify-center items-center cursor-pointer gap-3 rounded-xl"
         >
-          NEW <CgGym size={40} />
+          {t("shared.posts.new")} <CgGym size={40} />
         </motion.div>
         <motion.div
           onClick={toggleRun}
@@ -98,7 +98,7 @@ const PostsPage = () => {
           }}
           className="h-12 w-80 flex text-white  text-2xl justify-center items-center cursor-pointer  gap-3 rounded-xl"
         >
-          NEW <TbRun size={40} />
+          {t("shared.posts.new")} <TbRun size={40} />
         </motion.div>
       </div>
       <div className="w-80 my-4">

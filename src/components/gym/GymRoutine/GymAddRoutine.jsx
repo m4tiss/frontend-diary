@@ -21,16 +21,15 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
   const exercisesPerPage = 6;
 
   const categories = [
-    "All",
-    "Chest",
-    "Back",
-    "Biceps",
-    "Triceps",
-    "Shoulders",
-    "Abs",
-    "Legs",
+    { name: "All", label: t("gym.categories.All") },
+    { name: "Chest", label: t("gym.categories.Chest") },
+    { name: "Back", label: t("gym.categories.Back") },
+    { name: "Biceps", label: t("gym.categories.Biceps") },
+    { name: "Triceps", label: t("gym.categories.Triceps") },
+    { name: "Shoulders", label: t("gym.categories.Shoulders") },
+    { name: "Abs", label: t("gym.categories.Abs") },
+    { name: "Legs", label: t("gym.categories.Legs") },
   ];
-
   useEffect(() => {
     const token = getAuthToken();
     axios
@@ -179,14 +178,14 @@ const GymAddRoutine = ({ toggleRoutineDialog, successRoutineDialog }) => {
 
         <div className="w-full flex flex-col xl:flex-row justify-between h-fit gap-5">
           <div className="flex h-fit flex-row flex-wrap justify-center xl:justify-start gap-5">
-            {categories.map((category, index) => (
-              <GymFiltrationPanel
-                key={index}
-                title={category}
-                selected={selectedCategory === category}
-                onClick={() => handleCategoryClick(category)}
-              />
-            ))}
+          {categories.map((category) => (
+            <GymFiltrationPanel
+              key={category.name}
+              title={category.label}
+              selected={selectedCategory === category.name}
+              onClick={() => handleCategoryClick(category.name)}
+            />
+          ))}
           </div>
           <div className="flex justify-center items-center">
             <input
