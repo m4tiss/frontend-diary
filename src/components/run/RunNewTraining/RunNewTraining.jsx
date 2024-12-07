@@ -220,7 +220,7 @@ const RunNewTraining = () => {
                 }
                 text-2xl shadow-2xl rounded-xl w-64 p-2 my-3 cursor-pointer dark:text-white`}
               >
-                {item.category_name}
+                {t(`run.categories.${item.category_name}`)}
               </div>
             ))}
           </div>

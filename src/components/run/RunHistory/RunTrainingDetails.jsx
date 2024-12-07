@@ -18,9 +18,8 @@ import {
   formattedDuration,
 } from "../../../functions/formatData";
 import { useTranslation } from "react-i18next";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect} from "react";
 import DarkModeContext from "../../../providers/DarkModeProvider";
-
 import { CiStar } from "react-icons/ci";
 import { MdOutlineNoteAlt, MdOutlineTimer } from "react-icons/md";
 import { CiCalendarDate, CiWavePulse1 } from "react-icons/ci";
@@ -76,7 +75,7 @@ const RunTrainingDetails = ({ toggleDialog, training, onDelete, hideDelete }) =>
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col xl:flex-row items-center px-10 justify-between">
-          <h2 className="text-4xl">{training.category_name}</h2>
+          <h2 className="text-4xl"> {t(`run.categories.${training.category_name}`|| "UNKNOWN TITLE")}</h2>
           <div className="flex gap-5">
           {!hideDelete && (
               <motion.button

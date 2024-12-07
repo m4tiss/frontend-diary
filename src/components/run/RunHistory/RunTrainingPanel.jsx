@@ -6,6 +6,7 @@ import iconLight from "../../../icons/runIconLight.png";
 import RunTrainingDetails from "./RunTrainingDetails";
 import { LuMapPin } from "react-icons/lu";
 import { LuMapPinOff } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -18,6 +19,7 @@ import {
 const RunTrainingPanel = ({ training, onDelete,showDetails }) => {
   const { darkMode } = useContext(DarkModeContext);
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const toggleDialog = () => {
     setIsOpen(!isOpen);
@@ -31,7 +33,7 @@ const RunTrainingPanel = ({ training, onDelete,showDetails }) => {
     >
       <div>
         <h2 className="text-2xl">
-          {training.category_name || "UNKNOWN TITLE"}
+        {t(`run.categories.${training.category_name}`|| "UNKNOWN TITLE")}
         </h2>
       </div>
       <div className="flex justify-start w-full px-5  text-xl">

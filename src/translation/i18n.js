@@ -112,6 +112,12 @@ const resources = {
           trainings: "Treningi",
           category: "Kategorie",
         },
+        categories: {
+          long_run: "Długi Bieg",
+          easy_run: "Lekki Bieg",
+          interval: "Interwał",
+          regeneration: "Regeneracja"
+        },
         dashboard: {
           title: "BIEGAJ CODZIENNIE",
           description:
@@ -452,6 +458,12 @@ const resources = {
             "You have reached 5000 kilometers!",
           distance_legend_title: "Distance Legend",
           distance_legend_description: "You have reached 10,000 kilometers!",
+        },
+        categories:{
+          long_run:"Long Run",
+          easy_run:"Easy Run",
+          interval:"Interval",
+          regeneration:"Regeneration"
         },
         general: {
           averagePulse: "Average pulse",
