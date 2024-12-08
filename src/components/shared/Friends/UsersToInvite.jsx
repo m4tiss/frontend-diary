@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
 import UserToInvitePanel from "./UserToInvitePanel";
 import { useTranslation } from "react-i18next";
 import { IoIosRefresh } from "react-icons/io";

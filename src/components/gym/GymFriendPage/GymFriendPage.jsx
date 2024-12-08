@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
-import FriendBasicInfo from "../../shared/FriendBasicInfo";
+import FriendBasicInfo from "../../shared/Friends/FriendBasicInfo";
 import GymFriendAdvancedInfo from "./GymFriendAdvancedInfo";
 import GymFriendCharts from "./GymFriendCharts";
 const GymFriendPage = () => {

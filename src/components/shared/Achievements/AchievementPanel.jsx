@@ -5,7 +5,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { useContext } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import ContentContext from "../../providers/ContentProvider";
+import ContentContext from "../../../providers/ContentProvider";
 const AchievementPanel = ({ type, achievement }) => {
   const { isGymContent } = useContext(ContentContext);
   const { t } = useTranslation();

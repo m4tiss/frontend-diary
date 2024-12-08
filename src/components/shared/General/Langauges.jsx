@@ -1,8 +1,8 @@
 import React from "react";
 import ReactCountryFlag from "react-country-flag";
 import { useContext } from "react";
-import DarkModeContext from "../../providers/DarkModeProvider";
-import { setLanguage } from "../../translation/i18n";
+import DarkModeContext from "../../../providers/DarkModeProvider";
+import { setLanguage } from "../../../translation/i18n";
 
 const Languages = () => {
   const { darkMode } = useContext(DarkModeContext);

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import ContentContext from "../../providers/ContentProvider";
+import ContentContext from "../../../providers/ContentProvider";
 
 const FriendDivProfile = ({user}) => {
 

@@ -1,8 +1,8 @@
-import { calculateDaysWithUs } from "../../functions/statsCalculations";
+import { calculateDaysWithUs } from "../../../functions/statsCalculations";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

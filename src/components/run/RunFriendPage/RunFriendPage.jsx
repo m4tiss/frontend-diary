@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import FriendBasicInfo from "../../shared/FriendBasicInfo";
+import FriendBasicInfo from "../../shared/Friends/FriendBasicInfo";
 import { useParams } from "react-router-dom";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";

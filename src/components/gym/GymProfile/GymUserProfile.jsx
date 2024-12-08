@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import FriendDivProfile from "../../shared/FriendDivProfile";
-import StatsUserProfileSlider from "../../shared/StatsUserProfileSlider";
+import FriendDivProfile from "../../shared/Friends/FriendDivProfile";
+import StatsUserProfileSlider from "../../shared/Stats/StatsUserProfileSlider";
 import { IoMdAdd } from "react-icons/io";
 import { GoGoal } from "react-icons/go";
 import { TbTimelineEvent } from "react-icons/tb";
@@ -10,7 +10,7 @@ import { AnimatePresence } from "framer-motion";
 import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
 import { useTranslation } from "react-i18next";
-import PagePanel from "../../shared/PagePanel";
+import PagePanel from "../../shared/General/PagePanel";
 import { useNavigate } from "react-router-dom";
 import { GiAchievement } from "react-icons/gi";
 import ChartTrainings from "../../shared/charts/ChartTrainings";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "../../config/axios";
+import axios from "../../../config/axios";
 import { useTranslation } from "react-i18next";
-import { getAuthToken } from "../../config/auth";
+import { getAuthToken } from "../../../config/auth";
 import FriendPanel from "./FriendPanel";
 import { motion } from "framer-motion";
 

@@ -1,4 +1,4 @@
-import AchievementPanel from "../../shared/AchievementPanel";
+import AchievementPanel from "../../shared/Achievements/AchievementPanel";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../../config/auth";
 import { useTranslation } from "react-i18next";

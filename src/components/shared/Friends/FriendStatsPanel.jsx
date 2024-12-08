@@ -1,7 +1,7 @@
 import { FaRegShareSquare } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext} from "react";
-import ContentContext from "../../providers/ContentProvider";
+import ContentContext from "../../../providers/ContentProvider";
 
 const FriendStatsPanel = ({ user }) => {
   const { isGymContent } = useContext(ContentContext);

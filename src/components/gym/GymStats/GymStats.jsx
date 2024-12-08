@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import SmallStatsPanel from "../../shared/SmallStatsPanel";
+import SmallStatsPanel from "../../shared/Stats/SmallStatsPanel";
 import GymStatsProfile from "./GymStatsProfile";
-import FriendStatsPanel from "../../shared/FriendStatsPanel";
+import FriendStatsPanel from "../../shared/Friends/FriendStatsPanel";
 import ChartMuscleUsed from "../charts/ChartMuscleUsed";
 import { useUser } from "../../../providers/UserProvider";
 import { useTranslation } from "react-i18next";

@@ -24,7 +24,7 @@ import { useUser } from "./providers/UserProvider";
 import GymUserProfile from "./components/gym/GymProfile/GymUserProfile";
 import RunUserProfile from "./components/run/RunProfile/RunUserProfile";
 import RunGoals from "./components/run/RunGoals/RunGoals";
-import FriendsPage from "./components/shared/FriendsPage";
+import FriendsPage from "./components/shared/Friends/FriendsPage";
 import { useEffect, useState, useContext } from "react";
 import DarkModeContext from "./providers/DarkModeProvider";
 import RunFriendPage from "./components/run/RunFriendPage/RunFriendPage";
@@ -35,7 +35,7 @@ import GymPlannedWorkout from "./components/gym/GymNewTraining/GymPlannedWorkout
 import GymWorkoutDetails from "./components/gym/GymNewTraining/GymWorkoutDetails";
 import GymFriendPage from "./components/gym/GymFriendPage/GymFriendPage";
 import GymRecords from "./components/gym/GymRecords/GymRecords";
-import Languages from "./components/shared/Langauges";
+import Languages from "./components/shared/General/Langauges";
 import PostsPage from "./components/shared/Posts/PostsPage";
 import GymAchievements from "./components/gym/GymAchievements/GymAchievements";
 import RunAchievements from "./components/run/RunAchievements/RunAchievements";

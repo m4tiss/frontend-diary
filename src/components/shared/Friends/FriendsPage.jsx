@@ -4,7 +4,7 @@ import FriendsList from "./FriendsList";
 import UsersToInvite from "./UsersToInvite";
 import FriendsUserProfile from "./FriendsUserProfile";
 import FriendsPending from "./FriendsPending";
-import ContentContext from "../../providers/ContentProvider";
+import ContentContext from "../../../providers/ContentProvider";
 
 const FriendsPage = () => {
   const { t } = useTranslation();

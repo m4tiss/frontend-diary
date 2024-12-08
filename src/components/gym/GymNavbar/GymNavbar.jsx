@@ -2,7 +2,7 @@ import { TbRun } from "react-icons/tb";
 import { CgGym } from "react-icons/cg";
 import { auth } from "../../../config/firebase";
 import { signOut } from "firebase/auth";
-import NavbarButton from "../../../components/shared/NavbarButton";
+import NavbarButton from "../../shared/General/NavbarButton";
 import { LuMoonStar } from "react-icons/lu";
 import { LuSun } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";

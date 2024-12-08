@@ -1,5 +1,5 @@
 import SyncLoader from "react-spinners/SyncLoader";
-import DarkModeContext from "../../providers/DarkModeProvider";
+import DarkModeContext from "../../../providers/DarkModeProvider";
 import { useContext } from "react";
 const SmallStatsPanel = ({ title, description, loading }) => {
   const { darkMode } = useContext(DarkModeContext);

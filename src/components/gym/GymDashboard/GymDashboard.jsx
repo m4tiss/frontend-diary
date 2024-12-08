@@ -1,4 +1,4 @@
-import DashboardPanel from "../../shared/DashboardPanel";
+import DashboardPanel from "../../shared/General/DashboardPanel";
 import doTraining from "../../../icons/do_white.svg";
 import history from "../../../icons/history.svg";
 import stats from "../../../icons/stats.svg";

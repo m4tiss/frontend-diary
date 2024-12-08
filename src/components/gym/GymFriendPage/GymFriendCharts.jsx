@@ -1,7 +1,7 @@
 import { TbRun } from "react-icons/tb";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import FriendChartPanel from "../../shared/FriendChartPanel";
+import FriendChartPanel from "../../shared/Friends/FriendChartPanel";
 import { CiDumbbell } from "react-icons/ci";
 import { BsHeartPulse } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";

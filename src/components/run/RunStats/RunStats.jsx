@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import SmallStatsPanel from "../../shared/SmallStatsPanel";
+import SmallStatsPanel from "../../shared/Stats/SmallStatsPanel";
 import RunStatsProfile from "./RunStatsProfile";
-import FriendStatsPanel from "../../shared/FriendStatsPanel";
+import FriendStatsPanel from "../../shared/Friends/FriendStatsPanel";
 import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
 import ChartCategories from "./../charts/ChartCategories";

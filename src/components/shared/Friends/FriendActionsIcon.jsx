@@ -1,4 +1,4 @@
-import ContentContext from "../../providers/ContentProvider";
+import ContentContext from "../../../providers/ContentProvider";
 import { useContext } from "react";
 const FriendActionIcon = ({ icon, onClick }) => {
   const { isGymContent } = useContext(ContentContext);

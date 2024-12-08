@@ -1,6 +1,6 @@
-import { useUser } from "../../providers/UserProvider";
+import { useUser } from "../../../providers/UserProvider";
 import { useTranslation } from "react-i18next";
-import { formattedDate } from "../../functions/formatData";
+import { formattedDate } from "../../../functions/formatData";
 const FriendsUserProfile = ({color}) => {
   const { t } = useTranslation();
   const { userInfo } = useUser();

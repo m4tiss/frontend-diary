@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
 import FriendPendingPanel from "./FriendPendingPanel";
 import { motion,AnimatePresence } from "framer-motion";
 import { EffectFlip } from 'swiper/modules';
@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-flip';
 
-import { useUser } from "../../providers/UserProvider";
+import { useUser } from "../../../providers/UserProvider";
 
 
 const FriendsPending = () => {

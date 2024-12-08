@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import axios from "../../config/axios";
-import { getAuthToken } from "../../config/auth";
+import axios from "../../../config/axios";
+import { getAuthToken } from "../../../config/auth";
 import { motion } from "framer-motion";
 
 const UserToInvitePanel = ({ user, onDelete }) => {

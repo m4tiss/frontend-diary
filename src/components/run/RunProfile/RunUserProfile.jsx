@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import FriendDivProfile from "../../shared/FriendDivProfile";
-import StatsUserProfileSlider from "../../shared/StatsUserProfileSlider";
+import FriendDivProfile from "../../shared/Friends/FriendDivProfile";
+import StatsUserProfileSlider from "../../shared/Stats/StatsUserProfileSlider";
 import { IoMdAdd } from "react-icons/io";
 import { GoGoal } from "react-icons/go";
 import { getAuthToken } from "../../../config/auth";
@@ -11,7 +11,7 @@ import { LuGoal } from "react-icons/lu";
 import { GiTrophyCup } from "react-icons/gi";
 import { GiAchievement } from "react-icons/gi";
 import { TbTimelineEvent } from "react-icons/tb";
-import PagePanel from "../../shared/PagePanel";
+import PagePanel from "../../shared/General/PagePanel";
 import { useNavigate } from "react-router-dom";
 import ChartTrainings from "../../shared/charts/ChartTrainings";
 import { formattedDate } from "../../../functions/formatData";
@@ -19,28 +19,16 @@ import { useTranslation } from "react-i18next";
 import { useUser } from "../../../providers/UserProvider";
 import RunAddGoal from "../RunGoals/RunAddGoal";
 import { ToastContainer, toast } from "react-toastify";
-import RunAddCategory from "../RunAddCategory";
 
 const RunUserProfile = () => {
   const { t } = useTranslation();
   const { userInfo } = useUser();
   const [isGoalOpen, setIsGoalOpen] = useState(false);
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [visibleFriendsCount, setVisibleFriendsCount] = useState(getVisibleFriendsCount());
 
   const toggleGoalDialog = () => {
     setIsGoalOpen((prev) => !prev);
   };
-
-  const toggleCategoryDialog = () => {
-    setIsCategoryOpen((prev) => !prev);
-  };
-
-  const successCategoryDialog = () => {
-    setIsCategoryOpen((prev) => !prev);
-    toast.success("Category added!");
-  };
-
   const successGoalDialog = () => {
     setIsGoalOpen((prev) => !prev);
     toast.success("Goal added!");
@@ -174,15 +162,6 @@ const RunUserProfile = () => {
               <RunAddGoal
               toggleGoalDialog={toggleGoalDialog}
               successGoalDialog={successGoalDialog}
-              />
-            )}
-          </AnimatePresence>
-
-          <AnimatePresence>
-            {isCategoryOpen && (
-              <RunAddCategory
-              toggleCategoryDialog={toggleCategoryDialog}
-              successCategoryDialog={successCategoryDialog}
               />
             )}
           </AnimatePresence>
