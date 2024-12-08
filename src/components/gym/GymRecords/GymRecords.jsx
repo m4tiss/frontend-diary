@@ -35,7 +35,7 @@ const GymRecords = () => {
   return (
     <div className="w-full flex flex-col 2xl:flex-row flex-grow justify-evenly items-center bg-[#e9ecef] dark:bg-run-night-background py-10 xl:py-0 gap-10 2xl:gap-0">
       <div className="flex flex-col justify-center items-center gap-10 relative w-[300px]">
-        <h2 className="text-3xl">{t('gym.general.select')}</h2>
+        <h2 className="text-3xl dark:text-white">{t('gym.general.select')}</h2>
         <div className="bg-gray-200 text-black rounded  w-full max-h-40 2xl:max-h-96 overflow-y-auto">
           {availableExercises.map((exercise) => (
             <div

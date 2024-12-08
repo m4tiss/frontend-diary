@@ -5,7 +5,6 @@ import axios from "../../../config/axios";
 import { getAuthToken } from "../../../config/auth";
 import RunFriendAdvancedInfo from "./RunFriendAdvancedInfo";
 import RunFriendCharts from "./RunFriendCharts";
-import RunFriendActions from "./RunFriendActions";
 const RunFriendPage = () => {
   const { friendId } = useParams();
   const [friendInfo, setFriendInfo] = useState({});
@@ -35,7 +34,6 @@ const RunFriendPage = () => {
       <div className="w-full flex flex-col xl:flex-row justify-center flex-grow gap-10 xl:gap-0">
         <RunFriendAdvancedInfo friendInfo={friendInfo} friendId={friendId} />
         <RunFriendCharts friendInfo={friendInfo} friendId={friendId} />
-        <RunFriendActions />
       </div>
     </div>
   );

@@ -54,7 +54,7 @@ const GymWorkoutDetails = () => {
 
   return (
     <div className="w-full flex flex-grow flex-col items-center py-10 xl:px-20 bg-[#e9ecef] dark:bg-run-night-background gap-10 xl:gap-0">
-      <div className="w-fit flex flex-col xl:flex-row text-2xl bg-white p-3 xl:p-2 gap-5 xl:rounded-tr-2xl xl:rounded-tl-2xl shadow-xl">
+      <div className=" flex flex-col xl:flex-row text-2xl max-w-3/4 overflow-x-scroll bg-white p-3 xl:p-2 gap-5 xl:rounded-tr-2xl xl:rounded-tl-2xl shadow-xl">
         {selectedExercises.length === 0 ? (
           <div className="text-red-500 text-lg">No exercises to display.</div>
         ) : (

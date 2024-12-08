@@ -110,7 +110,7 @@ const PostsPage = () => {
           className="w-full  p-3 rounded-lg text-xl border  dark:border-gray-700 outline-none  dark:bg-gray-800 dark:text-white"
         />
       </div>
-      <div className="text-2xl font-semibold">
+      <div className="text-2xl dark:text-white font-semibold">
         {t("shared.posts.lastPosts")}
       </div>
 

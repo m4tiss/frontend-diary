@@ -5,7 +5,6 @@ import { getAuthToken } from "../../../config/auth";
 import FriendBasicInfo from "../../shared/FriendBasicInfo";
 import GymFriendAdvancedInfo from "./GymFriendAdvancedInfo";
 import GymFriendCharts from "./GymFriendCharts";
-import GymFriendActions from './GymFriendActions';
 const GymFriendPage = () => {
    const { friendId } = useParams();
   const [friendInfo, setFriendInfo] = useState({});
@@ -21,7 +20,6 @@ const GymFriendPage = () => {
       })
       .then((res) => {
         let response = res.data.friendInfo;
-        console.log(response);
         setFriendInfo(response);
       })
       .catch((error) => {
@@ -35,7 +33,6 @@ const GymFriendPage = () => {
       <div className="w-full flex flex-col xl:flex-row justify-center flex-grow gap-10 xl:gap-0">
         <GymFriendAdvancedInfo friendInfo={friendInfo} friendId={friendId} />
         <GymFriendCharts friendInfo={friendInfo} friendId={friendId}/>
-        <GymFriendActions />
       </div>
     </div>
   );

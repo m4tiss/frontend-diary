@@ -29,7 +29,7 @@ const RunGoalPanel = ({ goal, deleteGoal }) => {
   const containerStyles =
     "w-80 xl:w-[600px] min-h-96 flex flex-col justify-between items-center rounded-xl relative cursor-pointer";
   const contentStyles =
-    "w-full h-full flex flex-col justify-evenly items-center bg-white dark:bg-run-night-element rounded-xl p-5 py-16 absolute backface-hidden";
+    "w-full h-full flex flex-col justify-evenly items-center bg-white rounded-xl p-5 py-16 absolute backface-hidden";
   const statusBarStyles =
     "absolute left-0 top-0 w-full h-12 flex justify-center items-center rounded-t-xl";
 

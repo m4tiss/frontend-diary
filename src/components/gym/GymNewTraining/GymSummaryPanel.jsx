@@ -54,7 +54,7 @@ const GymSummaryPanel = ({ workoutData, planName }) => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center gap-8">
+    <div className="w-full flex flex-col items-center gap-7">
       <div className="flex flex-col  items-start xl:items-center">
         <label className="px-2 text-xl w-full text-center">{t("gym.general.date")}</label>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
