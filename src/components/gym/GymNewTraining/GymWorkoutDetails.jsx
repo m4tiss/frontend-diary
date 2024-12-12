@@ -54,37 +54,42 @@ const GymWorkoutDetails = () => {
 
   return (
     <div className="w-full flex flex-grow flex-col items-center py-10 xl:px-20 bg-[#e9ecef] dark:bg-run-night-background gap-10 xl:gap-0">
-      <div className=" flex flex-col xl:flex-row text-2xl max-w-3/4 overflow-x-scroll bg-white p-3 xl:p-2 gap-5 xl:rounded-tr-2xl xl:rounded-tl-2xl shadow-xl">
-        {selectedExercises.length === 0 ? (
-          <div className="text-red-500 text-lg">No exercises to display.</div>
-        ) : (
-          <>
-            {selectedExercises.map((exercise, index) => (
-              <div
-                key={exercise.gym_exercise_id}
-                className={`cursor-pointer ${
-                  selectedExercise === index ? "text-pink-500" : "text-black"
-                }`}
-                onClick={() => setSelectedExercise(index)}
-              >
-                {t(`gym.exercises.${exercise.name_exercise}`)}
-              </div>
-            ))}
-            <div
-              key="summary"
-              className={`cursor-pointer ${
-                selectedExercise === -1 ? "text-pink-500" : "text-black"
-              }`}
-              onClick={() => setSelectedExercise(-1)}
-            >
-              {t("gym.newTraining.summary")}
-            </div>
-          </>
-        )}
+<div
+  className="flex flex-col xl:fixed xl:left-0 xl:top-20 xl:pr-14 xl:h-screen text-2xl xl:w-[600px] bg-white p-3 xl:p-5 gap-5 shadow-xl xl:ml-[-560px] hover:ml-0 duration-300"
+>
+  <div className="absolute top-0 right-0 p-3">☰</div>
+  {selectedExercises.length === 0 ? (
+    <div className="text-red-500 text-lg">No exercises to display.</div>
+  ) : (
+    <>
+      {selectedExercises.map((exercise, index) => (
+        <div
+          key={exercise.gym_exercise_id}
+          className={`cursor-pointer ${
+            selectedExercise === index ? "text-pink-500" : "text-black"
+          }`}
+          onClick={() => setSelectedExercise(index)}
+        >
+          {t(`gym.exercises.${exercise.name_exercise}`)}
+        </div>
+      ))}
+      <div
+        key="summary"
+        className={`cursor-pointer ${
+          selectedExercise === -1 ? "text-pink-500" : "text-black"
+        }`}
+        onClick={() => setSelectedExercise(-1)}
+      >
+        {t("gym.newTraining.summary")}
       </div>
+    </>
+  )}
+</div>
+
       <div className="bg-white rounded-2xl shadow-xl flex flex-col justify-evenly items-center flex-grow p-10 w-3/4">
         {currentExercise ? (
           <>
+          <div className="flex justify-center items-center w-full text-center text-xl xl:text-4xl text-semibold">{t(`gym.exercises.${currentExercise.name_exercise}`)}</div>
             <table className="w-full bg-white text-lg xl:text-2xl h-fit text-center rounded-lg outline-none border-none">
               <thead>
                 <tr>
