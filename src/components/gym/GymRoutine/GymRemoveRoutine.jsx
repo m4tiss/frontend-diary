@@ -23,7 +23,6 @@ const GymAddRoutine = ({ toggleRemoveRoutineDialog, successRemoveRoutine }) => {
       })
       .then((res) => {
         const response = res.data.routines;
-        console.log(response);
         setRoutines(response);
       })
       .catch((error) => {
@@ -65,7 +64,7 @@ const GymAddRoutine = ({ toggleRemoveRoutineDialog, successRemoveRoutine }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center px-5">
-          <h2 className="text-2xl">Remove routine</h2>
+          <h2 className="text-2xl">{t('gym.profile.removeRoutine')}</h2>
           <motion.button
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}
