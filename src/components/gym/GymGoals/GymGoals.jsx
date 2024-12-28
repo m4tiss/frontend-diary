@@ -52,8 +52,8 @@ const GymGoals = () => {
   return (
     <div className="w-full flex flex-grow flex-col justify-start bg-[#e9ecef] dark:bg-run-night-background py-10 px-5 gap-10">
       <div className="w-full flex flex-col text-center items-center text-black dark:text-white justify-center gap-5">
-        <h2 className="text-7xl">{t("gym.goals.title")}</h2>
-        <label className="text-2xl px-10">{t("gym.goals.description")}</label>
+        <h2 className="text-7xl">{t("gym.goals.titleGoal")}</h2>
+        <label className="text-2xl px-10">{t("gym.goals.descriptionGoal")}</label>
       </div>
 
       <div className="w-full flex justify-center flex-wrap gap-20">

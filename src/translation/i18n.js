@@ -347,8 +347,8 @@ const resources = {
           searchExercise: "Wyszukaj ćwiczenie",
         },
         goals: {
-          title: "Osiągnij swoje cele siłowe",
-          description:
+          titleGoal: "Osiągnij swoje cele siłowe",
+          descriptionGoal:
             "Odkryj swoją siłę dzięki naszemu przewodnikowi po treningu siłowym. Niezależnie od tego, czy chcesz zwiększyć masę mięśniową, poprawić siłę, czy zbudować wymarzoną sylwetkę, ten przewodnik dostarcza narzędzi i strategii, które pomogą ci osiągnąć sukces. Dowiedz się, jak tworzyć efektywne plany treningowe, unikać kontuzji i utrzymać motywację. Pełen wiedzy ekspertów, inspirujących historii i praktycznych wskazówek, ten przewodnik pomoże ci wyznaczać cele, przełamywać bariery i cieszyć się rezultatami. Zrób pierwszy krok na swojej siłowej drodze już dziś!",
           createdDate: "Data utworzenia: ",
           finishDate: "Data zakończenia: ",
