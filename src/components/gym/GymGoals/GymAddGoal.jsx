@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { getAuthToken } from "../../../config/auth";
 import axios from "../../../config/axios";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -18,26 +19,33 @@ import shouldersIcon from "../../../icons/shouldersIcon.jpg";
 import absIcon from "../../../icons/absIcon.jpg";
 import legsIcon from "../../../icons/legsIcon.jpg";
 
-const icons = {
-  "chestIcon.jpg": chestIcon,
-  "backIcon.jpg": backIcon,
-  "bicepsIcon.jpg": bicepsIcon,
-  "tricepsIcon.jpg": tricepsIcon,
-  "shouldersIcon.jpg": shouldersIcon,
-  "absIcon.jpg": absIcon,
-  "legsIcon.jpg": legsIcon,
-};
-
 const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
   const [selectedCategory, setSelectedCategory] = useState("Chest");
+  const { t } = useTranslation();
   const categories = [
-    "Chest",
-    "Back",
-    "Biceps",
-    "Triceps",
-    "Shoulders",
-    "Abs",
-    "Legs",
+    {
+      name: "Chest",
+      icon: chestIcon,
+      label: t("gym.categories.Chest"),
+    },
+    { name: "Back", icon: backIcon, label: t("gym.categories.Back") },
+    {
+      name: "Biceps",
+      icon: bicepsIcon,
+      label: t("gym.categories.Biceps"),
+    },
+    {
+      name: "Triceps",
+      icon: tricepsIcon,
+      label: t("gym.categories.Triceps"),
+    },
+    {
+      name: "Shoulders",
+      icon: shouldersIcon,
+      label: t("gym.categories.Shoulders"),
+    },
+    { name: "Abs", icon: absIcon, label: t("gym.categories.Abs") },
+    { name: "Legs", icon: legsIcon, label: t("gym.categories.Legs") },
   ];
 
   const [data, setData] = useState({
@@ -68,9 +76,9 @@ const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
         description: data.description,
         goal: data.goal,
         finish_date: data.finish_date,
-        type: selectedCategory
+        type: selectedCategory,
       };
-      console.log(goalData)
+      console.log(goalData);
 
       const token = getAuthToken();
       const resposne = await axios.post("/gym/goal", goalData, {
@@ -79,8 +87,8 @@ const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
           Authorization: "Bearer " + token,
         },
       });
-      console.log(resposne)
-      successGoalDialog()
+      console.log(resposne);
+      successGoalDialog();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -98,36 +106,38 @@ const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
         className="bg-white flex flex-col rounded-xl p-6 shadow-xl xl:w-2/3 w-full h-5/6 overflow-y-scroll"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-3xl font-semibold text-center">ADD NEW GOAL</h2>
+        <h2 className="text-3xl font-semibold text-center">
+          {t("gym.goals.addGoal")}
+        </h2>
         <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
           {categories.map((category) => (
             <div
-              key={category}
+              key={category.name}
               className={`flex flex-col items-center cursor-pointer ${
-                selectedCategory === category
+                selectedCategory === category.name
                   ? "border-4 border-lime-500"
                   : "border-4 border-gray-200"
               } rounded-lg p-2`}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => setSelectedCategory(category.name)}
             >
               <img
-                src={icons[`${category.toLowerCase()}Icon.jpg`]}
-                alt={category}
+                src={category.icon}
+                alt={category.label}
                 className="w-16 h-16 object-contain"
               />
               <span
                 className={`text-lg font-medium mt-2 ${
-                  selectedCategory === category
+                  selectedCategory === category.name
                     ? "text-lime-500"
                     : "text-gray-700"
                 }`}
               >
-                {category}
+                {category.label}
               </span>
             </div>
           ))}
         </div>
-        <label className="p-2">Title</label>
+        <label className="p-2">{t("gym.goals.title")}</label>
         <input
           className="p-2 text-xl  text-black border-2 border-gray-200 outline-none"
           type="text"
@@ -135,7 +145,7 @@ const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
           value={data.title}
           onChange={(e) => setData({ ...data, title: e.target.value })}
         />
-        <label className="p-2">Description</label>
+        <label className="p-2">{t("gym.goals.description")}</label>
         <textarea
           className="p-2 text-xl resize-none text-black border-2 border-gray-200 outline-none min-h-[8rem]"
           placeholder="Description"
@@ -143,7 +153,7 @@ const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
 
-        <label className="p-2">Goal</label>
+        <label className="p-2">{t("gym.goals.goal")}</label>
         <input
           className="p-2 text-xl text-black border-2 border-gray-200 outline-none"
           type="number"
@@ -154,7 +164,7 @@ const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
           onChange={(e) => setData({ ...data, goal: e.target.value })}
         />
         <div className="flex flex-col xl:flex-row w-full justify-center  xl:gap-20 items-start xl:items-center">
-          <label className="w-fit p-2">Finish Date</label>
+          <label className="w-fit p-2"> {t("gym.goals.finishDate")}</label>
           <div className="flex flex-grow justify-start items-center">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker"]}>
@@ -175,13 +185,13 @@ const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
           className="bg-lime-500 mt-5 text-white w-full p-2 rounded-xl shadow-xl"
           onClick={handleSubmit}
         >
-          Add goal
+          {t("gym.goals.addGoal")}
         </button>
         <button
           className="bg-red-500 mt-5 text-white w-full p-2 rounded-xl shadow-xl"
           onClick={toggleGoalDialog}
         >
-          Close
+          {t("shared.actions.close")}
         </button>
         <ToastContainer />
       </motion.div>
