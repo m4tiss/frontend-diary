@@ -141,14 +141,14 @@ const GymAddGoal = ({ toggleGoalDialog, successGoalDialog }) => {
         <input
           className="p-2 text-xl  text-black border-2 border-gray-200 outline-none"
           type="text"
-          placeholder="Title"
+          placeholder={t("gym.goals.title")}
           value={data.title}
           onChange={(e) => setData({ ...data, title: e.target.value })}
         />
         <label className="p-2">{t("gym.goals.description")}</label>
         <textarea
           className="p-2 text-xl resize-none text-black border-2 border-gray-200 outline-none min-h-[8rem]"
-          placeholder="Description"
+          placeholder={t("gym.goals.description")}
           value={data.description}
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
