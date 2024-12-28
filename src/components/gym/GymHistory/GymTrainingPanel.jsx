@@ -12,11 +12,18 @@ import { AnimatePresence } from "framer-motion";
 import GymTrainingDetails from "./GymTrainingDetails";
 
 const GymTrainingPanel = ({ workout, onDelete, showDetails }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDialog = () => {
     setIsOpen(!isOpen);
+  };
+
+  const getTranslatedPlanName = () => {
+    if (i18n.language === "pl" && workout?.planName === "QUICK WORKOUT") {
+      return "SZYBKI TRENING";
+    }
+    return workout?.planName;
   };
 
   return (
@@ -26,7 +33,7 @@ const GymTrainingPanel = ({ workout, onDelete, showDetails }) => {
       onClick={toggleDialog}
     >
       <div>
-        <h2 className="text-2xl">{workout.planName}</h2>
+        <h2 className="text-2xl">{getTranslatedPlanName()}</h2>
       </div>
       <div className="flex justify-start w-full px-5  text-xl">
         <span className="text-5xl text-center w-full">

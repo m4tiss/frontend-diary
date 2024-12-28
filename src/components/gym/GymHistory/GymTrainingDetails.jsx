@@ -23,7 +23,7 @@ const GymTrainingDetails = ({
   onDelete,
   hideDelete,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedExercise, setSelectedExercise] = useState(0);
   const [workout, setWorkout] = useState();
 
@@ -49,6 +49,14 @@ const GymTrainingDetails = ({
 
   const currentExercise = workout?.workoutData?.[selectedExercise];
 
+  const getTranslatedPlanName = () => {
+    if (i18n.language === "pl" && planName === "QUICK WORKOUT") {
+      return "SZYBKI TRENING";
+    }
+    return planName;
+  };
+
+
   return createPortal(
     <div
       className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
@@ -62,7 +70,7 @@ const GymTrainingDetails = ({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col xl:flex-row items-center px-10 justify-between">
-          <h2 className="text-4xl text-center">{planName}</h2>
+          <h2 className="text-4xl text-center">{getTranslatedPlanName()}</h2>
           <div className="flex gap-5">
             {!hideDelete && (
               <motion.button
