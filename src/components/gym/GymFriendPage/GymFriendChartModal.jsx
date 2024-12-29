@@ -95,7 +95,7 @@ const GymFriendChartModal = ({ toggleDialog, type, friendInfo, friendId }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col xl:flex-row items-center px-10 justify-between">
-          <h2 className="text-4xl">Chart {type}</h2>
+          <h2 className="text-4xl">{t('shared.chart.chart')} {t(`shared.chart.${type}`)}</h2>
           <motion.button
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}

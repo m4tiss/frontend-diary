@@ -78,11 +78,18 @@ const resources = {
           noFile: "Brak pliku",
         },
         chart: {
+          chart:"Wykres",
           run: "Bieganie",
           gym: "Trening siłowy",
           trainings: "Treningi",
           months: "Miesiące",
           workouts: "Treningi w ostatnich miesiącach",
+          Muscles: "zaangażowanych grup mięśniowych",
+          Workouts: "ilości treningów",
+          Volume: "objętości treningowej",
+          Sets: "ilości serii",
+          Duration: "czasu trwania",
+          Rating: "ocen"
         },
         posts: {
           lastPosts: "Ostatnie posty użytkowników",
@@ -440,11 +447,18 @@ const resources = {
           noFile: "No file",
         },
         chart: {
+          chart:"Chart",
           run: "Run",
           gym: "Gym",
           trainings: "Trainings",
           months: "Months",
           workouts: "Trainings in recent months",
+          Muscles: "engaged muscle groups",
+          Workouts: "number of workouts",
+          Volume: "training volume",
+          Sets: "number of sets",
+          Duration: "duration",
+          Rating: "ratings"
         },
         posts: {
           lastPosts: "Recent user posts",
